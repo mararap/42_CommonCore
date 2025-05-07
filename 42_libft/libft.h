@@ -18,6 +18,8 @@ int	ft_isdigit(int c);
 int	ft_isalnum(int c);
 int	ft_isascii(int c);
 int	ft_isprint(int c);
-int	ft_strlen(char *str);
+size_t	ft_strlen(char *str);
+size_t	ft_strlcpy.c(char *str);
+
 
 #endif // LIBFT_H
