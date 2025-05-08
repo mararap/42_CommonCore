@@ -2,7 +2,6 @@ memset
 bzero
 memcpy
 memmove
-strlcat
 toupper
 tolower
 strchr
@@ -33,3 +32,5 @@ isascii
 isprint
 strlen
 strlcpy
+strlcat
+

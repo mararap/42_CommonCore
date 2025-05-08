@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <bsd/string.h>
-#include "ft_strlen.h"
+#include "ft_strlen.c"
 
 size_t	ft_strlcat(char *dest, char *src, size_t size)
 {
@@ -28,34 +28,31 @@ size_t	ft_strlcat(char *dest, char *src, size_t size)
 	dl = ft_strlen(dest);
 	if (size == 0)
 		return (sl);
+//	printf("%zu\n", sl);
 	if ((size <= dl) && (size >= sl))
 		return (sl + size);
 	while (dest[j] != '\0')
 		j++;
-	printf("j after first loop: %zu\n", j);
-	while ((src[i]) && ((dl + sl + 1) <= size) && (j <= (dl + sl)))
+	printf("J1:%zu\n", j);
+	while (src[i] && (j + dl + 1 <= size ))
 	{
 		dest[j] = src[i];
 		i++;
-		j++;
 	}
 	dest[j] = '\0';
-	return (ft_strlen(dest));
+	printf("J2:%zu\n", j);
+	return (dl + sl);
 }
-/*
-int main(void)
-{
-	char	desto[] = "12345";
-	char	*srco = "6789";
-	size_t	sizeo = 20;
-	
-	char	destm[] = "12345";
-	char	*srcm = "6789";
-	size_t	sizem = 20;
 
-	printf("original: %zu\n", strlcat(desto, srco, sizeo));
-	printf("original: %s\n", desto);
-	printf("mine: %zu\n", ft_strlcat(destm, srcm, sizem));
-	printf("mine: %s\n", destm);
+int main()
+{
+	char	dest[] = "1234512345";
+	char	*src = "6789";
+	size_t	size = 3;
+
+//	printf("%zu\n", strlcat(dest, src, size));
+//	printf("%s\n", dest);
+	printf("%zu\n", ft_strlcat(dest, src, size));
+	printf("%s\n", dest);
 	return (0);
-}*/
+}
