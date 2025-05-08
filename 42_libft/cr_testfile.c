@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   cr_testfile.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/25 11:19:25 by marapovi          #+#    #+#             */
-/*   Updated: 2025/04/25 11:19:30 by marapovi         ###   ########.fr       */
+/*   Created: 2025/05/08 14:27:15 by marapovi          #+#    #+#             */
+/*   Updated: 2025/05/08 14:27:20 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-#define LIBFT_H
+#include <string.h>
+#include <stdio.h>
+#include <bsd/string.h>
+#include <ctriterion/criterion.h>
+#include "libft.h"
 
-int	ft_isalpha(int c);
-int	ft_isdigit(int c);
-int	ft_isalnum(int c);
-int	ft_isascii(int c);
-int	ft_isprint(int c);
-size_t	ft_strlen(char *str);
-size_t	ft_strlcpy.c(char *str);
-size_t	ft_strlcat.c(char *dest, char *src, size_t size);
+Test(chars, test_against_original_function)
+{
+	cr_assert_eq(ft_isalpha.c, isalpha.c > 0, "does not match");
+}
 
-#endif // LIBFT_H
+
