@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
-//#include <bsd/string.h>
+#include <bsd/string.h>
 
 size_t	ft_strlen(char *str)
 {
@@ -31,5 +31,4 @@ int	main(void)
 	printf("Length of \"%s\" is: %zu\n", str, strlen(str));
 	printf("Length of \"%s\" is: %zu\n", str, ft_strlen(str));
 	return (0);
-}
-*/
+}*/

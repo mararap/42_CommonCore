@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <bsd/string.h>
-#include "ft_strlen.h"
+#include "libft.h"
 
 size_t	ft_strlcat(char *dest, char *src, size_t size)
 {

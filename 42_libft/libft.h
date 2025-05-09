@@ -19,7 +19,7 @@ int	ft_isalnum(int c);
 int	ft_isascii(int c);
 int	ft_isprint(int c);
 size_t	ft_strlen(char *str);
-size_t	ft_strlcpy.c(char *str);
-size_t	ft_strlcat.c(char *dest, char *src, size_t size);
+size_t	ft_strlcpy(char *str);
+size_t	ft_strlcat(char *dest, char *src, size_t size);
 
 #endif // LIBFT_H

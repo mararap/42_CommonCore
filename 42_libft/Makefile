@@ -1,30 +1,34 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/25 13:28:32 by marapovi          #+#    #+#              #
-#    Updated: 2025/04/25 13:28:39 by marapovi         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
-#include <libft.h>
+HEADER	=	libft.h
 
-NAME := libft.a
+CFILES	=	ft_isalpha.c\
+			ft_isalnum.c\
+			ft_isascii.c\
+			ft_isdigit.c\
+			ft_isprint.c\
+			ft_strlen.c\
+			ft_strlcpy.c\
+			ft_strlcat.c
 
+OFILES	=	$(CFILES:.c=.o)
 
-libft: libft.h	ft_isalpha.o
-	ar	rcs	libft.h	ft_isalpha.o -o libft
+CC	=	cc
 
-ft_isalpha.o: ft_isalpha.c
-	cc -Wall -Wextra -Werror ft_isalpha.c -o ft_isalpha.o
+CFLAGS	=	-Wall -Wextra -Werror
+
+NAME	:=	libft.a
+
+all: $(NAME)
+
+$(NAME): $(OFILES)
+	ar rcs $(NAME) $(OFILES)
 
 clean:
-	rm	-f	ft_isalpha.o
+	rm -f $(OFILES)
 
-	
+fclean: clean
+	rm -f $(NAME)
 
-	
+re: fclean $(NAME)
 
+.PHONY: all clean fclean re

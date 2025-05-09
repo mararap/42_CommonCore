@@ -13,12 +13,18 @@
 #include <string.h>
 #include <stdio.h>
 #include <bsd/string.h>
-#include <ctriterion/criterion.h>
+#include <criterion/criterion.h>
 #include "libft.h"
+#include <ctype.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <criterion/new/assert.h>
+
+TestSuite(chars);
 
 Test(chars, test_against_original_function)
 {
-	cr_assert_eq(ft_isalpha.c, isalpha.c > 0, "does not match");
+	char	c = 'X';
+
+	cr_assert(eq(int,ft_isalpha(c), isalpha(c) != 0));
 }
-
-

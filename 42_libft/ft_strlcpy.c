@@ -26,7 +26,7 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-size_t	ft_strlcpy (char	*dest, char	*src, size_t	size)
+size_t	ft_strlcpy (char *dest, char *src, size_t size)
 {
 	size_t	i;
 
@@ -40,9 +40,9 @@ size_t	ft_strlcpy (char	*dest, char	*src, size_t	size)
 					i++;
 			}
 			dest[i] = '\0';
-	return ft_strlen(src);
+	return (ft_strlen(src));
 }
-
+/*
 int	main(void)
 {
 	char dest[25] = "nowtestme";
@@ -54,4 +54,4 @@ int	main(void)
 	printf("%zu\n", ft_strlcpy(dest, src, size));
 	printf("%s\n", dest);
 	return(0);
-}
+}*/
