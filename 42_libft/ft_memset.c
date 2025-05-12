@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memset.c                                           :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 10:09:00 by marapovi          #+#    #+#             */
-/*   Updated: 2025/05/08 10:09:06 by marapovi         ###   ########.fr       */
+/*   Created: 2025/05/12 11:24:51 by marapovi          #+#    #+#             */
+/*   Updated: 2025/05/12 11:25:55 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdio.h>
-
-void *ft_memset(void *s, int c, size_t n)
+#include <bsd/string.h>
+/*
+void	*ft_memset(void *s, int c, size_t n)
 {
 	unsigned char	*str;
-	size_t	i;
 
-	str = s;
-	i = 0;
-	while((str[i]) && (i <= n))
+	str = (unsigned char *) s;
+	while(n)
 		{
-		 str[i] = c;
-			i++;
+		 (unsigned char*) str = c;
+			str++;
 		}
 		 return (s);
 }
-
+*/
 int	main(void)
 {
 //	void	*s = "ssssssssss";
 //	int		c = 5;
 //	size_t	n = 5;
-	void	*so = "ssssssssss";
-	int		co = 5;
-	size_t	no = 5;
+	char	so[42] = "lets goooooooo";
+	int		co = 'u';
+	size_t	no = 8;
 
 //	printf("mine: %s\n", ft_memset(s, c, n));
-	printf("original: %zu\n", memset(so, co, no));
+	printf("original: %p\n", memset(so + 6, co, no));
 	return (0);
 }
