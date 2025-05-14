@@ -1,47 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 11:24:51 by marapovi          #+#    #+#             */
-/*   Updated: 2025/05/12 11:25:55 by marapovi         ###   ########.fr       */
+/*   Created: 2025/05/13 13:44:28 by marapovi          #+#    #+#             */
+/*   Updated: 2025/05/13 13:44:34 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-	unsigned char	*str;
-
-	str = (unsigned char *) s;
-	while(n)
-		{
-		 	*str = c;
-			str++;
-			n--;
-		}
-		 return (s);
+	ft_memset(s, 0, n);
 }
 /*
+#include <strings.h>
 #include <string.h>
 #include <stdio.h>
-#include <bsd/string.h>
 
 int	main(void)
 {
-	char s[42] = "lets goooooooo";
-	int		c = 'u';
-	size_t	n = 8;
-	char	so[42] = "lets goooooooo";
-	int **hehe;
-	int		co = 'u';
-	size_t	no = 8;
+	char	s[42] = "test me if you can";
+	char	so[42] = "test me if you can";
 
-	**hehe;
-	printf("mine: %s\n", (char *)ft_memset(s, c, n));
-	printf("original: %s\n", (char *)memset(so, c, n));
-	return (0);
+	ft_bzero(s, 5);
+	bzero(so, 5);
+
+	if (memcmp(s, so, 42) == 0)
+		printf("OK - ft_bzero == bezero\n");
+	else
+		printf("FAIL - ft_bzero != bezero\n");
+	return(0);
 }*/

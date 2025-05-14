@@ -23,11 +23,10 @@
 
 TestSuite(chars);
 TestSuite(strs);
-TestSuite(mem);
 
 Test(chars, test_against_original_function)
 {
-	char	c;
+	char	c = 'X';
 
 	cr_assert(eq(int, ft_isalpha(c), isalpha(c) != 0));
 	cr_assert(eq(int, ft_isdigit(c), isdigit(c) != 0));
@@ -39,18 +38,10 @@ Test(chars, test_against_original_function)
 Test(strs, test_against_original_function)
 {
 	const char	str[42] = "test me if you can";
-	char	dest[42] = "if you can, test me";
+	char	*dest = "if you can, test me";
 	size_t	size = 4;
 	
-	cr_assert(eq(int, ft_strlen(str), strlen(str)));
-	cr_assert(eq(int, ft_strlcpy(dest, str, size), strlcpy(dest, str, size)));
-}
-
-TestSuite(mems)
-{
-//insert declarations for s, c and n here
-	
-	cr_assert(eq(int, ft_memset(s, c, n)));
-	cr_assert(eq(int, ft_bzero(s, n)));
+	cr_assert(eq(int, ft_strlen(str), strlen(str) != 0));
+	cr_assert(eq(int, ft_strlcpy(dest, str, size), strlcpy(dest, str, size) != 0));
 }
 

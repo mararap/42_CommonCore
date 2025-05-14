@@ -9,10 +9,9 @@
 /*   Updated: 2025/04/24 12:58:37 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <bsd/string.h>
+#include "libft.h"
 
-size_t	ft_strlen(char *str)
+size_t	ft_strlen(const char *str)
 {
 	size_t	i;
 
@@ -24,6 +23,9 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 /*
+#include <stdio.h>
+#include <bsd/string.h>
+
 int	main(void)
 {
 	char	str[] = "asdfjklö";

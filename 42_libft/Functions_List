@@ -1,5 +1,3 @@
-memset
-bzero
 memcpy
 memmove
 toupper
@@ -33,4 +31,5 @@ isprint
 strlen
 strlcpy
 strlcat
-
+memset
+bzero

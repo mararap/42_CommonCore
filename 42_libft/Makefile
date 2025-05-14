@@ -8,13 +8,15 @@ CFILES	=	ft_isalpha.c\
 			ft_isprint.c\
 			ft_strlen.c\
 			ft_strlcpy.c\
-			ft_strlcat.c
+			ft_strlcat.c\
+			ft_memset.c\
+			ft_bzero.c
 
 OFILES	=	$(CFILES:.c=.o)
 
 CC	=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -fPIC
 
 NAME	:=	libft.a
 
