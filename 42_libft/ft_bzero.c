@@ -17,17 +17,17 @@ void	ft_bzero(void *s, size_t n)
 	ft_memset(s, 0, n);
 }
 /*
+#include <stdio.h>
 #include <strings.h>
 #include <string.h>
-#include <stdio.h>
 
 int	main(void)
 {
 	char	s[42] = "test me if you can";
 	char	so[42] = "test me if you can";
 
-	ft_bzero(s, 5);
-	bzero(so, 5);
+	ft_bzero(s, (0));
+	bzero(so, (0));
 
 	if (memcmp(s, so, 42) == 0)
 		printf("OK - ft_bzero == bezero\n");

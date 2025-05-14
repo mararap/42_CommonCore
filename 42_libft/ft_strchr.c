@@ -1,31 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 09:48:45 by marapovi          #+#    #+#             */
-/*   Updated: 2025/04/24 09:49:01 by marapovi         ###   ########.fr       */
+/*   Created: 2025/05/14 19:49:00 by marapovi          #+#    #+#             */
+/*   Updated: 2025/05/14 19:49:03 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalnum(int i)
+char	*ft_strchr(const char *s, int c)
 {
-	unsigned char	c;
+	size_t			i;
+	unsigned char	uc;
 
-	c = (unsigned char)i;
-	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || (c >= 48 && c <= 57))
-		return (1);
+	uc = (unsigned char)c;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == uc)
+		{
+			return ((char *)&s[i]);
+		}
+		i++;
+	}
+	if (s[i] == uc)
+		return ((char *)&s[i]);
 	return (0);
 }
 /*
+#include <string.h>
 #include <stdio.h>
-#include <ctype.h>
 
 int	main(void)
 {
-	printf("%d\n", ft_isalnum('9'));
-	printf("%d\n", isalnum('9'));
-	return (0);
+	const char	s[42] = "you got this!";
+	int c = 'X';
+
+	printf("my function: %s\n", ft_strchr(s, c));
+	printf("original: %s\n", strchr(s, c));
+	return(0);
 }*/

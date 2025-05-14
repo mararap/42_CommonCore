@@ -9,8 +9,11 @@ CFILES	=	ft_isalpha.c\
 			ft_strlen.c\
 			ft_strlcpy.c\
 			ft_strlcat.c\
+			ft_strncmp.c\
 			ft_memset.c\
-			ft_bzero.c
+			ft_bzero.c\
+			ft_toupper.c\
+			ft_tolower.c
 
 OFILES	=	$(CFILES:.c=.o)
 

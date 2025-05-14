@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 09:48:45 by marapovi          #+#    #+#             */
-/*   Updated: 2025/04/24 09:49:01 by marapovi         ###   ########.fr       */
+/*   Created: 2025/05/14 13:30:10 by marapovi          #+#    #+#             */
+/*   Updated: 2025/05/14 13:30:15 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalnum(int i)
-{
-	unsigned char	c;
+#include <stdlib.h>
 
-	c = (unsigned char)i;
-	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || (c >= 48 && c <= 57))
-		return (1);
-	return (0);
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (s1[i] != '\0' && s1[i] == s2[i] && i <= n)
+	{
+		i++;
+	}
+	return (s1[i] - s2[i]);
 }
 /*
+#include <string.h>
 #include <stdio.h>
-#include <ctype.h>
 
 int	main(void)
 {
-	printf("%d\n", ft_isalnum('9'));
-	printf("%d\n", isalnum('9'));
-	return (0);
+	const char s1[42] = "if you're happy and you know it...";
+	const char s2[42] = "if you know it and you're happy...";
+	size_t n = 15;
+	
+	printf("mine: %d\n", strncmp(s1, s2, n));
+	printf("original: %d\n", strncmp(s1, s2, n));
 }*/

@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 09:48:45 by marapovi          #+#    #+#             */
-/*   Updated: 2025/04/24 09:49:01 by marapovi         ###   ########.fr       */
+/*   Created: 2025/05/14 13:12:58 by marapovi          #+#    #+#             */
+/*   Updated: 2025/05/14 13:13:02 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalnum(int i)
+int	ft_tolower(int c)
 {
-	unsigned char	c;
+	unsigned char	uc;
 
-	c = (unsigned char)i;
-	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || (c >= 48 && c <= 57))
-		return (1);
-	return (0);
+	uc = (unsigned char)c;
+	if (uc >= 'A' && uc <= 'Z')
+		return (c + ('a' - 'A'));
+	else
+		return (c);
 }
 /*
-#include <stdio.h>
 #include <ctype.h>
+#include <stdio.h>
 
 int	main(void)
 {
-	printf("%d\n", ft_isalnum('9'));
-	printf("%d\n", isalnum('9'));
+	int c;
+
+	c = 'M';
+	printf("mine: %d\n", ft_tolower(c));
+	printf("mine: %d\n", tolower(c));
 	return (0);
 }*/

@@ -17,31 +17,30 @@ void	*ft_memset(void *s, int c, size_t n)
 	unsigned char	*str;
 
 	str = (unsigned char *) s;
-	while(n)
-		{
-		 	*str = c;
-			str++;
-			n--;
-		}
-		 return (s);
+	while (n)
+	{
+		*str = c;
+		str++;
+		n--;
+	}
+	return (s);
 }
 /*
 #include <string.h>
 #include <stdio.h>
-#include <bsd/string.h>
+#include <strings.h>
 
 int	main(void)
 {
 	char s[42] = "lets goooooooo";
 	int		c = 'u';
 	size_t	n = 8;
+	
 	char	so[42] = "lets goooooooo";
-	int **hehe;
 	int		co = 'u';
 	size_t	no = 8;
 
-	**hehe;
 	printf("mine: %s\n", (char *)ft_memset(s, c, n));
-	printf("original: %s\n", (char *)memset(so, c, n));
+	printf("original: %s\n", (char *)memset(so, co, no));
 	return (0);
 }*/

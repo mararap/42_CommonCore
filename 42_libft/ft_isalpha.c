@@ -10,19 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(int c)
+int	ft_isalpha(int i)
 {
+	unsigned char	c;
+
+	c = (unsigned char)i;
 	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 		return (1);
 	return (0);
 }
-
 /*
 #include <stdio.h>
+#include <ctype.h>
 
 int	main(void)
 {
 	printf("%d\n", ft_isalpha('M'));
+	printf("%d\n", isalpha('M'));
 	return (0);
-}
-*/
+}*/

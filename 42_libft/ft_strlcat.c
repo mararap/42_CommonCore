@@ -32,7 +32,6 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 		return (sl + size);
 	while (dest[j] != '\0')
 		j++;
-	printf("j after first loop: %zu\n", j);
 	while ((src[i]) && ((dl + sl + 1) <= size) && (j <= (dl + sl)))
 	{
 		dest[j] = src[i];

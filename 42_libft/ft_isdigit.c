@@ -10,19 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(unsigned char c)
+int	ft_isdigit(int i)
 {
-	if (c >= '1' && c <= '9')
+	unsigned char	c;
+
+	c = (unsigned char)i;
+	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
 }
-
 /*
+#include <ctype.h>
 #include <stdio.h>
 
 int	main(void)
 {
-	printf("%d\n", ft_isdigit('5'));
+ 	printf("my function: %d\n", ft_isdigit(-2147483649));
+	printf("original function: %d\n", isdigit(-2147483649));
 	return (0);
-}
-*/
+}*/

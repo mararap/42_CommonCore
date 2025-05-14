@@ -10,19 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(int c)
+int	ft_isprint(int i)
 {
+	unsigned char	c;
+
+	c = (unsigned char)i;
 	if (c >= 32 && c <= 126)
 		return (1);
 	return (0);
 }
-
 /*
+#include <ctype.h>
 #include <stdio.h>
 
 int	main(void)
 {
-	printf("%d\n", ft_isprint(3));
+	unsigned char c;
+	c = 50;
+	printf("%d\n", ft_isprint(c));
+	printf("%d\n", isprint(c));
 	return (0);
-}
-*/
+}*/
