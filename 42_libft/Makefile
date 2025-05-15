@@ -19,7 +19,8 @@ CFILES	=	ft_isalpha.c\
 			ft_strrchr.c\
 			ft_memchr.c\
 			ft_memcmp.c\
-			ft_memcpy.c
+			ft_memcpy.c\
+			ft_memmove.c
 
 OFILES	=	$(CFILES:.c=.o)
 

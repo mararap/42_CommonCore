@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 13:20:25 by marapovi          #+#    #+#             */
-/*   Updated: 2025/05/15 13:20:28 by marapovi         ###   ########.fr       */
+/*   Created: 2025/05/15 15:06:02 by marapovi          #+#    #+#             */
+/*   Updated: 2025/05/15 15:06:06 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	unsigned char	*d;
 	unsigned char	*s;
 	size_t			i;
 
-	d = (unsigned char *)dest;
+	d = (unsigned char *)dst;
 	s = (unsigned char *)src;
 	i = 0;
-	while (s[i] && d[i] && i < n)
+	if (d > s)
 	{
-		d[i] = s[i];
-		i++;
+		while (len != 0)
+		{
+			len--;
+			d[len] = s[len];
+		}
+		return (d);
 	}
-	return (dest);
+	else
+	{
+		ft_memcpy(dst, src, len);
+		return (d);
+	}
 }
 /*
 #include <stdio.h>
@@ -34,10 +42,10 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 
 int	main(void)
 {
-	char	dest[42] = "does it work?";
-	char src[] = "it does work!";
-	size_t	n = '\0';
-	printf("my function: %s\n", (char *)ft_memcpy(dest, src, n));
-	printf("original function: %s\n", (char *)memcpy(dest, src, n));
-	return (0);
+	char	dst[42] = "does it work?";
+	char	src[] = "yeah it does!";
+	size_t	len = 14;
+
+	printf("my function: %s\n", (char *)ft_memmove(dst, src, len));
+	printf("original function: %s\n", (char *)memmove(dst, src, len));
 }*/
