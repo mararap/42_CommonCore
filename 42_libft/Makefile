@@ -13,7 +13,10 @@ CFILES	=	ft_isalpha.c\
 			ft_memset.c\
 			ft_bzero.c\
 			ft_toupper.c\
-			ft_tolower.c
+			ft_tolower.c\
+			ft_strnstr.c\
+			ft_strchr.c\
+			ft_strrchr.c
 
 OFILES	=	$(CFILES:.c=.o)
 

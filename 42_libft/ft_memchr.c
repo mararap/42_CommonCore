@@ -1,46 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 19:49:00 by marapovi          #+#    #+#             */
-/*   Updated: 2025/05/14 19:49:03 by marapovi         ###   ########.fr       */
+/*   Created: 2025/05/15 11:28:39 by marapovi          #+#    #+#             */
+/*   Updated: 2025/05/15 11:28:45 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t			i;
 	unsigned char	uc;
+	unsigned char	*ptr;
+	size_t			i;
 
 	uc = (unsigned char)c;
+	ptr = (unsigned char *)s;
 	i = 0;
-	while (s[i])
+	while (ptr[i] && (i < n))
 	{
-		if (s[i] == uc)
-		{
-			return ((char *)&s[i]);
-		}
+		if (ptr[i] == uc)
+			return ((void *)&s[i]);
 		i++;
 	}
-	if (s[i] == uc)
-		return ((char *)&s[i]);
 	return (0);
 }
 /*
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
 
 int	main(void)
 {
-	const char	s[42] = "you got this!";
-	int c = 'X';
+	const void *s = "testing my function";
+	int	c = 'i';
+	size_t	n = 7;
 
-	printf("my function: %s\n", ft_strchr(s, c));
-	printf("original: %s\n", strchr(s, c));
-	return(0);
+	printf("my fuction: %p\n", ft_memchr(s, c, n));
+	printf("original fuction: %p\n", memchr(s, c, n));
+	return (0);
 }*/
