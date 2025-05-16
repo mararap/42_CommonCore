@@ -1,47 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 11:24:51 by marapovi          #+#    #+#             */
-/*   Updated: 2025/05/12 11:25:55 by marapovi         ###   ########.fr       */
+/*   Created: 2025/05/16 10:32:54 by marapovi          #+#    #+#             */
+/*   Updated: 2025/05/16 10:32:56 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+void	*ft_calloc(size_t	nmemb, size_t size)
 {
-	unsigned char	*str;
-	size_t			i;
+	unsigned char	*ptr;
 
-	i = 0;
-	str = (unsigned char *) s;
-	while (i < n)
+	if (size == 0 || (((size_t)-1 / size) < nmemb))
 	{
-		str[i] = c;
-		i++;
+		return (NULL);
 	}
-	return (s);
+	ptr = malloc(size * nmemb);
+	ft_bzero(ptr, size * nmemb);
+	return ((void *)ptr);
 }
 /*
-#include <string.h>
 #include <stdio.h>
-#include <strings.h>
 
 int	main(void)
 {
-	char s[42] = "lets goooooooo";
-	int		c = 'u';
-	size_t	n = 8;
+	size_t	nmemb = 42;
+	size_t	size = sizeof(int);
 	
-	char	so[42] = "lets goooooooo";
-	int		co = 'u';
-	size_t	no = 8;
-
-	printf("mine: %p\n", ft_memset(s, c, n));
-	printf("original: %p\n", memset(so, co, no));
+	printf("my function: %p\n", ft_calloc(nmemb, size));
+	printf("original function: %p\n", calloc(nmemb, size));
 	return (0);
 }*/
