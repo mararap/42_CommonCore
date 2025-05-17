@@ -41,8 +41,9 @@ int	ft_atoi(const char *str)
 
 int	main(void)
 {
-	const char	str[42] = "315841684";
+	const char	str[42] = "3181651";
 
+	printf("original function: %d\n", atoi(str));
 	printf("my function: %d\n", ft_atoi(str));
 	return (0);
 }*/

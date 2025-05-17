@@ -1,42 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/16 10:32:54 by marapovi          #+#    #+#             */
-/*   Updated: 2025/05/16 10:32:56 by marapovi         ###   ########.fr       */
+/*   Created: 2025/05/17 18:01:43 by marapovi          #+#    #+#             */
+/*   Updated: 2025/05/17 18:01:45 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned char	*ptr;
-	size_t			elements;
+	size_t	i;
+	char	*newstr;
 
-	elements = nmemb;
-	if (size == 0 || (((size_t) - 1 / size) < elements))
+	i = 0;
+	newstr = ft_calloc(ft_strlen(s) + 1, 1);
+	if (newstr == NULL)
+		return (NULL);
+	while (s[i])
 	{
-		return (NULL);
+		newstr[i] = f(0, s[i]);
+		i++;
 	}
-	ptr = malloc(size * elements);
-	if (ptr == NULL)
-		return (NULL);
-	ft_bzero(ptr, size * elements);
-	return ((void *)ptr);
+	return (newstr);
 }
 /*
 #include <stdio.h>
 
+char	ft_ttoupper(unsigned int i, char c)
+{
+	(void) i;
+	if (c >= 'a' && c <= 'z')
+		return (c - ('a' - 'A'));
+	else
+		return (c);
+}
+
 int	main(void)
 {
-	size_t	nmemb = 42;
-	size_t	size = sizeof(int);
-	
-	printf("my function: %p\n", ft_calloc(nmemb, size));
-	printf("original function: %p\n", calloc(nmemb, size));
+	char *str = "Hallo";
+	char *out;
+	out = ft_strmapi(str, ttoupper);
+	printf("out: %s\n", out);
 	return (0);
 }*/

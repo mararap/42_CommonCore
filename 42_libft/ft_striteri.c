@@ -1,42 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/16 10:32:54 by marapovi          #+#    #+#             */
-/*   Updated: 2025/05/16 10:32:56 by marapovi         ###   ########.fr       */
+/*   Created: 2025/05/17 19:49:49 by marapovi          #+#    #+#             */
+/*   Updated: 2025/05/17 19:49:52 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	unsigned char	*ptr;
-	size_t			elements;
+	size_t	i;
 
-	elements = nmemb;
-	if (size == 0 || (((size_t) - 1 / size) < elements))
+	i = 0;
+	if (!s[i])
+		return ;
+	while (s[i])
 	{
-		return (NULL);
+		(*f)(i, &s[i]);
+		i++;
 	}
-	ptr = malloc(size * elements);
-	if (ptr == NULL)
-		return (NULL);
-	ft_bzero(ptr, size * elements);
-	return ((void *)ptr);
 }
 /*
 #include <stdio.h>
 
+void	to_upper_with_index(unsigned int i, char *c)
+{
+	if ((i % 2 == 0) && *c >= 'a' && *c <= 'z')
+		*c = *c - 32;
+}
+
 int	main(void)
 {
-	size_t	nmemb = 42;
-	size_t	size = sizeof(int);
-	
-	printf("my function: %p\n", ft_calloc(nmemb, size));
-	printf("original function: %p\n", calloc(nmemb, size));
+	char	str[] = "hello world";
+
+	ft_striteri(str, to_upper_with_index);
+
+	printf("modified string: %s\n", str); 
 	return (0);
 }*/
