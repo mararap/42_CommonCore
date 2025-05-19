@@ -34,7 +34,7 @@ char	*ft_strrchr(const char *s, int c)
 int	main(void)
 {
 	const char	*s = "testing my function";
-	int	c = '\0';
+	int	c = 'c';
 
 	printf("my function: %s\n", ft_strrchr(s, c));
 	printf("original function: %s\n", strrchr(s, c));

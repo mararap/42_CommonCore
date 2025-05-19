@@ -1,5 +1,4 @@
 ft_itoa
-ft_strtrim
 ft_split
 -------------
 isalpha
@@ -33,3 +32,4 @@ ft_substr
 ft_strmapi
 ft_striteri
 ft_strjoin
+ft_strtrim

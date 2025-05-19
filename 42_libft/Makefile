@@ -31,7 +31,8 @@ CFILES	=	ft_isalpha.c\
 			ft_substr.c\
 			ft_strmapi.c\
 			ft_striteri.c\
-			ft_strjoin.c
+			ft_strjoin.c\
+			ft_itoa.c
 
 OFILES	=	$(CFILES:.c=.o)
 
