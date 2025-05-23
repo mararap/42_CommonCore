@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 size_t	ft_intsize(int n)
 {
@@ -40,7 +39,7 @@ char	*ft_itoa(int n)
 	sign = 1;
 	ln = n;
 	size = ft_intsize(n);
-	if (n < 0)
+	if (n <= 0)
 	{
 		size = size + 1;
 		sign = sign * (-1);
@@ -62,7 +61,7 @@ char	*ft_itoa(int n)
 
 int	main(void)
 {
-	int	n = -549874;
+	int	n = (0);
 
 	printf("newstr: %s\n", ft_itoa(n));
 	return (0);

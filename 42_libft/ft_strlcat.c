@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
-#include <bsd/string.h>
 #include "libft.h"
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
@@ -26,31 +23,34 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	j = 0;
 	sl = ft_strlen(src);
 	dl = ft_strlen(dest);
-	if (size == 0)
-		return (sl);
-	if ((size <= dl) && (size >= sl))
+	if (size <= dl)
 		return (sl + size);
 	while (dest[j] != '\0')
 		j++;
-	while ((src[i]) && ((dl + sl + 1) <= size) && (j <= (dl + sl)))
+	while ((src[i]) && ((j < (size - 1))))
 	{
 		dest[j] = src[i];
 		i++;
 		j++;
 	}
 	dest[j] = '\0';
-	return (ft_strlen(dest));
+	return (dl + sl);
 }
 /*
+#include <stdio.h>
+#include <string.h>
+#include <bsd/string.h>
+
 int main(void)
 {
-	char	desto[] = "12345";
-	char	*srco = "6789";
-	size_t	sizeo = 20;
+	char	desto[30]; memset(desto, 0, 30); memset(desto, 'B', 4);
+	char	*srco = "AAAAAAAAA";
+	size_t	sizeo = 6;
 	
-	char	destm[] = "12345";
-	char	*srcm = "6789";
-	size_t	sizem = 20;
+	char	destm[30]; memset(destm, 0, 30); memset(destm, 'B', 4);
+
+	char	*srcm = "AAAAAAAAA";
+	size_t	sizem = 6;
 
 	printf("original: %zu\n", strlcat(desto, srco, sizeo));
 	printf("original: %s\n", desto);

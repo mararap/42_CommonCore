@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
@@ -18,12 +18,12 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	size_t	j;
 
 	i = 0;
-	j = 0;
 	if (little[0] == '\0')
 		return ((char *)big);
 	while (big[i] && i < len)
 	{
-		while (big[i + j] && i + j < len && big[i + j] == little[j])
+		j = 0;
+		while ((big[i + j]) && (i + j < len) && (big[i + j] == little[j]))
 			j++;
 		if (little[j] == '\0')
 			return ((char *)big + i);
@@ -37,13 +37,13 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 
 int	main(void)
 {
-	char	*big = "Hello world where are you now";
-	char	*little = "where are you";
-	size_t	n = 42;
+	char	*big = "lorem ipsum dolor sit amet";
+	char	*little = "ipsumm";
+	size_t	n = 30;
 	char	*myresult = ft_strnstr(big, little, n);
 	char	*originalresult = strnstr(big, little, n);
 	
-	printf("myresult: %c\n", *myresult);
-	printf("original result: %c\n", *originalresult);
+	printf("myresult: %s\n", myresult);
+	printf("original result: %s\n", originalresult);
 	return (0);
 }*/

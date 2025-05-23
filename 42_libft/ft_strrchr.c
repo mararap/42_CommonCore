@@ -14,10 +14,12 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	size_t			i;
+	ssize_t			i;
 	unsigned char	uc;
+	unsigned char	*us;
 
 	uc = (unsigned char)c;
+	us = (unsigned char *)s;
 	i = ft_strlen(s);
 	while (i >= 0)
 	{
@@ -33,8 +35,8 @@ char	*ft_strrchr(const char *s, int c)
 
 int	main(void)
 {
-	const char	*s = "testing my function";
-	int	c = 'c';
+	const char	*s = "tripouille";
+	int	c = 'z';
 
 	printf("my function: %s\n", ft_strrchr(s, c));
 	printf("original function: %s\n", strrchr(s, c));

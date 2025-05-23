@@ -15,17 +15,17 @@
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	unsigned char	*ptr;
-	size_t			elements;
+	size_t			total;
 
-	elements = nmemb;
-	if (size == 0 || (((size_t) - 1 / size) < elements))
-	{
+	if (!size || !nmemb)
+		return (malloc(0));
+	total = (nmemb * size);
+	if (total / nmemb != size)
 		return (NULL);
-	}
-	ptr = malloc(size * elements);
+	ptr = malloc(total);
 	if (ptr == NULL)
 		return (NULL);
-	ft_bzero(ptr, size * elements);
+	ft_bzero(ptr, total);
 	return ((void *)ptr);
 }
 /*
@@ -35,8 +35,11 @@ int	main(void)
 {
 	size_t	nmemb = 42;
 	size_t	size = sizeof(int);
-	
-	printf("my function: %p\n", ft_calloc(nmemb, size));
-	printf("original function: %p\n", calloc(nmemb, size));
+
+	char *s;
+	s = ft_calloc(nmemb, size);
+	free(s);
+	//printf("my function: %p\n", ft_calloc(nmemb, size));
+	//printf("original function: %p\n", calloc(nmemb, size));
 	return (0);
 }*/

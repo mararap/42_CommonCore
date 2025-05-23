@@ -18,14 +18,18 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char	*newstr;
 
 	i = 0;
+	if (!s)
+		return (NULL);
 	newstr = ft_calloc(ft_strlen(s) + 1, 1);
-	if (newstr == NULL)
+	if (!newstr)
 		return (NULL);
 	while (s[i])
 	{
-		newstr[i] = f(0, s[i]);
+		newstr[i] = f(i, s[i]);
 		i++;
 	}
+	if (!newstr)
+		return (NULL);
 	return (newstr);
 }
 /*
