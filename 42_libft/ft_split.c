@@ -59,7 +59,7 @@ static char	*ft_fillsub(const char *s, size_t start, size_t end)
 	return (sub);
 }
 
-static char	**ft_tostart(const char *s, char c, char **arr, size_t wcount)
+static char	**ft_arr(const char *s, char c, char **arr, size_t wcount)
 {
 	size_t	i;
 	size_t	ia;
@@ -91,7 +91,7 @@ char	**ft_split(char const *s, char c)
 	arr = (char **)malloc((wcount + 1) * sizeof(char *));
 	if (!arr)
 		return (NULL);
-	arr = ft_tostart(s, c, arr, wcount);
+	arr = ft_arr(s, c, arr, wcount);
 	if (!arr)
 		return (NULL);
 	arr[wcount] = NULL;
