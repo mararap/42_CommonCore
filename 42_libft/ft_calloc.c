@@ -38,8 +38,8 @@ int	main(void)
 
 	char *s;
 	s = ft_calloc(nmemb, size);
-	free(s);
 	//printf("my function: %p\n", ft_calloc(nmemb, size));
 	//printf("original function: %p\n", calloc(nmemb, size));
+	free(s);
 	return (0);
 }*/

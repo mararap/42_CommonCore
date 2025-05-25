@@ -22,7 +22,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	j = 0;
 	if (!(s1 || s2))
 		return (NULL);
-	newstr = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, 1);
+	newstr = (char *)ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, 1);
 	if (newstr == NULL)
 		return (NULL);
 	while (s1[i] && i <= ft_strlen(s1))
@@ -42,8 +42,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 int	main(void)
 {
-	const char *s1 = NULL;
-	const char *s2 = NULL;
-	printf("newstr: %s\n", ft_strjoin(s1, s2));
+	const char *s1 = "testing";
+	const char *s2 = " function";
+	char * result = ft_strjoin(s1, s2);
+
+	printf("newstr: %s\n", result);
+	free(result);
 	return (0);
 }*/

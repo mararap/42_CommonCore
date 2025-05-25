@@ -18,16 +18,17 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	j;
 	char	*newstr;
 
-	i = 0;
 	j = 0;
-	if (s[i] == '\0' || start > ft_strlen(s))
+	if (!s)
+		return (NULL);
+	if (start >= ft_strlen(s))
 		return (ft_strdup(""));
-	i = start;
 	if (len > ft_strlen(s) - start)
 		(len = ft_strlen(s) - start);
-	newstr = (char *)ft_calloc(len + 1, 1);
+	newstr = (char *)malloc(len + 1);
 	if (newstr == NULL)
-		return (newstr);
+		return (NULL);
+	i = start;
 	while (s[i] && j < len)
 	{
 		newstr[j] = s[i];
@@ -45,7 +46,10 @@ int	main(void)
 	char const s[42] = "testing my function";
 	unsigned int start = 9;
 	size_t len = 3;
+	char	*result;
 
-	printf("newstr = %s\n", (char *)ft_substr(s, start, len));
+	result = (char *)ft_substr(s, start, len);
+	printf("newstr = %s\n", result);
+	free(result);
 	return (0);
 }*/

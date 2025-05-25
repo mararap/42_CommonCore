@@ -50,5 +50,6 @@ int	main(void)
 	char *out;
 	out = ft_strmapi(str, ttoupper);
 	printf("out: %s\n", out);
+	free(out);
 	return (0);
 }*/

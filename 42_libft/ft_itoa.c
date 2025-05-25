@@ -12,15 +12,18 @@
 
 #include "libft.h"
 
-size_t	ft_intsize(int n)
+static size_t	ft_intsize(int n)
 {
 	size_t	size;
 	long	ln;
 
-	size = 0;
 	ln = n;
-	if (n < 0)
-		ln = ln * (-1);
+	if (n <= 0)
+		size = 1;
+	else
+		size = 0;
+	if (ln < 0)
+		ln = ln * -1;
 	while (ln > 0)
 	{
 		ln = ln / 10;
@@ -32,28 +35,24 @@ size_t	ft_intsize(int n)
 char	*ft_itoa(int n)
 {
 	char	*newstr;
-	int		sign;
 	long	ln;
 	size_t	size;
 
-	sign = 1;
 	ln = n;
 	size = ft_intsize(n);
-	if (n <= 0)
-	{
-		size = size + 1;
-		sign = sign * (-1);
-		ln = ln * sign;
-	}
+	if (n < 0)
+		ln = ln * -1;
 	newstr = ft_calloc(size + 1, sizeof(char));
+	if (!newstr)
+		return (NULL);
 	while (size > 0)
 	{
-		newstr[size - 1] = ((ln % 10) + 48);
-		ln = (ln / 10);
 		size--;
+		newstr[size] = ((ln % 10) + 48);
+		ln = (ln / 10);
+		if (size == 0 && n < 0)
+			newstr[0] = '-';
 	}
-	if (n < 0)
-		newstr[0] = '-';
 	return (newstr);
 }
 /*
@@ -61,8 +60,10 @@ char	*ft_itoa(int n)
 
 int	main(void)
 {
-	int	n = (0);
+	int	n = -42;
+	char * result = ft_itoa(n);
 
-	printf("newstr: %s\n", ft_itoa(n));
+	printf("newstr: %s\n", result);
+	free(result);
 	return (0);
 }*/

@@ -37,7 +37,9 @@ char	*ft_strdup(const char *s)
 int	main(void)
 {
 	const char s[42] = "testing my function";
+	char *result = ft_strdup(s);
 
-	printf("my function: %p\n", ft_strdup(s));
+	printf("my function: %p\n", result);
+	free(result);
 	return (0);
 }*/
