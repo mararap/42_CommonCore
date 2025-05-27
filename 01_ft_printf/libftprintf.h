@@ -1,0 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/27 19:37:49 by marapovi          #+#    #+#             */
+/*   Updated: 2025/05/27 19:37:52 by marapovi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef LIBFTPRINTF_H
+# define LIBFTPRINTF_H
+
+# include <stdlib.h>
+# include <unistd.h>
+
+int		ft_printf(const char *c, ...);
+
+
+#endif // !LIBFTPRINTF_H
