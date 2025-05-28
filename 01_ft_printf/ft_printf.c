@@ -13,7 +13,7 @@
 int	ft_printf(const char* s, ...)
 {
 
-	
+	while...
 }
 
 int	list(const char* s, ...)
