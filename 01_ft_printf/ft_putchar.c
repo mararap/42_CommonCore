@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include "libft.h"
 
 int	ft_putchar(int c)
 {

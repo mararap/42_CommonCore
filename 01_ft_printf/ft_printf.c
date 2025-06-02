@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include "libft.h"
 
 int	print_format(char type_specifier, va_list argp)
 {
@@ -22,7 +23,7 @@ int	print_format(char type_specifier, va_list argp)
 //	else if...
 //	else if...
 //	...
-//	else ...
+	else count = count + write(1, &type_specifier, 1);
 	return count;
 }
 
