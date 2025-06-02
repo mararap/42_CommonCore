@@ -10,23 +10,47 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_printf(const char* s, ...)
-{
+#include "libftprintf.h"
 
-	while...
+int	print_format(char type_specifier, va_list argp)
+{
+	int	count;
+
+	count = 0;
+	if (type_specifier == 'c')
+		count = count + ft_putchar(va_arg(argp, int));
+//	else if...
+//	else if...
+//	...
+//	else ...
+	return count;
 }
 
-int	list(const char* s, ...)
+int	ft_printf(const char *format, ...)
 {
-	va_list args;
-	argument type, operation;
-
-	va_start (args, s);
-
-	function
+	va_list	argp;
+	int	count;
+	
+	va_start(argp, format);
+	count = 0;
+	while(!format)
 	{
-
+		if (*format == '%')
+			count = count + print_format(*(format), argp);
+		else
+			count = count + write(1, format, 1);
+		format++;
 	}
+	va_end(argp);
+	return(count);
 }
 
-va_end (args);
+#include <stdio.h>
+
+int	main(void)
+{
+	int count;
+
+	count = ft_printf("My Output: %c");
+	return count;
+}

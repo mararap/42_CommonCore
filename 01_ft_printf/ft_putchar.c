@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 19:37:49 by marapovi          #+#    #+#             */
-/*   Updated: 2025/05/27 19:37:52 by marapovi         ###   ########.fr       */
+/*   Created: 2025/06/02 12:33:39 by marapovi          #+#    #+#             */
+/*   Updated: 2025/06/02 12:33:42 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libftprintf.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
-
-int		ft_printf(const char *c, ...);
-void	ft_putchar(int c);
-
-#endif // !LIBFTPRINTF_H
+void	ft_putchar(int c)
+{
+	write (1, &c, 1);
+}:warn("%s");

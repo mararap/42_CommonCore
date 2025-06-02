@@ -88,7 +88,7 @@ char	**ft_split(char const *s, char c)
 	size_t	wcount;
 
 	if (!s)
-		return NULL;
+		return (NULL);
 	wcount = ft_wcount(s, c);
 	arr = (char **)malloc((wcount + 1) * sizeof(char *));
 	if (!arr)
@@ -99,7 +99,7 @@ char	**ft_split(char const *s, char c)
 	arr[wcount] = NULL;
 	return (arr);
 }
-
+/*
 #include <stdio.h>
 
 int	main(void)
@@ -118,4 +118,4 @@ int	main(void)
 	}
 	free (arr);
 	return (0);
-}
+}*/
