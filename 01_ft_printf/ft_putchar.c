@@ -12,7 +12,8 @@
 
 #include "libftprintf.h"
 
-void	ft_putchar(int c)
+int	ft_putchar(int c)
 {
 	write (1, &c, 1);
-}:warn("%s");
+	return (c);
+}

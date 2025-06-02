@@ -18,6 +18,6 @@
 # include <stdarg.h>
 
 int		ft_printf(const char *c, ...);
-void	ft_putchar(int c);
+int	ft_putchar(int c);
 
 #endif // !LIBFTPRINTF_H

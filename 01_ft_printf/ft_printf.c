@@ -49,8 +49,10 @@ int	ft_printf(const char *format, ...)
 
 int	main(void)
 {
-	int count;
+	int		count;
+	char	c;
 
-	count = ft_printf("My Output: %c");
-	return count;
+	c = 'a';
+	count = ft_printf("My Output: %c", c);
+	return (count);
 }
