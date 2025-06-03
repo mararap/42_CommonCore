@@ -11,20 +11,21 @@
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include "libft.h"
+#include <unistd.h>
+#include <stdarg.h>
+#include <stdlib.h>
 
-int	print_format(char type_specifier, va_list argp)
+#include <stdio.h>
+
+int	main(void)
 {
-	int	count;
+	int		count;
+	char	c;
 
-	count = 0;
-	if (type_specifier == 'c')
-		count = count + ft_putchar(va_arg(argp, int));
-//	else if...
-//	else if...
-//	...
-	else count = count + write(1, &type_specifier, 1);
-	return count;
+	c = 'M';
+	count = ft_printf("My Output: %c", c);
+//	printf("%d\n", ft_printf("My Output:", c));
+	return (0);
 }
 
 int	ft_printf(const char *format, ...)
@@ -34,26 +35,58 @@ int	ft_printf(const char *format, ...)
 	
 	va_start(argp, format);
 	count = 0;
-	while(!format)
+	while(format[count] != '\0')
 	{
-		if (*format == '%')
-			count = count + print_format(*(format), argp);
+		if (format[count] == '%')
+		{
+			count++;
+			print_format(*(&format[count]), argp);
+		}
 		else
-			count = count + write(1, format, 1);
-		format++;
+			count = count + write(1, &format, 1);
 	}
 	va_end(argp);
 	return(count);
 }
 
-#include <stdio.h>
-
-int	main(void)
+int	print_format(char type_specifier, va_list argp)
 {
-	int		count;
-	char	c;
+	int	count;
 
-	c = 'a';
-	count = ft_printf("My Output: %c", c);
-	return (count);
+	count = 0;
+	if (type_specifier == 'c')
+		count = count + ft_putchar(va_arg(argp, int));
+	else if (type_specifier == 's')
+		count = count + ft_putstr(va_arg, *char);
+	else if (type_specifier == 'p')
+		...;
+	else if (type_specifier == 'd')
+		...;
+	else if (type_specifier == 'i')
+		...;
+	else if (type_specifier == 'u')
+		...;
+	else if (type_specifier == 'x')
+		...;
+	else if (type_specifier == 'X')
+		...;
+	else if (type_specifier == '%')
+		...;*/
+	else count = count + write(1, &type_specifier, 1);
+	return count;
+}
+
+int	ft_putchar(int c)
+{
+	write (1, &c, 1);
+	return (1);
+}
+
+void	ft_putstr(char *s)
+{
+	size_t i;
+	while (s[i])
+	{
+		write
+	}
 }
