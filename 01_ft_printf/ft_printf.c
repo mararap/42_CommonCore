@@ -24,7 +24,7 @@ int	ft_putstr(char *s)
 		write(1, &s[i], 1);
 		i++;
 	}
-	return(i);
+	return(1);
 }
 
 int	ft_putchar(char c)
@@ -33,12 +33,15 @@ int	ft_putchar(char c)
 	return (1);
 }
 
-int	print_format(char type_specifier, va_list argp, int count)
+int	print_format(char type_specifier, va_list argp)
 {
+	int	count;
+
+	count = 0;
 	if (type_specifier == 'c')
-		count = ft_putchar(va_arg(argp, int));
-	else if (type_specifier == 's')
-		count = ft_putstr(va_arg(argp, char *));
+		count += ft_putchar(va_arg(argp, int));
+	if (type_specifier == 's')
+		count += ft_putstr(va_arg(argp, char *));
 /*	else if (type_specifier == 'p')
 		...;
 	else if (type_specifier == 'd')
@@ -53,8 +56,8 @@ int	print_format(char type_specifier, va_list argp, int count)
 		...;
 	else if (type_specifier == '%')
 		...;*/
-	else
-		count = count + write(1, &type_specifier, 1);
+//	else
+//		count = count + write(1, &type_specifier, 1);
 	return (count);
 }
 
@@ -68,12 +71,9 @@ int	ft_printf(const char *format, ...)
 	while(format[count] != '\0')
 	{
 		if (format[count] == '%')
-		{
-			count++;
-			count = count + print_format(*(&format[count]), argp);
-		}
+			count += print_format(*(&format[count + 1]), argp);
 		else
-			count = count + write(1, &format, 1);
+			write(1, &format[count], 1);
 		count++;
 	}
 	va_end(argp);
@@ -85,12 +85,10 @@ int	ft_printf(const char *format, ...)
 int	main(void)
 {
 //	int		count;
-	char	*abc;
-	int	x;
+//	char	*abc;
 	
-	abc = "a string";
-	x = 42;
-	ft_printf("My Output: %s %d\n", abc, x);
+//	abc = "a string";
+	ft_printf("My Output: %c and %s it is\n", 'M', "a string");
 //	printf("original function: %s %d\n", abc, x);
 //	printf("%d\n", count);
 	return (0);
