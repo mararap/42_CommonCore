@@ -10,28 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdarg.h>
-#include <stdlib.h>
-
-int	ft_putstr(char *s)
-{
-	size_t i;
-
-	i = 0;
-	while (s[i])
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
-	return(1);
-}
-
-int	ft_putchar(char c)
-{
-	write (1, &c, 1);
-	return (1);
-}
+#include "libftprintf.h"
 
 int	print_format(char type_specifier, va_list argp)
 {
@@ -40,7 +19,7 @@ int	print_format(char type_specifier, va_list argp)
 	count = 0;
 	if (type_specifier == 'c')
 		count += ft_putchar(va_arg(argp, int));
-	if (type_specifier == 's')
+	else if (type_specifier == 's')
 		count += ft_putstr(va_arg(argp, char *));
 /*	else if (type_specifier == 'p')
 		...;
@@ -53,9 +32,9 @@ int	print_format(char type_specifier, va_list argp)
 	else if (type_specifier == 'x')
 		...;
 	else if (type_specifier == 'X')
-		...;
-	else if (type_specifier == '%')
 		...;*/
+	else if (type_specifier == '%')
+		write(1, "%", 1);
 //	else
 //		count = count + write(1, &type_specifier, 1);
 	return (count);
@@ -79,7 +58,7 @@ int	ft_printf(const char *format, ...)
 	va_end(argp);
 	return(count);
 }
-
+/*
 #include <stdio.h>
 
 int	main(void)
@@ -88,8 +67,8 @@ int	main(void)
 //	char	*abc;
 	
 //	abc = "a string";
-	ft_printf("My Output: %c and %s it is\n", 'M', "a string");
+	ft_printf("My Output: %% and %c and %s", 'M', "a string");
 //	printf("original function: %s %d\n", abc, x);
 //	printf("%d\n", count);
 	return (0);
-}
+}*/

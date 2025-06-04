@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/02 12:33:39 by marapovi          #+#    #+#             */
-/*   Updated: 2025/06/02 12:33:42 by marapovi         ###   ########.fr       */
+/*   Created: 2025/06/04 12:19:19 by marapovi          #+#    #+#             */
+/*   Updated: 2025/06/04 12:19:25 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_putchar(char c)
+int	ft_putstr(char *s)
 {
-	write (1, &c, 1);
-	return (1);
+	size_t i;
+
+	i = 0;
+	while (s[i])
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
+	return(1);
 }
