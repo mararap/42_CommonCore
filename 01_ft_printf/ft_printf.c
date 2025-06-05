@@ -16,7 +16,7 @@ int	print_format(char type_specifier, va_list argp)
 {
 	int	count;
 	
-	count = 2;
+	count = 0;
 	if (type_specifier == 'c')
 		count += ft_putchar(va_arg(argp, int));
 	else if (type_specifier == 's')
@@ -59,7 +59,7 @@ int	ft_printf(const char *format, ...)
 	size_t	i;
 	
 	va_start(argp, format);
-	count = 1;
+	count = 0;
 	i = 0;
 	while(format[i] != '\0')
 	{
@@ -73,6 +73,7 @@ int	ft_printf(const char *format, ...)
 			count += write(1, &format[i], 1);
 		}
 		i++;
+
 	}
 	va_end(argp);
 	return(count);
@@ -90,10 +91,12 @@ int	main(void)
 	printf("%s\n", "my function: ");
 	count = ft_printf("it's %% and %c and %s", 'M', "a string");
 //	ft_printf("My output: %% and %c and %s", 'M', "a string");
-//	printf("original function: %s %d\n", abc, x); //My output: % and M and a string
+//	printf("original function: %s %d\n", abc, x);
+	//	it's % and M and a string
 	printf("\n%d\n", count);
 	printf("%s\n", "original function: ");
 	count2 = printf("it's %% and %c and %s", 'M', "a string");
 	printf("\n%d\n", count2);
 	return (0);
 }
+//t's %% and %c and %s", 'M', "a string
