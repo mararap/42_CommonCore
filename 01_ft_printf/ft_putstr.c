@@ -14,7 +14,7 @@
 
 int	ft_putstr(char *s)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (s[i])
@@ -22,5 +22,5 @@ int	ft_putstr(char *s)
 		write(1, &s[i], 1);
 		i++;
 	}
-	return(1);
+	return(i);
 }
