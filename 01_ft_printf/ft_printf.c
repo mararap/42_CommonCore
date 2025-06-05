@@ -12,15 +12,17 @@
 
 #include "libftprintf.h"
 
+#include <stdio.h>
+
 int	print_format(char type_specifier, va_list argp)
 {
-	int	count;
+	int	amount;
 	
-	count = 0;
+	amount = 0;
 	if (type_specifier == 'c')
-		count += ft_putchar(va_arg(argp, int));
-	else if (type_specifier == 's')
-		count += ft_putstr(va_arg(argp, char *));
+		amount += ft_putchar(va_arg(argp, int));
+	if (type_specifier == 's')
+		amount += ft_putstr(va_arg(argp, char *));
 /*	else if (type_specifier == 'p')
 		...;
 	else if (type_specifier == 'd' or 'i')	//The  int  argument  is  converted
@@ -45,11 +47,12 @@ int	print_format(char type_specifier, va_list argp)
 		...;
 	else if (type_specifier == 'X')	//see 'u'
 		...;*/
-	else if (type_specifier == '%')
-		count += write(1, "%", 1);
+	if (type_specifier == '%')
+		amount += write(1, "%", 1);
 //	else
 //		count = count + write(1, &type_specifier, 1);
-	return (count);
+	printf("format%i\n", amount);
+	return (amount);
 }
 
 int	ft_printf(const char *format, ...)
@@ -66,11 +69,13 @@ int	ft_printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			count += print_format(*(&format[i]), argp);
+			count += print_format(format[i], argp);
+			printf("%i\n", count);
 		}
 		else
 		{
 			count += write(1, &format[i], 1);
+			printf("%i\n", count);
 		}
 		i++;
 
@@ -89,14 +94,15 @@ int	main(void)
 	//
 	
 	printf("%s\n", "my function: ");
-	count = ft_printf("it's %% and %c and %s", 'M', "a string");
+	count = ft_printf("it's %s", "a string");
 //	ft_printf("My output: %% and %c and %s", 'M', "a string");
 //	printf("original function: %s %d\n", abc, x);
 	//	it's % and M and a string
 	printf("\n%d\n", count);
 	printf("%s\n", "original function: ");
-	count2 = printf("it's %% and %c and %s", 'M', "a string");
+	count2 = printf("it's %s", "a string");
 	printf("\n%d\n", count2);
 	return (0);
 }
-//t's %% and %c and %s", 'M', "a string
+//it's %% and %c and %s", 'M', "a string/*%% and %c and*/ 
+//
