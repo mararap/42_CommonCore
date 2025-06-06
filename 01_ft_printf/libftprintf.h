@@ -19,5 +19,6 @@
 int		ft_printf(const char *c, ...);
 int		ft_putchar(char c);
 int		ft_putstr(char *s);
+int		ft_putnbr(int n);
 
 #endif // !LIBFTPRINTF_H
