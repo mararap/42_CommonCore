@@ -9,37 +9,37 @@
 /*   Updated: 2025/06/06 10:42:44 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+
 #include "libftprintf.h"
 
-static int nbrlen (int n)
+static int	ft_usintlen(unsigned int u)
 {
-	size_t		amount;
-	long int	nbr;
-	
-	nbr = (long int) n;
-	amount = 0;
-	if (n < 0)
+	unsigned long int	nbr;
+	int					count;
+
+	nbr = (unsigned long int)u;
+	count = 0;
+	if (u == 0)
+		return (1);
+	if (nbr < 0)
 	{
 		nbr *= -1;
-		amount++;
+		count++;
 	}
-	while (nbr > 9)
+	while (nbr > 0)
 	{
 		nbr /= 10;
-		amount++;
+		count++;
 	}
-	amount++;
-	return amount;
+	return (count);
 }
 
-int	ft_putnbr(int n)
+int	ft_putusint(unsigned int u)
 {
 	long int	nbr;
 	int			count;
-		
-	count = nbrlen(n);
-	nbr = (long int) n;
+
+	nbr = (long int)u;
 	if (nbr < 0)
 	{
 		ft_putchar('-');
@@ -49,8 +49,9 @@ int	ft_putnbr(int n)
 		ft_putchar(nbr + 48);
 	if (nbr > 9)
 	{
-		ft_putnbr(nbr / 10);
+		ft_putusint(nbr / 10);
 		ft_putchar((nbr % 10) + 48);
 	}
+	count = ft_usintlen(u);
 	return (count);
 }

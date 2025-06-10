@@ -12,43 +12,40 @@
 
 #include "libftprintf.h"
 
-int	print_format(char type_specifier, va_list argp)
+static int	print_format(char type_specifier, va_list argp)
 {
 	int	amount;
-	
+
 	amount = 0;
 	if (type_specifier == 'c')
 		amount += ft_putchar(va_arg(argp, int));
 	if (type_specifier == 's')
 		amount += ft_putstr(va_arg(argp, char *));
-//	else if (type_specifier == 'p')
+	if (type_specifier == 'p')
+		amount += ft_putptr(va_arg(argp, void *));
 	if (type_specifier == 'd' || type_specifier == 'i')
-		amount += ft_putnbr(va_arg(argp, int));
-//	else if (type_specifier == 'u')
-//	The  unsigned int argument is  converted to unsigned octal (o), unsigned
-//	decimal (u), or unsigned  hexa-decimal (x  and X) notation.  The letters
-//	abcdef are used for x conversions; the letters ABCDEF are used for X  con-
-//	versions. The precision, if any, gives the minimum number of digits that
-//	must appear; if the converted value  requires  fewer digits, it is padded
-//	on the left with zeros. The default precision is 1. When 0 is printed with
-//	an explicit precision 0, the output is empty.
-//	else if (type_specifier == 'x')	//see 'u'
-//	else if (type_specifier == 'X')	//see 'u'
-//	if (type_specifier == '%')
-//		amount += write(1, "%", 1);
-//		return (amount);
+		amount += ft_putint(va_arg(argp, int));
+	if (type_specifier == 'u')
+		amount += ft_putusint(va_arg(argp, unsigned int));
+	if (type_specifier == 'x')
+		amount += ft_puthex(va_arg(argp, unsigned int), type_specifier);
+	if (type_specifier == 'X')
+		amount += ft_puthex(va_arg(argp, unsigned int), type_specifier);
+	if (type_specifier == '%')
+		amount += write(1, "%", 1);
+	return (amount);
 }
 
 int	ft_printf(const char *format, ...)
 {
 	va_list	argp;
-	int	count;
+	int		count;
 	size_t	i;
-	
+
 	va_start(argp, format);
 	count = 0;
 	i = 0;
-	while(format[i] != '\0')
+	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
@@ -60,24 +57,22 @@ int	ft_printf(const char *format, ...)
 		i++;
 	}
 	va_end(argp);
-	return(count);
+	return (count);
 }
-
+/*
 #include <stdio.h>
 
-int	main(void)
+int main(void)
 {
-	int		count = 0;
-	int		count2 = 0;
-	char *s = "a string";
-	char c = 'M';
-	int	i = 123;
-	
-	printf("%s\n", "my function: ");
-	count = ft_printf("it's %s & %c & %d, that's it\n", s, c, i);
-	printf("\n%d\n", count);
-	printf("%s\n", "original function: ");
-	count2 = printf("it's %s & %c & %d, that's it\n", s, c, i);
-	printf("\n%d\n", count2);
-	return (0);
-}
+	int i;
+	int j;
+	int k = 1643216;
+	char *ptr = "for_testing";
+
+	i = printf("%p\n", ptr);
+//	j = ft_printf("%x\n", k);
+//	j = ft_printf("%X\n", k);
+	j = ft_printf("%p\n", ptr);
+
+	printf("ori: %i\nmine: %i\n", i, j);
+}*/

@@ -15,7 +15,10 @@ HEADER	=	libftprintf.h
 CFILES	=	ft_printf.c\
 			ft_putchar.c\
 			ft_putstr.c\
-			ft_putnbr.c
+			ft_putint.c\
+			ft_putusint.c\
+			ft_puthex.c\
+			ft_putptr.c
 
 OFILES	=	$(CFILES:.c=.o)
 
