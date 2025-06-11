@@ -42,6 +42,8 @@ int	ft_printf(const char *format, ...)
 	int		count;
 	size_t	i;
 
+	if (!format )
+		return (-1);
 	va_start(argp, format);
 	count = 0;
 	i = 0;

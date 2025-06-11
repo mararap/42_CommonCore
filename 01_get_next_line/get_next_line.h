@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/04 12:19:19 by marapovi          #+#    #+#             */
-/*   Updated: 2025/06/04 12:19:25 by marapovi         ###   ########.fr       */
+/*   Created: 2025/06/11 11:58:44 by marapovi          #+#    #+#             */
+/*   Updated: 2025/06/11 11:58:47 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#ifndef LIBFTPRINTF_H
+# define LIBFTPRINTF_H
 
-int	ft_putstr(char *s)
-{
-	int	i;
+# include <unistd.h>
 
-	i = 0;
-	if (!s)
-		return (ft_putstr("(null)"));
-	while (s[i])
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
-	return (i);
-}
+char	*get_next_line(int fd);
+
+#endif // !LIBFTPRINTF_H

@@ -40,9 +40,9 @@ int	ft_putptr(void *ptr)
 	unsigned long long	adr;
 	int					count;
 
+	if (ptr == 0)
+		return (write(1, "(nil)", 5));
 	adr = (unsigned long long)ptr;
-	if (adr == 0)
-		return (write(1, "nil", 3));
 	write (1, "0x", 2);
 	ft_ptrputhex(adr);
 	count = ft_adrlen(adr) + 2;
