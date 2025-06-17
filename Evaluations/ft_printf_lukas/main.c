@@ -15,7 +15,19 @@
 
 int main(void)
 {
- 	printf("\nlength is: %d\n", ft_printf("testing %s, that's it", "string"));
- 	printf("\nlength is: %d\n",    printf("testing %s, that's it", "string"));
+ 	printf("\nlength is: %d\n", ft_printf("testing %s, that's it", ""));
+ 	printf("\nlength is: %d\n",    printf("testing %s, that's it", ""));
+
+	int og_res;
+	int my_res;
+	og_res = printf("Og: %c %s %d %i %u %p %x %X %%%%%", 15, " ", 0, -2147483648, 2147483649, NULL, 255, 255);
+	printf("\n");
+	my_res = ft_printf("My: %c %s %d %i %u %p %x %X %%%%%", 15, " ", 0, -2147483648, 2147483649, NULL, 255, 255);
+	printf("\n");
+
+
+	printf("OG Res: %d\n", og_res);
+	printf("My Res: %d\n", my_res);
+
     return (0);
 }

@@ -1,65 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_puthex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 10:42:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/06/06 10:42:44 by marapovi         ###   ########.fr       */
+/*   Created: 2025/06/10 15:13:23 by marapovi          #+#    #+#             */
+/*   Updated: 2025/06/10 15:13:27 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static int	ft_usintlen(unsigned int u)
+static int	ft_hexlen(unsigned int x)
 {
 	unsigned long int	nbr;
 	int					count;
 
-	nbr = (unsigned long int)u;
-	count = 0;
-	if (u == 0)
+	nbr = (unsigned long int)x;
+	count = 1;
+	if (x == 0)
 		return (1);
-	if (nbr < 0)
+	while (nbr >= 16)
 	{
-		nbr *= -1;
-		count++;
-	}
-	while (nbr > 0)
-	{
-		nbr /= 10;
+		nbr /= 16;
 		count++;
 	}
 	return (count);
 }
 
-int	ft_putusint(unsigned int u)
+int	ft_puthex(unsigned int x, int c)
 {
-	long int	nbr;
-	int			count;
+	char				*hex;
+	unsigned long int	nbr;
+	int					result;
 
-	nbr = (long int)u;
-	if (nbr < 0)
+	result = ft_hexlen(x);
+	if (c == 'x')
+		hex = "0123456789abcdef";
+	else
+		hex = "0123456789ABCDEF";
+	nbr = x;
+	if (nbr == 0)
+		return (ft_putchar('0'));
+	if (nbr >= 16)
 	{
-		ft_putchar('-');
-		nbr *= -1;
+		ft_puthex(nbr / 16, c);
 	}
-	if (nbr <= 9)
-		ft_putchar(nbr + 48);
-	if (nbr > 9)
-	{
-		ft_putusint(nbr / 10);
-		ft_putchar((nbr % 10) + 48);
-	}
-	count = ft_usintlen(u);
-	return (count);
-}
-
-#include <stdio.h>
-
-int main(void)
-{
-	ft_putusint(-4568);
-	return(0);
+	ft_putchar(hex[nbr % 16]);
+	return (result);
 }

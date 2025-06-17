@@ -12,14 +12,14 @@
 
 #include "libftprintf.h"
 
-static int	ft_usintlen(unsigned int u)
+static int	ft_intlen(int n)
 {
-	unsigned long int	nbr;
-	int					count;
+	long int	nbr;
+	int			count;
 
-	nbr = (unsigned long int)u;
+	nbr = (long int)n;
 	count = 0;
-	if (u == 0)
+	if (n == 0)
 		return (1);
 	if (nbr < 0)
 	{
@@ -34,12 +34,12 @@ static int	ft_usintlen(unsigned int u)
 	return (count);
 }
 
-int	ft_putusint(unsigned int u)
+int	ft_putint(int n)
 {
 	long int	nbr;
 	int			count;
 
-	nbr = (long int)u;
+	nbr = (long int) n;
 	if (nbr < 0)
 	{
 		ft_putchar('-');
@@ -49,17 +49,9 @@ int	ft_putusint(unsigned int u)
 		ft_putchar(nbr + 48);
 	if (nbr > 9)
 	{
-		ft_putusint(nbr / 10);
+		ft_putint(nbr / 10);
 		ft_putchar((nbr % 10) + 48);
 	}
-	count = ft_usintlen(u);
+	count = ft_intlen(n);
 	return (count);
-}
-
-#include <stdio.h>
-
-int main(void)
-{
-	ft_putusint(-4568);
-	return(0);
 }

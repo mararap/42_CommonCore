@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/11 11:58:44 by marapovi          #+#    #+#             */
-/*   Updated: 2025/06/11 11:58:47 by marapovi         ###   ########.fr       */
+/*   Created: 2025/06/02 12:33:39 by marapovi          #+#    #+#             */
+/*   Updated: 2025/06/02 12:33:42 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libftprintf.h"
 
-# include <unistd.h>
-# include <fcntl.h>
-
-char	*get_next_line(int fd);
-
-#endif // !LIBFTPRINTF_H
+int	ft_putchar(char c)
+{
+	write (1, &c, 1);
+	return (1);
+}
