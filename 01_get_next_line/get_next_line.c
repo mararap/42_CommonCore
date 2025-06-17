@@ -25,12 +25,34 @@
 */
 char	*get_next_line(int fd)
 {
-	void		*buf;
-	static void	*stash;
-}
+	char		*buf;
+	static char	*stash;
+	size_t		nbyte;
+	size_t		i;
+
+	while (line)
+	{
+		i = 0;
+		read(fd, buf, nbyte);
+		while (buf[i] && i < nbyte)
+		{q
+			stash[i] == buf[i];
+			i++;
+		}
+		stash = ft_strjoin(stash, buf);
+	}
+
+#include <fcntl.h>
 
 int main()
 {
     int fd;
+
     fd = open("text.txt", O_RDONLY);
+	while ()
+	{
+		...
+		get_next_line(fd);
+		...
+	}
 }
