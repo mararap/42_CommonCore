@@ -30,12 +30,13 @@ char	*get_next_line(int fd)
 	size_t		nbyte;
 	size_t		i;
 
-	while (line)
+	stash = (char *)malloc((BUFFER_SIZE + 1)sizeof(char));
+	while ()
 	{
 		i = 0;
 		read(fd, buf, nbyte);
 		while (buf[i] && i < nbyte)
-		{q
+		{
 			stash[i] == buf[i];
 			i++;
 		}
