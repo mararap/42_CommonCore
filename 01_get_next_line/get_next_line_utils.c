@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h> //TODO: delete line
 
 size_t	ft_strlen(const char *str)
 {
@@ -32,7 +33,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	j = 0;
 	if (!(s1 || s2))
 		return (NULL);
-	newstr = (char *)calloc(ft_strlen(s1) + ft_strlen(s2) + 1, 1);
+	newstr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (newstr == NULL)
 		return (NULL);
 	while (s1[i] && i <= ft_strlen(s1))
@@ -42,9 +43,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	while (s2[j])
 	{
-		newstr[i + j] = s2[i];
+		newstr[i + j] = s2[j];
 		j++;
 	}
+	//printf("nach strjoin: %s", newstr); //TODO: delete line
 	return (newstr);
 }
 

@@ -69,29 +69,39 @@ char	*get_next_line(int fd)
 		bytesread = read(fd, temp, BUFFER_SIZE);
 		//printf("%zu\n", bytesread);
 		if (bytesread == 0)
-			return (free(temp), line); //NULL-check for read
+			break;
+			//return (free(temp), line); //NULL-check for read
 		if (bytesread == -1)
 			break ; //error-check for read
 		temp[bytesread] = '\0'; //set last byte to null-character
-		i = 0; // set i to 0
+		//i = 0; // set i to 0
 		saved = ft_strjoin(saved, temp);
 		//printf("1: %s\n", saved);
 		//printf("1: %s\n", saved); //TODO: free saved in ft_strjoin (= gnljoin o.s.)
 			if(saved == NULL)
 				return(free(temp), NULL);
+	}
 		//printf("saved: %s\n", saved);
 		//free(temp);
 		while (saved[i] && saved[i] != '\n')			//count for length of saved (?)
 			i++;
+		/* if (saved[i] == '\0')
+			return NULL; */
 			//nwln[j] = temp[i]; just count
 		//printf("2: %zu\n", i);
 			//j++;
-		if (saved[i] == '\n')
+		if (saved[0] == '\0')
+			return NULL;
+		if (saved[i] == '\n' || saved[i] == '\0')
 		{
-			line = malloc((i + 2) * sizeof(char));
+			line = malloc((i + 1) * sizeof(char));
 			if (line == NULL)
 				return(NULL); //allocate for line
 			ft_strlcpy(line, saved, i + 1);
+			if (saved[i] != '\0')
+				line[i] = '\n';
+			saved = ft_substr(saved, i + 1, ft_strlen(saved) - (i + 1));
+			//printf("after substr: %s\n", saved);
 		}
 		//copy saved to line for the lenght of j
 		//printf("3: %d\n", i);
@@ -99,8 +109,8 @@ char	*get_next_line(int fd)
 		//printf("5: %s", saved);
 /* 		if (saved[i] == '\n' && temp)
 			saved[i + 1] = temp[i + 1];*/
-		saved = ft_substr(saved, i, ft_strlen(saved) + i);
-		printf("6: %s", saved);
+		
+		//printf("6: %s", saved);
 		if (saved == NULL)
 		{
 			if (line)
@@ -115,7 +125,7 @@ char	*get_next_line(int fd)
 		{
 			return(line);
 		}
-	}
+	
 
 		//delete line from saved and move reminder to beginning => linked lists?
 
@@ -169,13 +179,16 @@ int main()
 	char 	*line;
 
     fd = open("text.txt", O_RDONLY);
-	line = get_next_line(fd);
-	while (line)
+	/* line = get_next_line(fd); */
+	//printf("%s", line);
+	 /* while (line)
 	{
 		printf("%s", line);
 		free (line);
 		line = get_next_line(fd);
-	}
+	}  */
+	for (int i = 0; i < 6; i++)
+		printf("%s", get_next_line(fd));
 	close (fd);
 	return (0);
 }
