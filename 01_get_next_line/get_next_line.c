@@ -41,22 +41,15 @@
 	* BUFFER_SIZE 9999? 1? 10000000?
 */
 
-# include <string.h>
-# include <stdio.h> //TODO: delete line
-
 char	*get_next_line(int fd)
 {
 	char		*temp;
 	static char	*saved;
 	ssize_t		bytesread;
 	size_t		i;
-	size_t 		j;
 	char		*line;
-	char		*nwln;
-	char		*lstps;
 
 	i = 0;
-	j = 1;
 	if (saved == NULL)
 		saved = ft_strdup("");
 	line = NULL;
@@ -67,106 +60,38 @@ char	*get_next_line(int fd)
 	while (bytesread > 0)
 	{
 		bytesread = read(fd, temp, BUFFER_SIZE);
-		//printf("%zu\n", bytesread);
 		if (bytesread == 0)
-			break ;
-			//return (free(temp), line); //NULL-check for read
+			break;
 		if (bytesread == -1)
-			break ; //error-check for read
-		temp[bytesread] = '\0'; //set last byte to null-character
-		//i = 0; // set i to 0
+			break ;
+		temp[bytesread] = '\0';
 		saved = ft_strjoin(saved, temp);
-		//printf("1: %s\n", saved);
-		//printf("1: %s\n", saved); //TODO: free saved in ft_strjoin (= gnljoin o.s.)
 			if(saved == NULL)
 				return(free(temp), NULL);
 	}
-		//printf("saved: %s\n", saved);
-		//free(temp);
-		while (saved[i] && saved[i] != '\n')			//count for length of saved (?)
-			i++;
-		/* if (saved[i] == '\0')
-			return NULL; */
-			//nwln[j] = temp[i]; just count
-		//printf("2: %zu\n", i);
-			//j++;
-		if (saved[0] == '\0')
-			return NULL;
-		if (saved[i] == '\n' || saved[i] == '\0')
-		{
-			line = malloc((i + 1) * sizeof(char));
-			if (line == NULL)
-				return(NULL); //allocate for line
-			ft_strlcpy(line, saved, i + 1);
-			if (saved[i] != '\0')
-				line[i] = '\n';
-			saved = ft_substr(saved, i + 1, ft_strlen(saved) - (i + 1));
-			//printf("after substr: %s\n", saved);
-		}
-		//copy saved to line for the lenght of j
-		//printf("3: %d\n", i);
-		//printf("4: %d\n", ft_strlen(saved));
-		//printf("5: %s", saved);
-/* 		if (saved[i] == '\n' && temp)
-			saved[i + 1] = temp[i + 1];*/
-		
-		//printf("6: %s", saved);
-		if (saved == NULL)
-		{
-			if (line)
-				free(line);
-			free(saved); //TODO: free saved within ft_substr - got warning -> free here
+	while (saved[i] && saved[i] != '\n')
+		i++;
+	if (saved[0] == '\0')
+		return NULL;
+	if (saved[i] == '\n' || saved[i] == '\0')
+	{
+		line = malloc((i + 1) * sizeof(char));
+		if (line == NULL)
 			return(NULL);
-			//TODO free temp where needed
-		}
-		//free(temp);
-			//temp = NULL;
-		if (line)
-		{
-			return(line);
-		}
-	
-
-		//delete line from saved and move reminder to beginning => linked lists?
-
-
-/*		copy from j til '\0' to saved
-		if (line)
-		 return (free(temp), line);
-		free(temp);
-		
-		if (temp[i] != '\0')	//meaning temp[i] must be '\n'
-		{
-			saved = malloc((BUFFER_SIZE - i) * sizeof(char));
-			if (!saved)
-				return (free(temp, NULL));	//need space for BUFFER_SIZE minus what is already written into nwln (i + 1) PLUS 1 for '\0' => =BUFFER_SIZE - i
-			while (temp[i])
-			{														
-				saved [k] = temp[i];
-				i++;
-			}			free(temp);
-
-		}
-		free(temp);
-		i = 0;
-		}
+		ft_strlcpy(line, saved, i + 1);
+		if (saved[i] != '\0')
+			line[i] = '\n';
+		saved = ft_substr(saved, i + 1, ft_strlen(saved) - (i + 1));
 	}
-		while (nwln[i] && nwln[i] != '\n') //extract line
-			i++;									//count for length
-		if (saved[i] == '\n')
-			i++;
-		lstps = &saved[i];
-		
-		nwln = malloc((i + 1) * sizeof(char));				//malloc length + 1
-		if (!nwln)
-			return(free(saved), NULL);
-		nwln = ft_strlcpy(nwln, saved, i + 1);				//copy saved to line
-
-		//clean save
-	...
+	if (saved == NULL)
+	{
+		if (line)
+			free(line);
+		free(saved);
+		return(NULL);
 	}
-	line = ft_strjoin(line, nwln);*/
-	//free(temp);
+	if (line)
+		return(line);
 	return(line);
 }
 
@@ -179,14 +104,12 @@ int main()
 	char 	*line;
 
     fd = open("regular_text.txt", O_RDONLY);
-	/* line = get_next_line(fd); */
-	//printf("%s", line);
-	 /* while (line)
+	/*while (line)
 	{
 		printf("%s", line);
 		free (line);
 		line = get_next_line(fd);
-	}  */
+	}*/
 	for (int i = 0; i < 6; i++)
 		printf("%s", get_next_line(fd));
 	close (fd);
