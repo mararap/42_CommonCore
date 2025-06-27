@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-static char	*ft_strjoin(char const *s1, char const *s2)
+static char	*ft_strjoin_free(char *s1, const char *s2)
 {
 	char	*newstr;
 	size_t	i;
@@ -24,28 +24,33 @@ static char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	newstr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!newstr)
-		return (NULL);
-	while (s1[i] && i <= ft_strlen(s1))
+		return (free(s1), NULL);
+	while (s1 && s1[i])
 	{
 		newstr[i] = s1[i];
 		i++;
 	}
-	while (s2[j])
+	while (s2 && s2[j])
 	{
 		newstr[i + j] = s2[j];
 		j++;
 	}
 	newstr[i + j] = '\0';
+	free(s1);
 	return (newstr);
 }
 
 static char	*ft_save(char *saved, size_t i)
 {
-	char	*temp;
+	char	*new_saved;
 
-	temp = ft_substr(saved, i + 1, ft_strlen(saved) - (i + 1));
+	if (!saved)
+		return (free(saved), NULL);
+	new_saved = ft_substr(saved, i + 1, ft_strlen(saved) - (i + 1));
+	if (!new_saved)
+		return (free(saved), NULL);
 	free (saved);
-	return (temp);
+	return (new_saved);
 }
 
 static char	*ft_lncpy(char *saved, size_t i)
@@ -63,26 +68,28 @@ static char	*ft_read_write(int fd, char *saved)
 {
 	ssize_t	bytesread;
 	char	*temp;
+	char	*new_saved;
 
 	bytesread = 1;
 	if (!saved)
 		saved = ft_strdup("");
+	if (!saved)
+		return (NULL);
 	temp = (char *)malloc(BUFFER_SIZE + 1); 
 	if (!temp)
-		return (NULL);
+		return (free(saved), NULL);
 	while (bytesread > 0)
 	{
-		if (ft_strchr(saved, '\n'))
+		if (saved && ft_strchr(saved, '\n'))
 			break ;
 		bytesread = read(fd, temp, BUFFER_SIZE);
-		if (bytesread == 0)
-			break ;
-		if (bytesread == -1)
+		if (bytesread <= 0)
 			break ;
 		temp[bytesread] = '\0';
-		saved = ft_strjoin(saved, temp);
-		if (saved == NULL)
+		new_saved = ft_strjoin_free(saved, temp);
+		if (!new_saved)
 			return (free(temp), NULL);
+		saved = new_saved;
 	}
 	return (free(temp), saved);
 }
@@ -98,10 +105,16 @@ char	*get_next_line(int fd)
 		return (NULL);
 	saved = ft_read_write(fd, saved);
 	if (!saved || saved[0] == '\0')
-		return (free(saved), saved = NULL, NULL);
+	{
+		free(saved);
+		saved = NULL;
+		return (NULL);
+	}
 	while (saved[i] && saved[i] != '\n')
 		i++;
 	line = ft_lncpy(saved, i);
 	saved = ft_save(saved, i);
+	if (!saved)
+		return (line);
 	return (line);
 }

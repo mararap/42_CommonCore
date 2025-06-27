@@ -5,6 +5,24 @@
 #include <stdio.h>     // printf
 #include "get_next_line.h"
 
+char	*get_next_line(int fd);
+
+int	main(void)
+{
+	int		fd = open("test_regular_file.txt", O_RDONLY);
+	char	*line;
+	int		i = 1;
+
+	if (fd < 0)
+		return (1);
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("Zeile %02d: %s", i++, line);
+		free(line); // ganz wichtig!
+	}
+	close(fd);
+}
+/*
 int main()
 {
      int     file_descriptor;
@@ -30,7 +48,7 @@ int main()
      }
      close(file_descriptor); // Close the file
      return (0);
-}
+}*/
 
 /*int main(void)
 {

@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
 	size_t			i;
 	unsigned char	uc;
@@ -85,7 +85,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	return (slen);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(char *s)
 {
 	char	*s2;
 	int		i;
@@ -94,7 +94,7 @@ char	*ft_strdup(const char *s)
 	if (!s)
 		return (NULL);
 	s2 = (char *)malloc(ft_strlen(s) + 1);
-	if (s2 == NULL)
+	if (!s2)
 		return (NULL);
 	while (s[i])
 	{
