@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h> //TODO: delete line
 
 size_t	ft_strlen(const char *str)
 {
@@ -23,33 +22,6 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*newstr;
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	if (!(s1 || s2))
-		return (NULL);
-	newstr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (newstr == NULL)
-		return (NULL);
-	while (s1[i] && i <= ft_strlen(s1))
-	{
-		newstr[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
-		newstr[i + j] = s2[j];
-		j++;
-	}
-	//printf("nach strjoin: %s", newstr); //TODO: delete line
-	return (newstr);
-}
-
 char	*ft_strchr(const char *s, int c)
 {
 	size_t			i;
@@ -58,7 +30,7 @@ char	*ft_strchr(const char *s, int c)
 	uc = (unsigned char)c;
 	i = 0;
 	while (s[i])
-	{	
+	{
 		if (s[i] == uc)
 			return ((char *)&s[i]);
 		i++;
@@ -95,6 +67,24 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (newstr);
 }
 
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+{
+	size_t	i;
+	size_t	slen;
+
+	i = 0;
+	slen = ft_strlen(src);
+	if (size == 0)
+		return (ft_strlen(src));
+	while (i < (size - 1) && src[i])
+	{
+		(dest[i]) = (src[i]);
+		i++;
+	}
+	dest[i] = '\0';
+	return (slen);
+}
+
 char	*ft_strdup(const char *s)
 {
 	char	*s2;
@@ -113,22 +103,4 @@ char	*ft_strdup(const char *s)
 	}
 	s2[i] = '\0';
 	return (s2);
-}
-
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
-{
-	size_t	i;
-	size_t	slen;
-
-	i = 0;
-	slen = ft_strlen(src);
-	if (size == 0)
-		return (ft_strlen(src));
-	while (i < (size - 1) && src[i])
-	{
-		(dest[i]) = (src[i]);
-		i++;
-	}
-	dest[i] = '\0';
-	return (slen);
 }

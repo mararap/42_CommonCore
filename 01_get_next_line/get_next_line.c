@@ -12,106 +12,96 @@
 
 #include "get_next_line.h"
 
-/*
- * extern functions: read, malloc, free;
- * "open" in main
- * read:
-	 * returns number of bytes if successfull
-	 * upon reading end of file, zero is returned;
-	 * -1 and global veriable errno is set on error;
-	 *  reads from file, copies nbytes to buffer, returns amount of copied
-	 *  characters; on next call, starts from last position and reads next
-	 *  nbytes
- * subject:
-	* repeated calls (e.g. using a loop) should let you read the test file
-	* pointed to by fd).
-	* gnl should return line that was read. if there is nothing left to read
-	* or if an error occurs, it should return NULL.
-	* should work both when reading from a file or standard input
-	* returned line should include terminating '\n', except if end of file
-	* is reached and file does not end with a '\n'.
-	* header file must at least contain get_next_line()
-	* add helper functions to *utils.c
-	* use static variable
-	* compiler call:
-	* cc -Wall -Wextra -Werror -D BUFFER_SIZE=n get_next_line.c get_next_line_utils.c
-	* exhibits undefined behavior if file is modified after the last call,
-	* while read() has not yet reached the end of the file;
-	* also exhibits undefined behavior when reading binary file;
-	* BUFFER_SIZE 9999? 1? 10000000?
-*/
-
-char	*get_next_line(int fd)
+static char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char		*temp;
-	static char	*saved;
-	ssize_t		bytesread;
-	size_t		i;
-	char		*line;
+	char	*newstr;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	if (saved == NULL)
+	j = 0;
+	if (!(s1 || s2))
+		return (NULL);
+	newstr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!newstr)
+		return (NULL);
+	while (s1[i] && i <= ft_strlen(s1))
+	{
+		newstr[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		newstr[i + j] = s2[j];
+		j++;
+	}
+	newstr[i + j] = '\0';
+	return (newstr);
+}
+
+static char	*ft_save(char *saved, size_t i)
+{
+	char	*temp;
+
+	temp = ft_substr(saved, i + 1, ft_strlen(saved) - (i + 1));
+	free (saved);
+	return (temp);
+}
+
+static char	*ft_lncpy(char *saved, size_t i)
+{
+	char	*line;
+
+	line = malloc(i + 2);
+	if (!line)
+		return (NULL);
+	ft_strlcpy(line, saved, i + 2);
+	return (line);
+}
+
+static char	*ft_read_write(int fd, char *saved)
+{
+	ssize_t	bytesread;
+	char	*temp;
+
+	bytesread = 1;
+	if (!saved)
 		saved = ft_strdup("");
-	line = NULL;
-	temp = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	temp = (char *)malloc(BUFFER_SIZE + 1); 
 	if (!temp)
 		return (NULL);
-	bytesread = 1;
 	while (bytesread > 0)
 	{
+		if (ft_strchr(saved, '\n'))
+			break ;
 		bytesread = read(fd, temp, BUFFER_SIZE);
 		if (bytesread == 0)
-			break;
+			break ;
 		if (bytesread == -1)
 			break ;
 		temp[bytesread] = '\0';
 		saved = ft_strjoin(saved, temp);
-			if(saved == NULL)
-				return(free(temp), NULL);
+		if (saved == NULL)
+			return (free(temp), NULL);
 	}
-	while (saved[i] && saved[i] != '\n')
-		i++;
-	if (saved[0] == '\0')
-		return NULL;
-	if (saved[i] == '\n' || saved[i] == '\0')
-	{
-		line = malloc((i + 1) * sizeof(char));
-		if (line == NULL)
-			return(NULL);
-		ft_strlcpy(line, saved, i + 1);
-		if (saved[i] != '\0')
-			line[i] = '\n';
-		saved = ft_substr(saved, i + 1, ft_strlen(saved) - (i + 1));
-	}
-	if (saved == NULL)
-	{
-		if (line)
-			free(line);
-		free(saved);
-		return(NULL);
-	}
-	if (line)
-		return(line);
-	return(line);
+	return (free(temp), saved);
 }
 
-#include <fcntl.h>
-#include <stdio.h>
-
-int main()
+char	*get_next_line(int fd)
 {
-    int fd;
-	char 	*line;
+	static char	*saved;
+	size_t		i;
+	char		*line;
 
-    fd = open("regular_text.txt", O_RDONLY);
-	/*while (line)
-	{
-		printf("%s", line);
-		free (line);
-		line = get_next_line(fd);
-	}*/
-	for (int i = 0; i < 6; i++)
-		printf("%s", get_next_line(fd));
-	close (fd);
-	return (0);
+	i = 0;
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	saved = ft_read_write(fd, saved);
+	if (!saved || saved[0] == '\0')
+		return (free(saved), saved = NULL, NULL);
+	while (saved[i] && saved[i] != '\n')
+		i++;
+	line = ft_lncpy(saved, i);
+	saved = ft_save(saved, i);
+	return (line);
 }
