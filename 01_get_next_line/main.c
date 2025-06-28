@@ -18,7 +18,7 @@ int	main(void)
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		printf("Zeile %02d: %s", i++, line);
-		free(line); // ganz wichtig!
+		free(line);
 	}
 	close(fd);
 }
