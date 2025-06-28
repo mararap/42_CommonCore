@@ -5,14 +5,20 @@
 #include <stdio.h>     // printf
 #include "get_next_line.h"
 
-int main()
+int main(int argc, char **argv)
 {
      int     file_descriptor;
      char    *next_line;
      int     i;
 
      i = 0;
-     file_descriptor = open("test_regular_text.txt", O_RDONLY);
+     if (argc != 1 + 1)
+     {
+        write (2, "Error.\n", 7);
+        return (-1);
+     }
+
+     file_descriptor = open(argv[1], O_RDONLY);
      if (file_descriptor == -1)
      {
          printf("Error opening the file");
