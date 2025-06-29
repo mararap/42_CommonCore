@@ -20,11 +20,11 @@ static char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
-	if (!(s1 || s2))
+	if (!s1 || !s2)
 		return (NULL);
 	newstr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!newstr)
-		return (NULL);
+		return (free(newstr), NULL);
 	while (s1[i] && i <= ft_strlen(s1))
 	{
 		newstr[i] = s1[i];
@@ -102,6 +102,10 @@ char	*get_next_line(int fd)
 	while (saved[i] && saved[i] != '\n')
 		i++;
 	line = ft_lncpy(saved, i);
+	if (!line)
+		return (free (saved), NULL);
 	saved = ft_save(saved, i);
+	if (!saved)
+		return (free(saved), line);
 	return (line);
 }
