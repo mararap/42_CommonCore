@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-static char	*ft_strjoin(char const *s1, char const *s2)
+static char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*newstr;
 	size_t	i;
@@ -24,7 +24,7 @@ static char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	newstr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!newstr)
-		return (NULL);
+		return (free(s1), NULL);
 	while (s1[i] && i <= ft_strlen(s1))
 	{
 		newstr[i] = s1[i];
@@ -36,6 +36,7 @@ static char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	newstr[i + j] = '\0';
+	free(s1);
 	return (newstr);
 }
 
@@ -65,27 +66,23 @@ static char	*ft_read_write(int fd, char *saved)
 {
 	ssize_t	bytesread;
 	char	*temp;
-	char *joined;
+	char	*joined;
 
 	bytesread = 1;
-	if (!saved)
-		saved = ft_strdup("");
-	if (!saved)
-		return (NULL);
-	temp = (char *)malloc(BUFFER_SIZE + 1); 
+	temp = (char *)malloc(BUFFER_SIZE + 1);
 	if (!temp)
 		return (free(saved), NULL);
-	while (bytesread > 0 && ft_strchr(saved, '\n'))
+	while (bytesread > 0)
 	{
+		if (ft_strchr(saved, '\n'))
+			break ;
 		bytesread = read(fd, temp, BUFFER_SIZE);
 		if (bytesread == 0)
 			break ;
 		if (bytesread == -1)
-			return (free(temp), NULL);
+			return (free(temp), free(saved), NULL);
 		temp[bytesread] = '\0';
-		joined = ft_strjoin(saved, temp);
-		free(saved);
-		saved = joined;
+		saved = ft_strjoin(saved, temp);
 		if (saved == NULL)
 			return (free(temp), NULL);
 	}
@@ -94,12 +91,16 @@ static char	*ft_read_write(int fd, char *saved)
 
 char	*get_next_line(int fd)
 {
-	static char	*saved;
+	static char	*saved = NULL;
 	size_t		i;
 	char		*line;
 
 	i = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	if (!saved)
+		saved = ft_strdup("");
+	if (!saved)
 		return (NULL);
 	saved = ft_read_write(fd, saved);
 	if (!saved)
