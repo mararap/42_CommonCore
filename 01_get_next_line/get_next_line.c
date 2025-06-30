@@ -74,11 +74,9 @@ static char	*ft_read_write(int fd, char *saved)
 		return (NULL);
 	temp = (char *)malloc(BUFFER_SIZE + 1); 
 	if (!temp)
-		return (NULL);
-	while (bytesread > 0)
+		return (free(saved), NULL);
+	while (bytesread > 0 && ft_strchr(saved, '\n'))
 	{
-		if (ft_strchr(saved, '\n'))
-			break ;
 		bytesread = read(fd, temp, BUFFER_SIZE);
 		if (bytesread == 0)
 			break ;
