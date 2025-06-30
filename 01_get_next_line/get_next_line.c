@@ -24,7 +24,7 @@ static char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	newstr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!newstr)
-		return (free(newstr), NULL);
+		return (NULL);
 	while (s1[i] && i <= ft_strlen(s1))
 	{
 		newstr[i] = s1[i];
@@ -44,7 +44,9 @@ static char	*ft_save(char *saved, size_t i)
 	char	*temp;
 
 	temp = ft_substr(saved, i + 1, ft_strlen(saved) - (i + 1));
-	free (saved);
+	free(saved);
+	if (!temp)
+		return (NULL);
 	return (temp);
 }
 
@@ -63,10 +65,13 @@ static char	*ft_read_write(int fd, char *saved)
 {
 	ssize_t	bytesread;
 	char	*temp;
+	char *joined;
 
 	bytesread = 1;
 	if (!saved)
 		saved = ft_strdup("");
+	if (!saved)
+		return (NULL);
 	temp = (char *)malloc(BUFFER_SIZE + 1); 
 	if (!temp)
 		return (NULL);
@@ -78,9 +83,11 @@ static char	*ft_read_write(int fd, char *saved)
 		if (bytesread == 0)
 			break ;
 		if (bytesread == -1)
-			break ;
+			return (free(temp), NULL);
 		temp[bytesread] = '\0';
-		saved = ft_strjoin(saved, temp);
+		joined = ft_strjoin(saved, temp);
+		free(saved);
+		saved = joined;
 		if (saved == NULL)
 			return (free(temp), NULL);
 	}
@@ -97,7 +104,9 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	saved = ft_read_write(fd, saved);
-	if (!saved || saved[0] == '\0')
+	if (!saved)
+		return (saved = NULL, NULL);
+	if (saved[0] == '\0')
 		return (free(saved), saved = NULL, NULL);
 	while (saved[i] && saved[i] != '\n')
 		i++;
@@ -106,6 +115,6 @@ char	*get_next_line(int fd)
 		return (free (saved), NULL);
 	saved = ft_save(saved, i);
 	if (!saved)
-		return (free(saved), line);
+		return (free(line), NULL);
 	return (line);
 }
