@@ -22,7 +22,7 @@ int main() //Balaz
 	return (0);
 }*/
 
-int main(int argc, char **argv)
+int main(int argc, char **argv) //Rene
 {
      int     file_descriptor;
      char    *next_line;
@@ -54,8 +54,43 @@ int main(int argc, char **argv)
      close(file_descriptor); // Close the file
      return (0);
 }
+/*
+int		main(void) //Dominic
+{
+	int		fd = open("main.c", O_RDONLY);
+	char	*s = NULL;
 
-/*int main(void)
+	if (fd <  0)
+		return (1);
+	while ((s = get_next_line(fd)))
+	{
+		printf("%s", s);
+		free(s);
+	}
+	close(fd);
+	return (0);
+}*/
+
+/* int main() //to read from standard input
+{
+     char    *next_line;
+     int     i;
+
+     i = 0;
+     while (1)
+     {
+         next_line = get_next_line(0);
+         if (next_line == NULL)
+             break ;
+         i++;
+         printf("[%d]: %s", i, next_line);
+         free (next_line);
+         next_line = NULL;
+     }
+     return (0);
+} */
+
+/*int main(void) //Lukas (?)
 {
 	int fd;
 	char *line;

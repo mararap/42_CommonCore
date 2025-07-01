@@ -66,7 +66,6 @@ static char	*ft_read_write(int fd, char *saved)
 {
 	ssize_t	bytesread;
 	char	*temp;
-	char	*joined;
 
 	bytesread = 1;
 	temp = (char *)malloc(BUFFER_SIZE + 1);
@@ -104,7 +103,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	saved = ft_read_write(fd, saved);
 	if (!saved)
-		return (saved = NULL, NULL);
+		return (NULL);
 	if (saved[0] == '\0')
 		return (free(saved), saved = NULL, NULL);
 	while (saved[i] && saved[i] != '\n')
