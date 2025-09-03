@@ -12,7 +12,7 @@
 
 //#include
 // 
-// stack as linked list
+// stack a as linked list
 
 typedef struct	s_node
 {
