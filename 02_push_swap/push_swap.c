@@ -12,6 +12,52 @@
 
 //#include
 // 
+// stack as linked list
+
+typedef struct	s_node
+{
+	int				nb;
+	struct s_node	*next;
+}			t_node;
+
+int main(int ac, char **av)
+{
+	t_node	*root;
+
+	root = malloc(sizeof(t_node));
+	root->next = malloc(sizeof(t_node));
+	root->next->next = malloc(sizeof(t_node));
+
+	root->n = 42;
+	root->next->n = 1337;
+	root->next->next->n = 21;
+	root->next->next->next = NULL;
+	// "i" for array
+	// "*current" for linked list
+	t_node	*current;
+
+	current = root;
+	while (current != NULL)
+	{
+		current = current->next;
+	}
+/*
+	root = malloc(sizeof(t_node));
+	node_1 = malloc(sizeof(t_node));
+	node_2 = malloc(sizeof(t_node));
+	
+	root->nb = 42;
+	node_1->nb = 1337;
+	node_2->nb = 21;
+
+	root->next = node 1;
+	root->next->next = node_2;
+	root->next->next->next = NULL;
+}*/
+
+
+
+//
 // input check, error handling
 // 
 // initalize variables
