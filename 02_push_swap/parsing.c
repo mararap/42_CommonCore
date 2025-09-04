@@ -10,10 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+// ac, **av reads all numbers as characters/character strings
+
+
+
 // linked list //
 
 //create struct for stacks
-typedef struct	s_node
+/*typedef struct	s_node
 {
 	int				value;
 	struct s_node	*next;
@@ -39,12 +43,31 @@ int main(int ac, char **av)
 	}
 	return (0);
 }
-
+*/
 // array //
+int ft_atoi(const char *str);
 
-int	main(ac, **av)
+
+#include <stdio.h>
+int	main(int ac, char **av)
 {
-	int		*stack_a;
+
+	int		stack_a[ac - 1];
+	int		i;
+
+	i = 0;
+	while (i < ac-1)
+	{
+		stack_a[i] = ft_atoi(av[i+1]);
+		i++;
+	}
+	i = 0;
+	while (i < ac-1)
+	{
+		printf("%d\n", stack_a[i]);
+		i++;
+	}
+/*
 	int		*stack_b;
 	int		index_a;
 	int		index_b;
@@ -58,7 +81,7 @@ int	main(ac, **av)
 	{
 
 	}
-
+*/
 
 
 }
