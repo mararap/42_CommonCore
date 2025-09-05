@@ -17,24 +17,24 @@
 // linked list //
 
 //create struct for stacks
-/*typedef struct	s_node
+typedef struct	s_num
 {
-	int				value;
-	struct s_node	*next;
-}			t_node;
+	void			*value;
+	struct s_num	*next;
+	struct s_num	*prev;
+}			t_num;
 
 int main(int ac, char **av)
 {
-	t_node	*root;
+	t_num	*head;
 
-	root = malloc(sizeof(t_node));
-	if(root == NULL)
+	head = malloc(sizeof(t_num))
+	if(head == NULL)
 		exit(2);
-	root->x = 15;
-	root->next = NULL;
+	head->value=ft_atoi(av + 1);
+	head->next = NULL;
+	head->prev = NULL;
 
-	insert_end(&root, -2);
-	insert_end(&root, 11);
 
 	Node *curr = root;
 	while (curr != NULL
@@ -43,30 +43,31 @@ int main(int ac, char **av)
 	}
 	return (0);
 }
-*/
+
 // array //
-int ft_atoi(const char *str);
 
-
-#include <stdio.h>
 int	main(int ac, char **av)
 {
 
 	int		stack_a[ac - 1];
 	int		i;
+	int		size;
 
+	size = ac - 1;
 	i = 0;
-	while (i < ac-1)
+	while (i < size)
 	{
 		stack_a[i] = ft_atoi(av[i+1]);
 		i++;
 	}
+	ft_rrotate(size, stack_a);
 	i = 0;
-	while (i < ac-1)
+	while (i < size)
 	{
 		printf("%d\n", stack_a[i]);
 		i++;
 	}
+	return (0);
 /*
 	int		*stack_b;
 	int		index_a;
