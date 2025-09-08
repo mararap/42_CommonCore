@@ -18,9 +18,11 @@
 typedef struct	s_Node
 {
 	// Data field. Can add more data according to our need.
-	int				*num;
+	int				value;
+	int				index;
 	// Pointer to next node
 	struct s_Node	*next;
+	struct s_Node	*prev;
 }					t_Node;
 /*
 // function to create a new node and return pointer to it

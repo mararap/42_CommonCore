@@ -36,8 +36,8 @@ int main(int ac, char **av)
 	head->prev = NULL;
 
 
-	Node *curr = root;
-	while (curr != NULL
+	s_num *curr = root;
+	while (curr != NULL)
 	{
 		curr = curr->next;
 	}
