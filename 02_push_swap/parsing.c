@@ -10,27 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <push_swap.h>
+
 // ac, **av reads all numbers as characters/character strings
 
 
 
 // linked list //
 
-//create struct for stacks
-typedef struct	s_num
+t_stack *ft_parse(int ac, char **av)
 {
-	void			*value;
-	struct s_num	*next;
-	struct s_num	*prev;
-}			t_num;
+	t_stack	*stack_a;
+	int		i;
+	int		j;
 
-int main(int ac, char **av)
-{
-	t_num	*head;
+	i = 1;
+	stack_a = NULL;
 
-	head = malloc(sizeof(t_num))
-	if(head == NULL)
-		exit(2);
+	stack_a = malloc(sizeof(t_stack));
+		if(stack_a[0] == NULL)
+			return (1);
+	if(ac < 2)
+		//ft_errorhandling;
+	elseif(ac == 2)
+		//ft_parse_quote;
+	else
+		//ft_parse_args;
+
 	head->value=ft_atoi(av + 1);
 	head->next = NULL;
 	head->prev = NULL;
