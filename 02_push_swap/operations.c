@@ -12,6 +12,13 @@
 
 #include<unistd.h>
 #include<stdio.h> //delete before submitting!!!
+
+// linked lists //
+
+
+
+// arrays //
+
 //swap a
 
 void ft_rotate(int	size, int *arr)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#include "push_swap.h"
 
 // ac, **av reads all numbers as characters/character strings
 
@@ -18,7 +18,7 @@
 
 // linked list //
 
-t_stack *ft_parse(int ac, char **av)
+t_stack	*ft_parsing(int ac, char **av)
 {
 	t_stack	*stack_a;
 	int		i;
@@ -27,31 +27,84 @@ t_stack *ft_parse(int ac, char **av)
 	i = 1;
 	stack_a = NULL;
 
-	stack_a = malloc(sizeof(t_stack));
-		if(stack_a[0] == NULL)
-			return (1);
-	if(ac < 2)
-		//ft_errorhandling;
-	elseif(ac == 2)
-		//ft_parse_quote;
-	else
-		//ft_parse_args;
-
-	head->value=ft_atoi(av + 1);
-	head->next = NULL;
-	head->prev = NULL;
-
-
-	s_num *curr = root;
-	while (curr != NULL)
+	if(ac < 2) //ft_print_error
 	{
-		curr = curr->next;
+		write (2, "Error\n", 6);
+		exit (1);
 	}
-	return (0);
+	else if(ac == 2) //ft_parse_quoted;
+		stack_a = ft_parse_quoted(av);
+	else
+		ft_parse_args(av, &stack_a) //ft_parse_args;
+	return (stack_a);
 }
 
-// array //
+t_stack	*ft_parse_quoted(char **av)
+{
+	t_stack	*stack_a;
+	char	**tmp;
+	int		i;
+	int		j;
 
+	stack_a = NULL;
+	i = 0;
+	tmp = ft_split(av[1], 32);
+	ft_parse_args(tmp, &stack_a);
+	ft_freestr(tmp);
+	ft_free(tmp);
+	return (stack_a);
+}
+
+void	ft_parse_args(char **av, t_stack **stack_a)
+{
+	long	i;
+
+	i = 1;
+	while(av[i])
+	{
+		ft_add_last(stack_a, ft_new_node(ft_atoi(argv[i])));
+		i++;
+	}
+}
+
+t_stack	*ft_new_node(int value)
+{
+	t_stack	*new;
+
+	new = malloc(sizeof(t_stack));
+	if (!new)
+		ft_print_error();
+	new->nbr = value;
+	new->next = NULL;
+	return (new);
+}
+
+void	ft_add_last(t_stack **stack, t_stack *new_node)
+{
+	if (!stack)
+		return ;
+	if (!*stack)
+		*stack = new_node;
+	else
+		(ft_last_node(*stack))->next = new_node;
+}
+
+t_stack	*ft_last_node(t_stack *end)
+{
+	if (!end)
+		return (NULL);
+	while (end->next)
+		end = end->next;
+	return(end);
+}
+
+int	main(int ac, char **av)
+{
+	ft_parsing(ac, av);
+	return (0);
+}
+// array //
+/*
 int	main(int ac, char **av)
 {
 
@@ -74,6 +127,7 @@ int	main(int ac, char **av)
 		i++;
 	}
 	return (0);
+*/
 /*
 	int		*stack_b;
 	int		index_a;
@@ -88,7 +142,4 @@ int	main(int ac, char **av)
 	{
 
 	}
-*/
-
-
-}
+}*/

@@ -13,20 +13,25 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <stdio.h> // REMOVE BEFORE SUBMITTING //
+# include <unistd.h> //write, read
 # include <stdbool.h> //true - false
 # include <limits.h> //int_max - int_min
 # include <stdlib.h> //malloc, free
+# include <stddef.h> // ? //
 
-typedef struct s_stack_node
+typedef struct s_stack
 {
-	int					nbr;
-	int					index;
-	int					push_cost;
-	bool				above_median;
-	bool				cheapest;
-	struct s_stack_node *target_node;
-	struct s_stack_node *next;
-	struct s_stack_node *prev;
-}	t_stack_node;
+	long					nbr;
+	long					index;
+	struct s_stack *next;
+	struct s_stack *prev;
+}	t_stack;
 
-#endif !GET_NEXT_LINE_H
+void		ft_parse_args(char **av, t_stack **stack_a);
+void		ft_add_last(t_stack **stack, t_stack *new_node);
+t_stack		*ft_new_node(int value);
+t_stack		*ft_parsing(int ac, char **av);
+char		**ft_split(char const *s, char c);
+
+#endif //!PUSH_SWAP_H
