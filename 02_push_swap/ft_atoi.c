@@ -12,7 +12,7 @@
 
 //check out libft bonus//
 
-#include <push_swap.h>
+#include "push_swap.h"
 
 int	ft_atoi(const char *str)
 {

@@ -18,60 +18,52 @@
 
 // linked list //
 
-t_stack	*ft_parsing(int ac, char **av)
+t_node	*ft_parsing(int ac, char **av)
 {
-	t_stack	*stack_a;
+	t_node	*stack_a;
 	int		i;
-	int		j;
 
 	i = 1;
 	stack_a = NULL;
 
-	if(ac < 2) //ft_print_error
-	{
-		write (2, "Error\n", 6);
-		exit (1);
-	}
+	if(ac < 2)
+		ft_print_error(); //ft_print_error
 	else if(ac == 2) //ft_parse_quoted;
 		stack_a = ft_parse_quoted(av);
 	else
-		ft_parse_args(av, &stack_a) //ft_parse_args;
+		ft_parse_args(av, &stack_a); //ft_parse_args;
 	return (stack_a);
 }
 
-t_stack	*ft_parse_quoted(char **av)
+t_node	*ft_parse_quoted(char **av)
 {
-	t_stack	*stack_a;
+	t_node	*stack_a;
 	char	**tmp;
-	int		i;
-	int		j;
 
 	stack_a = NULL;
-	i = 0;
 	tmp = ft_split(av[1], 32);
 	ft_parse_args(tmp, &stack_a);
-	ft_freestr(tmp);
-	ft_free(tmp);
+	ft_free_strv(tmp);
 	return (stack_a);
 }
 
-void	ft_parse_args(char **av, t_stack **stack_a)
+void	ft_parse_args(char **av, t_node **stack_a)
 {
 	long	i;
 
 	i = 1;
 	while(av[i])
 	{
-		ft_add_last(stack_a, ft_new_node(ft_atoi(argv[i])));
+		ft_add_last(stack_a, ft_new_node(ft_atoi(av[i])));
 		i++;
 	}
 }
 
-t_stack	*ft_new_node(int value)
+t_node	*ft_new_node(int value)
 {
-	t_stack	*new;
+	t_node	*new;
 
-	new = malloc(sizeof(t_stack));
+	new = malloc(sizeof(t_node));
 	if (!new)
 		ft_print_error();
 	new->nbr = value;
@@ -79,7 +71,7 @@ t_stack	*ft_new_node(int value)
 	return (new);
 }
 
-void	ft_add_last(t_stack **stack, t_stack *new_node)
+void	ft_add_last(t_node **stack, t_node *new_node)
 {
 	if (!stack)
 		return ;
@@ -89,7 +81,7 @@ void	ft_add_last(t_stack **stack, t_stack *new_node)
 		(ft_last_node(*stack))->next = new_node;
 }
 
-t_stack	*ft_last_node(t_stack *end)
+t_node	*ft_last_node(t_node *end)
 {
 	if (!end)
 		return (NULL);
@@ -98,11 +90,73 @@ t_stack	*ft_last_node(t_stack *end)
 	return(end);
 }
 
+void	ft_print_error()
+	{
+		write (2, "Error\n", 6);
+		exit (1);
+	}
+
+int	nodes_counter(t_node *current)
+{
+	int count;
+
+	count = 0;
+	while(current)
+	{
+		++count;
+		current = current->next;
+	}
+	return (count);
+}
+
+void	ft_free_strv(char **strv)
+{
+	size_t	i;
+	
+	i = 0;
+	while(strv[i])
+	{
+		free(strv[i]);
+		i++;
+	}
+	free(strv);
+	strv = NULL;
+}
+
+int	ft_atoi(const char *str)
+{
+	size_t		i;
+	char		sign;
+	long int	result;
+
+	i = 0;
+	sign = 1;
+	result = 0;
+	if (str[i] == ' ' || (str[i] <= '\r' && str[i] >= '\t'))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + str[i] - 48;
+		i++;
+	}
+	return (result * sign);
+}
+
 int	main(int ac, char **av)
 {
 	ft_parsing(ac, av);
 	return (0);
 }
+
+// ft_free
+// ft_freestr
+
 // array //
 /*
 int	main(int ac, char **av)

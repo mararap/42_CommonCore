@@ -20,18 +20,24 @@
 # include <stdlib.h> //malloc, free
 # include <stddef.h> // ? //
 
-typedef struct s_stack
+typedef struct s_node
 {
-	long					nbr;
-	long					index;
-	struct s_stack *next;
-	struct s_stack *prev;
-}	t_stack;
+	long			nbr;
+	long			index;
+	struct s_node	*next;
+	struct s_node	*prev;
+}	t_node;
 
-void		ft_parse_args(char **av, t_stack **stack_a);
-void		ft_add_last(t_stack **stack, t_stack *new_node);
-t_stack		*ft_new_node(int value);
-t_stack		*ft_parsing(int ac, char **av);
+void		ft_parse_args(char **av, t_node **stack_a);
+void		ft_add_last(t_node **stack, t_node *new_node);
+t_node		*ft_new_node(int value);
+t_node		*ft_parsing(int ac, char **av);
 char		**ft_split(char const *s, char c);
+t_node		*ft_parse_quoted(char **av);
+void		ft_print_error();
+t_node		*ft_last_node(t_node *end);
+int			ft_atoi(const char *str);
+void		ft_free_strv(char **strv);
+size_t		ft_strlen(char *str);
 
 #endif //!PUSH_SWAP_H
