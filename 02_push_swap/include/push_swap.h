@@ -29,7 +29,7 @@ typedef struct s_node
 	struct s_node	*prev;
 }	t_node;
 
-void		ft_parse_args(char **av, t_node **stack_a);
+void		ft_parse_args(char **av, t_node **stack_a, size_t i);
 void		ft_add_last(t_node **stack, t_node *new_node);
 t_node		*ft_new_node(long nbr);
 t_node		*ft_parsing(int ac, char **av);
