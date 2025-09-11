@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helpers_ll.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/05 21:21:43 by marapovi          #+#    #+#             */
-/*   Updated: 2025/09/05 21:26:20 by marapovi         ###   ########.fr       */
+/*   Created: 2025/09/11 11:53:34 by marapovi          #+#    #+#             */
+/*   Updated: 2025/09/11 12:13:47 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//check out libft bonus//
-
-#include "push_swap.h"
-
-int	ft_atoi(const char *str)
+void	ft_print_list(t_node *head)
 {
-	size_t		i;
-	char		sign;
-	long int	result;
+	t_node	*current;
 
-	i = 0;
-	sign = 1;
-	result = 0;
-	if (str[i] == ' ' || (str[i] <= '\r' && str[i] >= '\t'))
-		i++;
-	if (str[i] == '+' || str[i] == '-')
+	current = head;
+	while (current)
 	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
+		ft_printf("%ld -> ", current->value);
+		current = current->next;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = result * 10 + str[i] - 48;
-		i++;
-	}
-	return (result * sign);
 }
 
+int	main(int ac, char **av)
+{
+	t_node	*stack_a;
+
+	if (ac <2)
+		return (0);
+
+	stack_a = ft_parsing(ac, av);
+	ft_print_list(stack_a);
+	ft_free_list(stack_a);
+
+	return (0);
+}

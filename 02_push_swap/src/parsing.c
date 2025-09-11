@@ -21,17 +21,14 @@
 t_node	*ft_parsing(int ac, char **av)
 {
 	t_node	*stack_a;
-	int		i;
 
-	i = 1;
 	stack_a = NULL;
-
 	if(ac < 2)
 		ft_print_error(); //ft_print_error
 	else if(ac == 2) //ft_parse_quoted;
 		stack_a = ft_parse_quoted(av);
 	else
-		ft_parse_args(av, &stack_a); //ft_parse_args;
+		ft_parse_args(av, &stack_a, 1); //ft_parse_args;
 	return (stack_a);
 }
 
@@ -39,19 +36,16 @@ t_node	*ft_parse_quoted(char **av)
 {
 	t_node	*stack_a;
 	char	**tmp;
-
+	
 	stack_a = NULL;
 	tmp = ft_split(av[1], 32);
-	ft_parse_args(tmp, &stack_a);
+	ft_parse_args(tmp, &stack_a, 0);
 	ft_free_strv(tmp);
 	return (stack_a);
 }
 
-void	ft_parse_args(char **av, t_node **stack_a)
+void	ft_parse_args(char **av, t_node **stack_a, size_t	i)
 {
-	long	i;
-
-	i = 1;
 	while(av[i])
 	{
 		ft_add_last(stack_a, ft_new_node(ft_atoi(av[i])));
@@ -59,14 +53,14 @@ void	ft_parse_args(char **av, t_node **stack_a)
 	}
 }
 
-t_node	*ft_new_node(int value)
+t_node	*ft_new_node(long nbr)
 {
 	t_node	*new;
 
 	new = malloc(sizeof(t_node));
 	if (!new)
 		ft_print_error();
-	new->nbr = value;
+	new->nbr = nbr;
 	new->next = NULL;
 	return (new);
 }
@@ -109,6 +103,18 @@ int	nodes_counter(t_node *current)
 	return (count);
 }
 
+void	ft_free_list(t_node *head)
+{
+	t_node	*tmp;
+
+	while (head)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
+}
+
 void	ft_free_strv(char **strv)
 {
 	size_t	i;
@@ -148,11 +154,7 @@ int	ft_atoi(const char *str)
 	return (result * sign);
 }
 
-int	main(int ac, char **av)
-{
-	ft_parsing(ac, av);
-	return (0);
-}
+
 
 // ft_free
 // ft_freestr

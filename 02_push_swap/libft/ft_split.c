@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
 static void	ft_free(char **arr, size_t ia)
 {
@@ -104,8 +104,9 @@ char	**ft_split(char const *s, char c)
 
 int	main(void)
 {
-	char *c = NULL;
-	char **arr = ft_split("   tripuille 42 ", ' ');
+	char *s = NULL;
+	char c = ' ';
+	char **arr = ft_split(s, c);
 	if (!arr)
 		return (-1);
 	int i = 0;
