@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rev_print.c                                        :+:      :+:    :+:   */
+/*   is_power_of_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/15 15:13:08 by marapovi          #+#    #+#             */
-/*   Updated: 2025/09/15 15:55:14 by marapovi         ###   ########.fr       */
+/*   Created: 2025/09/17 19:35:06 by marapovi          #+#    #+#             */
+/*   Updated: 2025/09/17 20:15:02 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdio.h>
 
-int	main(int argc, char **argv)
+int	is_power_of_2(unsigned int n)
 {
-	int	i = 0;
+	unsigned int	check = 1;
 
-	if (argc != 2)
-		return(write(1, "\n", 1), 0);
-	while (argv[1][i])
-		i++;
-	while(i >= 0)
+	while (check <= n)
 	{
-		write(1, &argv[1][i], 1);
-		i--;
+		if (check == n)
+			return (1);
+		check = check * 2;
 	}
-/*	while(i--)
-	{
-		write(1, &argv[1][i], 1);
-	}*/
-	write(1, "\0", 1);
+	return (0);
+}
+
+int main()
+{
+	unsigned int n = 4097;
+	printf("1 is yes\n0 is no\nresult = %d\n", is_power_of_2(n));
 	return(0);
 }

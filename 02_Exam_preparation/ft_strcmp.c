@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rev_print.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/15 15:13:08 by marapovi          #+#    #+#             */
-/*   Updated: 2025/09/15 15:55:14 by marapovi         ###   ########.fr       */
+/*   Created: 2025/09/17 13:30:03 by marapovi          #+#    #+#             */
+/*   Updated: 2025/09/17 14:06:05 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-int	main(int argc, char **argv)
+int	ft_strcmp(char *s1, char *s2)
 {
-	int	i = 0;
+	int	i;
+	int	r;
 
-	if (argc != 2)
-		return(write(1, "\n", 1), 0);
-	while (argv[1][i])
+	i = 0;
+
+	while (s1[i] && s2[i])
+	{
+		r = s1[i] - s2[i];
 		i++;
-	while(i >= 0)
-	{
-		write(1, &argv[1][i], 1);
-		i--;
 	}
-/*	while(i--)
-	{
-		write(1, &argv[1][i], 1);
-	}*/
-	write(1, "\0", 1);
+	return(r);
+}
+
+#include <stdio.h>
+
+int	main (int argc, char **argv)
+{
+	if (argc != 3)
+		return(1);
+
+	printf("%d\n", ft_strcmp(argv[1], argv[2]));
 	return(0);
 }

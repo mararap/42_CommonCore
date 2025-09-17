@@ -1,34 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rev_print.c                                        :+:      :+:    :+:   */
+/*   swap_bits.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/15 15:13:08 by marapovi          #+#    #+#             */
-/*   Updated: 2025/09/15 15:55:14 by marapovi         ###   ########.fr       */
+/*   Created: 2025/09/17 23:01:05 by marapovi          #+#    #+#             */
+/*   Updated: 2025/09/17 23:20:26 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <unistd.h>
 
-int	main(int argc, char **argv)
+unsigned char	swap_bits(unsigned char octet)
+{
+	return ((octet >> 4 | octet << 4));
+}
+
+int main ()
 {
 	int	i = 0;
-
-	if (argc != 2)
-		return(write(1, "\n", 1), 0);
-	while (argv[1][i])
+	unsigned char	octet = 4;
+	unsigned char	swapped = swap_bits(4);
+	while(i < 8)
+	{
+		if ((octet >> i) & 1)
+			write(1, "1", 1);
+		else
+			write(1, "0", 1);
 		i++;
-	while(i >= 0)
-	{
-		write(1, &argv[1][i], 1);
-		i--;
 	}
-/*	while(i--)
+	write(1, "\n", 1);
+	i = 0;
+	while (i < 8)
 	{
-		write(1, &argv[1][i], 1);
-	}*/
-	write(1, "\0", 1);
-	return(0);
+		if ((swapped >> i) & 1)
+			write(1, "1", 1);
+		else
+			write(1, "0", 1);
+		i++;
+	}
 }
