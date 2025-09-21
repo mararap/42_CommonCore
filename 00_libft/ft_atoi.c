@@ -29,14 +29,14 @@ int	ft_atoi(const char *str)
 			sign = -1;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (str[i] && str[i] <= '9')
 	{
 		result = result * 10 + str[i] - 48;
 		i++;
 	}
 	return (result * sign);
 }
-/*
+
 #include <stdio.h>
 
 int	main(void)
@@ -46,4 +46,4 @@ int	main(void)
 	printf("original function: %d\n", atoi(str));
 	printf("my function: %d\n", ft_atoi(str));
 	return (0);
-}*/
+}

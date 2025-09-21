@@ -12,6 +12,9 @@
 
 #include "libft.h"
 
+
+### original function from circle 0 ###
+
 void	ft_putnbr_fd(int n, int fd)
 {
 	long int	nbr;
