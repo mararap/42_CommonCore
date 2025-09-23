@@ -12,20 +12,21 @@
 
 unsigned int	ft_hcf(unsigned int a, unsigned int b)
 {
-	unsigned int	hcf;
-	unsigned int	big;
-	unsigned int	small;
-	unsigned int	remain;
+	unsigned int	hcf = 0;
+	unsigned int	big = 0;
+	unsigned int	small = 0;
+	unsigned int	remain = 0;
 	if (a > b)
-		a = big, b = small;
+		big = a, small = b;
 	else if (b > a)
-		b = big, a = small;
+		big = b, small = a;
 	remain = big % small;
-	if (remain == 0)
+	if (remain == 1)
+		hcf = 1;
+	else if (remain == 0)
 		hcf = small;
 	else
-		hcf = hcf(small, remain);
-	printf("hcf = %d\n", hcf);
+		hcf = ft_hcf(small, remain);
 	return (hcf);
 }
 
@@ -36,5 +37,23 @@ unsigned int	lcm(unsigned int a, unsigned int b)
 
 	hcf = ft_hcf(a, b);
 	lcm = (a * b) / hcf;
-	return (hcf);
+	return (lcm);
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int	main(int ac, char** av)
+{
+	if (ac != 3)
+		return (printf("wrong number of arguments\n"), 1);
+	unsigned int	a = (unsigned int) atoi(av[1]);
+	unsigned int	b = (unsigned int) atoi(av[2]);
+	unsigned int	result = 0;
+	unsigned int	hcf = 0;
+	hcf = ft_hcf(a, b);
+	printf("hcf = %d\n", hcf);
+	result = lcm(a, b);
+	printf("lcm = %d\n", result);
+	return (0);
 }

@@ -14,23 +14,26 @@
 
 int	max(int *tab, unsigned int len)
 {
-	unsigned int	i = 1;
+	int	i = 1;
+//	len = (int)len;
+//	if(len < 0)
+//		return(1);
+	if(!tab[0])
+		return (0);
 	int result = tab[0];
-	
 	while (i < len)
 	{
 		if(tab[i] > result)
 			result = tab[i];
 		i++;
 	}
-	printf("%d\n", result);
 	return(result);
 }
 
 int main(void)
 {
 	unsigned int	i = 0;
-	unsigned int len = 6;
+	unsigned int	len = -1;
 	int tab[6] = {3, 1, 5, 8, 2, 0};
 
 	printf("array of int = ");
