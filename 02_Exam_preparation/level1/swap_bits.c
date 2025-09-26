@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 23:01:05 by marapovi          #+#    #+#             */
-/*   Updated: 2025/09/17 23:20:26 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/09/25 17:00:16 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 unsigned char	swap_bits(unsigned char octet)
 {
-	return ((octet >> 4 | octet << 4));
+	return ((octet >> 4) | (octet << 4));
 }
 
 int main ()

@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 22:08:13 by marapovi          #+#    #+#             */
-/*   Updated: 2025/09/17 22:25:11 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/09/26 14:59:52 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,28 @@
 unsigned char	reverse_bits(unsigned char octet)
 {
 	int	i;
-	unsigned char	res = 0;
+	unsigned char	result = 0;
 
 	i = 7;
 	while(i >= 0)
 	{
-		res = (res << 1) | (octet & 1);
+		result = (result << 1) | (octet & 1);
 		octet = octet >> 1;
 		i--;
 	}
-	return(res);
+	return(result);
 }
 
+//    	octet & 1, octet >> 1			   (result << 1) | (octet & 1)
+// 1st	000000100 & 000000001 = 00000000 | 00000000
+// 2nd	000000010 & 000000001 = 00000000 | 00000000
+// 3rd	000000001 & 000000001 = 00000001 | 00000001
+// 4th	000000000 & 000000001 = 00000000 | 00000010
+// 5th							00000000 | 00000100
+// 6th							00000000 | 00001000
+// 7th							00000000 | 00010000
+// 8th iteration				00000000 | 00100000
+    
 int	main(void)
 {
 	int	i = 7;

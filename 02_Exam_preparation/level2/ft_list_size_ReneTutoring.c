@@ -25,15 +25,15 @@ int	ft_list_size(t_list *begin_list)
 	return (i);
 }
 
-t_list	*ft_lstnew(void *head)
+t_list	*ft_lstnew(void *p_content)       // ft_new_node
 {
-	t_list *next;
-	next = malloc(sizeof(*head));
-	if(!next)
-		return (0);
-	next->data = value;
-	next->node = (0);
-	return (node);
+	t_list *p_node;
+	p_node = malloc(sizeof(t_list));
+	if(p_node == NULL)
+		return (NULL);
+	p_node->data = p_content;     // -> is kurz für (*p_node).data
+	p_node->next = NULL;
+	return (p_node);
 }
 
 void	ft_lstadd_back(t_list **lst, t_list *new)

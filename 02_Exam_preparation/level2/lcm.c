@@ -16,6 +16,9 @@ unsigned int	ft_hcf(unsigned int a, unsigned int b)
 	unsigned int	big = 0;
 	unsigned int	small = 0;
 	unsigned int	remain = 0;
+
+	if (a == b)
+		return (a);
 	if (a > b)
 		big = a, small = b;
 	else if (b > a)
@@ -23,8 +26,6 @@ unsigned int	ft_hcf(unsigned int a, unsigned int b)
 	remain = big % small;
 	if (remain == 1)
 		hcf = 1;
-	else if (remain == 0)
-		hcf = small;
 	else
 		hcf = ft_hcf(small, remain);
 	return (hcf);

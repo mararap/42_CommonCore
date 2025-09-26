@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list.h                                          :+:      :+:    :+:   */
+/*   flood_fill.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com>   +#+  +:+       +#+        */
+/*   By: marapovi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/22 10:50:09 by marapovi          #+#    #+#             */
-/*   Updated: 2025/09/25 18:08:56 by marapovi         ###   ########.fr       */
+/*   Created: 2025/09/26 21:54:20 by marapovi          #+#    #+#             */
+/*   Updated: 2025/09/26 21:59:51 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LIST_H
-# define FT_LIST_H
+#ifndef FLOOD_FILL_H
+# define FLOOD_FILL_H
 
-typedef struct	s_list
+typedef struct	s_point
 {
-	struct s_list	*next;
-	void			*data;
-}					t_list;
+	int		x;
+	int		y;
+}			t_point;
 
-#endif // !FT_LIST_H
+#endif // !FLOOD_FILL_H

@@ -1,34 +1,37 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   print_bits.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com>   +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 20:57:16 by marapovi          #+#    #+#             */
-/*   Updated: 2025/09/17 22:04:01 by marapovi         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include <unistd.h>
 
-void print_bits(unsigned char octet)
+void	print_bits(unsigned char octet)
 {
 	int i = 7;
+	char num;
 
-	while(i >= 0)
+	while (i >= 0)
 	{
-		if ((octet >> i) & 1)
-			write(1, "1", 1);
-		else
-			write(1, "0", 1);
+		num = ((octet >> i) & 1) + 48;
+		write (1, &num, 1);
 		i--;
 	}
 }
 
-int main()
+#include <stdio.h>
+#include <stdlib.h>
+
+int	main(int ac, char **av)
 {
-	unsigned char octet = 2;
+	if (ac != 2)
+		return (printf("wrong number of arguments\n"), 1);
+	int num;
+	unsigned char octet;	
+	num = atoi(av[1]);
+	if (num > 255 || num < 0)
+		return (printf("invalid input\n"), 1);
+	octet = (unsigned char)num;
+	// pass av[1][0] to function whitout atoi or similar,
+	// because input will allways be a one character string
+	// = WRONG!!
+	// still need atoi in main to get the actual char that 
+	// should be passed to function (for input >9)!
 	print_bits(octet);
-	return(0);
+	return (0);
 }
