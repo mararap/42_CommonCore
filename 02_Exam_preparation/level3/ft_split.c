@@ -6,12 +6,11 @@
 /*   By: marapovi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 17:55:55 by marapovi          #+#    #+#             */
-/*   Updated: 2025/09/29 19:59:41 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/09/29 23:29:43 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 
 int	word_count(char *str)
 {
@@ -42,9 +41,10 @@ char **ft_split(char *str)
 	char **arr = NULL;
 	int j = 0;
 	int	len = 0;
+	int reset_i = 0;
 	int count = word_count(str); // count the words
-	arr = malloc(count); // allocate for array
-	while (str[i] && j <= count) // skip spaces, count chars, allocate for str, fill str
+	arr = (char **)malloc(count * sizeof(char *)); // allocate for array
+	while (str[i] && j < count) // skip spaces, count chars, allocate for str, fill str
 	{
 		while (str[i] && (str[i] == ' ' || str[i] == '	' || str[i] == '\n'))
 			i++;
@@ -53,22 +53,39 @@ char **ft_split(char *str)
 			i++;
 			len++;
 		}
-		arr[j] = malloc(len + 1); // allocate for first string
-		len -= 1; // shoult be at first space after word, want it to be at last letter
+		reset_i = i; // save index at space after word
+		i--;
+		len--;
+		arr[j] = malloc(len + 2); // allocate for string
 		while (len >= 0)
 		{
-			arr[j][len] = str[len];
+			arr[j][len] = str[i];
 			len--;
+			i--;
 		}
+		len++; // len after loop = -1
+		i = reset_i; // reset i to space after word
 		j++;
 	}
 	return (arr);		
 }
 
+#include <stdio.h>
+
 int main (int ac, char **av)
 {
 	(void)ac;
+	char **arr = NULL;
+	int count = 0;
+	int	i = 0;	
 	char *str = av[1];
-
+	arr = ft_split(str);
+	count = word_count(str);
+	while (i < count)
+	{
+		printf("%d\n", i);
+		printf("%s\n", arr[i]);
+		i++;
+	}
 	return (0);
 }
