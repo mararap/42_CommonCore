@@ -1,20 +1,19 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com>   +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/14 21:41:32 by marapovi          #+#    #+#             */
-/*   Updated: 2025/09/14 21:47:36 by marapovi         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
-int	ft_strlen(char *str)
+int ft_strlen(char *str)
 {
-	int	i = 0;
-	
-	while(str[i])
-		i++;
-	return(i);
+    int len = 0;
+
+    while (str[len])
+        len++;
+    return (len);
+}
+
+#include <stdio.h>
+
+int main()
+{
+    char *str = "this is 21 chars long";
+
+    printf("str = %s\n", str);
+    printf("len = %d\n", ft_strlen(str));
 }

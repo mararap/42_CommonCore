@@ -1,40 +1,28 @@
 
-unsigned char	reverse_bits(unsigned char octet)
+#include <unistd.h>
+
+void	ft_putnbr(int num)
 {
-	unsigned char    result = 0;
-	int              i = 0;
-	
-	while(i < 8)
-	{
-	result = (result << 1) | (octet & 1);
-	octet = (octet >> 1);
-	i++;
-	}
-	return (result);
+	if (num > 9)
+		ft_putnbr(num / 10);
+	write (1, &"0123456789"[num % 10], 1);
 }
 
-#include <stdio.h>
-#include <stdlib.h>
-
-int	main(int ac, char **av)
+int	main()
 {
-	if (ac != 2)
-		return (printf("wrong number of arguments\n"), 1);
-	int num = atoi(av[1]);
-	if (num > 255 || num < 0)
-		return (printf("invalid input\n"), 1);
-	int	i = 7;
-	char	output = 0;
-	unsigned char input = (unsigned char)num;
-	printf("num = %d\n", num);
-	printf("input = %d\n", input);
-	output = reverse_bits(input);
-	printf("output = %d\n", output);
-	while (i >= 0)
+	int i = 1;
+	while (i <= 100)
 	{
-		output = ((output >> i) & 1);
-		printf("%d", output);
-		i--;	
+		if (i % 3 == 0)
+			write (1, "fizz", 5);
+		if (i % 5 == 0)
+			write (1, "buzz", 5);
+		if (i % 3 == 0 && i % 5 == 0)
+			write (1, "fizzbuzz", 9);
+		else
+			ft_putnbr(i);
+		write (1, "\n", 1);
+		i++;
 	}
 	return (0);
 }

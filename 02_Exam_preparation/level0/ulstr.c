@@ -1,33 +1,23 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ulstr.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com>   +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/15 20:49:28 by marapovi          #+#    #+#             */
-/*   Updated: 2025/09/15 21:16:23 by marapovi         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include <unistd.h>
 
-int	main(int ac, char **av)
+int main(int ac, char **av)
 {
-	int	i;
+    if (ac != 2)
+        return (write(1, "\n", 1), 1);
+    
+    int i = 0;
+    char *str = av[1];
 
-	i = 0;
-	if (ac != 2)
-		return(write(1, "\n", 1));
-	while(av[1][i])
-	{
-		if(av[1][i] >= 65 && av[1][i] <= 90)
-			av[1][i] += 32;
-		else if(av[1][i] >= 97 && av[1][i] <= 122)
-			av[1][i] -= 32;
-		write(1, &av[1][i], 1);
-		i++;
-	}
-	write(1, "\n", 1);
-	return (0);
+    while (str[i])
+    {
+        if (str[i] >= 'a' && str[i] <= 'z')
+            str[i] -= 32;
+        else if (str[i] >= 'A' && str[i] <= 'Z')
+            str[i] += 32;
+        write (1, &str[i], 1);
+        i++;
+    }
+    write (1, "\n", 1);
+    return (0);
 }
