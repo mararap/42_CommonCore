@@ -1,43 +1,34 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strrev.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com>   +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 18:00:14 by marapovi          #+#    #+#             */
-/*   Updated: 2025/09/17 18:29:05 by marapovi         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
-
-char	*ft_strrev(char *str)
+char    *ft_strrev(char *str)
 {
-	int i = 0;
-	int j = 0;
-	char c;
+    int i = 0;
+    int j = 0;
+    char    tmp;
 
-	c = str[0];
-	while(str[i])
-		i++;
-	j = i - 1;
-	i = 0;
-	while(i < j)
-	{
-		c = str[i];
-		str[i] = str[j];
-		str[j] = c;
-		i++;
-		j--;
-	}
-	return(str);
+    while (str[i])
+        i++;
+    i--;
+    tmp = str[0];
+    while (i > j)
+    {
+        tmp = str[j];
+        str[j] = str[i]; 
+        str[i] = tmp;
+        j++;
+        i--;
+    }
+    return(str);
 }
 
-int	main(int argc, char **argv)
+#include <stdio.h>
+
+int main(int ac, char **av)
 {
-	if(argc != 2)
-		return(1);
-	printf("revstr: %s\n", ft_strrev(argv[1]));
+    (void)ac;
+    char    *str = av[1];
+    char    *result;
+
+    result = ft_strrev(str);
+    printf("own  = %s\n", result);
+    return (0);
 }

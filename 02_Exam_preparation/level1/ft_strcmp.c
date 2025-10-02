@@ -1,37 +1,31 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com>   +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 13:30:03 by marapovi          #+#    #+#             */
-/*   Updated: 2025/09/17 14:06:05 by marapovi         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
-int	ft_strcmp(char *s1, char *s2)
+int ft_strcmp(char *s1, char *s2)
 {
-	int	i;
-	int	r;
+    int i = 0;
 
-	i = 0;
-
-	while (s1[i] && s2[i])
-	{
-		r = s1[i] - s2[i];
-		i++;
-	}
-	return(r);
+    while (s1[i] && s2[i])
+    {
+        if (s1[i] != s2[i])
+            return(s1[i] - s2[i]);
+        i++;
+    }
+    return (0);
 }
 
 #include <stdio.h>
+#include <string.h>
 
-int	main (int argc, char **argv)
+int main (int ac, char **av)
 {
-	if (argc != 3)
-		return(1);
+    (void)ac;
 
-	printf("%d\n", ft_strcmp(argv[1], argv[2]));
-	return(0);
+    char *s1 = av[1];
+    char *s2 = av[2];
+    int result = 0;
+
+    result = ft_strcmp(s1, s2);
+    printf("own result = %d\n", result);
+    result = strcmp(s1, s2);
+    printf("ori result = %d\n", result);
+    return (0); 
 }

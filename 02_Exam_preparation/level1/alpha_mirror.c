@@ -1,33 +1,33 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   alpha_mirror.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com>   +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/16 08:44:09 by marapovi          #+#    #+#             */
-/*   Updated: 2025/09/16 10:25:09 by marapovi         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include <unistd.h>
 
-int	main(int ac, char **av)
+int main(int ac, char **av)
 {
-	int	i;
+    if (ac != 2)
+        return (write(1, "\n", 1), 1);
 
-	i = 0;
-	if (ac != 2)
-		return (write(1, "\n", 1), 0);
-	while(av[1][i])
-	{
-		if(av[1][i] >= 65 && av[1][i] <= 90)
-			av[1][i] = (65 + (26 - (av[1][i] - 64)));
-		else if (av[1][i] >= 97 && av[1][i] <= 122)
-			av[1][i] = (97 + (26 - (av[1][i] - 96)));
-		write(1, &av[1][i], 1);
-		i++;
-	}
-	write(1, "\n", 1);
-	return (0);
-}
+    int i = 0;
+    char *str = av[1];
+
+    while (str[i])
+    {
+        if ((str[i] >= 'A' && str[i] <= 'M'))
+            str[i] = 'N' + ('M' - str[i]);
+
+        else if ((str[i] >= 'a' && str[i] <= 'm'))
+            str[i] = 'n' + ('m' - str[i]);
+
+        else if ((str[i] >= 'N' && str[i] <= 'Z'))
+            str[i] = 'M' - (str[i] - 'N');
+
+        else if ((str[i] >= 'n' && str[i] <= 'z'))
+            str[i] = 'm' - (str[i] - 'n');
+
+        write (1, &str[i], 1);
+
+        i++;
+    }
+    write (1, "\n", 1);
+    return (0);
+} 
+
