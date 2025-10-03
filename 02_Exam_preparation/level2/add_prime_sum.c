@@ -1,84 +1,74 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   add_prime_sum.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com>   +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/21 16:58:30 by marapovi          #+#    #+#             */
-/*   Updated: 2025/09/21 19:27:45 by marapovi         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
-	int		i = 0;
-	char	sign = 1;
-	int		result = 0;
+	int	i = 0;
+	int sign = 1;
+	int	num = 0;
 
-	if (str[i] == '+' || str[i] == '-')
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-			sign = -1;
+			sign *= -1;
 		i++;
 	}
-	while(str[i] && str[i] <= '9')
+	while(str[i] && str[i] >= '0' && str[i] <= '9')
 	{
-		result = result * 10 + str[i] - 48;
+		num = num * 10 + (str[i] - '0');
 		i++;
 	}
-	return(result * sign);
+	return (num * sign);
 }
-
-int	ft_is_prime(int nbr)
+void	ft_putnbr(int i)
 {
-	if (nbr < 2)
-		return(0);
-	int	i = 2;
-	while (i <= nbr / 2)
+	char	c;
+
+	if (i < 0)
 	{
-		if (nbr % i == 0)
+		write (1, "-", 1);
+		i *= -1;
+	}
+	if (i >= 10)
+		ft_putnbr(i / 10);
+	c = i % 10 + '0';
+	write (1, &c, 1);
+}
+int	ft_is_prime(int num)
+{
+	if (num == 1)
+		return (1);
+	else if (num == 0)
+		return (0);
+	int	i = 2;
+	while (i * i <= num)
+	{
+		if (num % i == 0)
 			return (0);
 		i++;
 	}
-	return(1);
+	return (1);
 }
-
-void	ft_putnbr(int n)
-{
-	long int	nbr;
-	char		c;
-	
-	nbr = (long int) n;
-	if (nbr < 0)
-	{
-		write(1, "-", 1);
-		nbr *= -1;
-	}
-	if(nbr >= 10)
-		ft_putnbr(nbr / 10);
-	c = nbr % 10 + 48;
-	write(1, &c, 1);
-}
-
 int	main(int ac, char **av)
 {
-	if (ac != 2 || ft_atoi(av[1]) <= 0)
-		return (write(1, "0\n", 2), -1);
+	if (ac != 2)
+		return (write (1, "\n", 1), 1);
 
-	int	n = ft_atoi(av[1]);
-	int	sum = 0;
+	int	num = ft_atoi(av[1]);
+	int	result = 0;
 
-	while(n > 1)
+	if (num < 0)
+		return (write(1, "\n", 1));
+
+	while(num > 1)
 	{
-		if (ft_is_prime(n))
-			sum += n;
-		n--;
+		if (ft_is_prime(num))
+			result += num;
+		num--;
 	}
-	ft_putnbr(sum);
-	write(1, "\n", 1);
-	return(0);
+	ft_putnbr (result);
+	write (1, "\n", 1);
+	return (0);
 }

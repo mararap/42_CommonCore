@@ -1,55 +1,40 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   unit.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com>   +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/18 13:40:18 by marapovi          #+#    #+#             */
-/*   Updated: 2025/09/18 14:05:22 by marapovi         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include <unistd.h>
 
-int	ft_no_doub(char *str, char c, int curr)
+int	no_doub(char *str, char c, int i)
 {
-	int i = 0;
-
-	while(i < curr)
+	i--;
+	while(i >= 0)
 	{
-		if(str[i] == c)
+		if (str[i] == c)
 			return (1);
-		i++;
+		i--;
 	}
 	return (0);
 }
 
 int	main(int ac, char **av)
 {
-	char	curr;
-	int		i = 0;
-	int		last;
-
 	if (ac != 3)
-		return(write(1, "\n", 1));
-	while(av[1][i])
+		return(write(1, "\n", 1), 1);
+
+	int	i = 0;
+	int j = 0;
+	char *s1 = av[1];
+	char *s2 = av[2];
+
+	while (s1[i])
 	{
-		curr = av[1][i];
-		if (ft_no_doub(av[1], curr, i) == 0)
-			write(1, &curr, 1);
+		if (no_doub(s1, s1[i], i) == 0)
+			write(1, &s1[i], 1);
 		i++;
 	}
-	last = i;
-	i = 0;
-	while(av[2][i])
+	while (s2[j])
 	{
-		curr = av[2][i];
-		if ((ft_no_doub(av[1], curr, last) == 0)
-			&& (ft_no_doub(av[2], curr, i) == 0))
-			write(1, &curr, 1);
-		i++;
+		if (no_doub(s2, s2[j], j) == 0 && no_doub(s1, s2[j], i) == 0)
+			write(1, &s2[j], 1);
+		j++;
 	}
-	write(1, "\n", 1);
-	return(0);
+	write (1, "\n", 1);
+	return (0);
 }
