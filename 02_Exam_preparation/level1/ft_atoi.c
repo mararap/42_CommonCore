@@ -3,7 +3,7 @@ int ft_atoi(const char *str)
 {   
     int i = 0;
     int num = 0; 
-    int factor = 0;
+    int factor = 10;
     int sign = 1;
 
     while (str[i] && (str[i]  == 32 || (str[i] <= 13 && str[i] >= 9)))
@@ -19,7 +19,6 @@ int ft_atoi(const char *str)
     i--;
     num = str[i] - '0';
     i--;
-    factor = 10;
     while (i >= 0 && (str[i] >= '0' && str[i] <= '9'))
     {
         num += (str[i] - '0') * factor;
