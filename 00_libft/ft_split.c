@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 09:40:52 by marapovi          #+#    #+#             */
-/*   Updated: 2025/05/20 09:41:16 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/07 10:02:10 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,11 @@ char	**ft_split(char const *s, char c)
 	arr[wcount] = NULL;
 	return (arr);
 }
-/*
+
 #include <stdio.h>
 
 int	main(void)
 {
-	char *c = NULL;
 	char **arr = ft_split("   tripuille 42 ", ' ');
 	if (!arr)
 		return (-1);
@@ -118,4 +117,4 @@ int	main(void)
 	}
 	free (arr);
 	return (0);
-}*/
+}

@@ -1,34 +1,32 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   sort_list.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/30 00:36:15 by marapovi          #+#    #+#             */
-/*   Updated: 2025/09/30 00:43:49 by marapovi         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "list.h"
 
-t_list	*sort_list(t_list *lst, int (*cmp)(int, int))
+t_list *sort_list(t_list *lst, int (*cmp)(int, int))
 {
-	int tmp;
-	t_list *head;
+    int tmp;
+    t_list *head = lst;  // save start of list
+    t_list *current;
 
-	head = tmp;
-	while (lst != NULL && lst->next->data != NULL)
-	{
-		if ((*cmp)(lst->data, lst->next->data) == o)
-		{
-			tmp = lst->data;
-			lst->data = lst->next->data;
-			lst->next->data = tmp;
-			lst = head;
-		}
-		else
-			lst = lst->next;
-	}
-	return (head);
+    if (!lst)
+        return NULL;
+
+    while (1)
+    {
+        int swapped = 0;
+        current = head;
+        while (current->next)
+        {
+            if (cmp(current->data, current->next->data) > 0)
+            {
+                tmp = current->data;
+                current->data = current->next->data;
+                current->next->data = tmp;
+                swapped = 1;
+            }
+            current = current->next;
+        }
+        if (!swapped)
+            break;
+    }
+    return head;
 }
+
