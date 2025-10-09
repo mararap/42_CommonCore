@@ -1,7 +1,7 @@
 
 #include <unistd.h>
 
-int no_doub(char *str, char c, int i)
+int is_doub(char *str, char c, int i)
 {
     i--;
     while(i >= 0)
@@ -28,8 +28,8 @@ int main(int ac, char **av)
         while (s2[j])
         { 
             if ((s1[i] == s2[j]) &&
-			(no_doub(s1, s1[i], i) == 0) &&
-            (no_doub(s2, s1[i], j) == 0))
+			(is_doub(s1, s1[i], i) == 0) &&
+            (is_doub(s2, s1[i], j) == 0))
                 write(1, &s1[i], 1);
             j++;
         }       

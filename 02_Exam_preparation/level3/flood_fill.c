@@ -1,35 +1,30 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   flood_fill.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 21:52:30 by marapovi          #+#    #+#             */
-/*   Updated: 2025/09/29 16:40:55 by marapovi         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "flood_fill.h"
 
-void  flood_fill(char **tab, t_point size, t_point begin)
+void  fill(char **tab, t_point size, char target, int x, int y)
 {
-// start at tab[begin.x][begin.y]
-// check:
-	// value pointing to 1 or 0?
-		// = value that is to change
-	// inside area?
-		// x >= 0 && x < size.x && y >= 0 && y < size.y
-	// value not F already?
-// if checks fail
-	// recall function
-// if checks are passed
-	// set value to 'F'
-// move to next point
-// recall function 
+	if (x < 0 || y < 0 || x >= size.x || y >= size.y)
+		return; // out of bounds
+	if (tab[x][y] == 'F' || tab[y][x] != target)
+		return; // already filled or not the right character
 	
-}
+	tab[y][x] = 'F'; // fill current cell
 
+	// recursively fill in all 4 directions
+	fill(tab, size, x - 1, y, target);
+	fill(tab, size, x + 1, y, target);
+	fill(tab, size, x, y - 1, target);
+	fill(tab, size, x, y + 1, target);
+}
+void	flood_fill(char **tab, t_point size, t_point begin)
+{
+	// store the value of where we start in target
+	char	target = tab[begin.y][begin.x];
+	// call fill-function to fill the grid with coordinates
+	// begin.x and begin.y, 2D-array "tab" and value "target"
+	fill(tab, size, target, begin.x, begin.y);
+}
+// main example from exam subject
 int main(void)
 {
 	char **area;

@@ -15,7 +15,7 @@ int	max(int* tab, unsigned int len)
 	}
 	return (result);
 }
-
+/*
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -38,4 +38,4 @@ int	main(int ac, char **av)
 	printf("max = %d\n", result);
 	free (tab);
 	return (0);
-}
+}*/

@@ -3,17 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com>   +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 13:01:03 by marapovi          #+#    #+#             */
-/*   Updated: 2025/09/04 13:55:22 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/09 17:48:52 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // ac, **av reads all numbers as characters/character strings
-
+/*
+long int	atol(char *str);
+{
+	long int num;
+*/
+	
 
 
 // linked list //
@@ -25,8 +30,8 @@ t_node	*ft_parsing(int ac, char **av)
 	stack_a = NULL;
 	if(ac < 2)
 		ft_print_error(); //ft_print_error
-	else if(ac == 2) //ft_parse_quoted;
-		stack_a = ft_parse_quoted(av);
+//	else if(ac == 2) //ft_parse_quoted;
+//		stack_a = ft_parse_quoted(av);
 	else
 		ft_parse_args(av, &stack_a, 1); //ft_parse_args;
 	return (stack_a);
@@ -40,7 +45,7 @@ t_node	*ft_parse_quoted(char **av)
 	stack_a = NULL;
 	tmp = ft_split(av[1], 32);
 	ft_parse_args(tmp, &stack_a, 0);
-	ft_free_strv(tmp);
+	ft_free_str_arr(tmp);
 	return (stack_a);
 }
 
@@ -48,7 +53,7 @@ void	ft_parse_args(char **av, t_node **stack_a, size_t	i)
 {
 	while(av[i])
 	{
-		ft_add_last(stack_a, ft_new_node(ft_atoi(av[i])));
+		ft_add_last(stack_a, ft_new_node(ft_atol(av[i])));
 		i++;
 	}
 }
@@ -115,18 +120,18 @@ void	ft_free_list(t_node *head)
 	}
 }
 
-void	ft_free_strv(char **strv)
+void	ft_free_str_arr(char **str_arr)
 {
 	size_t	i;
 	
 	i = 0;
-	while(strv[i])
+	while(str_arr[i])
 	{
-		free(strv[i]);
+		free(str_arr[i]);
 		i++;
 	}
-	free(strv);
-	strv = NULL;
+	free(str_arr);
+	str_arr = NULL;
 }
 
 // ft_free

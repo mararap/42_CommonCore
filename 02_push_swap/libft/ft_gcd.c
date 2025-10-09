@@ -1,37 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_gcd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/11 11:53:34 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/09 17:46:24 by marapovi         ###   ########.fr       */
+/*   Created: 2025/10/09 15:58:24 by marapovi          #+#    #+#             */
+/*   Updated: 2025/10/09 15:59:48 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_print_list(t_node *head)
-{
-	t_node	*current;
+#include "libft.h"
 
-	current = head;
-	while (current)
+unsigned int	ft_gcd(unsigned int a, unsigned int b)
+{
+	unsigned int	temp = 0;
+
+	while (b != 0)
 	{
-		ft_printf("%ld -> ", current->value);
-		current = current->next;
+		temp = b;
+		b = a%b;
+		a = temp;
 	}
+	return (a);
 }
+/*
+#include <stdio.h>
+#include <stdlib.h>
 
 int	main(int ac, char **av)
 {
-	t_node	*stack_a;
+	if (ac != 3)
+		return (printf("\n"), 1);
 
-	if (ac <2)
-		return (0);
+	unsigned int	a;
+	unsigned int	b;
+	unsigned int	temp;
 
-	stack_a = ft_parsing(ac, av);
-	ft_print_list(stack_a);
-	ft_free_list(stack_a);
+	a = (unsigned int)atoi(av[1]);
+	b = (unsigned int)atoi(av[2]);
 
+	while (b != 0)
+	{
+		temp = b;
+		b = a % temp;
+		a = temp;
+	}
+	printf("%d\n", a);
 	return (0);
-}
+}*/

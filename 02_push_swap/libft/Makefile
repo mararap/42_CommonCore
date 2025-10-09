@@ -38,7 +38,7 @@ CFILES	=	ft_isalpha.c\
 			ft_putendl_fd.c\
 			ft_putnbr_fd.c\
 			ft_strdup.c\
-			ft_atoi.c\
+			ft_atol.c\
 			ft_substr.c\
 			ft_strmapi.c\
 			ft_striteri.c\
@@ -53,7 +53,14 @@ CFILES	=	ft_isalpha.c\
 			ft_putusint.c\
 			ft_puthex.c\
 			ft_putptr.c\
-			*get_next_line.c\
+			get_next_line.c\
+			ft_is_doub.c\
+			ft_is_space.c\
+			ft_is_digit.c\
+			ft_atoi_base.c\
+			ft_lcm.c\
+			ft_gcd.c\
+			ft_max.c	
 
 OFILES	=	$(CFILES:.c=.o)
 

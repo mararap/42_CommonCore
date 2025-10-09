@@ -1,0 +1,9 @@
+
+1 parsing
+	& input check (atol)
+		INT_MIN, INT_MAX, only sign + digits, no duplicates
+	array oder linked list?
+
+2 algo
+
+3 operations
