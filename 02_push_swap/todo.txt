@@ -1,0 +1,81 @@
+
+1 parsing
+	& input check (atol)
+		INT_MIN, INT_MAX, only sign + digits, no duplicates
+	array oder linked list?
+
+2 algo
+	check for lsb -> push all '1' to stack b (first bit - uneven numbers)
+	shift  right
+	check for lsb -> push all '1' to stack b (second bit - divisible by 2)
+	etc etc
+	free stacks 
+
+3 operations
+
+file/folder structure:
+
+push_swap/
+│
+├── Makefile
+├── push_swap.h
+├── main.c
+│
+├── src/
+│   ├── parsing/
+│   │   ├── parse_args.c
+│   │   ├── validate_input.c
+│   │   └── handle_errors.c
+│   │
+│   ├── operations/
+│   │   ├── swap_ops.c        # sa, sb, ss
+│   │   ├── push_ops.c        # pa, pb
+│   │   ├── rotate_ops.c      # ra, rb, rr
+│   │   └── rev_rotate_ops.c  # rra, rrb, rrr
+│   │
+│   ├── sorting/
+│   │   ├── sort_small.c
+│   │   ├── sort_medium.c
+│   │   └── radix_sort.c
+│   │
+│   ├── utils/
+│   │   ├── stack_utils.c     # push/pop, init/free stacks
+│   │   ├── array_utils.c     # copy array, find min/max
+│   │   ├── check_sorted.c
+│   │   └── print_debug.c     # optional, for testing
+│   │
+│   └── memory/
+│       ├── free_all.c
+│       └── safe_malloc.c
+│
+└── libft/
+    ├── Makefile
+    ├── includes/
+    │   └── libft.h
+    ├── src/
+    │   ├── string/
+    │   │   ├── ft_strlen.c
+    │   │   ├── ft_strdup.c
+    │   │   ├── ft_strjoin.c
+    │   │   ├── ft_split.c
+    │   │   └── ...
+    │   ├── char/
+    │   │   ├── ft_isalpha.c
+    │   │   ├── ft_isdigit.c
+    │   │   └── ...
+    │   ├── mem/
+    │   │   ├── ft_memcpy.c
+    │   │   ├── ft_memmove.c
+    │   │   └── ...
+    │   ├── list/
+    │   │   ├── ft_lstnew.c
+    │   │   ├── ft_lstadd_back.c
+    │   │   └── ...
+    │   └── utils/
+    │       ├── ft_atoi.c
+    │       ├── ft_calloc.c
+    │       ├── ft_putnbr_fd.c
+    │       └── ...
+    │
+    └── obj/
+        └── (compiled .o files)

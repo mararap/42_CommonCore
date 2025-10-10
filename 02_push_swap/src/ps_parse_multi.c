@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ps_parse_multi.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/10 19:53:52 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/10 20:44:45 by marapovi         ###   ########.fr       */
+/*   Created: 2025/10/10 17:26:26 by marapovi          #+#    #+#             */
+/*   Updated: 2025/10/10 20:56:12 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int ac, char **av)
+int *ps_parse_multi(int len, char **arr, int *error)
 {
-	int		i;
-	char	**input_str = NULL;
-	int		*stack_a = NULL;
-	int		error;
+	int	i;
+	int	j;
+	long	*result;
 
 	i = 0;
-	error = 0;
-	if (ac == 1)
-		error = 1;
-	else if (ac == 2)
+	j = 0;
+	result = (long *)malloc(len * sizeof(int *));
+	if (!result)
+		*error = 1;
+	while (arr[j] && result[i] && i < len)
 	{
-		input_str = ps_parse_one(av[1], &error);
-		stack_a = ps_parse_multi(ac - 1, input_str, &error);
-		ps_free_str_arr(input_str);
+		result[i] = ps_atol_check(arr[j], error);
+		if (!result || result[i] > 2147483647 || result[i] < -2147483648)
+			*error = 1;
+		i++;
+		j++;
 	}
-	else if (ac > 2)
-		stack_a = ps_parse_multi(ac - 1, av, &error);
-	if (error)
-		ft_error_exit();
-	ft_printf("stack_a = %s\n", stack_a);
-	free(stack_a);
-	return(0);
+	result[i] = '\0';
+	return ((int *)result);
 }

@@ -5,35 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/10 19:53:52 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/10 20:44:45 by marapovi         ###   ########.fr       */
+/*   Created: 2025/09/11 11:53:34 by marapovi          #+#    #+#             */
+/*   Updated: 2025/10/09 17:46:24 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+void	ft_print_list(t_node *head)
+{
+	t_node	*current;
+
+	current = head;
+	while (current)
+	{
+		ft_printf("%ld -> ", current->value);
+		current = current->next;
+	}
+}
 
 int	main(int ac, char **av)
 {
-	int		i;
-	char	**input_str = NULL;
-	int		*stack_a = NULL;
-	int		error;
+	t_node	*stack_a;
 
-	i = 0;
-	error = 0;
-	if (ac == 1)
-		error = 1;
-	else if (ac == 2)
-	{
-		input_str = ps_parse_one(av[1], &error);
-		stack_a = ps_parse_multi(ac - 1, input_str, &error);
-		ps_free_str_arr(input_str);
-	}
-	else if (ac > 2)
-		stack_a = ps_parse_multi(ac - 1, av, &error);
-	if (error)
-		ft_error_exit();
-	ft_printf("stack_a = %s\n", stack_a);
-	free(stack_a);
-	return(0);
+	if (ac <2)
+		return (0);
+
+	stack_a = ft_parsing(ac, av);
+	ft_print_list(stack_a);
+	ft_free_list(stack_a);
+
+	return (0);
 }

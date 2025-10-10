@@ -3,84 +3,109 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+         #
+#    By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/25 12:39:13 by marapovi          #+#    #+#              #
-#    Updated: 2025/05/25 12:39:40 by marapovi         ###   ########.fr        #
+#    Updated: 2025/10/10 21:00:23 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-HEADER	=	libft.h
+NAME		=	libft.a
+CC			=	cc
+CFLAGS		=	-Wall -Wextra -Werror -Iinc
+HEADER		=	libft.h
+AR			=	ar rcs
+RM			=	rm -f
 
-CFILES	=	ft_isalpha.c\
-			ft_isalnum.c\
-			ft_isascii.c\
-			ft_isdigit.c\
-			ft_isprint.c\
-			ft_strlen.c\
-			ft_strlcpy.c\
-			ft_strlcat.c\
-			ft_strncmp.c\
-			ft_memset.c\
-			ft_bzero.c\
-			ft_toupper.c\
-			ft_tolower.c\
-			ft_strnstr.c\
-			ft_strchr.c\
-			ft_strrchr.c\
-			ft_memchr.c\
-			ft_memcmp.c\
-			ft_memcpy.c\
-			ft_memmove.c\
-			ft_calloc.c\
-			ft_putchar_fd.c\
-			ft_putstr_fd.c\
-			ft_putendl_fd.c\
-			ft_putnbr_fd.c\
-			ft_strdup.c\
-			ft_atol.c\
-			ft_substr.c\
-			ft_strmapi.c\
-			ft_striteri.c\
-			ft_strjoin.c\
-			ft_strtrim.c\
-			ft_itoa.c\
-			ft_split.c\
-			ft_printf.c\
-			ft_putchar.c\
-			ft_putstr.c\
-			ft_putint.c\
-			ft_putusint.c\
-			ft_puthex.c\
-			ft_putptr.c\
-			get_next_line.c\
-			ft_is_doub.c\
-			ft_is_space.c\
-			ft_is_digit.c\
-			ft_atoi_base.c\
-			ft_lcm.c\
-			ft_gcd.c\
-			ft_max.c	
+# **************************************************************************** #
+#                                   PATHS                                      #
+# **************************************************************************** #
 
-OFILES	=	$(CFILES:.c=.o)
+SRC_DIR		= 	src
+OBJ_DIR		=	obj
+INC_DIR		=	inc
 
-CC	=	cc
+CFILES		=	ft_isalpha.c\
+				ft_isalnum.c\
+				ft_isascii.c\
+				ft_isdigit.c\
+				ft_isprint.c\
+				ft_strlen.c\
+				ft_strlcpy.c\
+				ft_strlcat.c\
+				ft_strncmp.c\
+				ft_memset.c\
+				ft_bzero.c\
+				ft_toupper.c\
+				ft_tolower.c\
+				ft_strnstr.c\
+				ft_strchr.c\
+				ft_strrchr.c\
+				ft_memchr.c\
+				ft_memcmp.c\
+				ft_memcpy.c\
+				ft_memmove.c\
+				ft_calloc.c\
+				ft_putchar_fd.c\
+				ft_putstr_fd.c\
+				ft_putendl_fd.c\
+				ft_putnbr_fd.c\
+				ft_strdup.c\
+				ft_atol.c\
+				ft_substr.c\
+				ft_strmapi.c\
+				ft_striteri.c\
+				ft_strjoin.c\
+				ft_strtrim.c\
+				ft_itoa.c\
+				ft_split.c\
+				ft_printf.c\
+				ft_putchar.c\
+				ft_putstr.c\
+				ft_putint.c\
+				ft_putusint.c\
+				ft_puthex.c\
+				ft_putptr.c\
+				get_next_line.c\
+				ft_is_doub.c\
+				ft_is_space.c\
+				ft_is_digit.c\
+				ft_atoi_base.c\
+				ft_lcm.c\
+				ft_gcd.c\
+				ft_max.c\
+				ft_lookup.c\
+				ft_error_exit.c
 
-CFLAGS	=	-Wall -Wextra -Werror
+SRC_FILES	=	$(addprefix $(SRC_DIR)/, $(SRC))
 
-NAME	:=	libft.a
+OBJ			=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+
+# **************************************************************************** #
+#                                   RULES                                      #
+# **************************************************************************** #
 
 all: $(NAME)
 
-$(NAME): $(OFILES)
-	ar rcs $(NAME) $(OFILES)
+$(NAME): $(OBJ)
+	@$(AR) $(NAME) $(OBJ)
+	@echo "Success!!"
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER) | $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -0 $@
+	@echo "Compiling: $<"
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
 
 clean:
-	rm -f $(OFILES)
+	@$(RM) $(OBJ)
+	@echo "Object files removed."
 
 fclean: clean
-	rm -f $(NAME)
+	@$(RM) $(NAME)
+	@echo "Library removed."
 
-re: fclean $(NAME)
+re: fclean all
 
 .PHONY: all clean fclean re
