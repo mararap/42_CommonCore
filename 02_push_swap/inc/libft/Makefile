@@ -6,106 +6,67 @@
 #    By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/25 12:39:13 by marapovi          #+#    #+#              #
-#    Updated: 2025/10/11 18:15:13 by marapovi         ###   ########.fr        #
+#    Updated: 2025/10/11 19:08:42 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	libft.a
-CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror
-HEADER		=	libft.h
-AR			=	ar rcs
-RM			=	rm -f
+HEADER	=	libft.h
 
-# **************************************************************************** #
-#                                   PATHS                                      #
-# **************************************************************************** #
+CFILES	=	ft_isalpha.c\
+			ft_isalnum.c\
+			ft_isascii.c\
+			ft_isdigit.c\
+			ft_isprint.c\
+			ft_strlen.c\
+			ft_strlcpy.c\
+			ft_strlcat.c\
+			ft_strncmp.c\
+			ft_memset.c\
+			ft_bzero.c\
+			ft_toupper.c\
+			ft_tolower.c\
+			ft_strnstr.c\
+			ft_strchr.c\
+			ft_strrchr.c\
+			ft_memchr.c\
+			ft_memcmp.c\
+			ft_memcpy.c\
+			ft_memmove.c\
+			ft_calloc.c\
+			ft_putchar_fd.c\
+			ft_putstr_fd.c\
+			ft_putendl_fd.c\
+			ft_putnbr_fd.c\
+			ft_strdup.c\
+			ft_atoi.c\
+			ft_substr.c\
+			ft_strmapi.c\
+			ft_striteri.c\
+			ft_strjoin.c\
+			ft_strtrim.c\
+			ft_itoa.c\
+			ft_split.c\
+			ft_error_exit.c
 
-SRC_DIR		= 	src
-OBJ_DIR		=	obj
+OFILES	=	$(CFILES:.c=.o)
 
-SRC		=	ft_isalpha.c\
-				ft_isalnum.c\
-				ft_isascii.c\
-				ft_isdigit.c\
-				ft_isprint.c\
-				ft_strlen.c\
-				ft_strlcpy.c\
-				ft_strlcat.c\
-				ft_strncmp.c\
-				ft_memset.c\
-				ft_bzero.c\
-				ft_toupper.c\
-				ft_tolower.c\
-				ft_strnstr.c\
-				ft_strchr.c\
-				ft_strrchr.c\
-				ft_memchr.c\
-				ft_memcmp.c\
-				ft_memcpy.c\
-				ft_memmove.c\
-				ft_calloc.c\
-				ft_putchar_fd.c\
-				ft_putstr_fd.c\
-				ft_putendl_fd.c\
-				ft_putnbr_fd.c\
-				ft_strdup.c\
-				ft_atol.c\
-				ft_substr.c\
-				ft_strmapi.c\
-				ft_striteri.c\
-				ft_strjoin.c\
-				ft_strtrim.c\
-				ft_itoa.c\
-				ft_split.c\
-				ft_printf.c\
-				ft_putchar.c\
-				ft_putstr.c\
-				ft_putint.c\
-				ft_putusint.c\
-				ft_puthex.c\
-				ft_putptr.c\
-				get_next_line.c\
-				ft_is_doub.c\
-				ft_is_space.c\
-				ft_is_digit.c\
-				ft_atoi_base.c\
-				ft_lcm.c\
-				ft_gcd.c\
-				ft_max.c\
-				ft_lookup.c\
-				ft_error_exit.c
+CC	=	cc
 
-SRC_FILES	=	$(addprefix $(SRC_DIR)/, $(SRC))
+CFLAGS	=	-Wall -Wextra -Werror
 
-OBJ			=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
-
-# **************************************************************************** #
-#                                   RULES                                      #
-# **************************************************************************** #
+NAME	:=	libft.a
 
 all: $(NAME)
 
-$(OBJ) = $(OBJ_DIR)
-
-$(OBJ)/%.o: $(SRC_FILES) $(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@
-	@echo "LIBFT - Compiling: $<"
-
-
-$(NAME): $(OBJ)
-	@$(AR) $(NAME) $(OBJ)
-	@echo "LIBFT successfully created."
-
+$(NAME): $(OFILES)
+	ar rcs $(NAME) $(OFILES)
 
 clean:
-	@$(RM) $(OBJ)
-	@echo "LIBFT Object files removed."
+	rm -f $(OFILES)
 
 fclean: clean
-	@$(RM) $(NAME)
-	@echo "LIBFT Library removed."
+	rm -f $(NAME)
 
-re: fclean all
+re: fclean $(NAME)
 
 .PHONY: all clean fclean re

@@ -26,9 +26,7 @@ OBJ_DIR			=		obj
 LIBFT_DIR		=		inc/libft
 LIBFT			=		$(LIBFT_DIR)/libft.a
 
-HEADER			=		src/
-
-SRC				=		main.c\
+SRC_FILES		=		main.c\
 						ps_isvalid.c\
 						ps_atol_check.c\
 						ps_parse_one.c\
@@ -36,28 +34,25 @@ SRC				=		main.c\
 						ps_free_str_arr.c\
 
 
-OBJ			=	$(SRC:.c=.o)
+OBJ			=			$(SRC:.c=.o)
 
-SRC_FILES	=	$(addprefix $(SRC_DIR)/, $(SRC))
+SRC_FILES	=			$(addprefix $(SRC_DIR)/, $(SRC))
 
-OBJS		=	$(addprefix $(OBJ_DIR)/, $(OBJ))
+# OBJS		=			$(addprefix $(OBJ_DIR)/, $(OBJ))
 
 
 # **************************************************************************** #
 #                                   RULES                                      #
 # **************************************************************************** #
 
-all: $(NAME)
+all: $(LIBFT) $(NAME) clean
 
-
-$(NAME): $(OBJS)
+$(LIBFT):
 	@make -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) -I ./inc/libft/ $(OBJS) -o $@ ./inc/libft/libft.a
+
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 	@echo "PUSH_SWAP executable successfully created."
-
-$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
-	@make -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) -I $(SRC_DIR) -c $< -o $@ inc/libft/libft.a
 
 clean:
 	@$(RM) $(OBJ)
@@ -66,7 +61,7 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME)
-	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@make -C $(LIBFT_DIR) fclean
 	@echo "PUSH_SWAP executable removed."
 
 re: fclean all
