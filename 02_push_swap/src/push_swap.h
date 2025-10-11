@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:07:01 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/11 19:46:21 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/11 20:54:52 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef	struct s_push_swap
 	int		data;
 }			t_push_swap;*/
 
+int					main(int ac, char **av);
 long				ps_atol_check(char *str, int *error);
 void				ps_free_str_arr(char **str_arr);
 int					ps_isvalid(char c);

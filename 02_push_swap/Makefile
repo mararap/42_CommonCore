@@ -13,7 +13,7 @@
 
 NAME	=	push_swap
 CC		=	cc
-CFLAGS	=	-g -Wall -Wextra -Werror
+CFLAGS	=	-g -Wall -Wextra -Werror -I inc/libft
 RM		=	rm -f
 AR		=	ar crs
 
@@ -26,43 +26,47 @@ OBJ_DIR			=		obj
 LIBFT_DIR		=		inc/libft
 LIBFT			=		$(LIBFT_DIR)/libft.a
 
-SRC_FILES		=		main.c\
+SRC			=		main.c\
 						ps_isvalid.c\
 						ps_atol_check.c\
 						ps_parse_one.c\
 						ps_parse_multi.c\
 						ps_free_str_arr.c\
 
-
-OBJ			=			$(SRC:.c=.o)
-
-SRC_FILES	=			$(addprefix $(SRC_DIR)/, $(SRC))
-
-# OBJS		=			$(addprefix $(OBJ_DIR)/, $(OBJ))
-
+SRCS		=			$(addprefix $(SRC_DIR)/, $(SRC))
+OBJS		=			$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 # **************************************************************************** #
 #                                   RULES                                      #
 # **************************************************************************** #
 
-all: $(LIBFT) $(NAME) clean
+all: $(LIBFT) $(NAME)
 
 $(LIBFT):
-	@make -C $(LIBFT_DIR)
+	make -C $(LIBFT_DIR)
+	@echo "LIBFT library successfully created."
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+# Compilation
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Linking
+$(NAME): $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 	@echo "PUSH_SWAP executable successfully created."
 
 clean:
-	@$(RM) $(OBJ)
-	@make -C $(LIBFT_DIR) clean
-	@echo "PUSH_SWAP Object files removed."
+	$(RM) $(OBJS)
+	@echo "PUSH_SWAP OBJ_DIR is clean."
+	make -C $(LIBFT_DIR) clean
+	@echo "LIBFT OBJ_DIR is clean." 
+
 
 fclean: clean
-	@$(RM) $(NAME)
-	@make -C $(LIBFT_DIR) fclean
-	@echo "PUSH_SWAP executable removed."
+	$(RM) $(NAME)
+	@echo "PUSH_SWAP root is clean."
+	make -C $(LIBFT_DIR) fclean
+	@echo "LIBFT root is clean."
 
 re: fclean all
 

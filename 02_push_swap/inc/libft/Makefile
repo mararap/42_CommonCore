@@ -6,7 +6,7 @@
 #    By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/25 12:39:13 by marapovi          #+#    #+#              #
-#    Updated: 2025/10/11 19:08:42 by marapovi         ###   ########.fr        #
+#    Updated: 2025/10/11 21:43:49 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,14 @@ CFILES	=	ft_isalpha.c\
 			ft_strtrim.c\
 			ft_itoa.c\
 			ft_split.c\
-			ft_error_exit.c
+			ft_error_exit.c\
+			ft_printf.c\
+			ft_putchar.c\
+			ft_putstr.c\
+			ft_putint.c\
+			ft_putusint.c\
+			ft_puthex.c\
+			ft_putptr.c
 
 OFILES	=	$(CFILES:.c=.o)
 

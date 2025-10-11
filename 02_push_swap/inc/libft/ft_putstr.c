@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/23 16:51:55 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/11 21:49:39 by marapovi         ###   ########.fr       */
+/*   Created: 2025/06/04 12:19:19 by marapovi          #+#    #+#             */
+/*   Updated: 2025/10/11 21:39:54 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(char c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
-/*
-#include <ctype.h>
-#include <stdio.h>
+#include "libft.h"
 
-int	main(void)
+int	ft_putstr(char *s)
 {
- 	printf("my function: %d\n", ft_isdigit(-2147483649));
-	printf("original function: %d\n", isdigit(-2147483649));
-	return (0);
-}*/
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (ft_putstr("(null)"));
+	while (s[i])
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
+	return (i);
+}

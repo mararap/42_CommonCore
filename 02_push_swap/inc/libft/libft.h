@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:19:25 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/09 16:10:52 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/11 21:45:42 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
@@ -57,5 +58,13 @@ int					ft_atoi_base(const char *str, int str_base);
 unsigned int		ft_lcm(int i, int j);
 unsigned int		ft_gcd(unsigned int a, unsigned int b);
 int					ft_max(int i, int j);
+void				ft_error_exit();
+int					ft_printf(const char *c, ...);
+int					ft_putchar(char c);
+int					ft_putstr(char *s);
+int					ft_putint(int n);
+int					ft_putusint(unsigned int u);
+int					ft_puthex(unsigned int x, int c);
+int					ft_putptr(void *ptr);
 
 #endif // LIBFT_H
