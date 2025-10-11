@@ -6,11 +6,11 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 18:54:55 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/11 15:23:43 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/11 16:47:41 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "push_swap.h"
 
 int	ps_isvalid(char c)
 {

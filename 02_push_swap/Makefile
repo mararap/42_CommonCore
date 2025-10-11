@@ -13,7 +13,7 @@
 
 NAME	=	push_swap
 CC		=	cc
-CFLAGS	=	-g -Wall -Wextra -Werror -Iinc -Ilibft/inc
+CFLAGS	=	-g -Wall -Wextra -Werror
 RM		=	rm -f
 AR		=	ar crs
 
@@ -22,10 +22,11 @@ AR		=	ar crs
 # **************************************************************************** #
 
 SRC_DIR			=		src
-INC_DIR			=		inc
 OBJ_DIR			=		obj
-LIBFT_DIR		=		libft
+LIBFT_DIR		=		inc/libft
 LIBFT			=		$(LIBFT_DIR)/libft.a
+
+HEADER			=		src/
 
 SRC				=		main.c\
 						ps_isvalid.c\
@@ -46,17 +47,17 @@ OBJS		=	$(addprefix $(OBJ_DIR)/, $(OBJ))
 #                                   RULES                                      #
 # **************************************************************************** #
 
-all: libs $(NAME)
+all: $(NAME)
+
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $@
+	@make -C $(LIBFT_DIR)
+	$(CC) $(CFLAGS) -I ./inc/libft/ $(OBJS) -o $@ ./inc/libft/libft.a
 	@echo "PUSH_SWAP executable successfully created."
 
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-libs:
 	@make -C $(LIBFT_DIR)
+	$(CC) $(CFLAGS) -I $(SRC_DIR) -c $< -o $@ inc/libft/libft.a
 
 clean:
 	@$(RM) $(OBJ)

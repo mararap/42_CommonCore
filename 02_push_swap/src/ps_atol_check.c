@@ -6,11 +6,11 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:02:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/11 15:23:11 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/11 16:47:18 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "push_swap.h"
 
 long	ps_atol_check(char *str, int *error)
 {

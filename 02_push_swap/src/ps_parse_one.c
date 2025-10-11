@@ -6,12 +6,11 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 15:27:44 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/11 16:31:56 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/11 16:47:55 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
-#include "../libft/inc/libft.h"
+#include "push_swap.h"
 
 char **ps_parse_one(char *str, int *error)
 {
