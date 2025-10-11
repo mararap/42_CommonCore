@@ -6,14 +6,14 @@
 #    By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/25 12:39:13 by marapovi          #+#    #+#              #
-#    Updated: 2025/10/10 21:00:23 by marapovi         ###   ########.fr        #
+#    Updated: 2025/10/11 12:56:04 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	libft.a
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -Iinc
-HEADER		=	libft.h
+HEADER		=	libft.h libftprinf.h get_next_line.h
 AR			=	ar rcs
 RM			=	rm -f
 
@@ -89,22 +89,22 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(AR) $(NAME) $(OBJ)
-	@echo "Success!!"
+	@echo "LIBFT successfully created."
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER) | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -0 $@
-	@echo "Compiling: $<"
+	@echo "LIBFT - Compiling: $<"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
 clean:
 	@$(RM) $(OBJ)
-	@echo "Object files removed."
+	@echo "LIBFT Object files removed."
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "Library removed."
+	@echo "LIBFT Library removed."
 
 re: fclean all
 

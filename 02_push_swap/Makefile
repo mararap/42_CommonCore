@@ -13,18 +13,20 @@
 
 NAME	=	push_swap
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror -Iinc -Ilibft/inc
+CFLAGS	=	-Wall -Wextra -Werror -I libft/inc
 HEADER	=	$(INC_DIR)/push_swap.h
 RM		=	rm -f
+AR		=	ar crs
 
 # **************************************************************************** #
 #                                   PATHS                                      #
 # **************************************************************************** #
 
-SRC_DIR			=		src
-INC_DIR			=		inc
-OBJ_DIR			=		obj
-LIBFT			=		libft
+SRC_DIR			=		src/
+INC_DIR			=		inc/
+OBJ_DIR			=		obj/
+LIBFT_DIR		=		libft/
+LIBFT			=		$(LIBFT_DIR)/libft.a
 
 SRC				=		src/main.c\
 						src/ps_isvalid.c\
@@ -34,7 +36,9 @@ SRC				=		src/main.c\
 						src/ps_free_str_arr.c\
 
 
-OBJS = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+OBJS = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) | $(OBJ_DIR)
+
+INCLUDE 		= 		-L ./libft -lft
 
 # **************************************************************************** #
 #                                   RULES                                      #
@@ -42,31 +46,20 @@ OBJS = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
-	@echo "Success!!"
-
-$(LIBFT):
-	@$(MAKE) -C $(LIBFT)
-	@echo "Libft successfully created!"
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER) | $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "Compiling: $<"
-
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
+$(NAME):  $(OBJS)
+	@make -C $(LIBFT_DIR)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(INCLUDE) $Iinc
+	@echo "PUSH_SWAP executable successfully created."
 
 clean:
 	@$(RM) $(OBJ)
 	@$(MAKE) -C $(LIBFT_DIR) clean
-	@echo "Object files removed."
-
+	@echo "PUSH_SWAP Object files removed."
 
 fclean: clean
 	@$(RM) $(NAME)
 	@$(MAKE) -C $(LIBFT_DIR) fclean
-	@echo "Libraries removed."
+	@echo "PUSH_SWAP executable removed."
 
 re: fclean all
 
