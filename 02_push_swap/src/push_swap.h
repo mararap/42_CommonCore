@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:07:01 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/11 17:25:12 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/11 19:46:21 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h> //write, read
 # include <limits.h> //int_max - int_min
 # include <stdlib.h> //malloc, free
-# include "../inc/libft/src/libft.h"
+# include "../inc/libft/libft.h"
 
 /*
 typedef	struct s_push_swap

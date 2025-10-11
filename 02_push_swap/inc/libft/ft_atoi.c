@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:02:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/05/16 18:02:45 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/11 19:42:00 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_atoi(const char *str)
 	}
 	return (result * sign);
 }
-
+/*
 #include <stdio.h>
 
 int	main(void)
@@ -46,4 +46,4 @@ int	main(void)
 	printf("original function: %d\n", atoi(str));
 	printf("my function: %d\n", ft_atoi(str));
 	return (0);
-}
+}*/

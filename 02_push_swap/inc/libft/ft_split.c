@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 09:40:52 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/07 10:02:10 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/11 19:41:17 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char	**ft_split(char const *s, char c)
 	arr[wcount] = NULL;
 	return (arr);
 }
-
+/*
 #include <stdio.h>
 
 int	main(void)
@@ -117,4 +117,4 @@ int	main(void)
 	}
 	free (arr);
 	return (0);
-}
+}*/
