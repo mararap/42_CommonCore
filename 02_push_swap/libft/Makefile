@@ -6,14 +6,14 @@
 #    By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/25 12:39:13 by marapovi          #+#    #+#              #
-#    Updated: 2025/10/11 12:56:04 by marapovi         ###   ########.fr        #
+#    Updated: 2025/10/11 16:00:26 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	libft.a
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -Iinc
-HEADER		=	libft.h libftprinf.h get_next_line.h
+HEADER		=	libft.h
 AR			=	ar rcs
 RM			=	rm -f
 
@@ -92,11 +92,9 @@ $(NAME): $(OBJ)
 	@echo "LIBFT successfully created."
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER) | $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -0 $@
 	@echo "LIBFT - Compiling: $<"
-
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
 
 clean:
 	@$(RM) $(OBJ)

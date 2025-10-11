@@ -6,11 +6,11 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 17:26:26 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/11 14:07:16 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/11 15:23:54 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 int *ps_parse_multi(int len, char **arr, int *error)
 {

@@ -6,11 +6,11 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 16:58:26 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/11 14:07:23 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/11 15:23:27 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 void	ps_free_str_arr(char **str_arr)
 {
