@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:07:01 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/11 20:54:52 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/15 22:29:06 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,22 @@
 # include <stdlib.h> //malloc, free
 # include "../inc/libft/libft.h"
 
-/*
-typedef	struct s_push_swap
+typedef	struct s_ps
 {
-	int 	*stack;
-	long	index;
-	int		data;
-}			t_push_swap;*/
+	int 	*item;
+//	int		*index;
+	int		len;
+}			t_ps;
 
 int					main(int ac, char **av);
 long				ps_atol_check(char *str, int *error);
 void				ps_free_str_arr(char **str_arr);
 int					ps_isvalid(char c);
-int 				*ps_parse_multi(int len, char **arr, int *error);
+void 				ps_parse_multi(t_ps *stack, char **arr, int *error);
 char 				**ps_parse_one(char *str, int *error);
 int					ps_isvalid_sign(char a, char b);
+size_t				ft_arr_of_str_len(char **arr);
+int					ps_doub(int *arr, int num, int i);
 
 /*
 typedef struct s_node

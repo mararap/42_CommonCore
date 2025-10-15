@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:02:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/11 16:47:18 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/15 20:30:35 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 long	ps_atol_check(char *str, int *error)
 {
 	size_t	i;
-	char	sign;
+	int		sign;
 	long	result;
 
 	i = 0;
@@ -34,6 +34,8 @@ long	ps_atol_check(char *str, int *error)
 		result = result * 10 + str[i] - 48;
 		i++;
 	}
+	if (result > 2147483647 || result < -2147483648)
+		*error = 1;
 	return (result * sign);
 }
 

@@ -6,31 +6,29 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 17:26:26 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/11 16:47:48 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/15 21:12:51 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int *ps_parse_multi(int len, char **arr, int *error)
+void ps_parse_multi(t_ps *stack, char **arr, int *error)
 {
-	int	i;
-	int	j;
-	long	*result;
+	long	temp;
+	int		i;
 
 	i = 0;
-	j = 0;
-	result = (long *)malloc(len * sizeof(int *));
-	if (!result)
+	stack->item = (int *)malloc(stack->len * sizeof(int *));
+	if (!stack->item)
 		*error = 1;
-	while (arr[j] && result[i] && i < len)
+	while (i < stack->len)
 	{
-		result[i] = ps_atol_check(arr[j], error);
-		if (!result || result[i] > 2147483647 || result[i] < -2147483648)
+		temp = ps_atol_check(arr[i], error);
+		if (!temp)
+			*error = 1;
+		stack->item[i] = (int)temp;
+		if (ps_doub(stack->item, stack->item[i], (int)i))
 			*error = 1;
 		i++;
-		j++;
 	}
-	result[i] = '\0';
-	return ((int *)result);
 }

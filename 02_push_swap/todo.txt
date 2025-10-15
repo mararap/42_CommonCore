@@ -2,7 +2,10 @@
 1 parsing
 	& input check (atol)
 		INT_MIN, INT_MAX, only sign + digits, no duplicates
-	array oder linked list?
+	array
+
+indexierung/normalisierung
+    kleinste ist 1, zweitkleinste ist 2... ist n;
 
 2 algo
 	check for lsb -> push all '1' to stack b (first bit - uneven numbers)

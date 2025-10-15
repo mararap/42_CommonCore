@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 09:40:52 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/11 19:41:17 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/15 17:57:47 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ static char	*ft_fillsub(const char *s, size_t start, size_t end)
 	char	*sub;
 
 	i = 0;
-	sub = ft_calloc(end - start + 1, sizeof(char));
+	sub = (void *)malloc(sizeof(char));
+	sub = ft_calloc((end - start + 1), sizeof(char));
 	if (!sub)
 		return (NULL);
 	while (start < end)

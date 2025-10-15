@@ -26,12 +26,13 @@ OBJ_DIR			=		obj
 LIBFT_DIR		=		inc/libft
 LIBFT			=		$(LIBFT_DIR)/libft.a
 
-SRC			=		main.c\
+SRC				=		main.c\
 						ps_isvalid.c\
 						ps_atol_check.c\
 						ps_parse_one.c\
 						ps_parse_multi.c\
 						ps_free_str_arr.c\
+						ps_utils.c\
 
 SRCS		=			$(addprefix $(SRC_DIR)/, $(SRC))
 OBJS		=			$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))

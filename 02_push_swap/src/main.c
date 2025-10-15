@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 19:53:52 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/11 16:48:20 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/15 22:19:07 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,35 @@
 
 int	main(int ac, char **av)
 {
-	int		i;
-	char	**input_str = NULL;
-	int		*stack_a = NULL;
+	char	**input_str; // or (void *)malloc(sizeof(char *)); ?
+	t_ps	stack_a;
+//	t_ps	stack_b = NULL;
 	int		error;
+	int		i = 0;
 
-	i = 0;
 	error = 0;
 	if (ac == 1)
 		error = 1;
 	else if (ac == 2)
 	{
 		input_str = ps_parse_one(av[1], &error);
-		stack_a = ps_parse_multi(ac - 1, input_str, &error);
+		stack_a.len = ft_arr_of_str_len(input_str);
+		ps_parse_multi(&stack_a, input_str, &error);
 		ps_free_str_arr(input_str);
 	}
 	else if (ac > 2)
-		stack_a = ps_parse_multi(ac - 1, av, &error);
-	if (error)
-		ft_error_exit();
-	ft_printf("stack_a = %s\n", stack_a);
-	free(stack_a);
+	{
+		stack_a.len = ac - 1;
+		ps_parse_multi(&stack_a, av, &error);
+		if (error)
+			ft_error_exit();
+	}
+	printf("stack_a = ");
+	while (i < stack_a.len)
+	{
+		printf("%d\n", stack_a.item[i]);
+		i++;
+	}
+//	free(&stack_a);
 	return(0);
 }
