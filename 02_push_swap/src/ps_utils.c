@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 19:14:11 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/16 13:10:33 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/16 13:53:38 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ size_t	ps_arr_of_str_len(char **arr)
 		len++;
 	return (len);
 }
-void	ps_handle_error(int error, t_ps *stack)
+void	ps_handle_error(int error, void *str)
 {
-	free(&stack);
+	t_ps	*stack;
+	stack = str;
+	(void)stack;
 	ft_printf("ERROR - program terminated\nerrorcode = d%\n", error);
-	exit;	
+	exit(error);	
 }

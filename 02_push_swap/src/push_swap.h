@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:07:01 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/16 13:15:44 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/16 13:50:25 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char 				**ps_parse_one(char *str, int *error);
 int					ps_isvalid_sign(char a, char b);
 size_t				ps_arr_of_str_len(char **arr);
 int					ps_doub(int *arr, int num, int i);
-void				ps_handle_error(int error, t_ps *stack);
+void				ps_handle_error(int error, void *stack);
 
 /*
 typedef struct s_node

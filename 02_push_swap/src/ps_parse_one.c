@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 15:27:44 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/16 12:50:09 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/16 13:58:11 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char **ps_parse_one(char *str, int *error)
 	while (str[i])
 	{
 		if(!ps_isvalid(str[i]))
-			
+			ps_handle_error(*error, str);
 		temp[i] = str[i];
 		i++;
 	}
@@ -35,7 +35,6 @@ char **ps_parse_one(char *str, int *error)
 	temp[i] = '\0';
 	// split the copied string temp into an array of char-str "str_split"
 	str_split = ft_split((char const *)temp, 32);
-	printf("str_split = %s\n", str_split[0]);
 	if (!str_split)
 		*error = 1;
 	free (temp);

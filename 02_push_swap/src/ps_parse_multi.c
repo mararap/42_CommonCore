@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 17:26:26 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/16 13:29:31 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/16 14:04:16 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_ps *ps_parse_multi(t_ps *stack, char **arr, int *error)
 	long	temp;
 	int		i;
 
-	i = 0;
+	i = 1;
 	stack->item = (int *)malloc(stack->len * sizeof(int *));
 	if (!stack->item)
 	{
@@ -26,12 +26,12 @@ t_ps *ps_parse_multi(t_ps *stack, char **arr, int *error)
 	}
 	while (i < stack->len)
 	{
-		temp = ps_atol_check(arr[i], &error);
+		temp = ps_atol_check(arr[i], error);
 		if (*error == 1)
-			ps_handle_error(&error, stack);
+			ps_handle_error(*error, stack);
 		stack->item[i] = (int)temp;
 		if (ps_doub(stack->item, stack->item[i], (int)i))
-			ps_handle_error(&error, stack);
+			ps_handle_error(*error, stack);
 		i++;
 	}
 	return (stack);

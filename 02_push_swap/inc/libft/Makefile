@@ -6,7 +6,7 @@
 #    By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/25 12:39:13 by marapovi          #+#    #+#              #
-#    Updated: 2025/10/11 21:43:49 by marapovi         ###   ########.fr        #
+#    Updated: 2025/10/16 14:33:16 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,16 +63,19 @@ CFLAGS	=	-Wall -Wextra -Werror
 
 NAME	:=	libft.a
 
+%.o: %.c $(HEADER)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
 all: $(NAME)
 
 $(NAME): $(OFILES)
-	ar rcs $(NAME) $(OFILES)
+	@ar rcs $(NAME) $(OFILES)
 
 clean:
-	rm -f $(OFILES)
+	@rm -f $(OFILES)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean $(NAME)
 

@@ -44,29 +44,29 @@ OBJS		=			$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 all: $(LIBFT) $(NAME)
 
 $(LIBFT):
-	make -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR)
 	@echo "LIBFT library successfully created."
 
 # Compilation
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Linking
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 	@echo "PUSH_SWAP executable successfully created."
 
 clean:
 	$(RM) $(OBJS)
 	@echo "PUSH_SWAP OBJ_DIR is clean."
-	make -C $(LIBFT_DIR) clean
+	@make -C $(LIBFT_DIR) clean
 	@echo "LIBFT OBJ_DIR is clean." 
 
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 	@echo "PUSH_SWAP root is clean."
-	make -C $(LIBFT_DIR) fclean
+	@make -C $(LIBFT_DIR) fclean
 	@echo "LIBFT root is clean."
 
 re: fclean all
