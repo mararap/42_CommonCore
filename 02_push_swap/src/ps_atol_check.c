@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:02:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/15 20:30:35 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/16 12:19:22 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ long	ps_atol_check(char *str, int *error)
 	if (str[i] == '-' || str[i] == '+')
 		sign = ps_isvalid_sign(str[i], str[i + 1]);
 	if (sign == 0)
-		*error = 1;			
+		*error = 1;	
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		result = result * 10 + str[i] - 48;

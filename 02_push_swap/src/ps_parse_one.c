@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 15:27:44 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/15 19:04:20 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/16 12:50:09 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char **ps_parse_one(char *str, int *error)
 	while (str[i])
 	{
 		if(!ps_isvalid(str[i]))
-			*error = 1;
+			
 		temp[i] = str[i];
 		i++;
 	}

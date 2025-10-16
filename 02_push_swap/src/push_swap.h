@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:07:01 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/15 22:29:06 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/16 13:15:44 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ int					main(int ac, char **av);
 long				ps_atol_check(char *str, int *error);
 void				ps_free_str_arr(char **str_arr);
 int					ps_isvalid(char c);
-void 				ps_parse_multi(t_ps *stack, char **arr, int *error);
+t_ps 				*ps_parse_multi(t_ps *stack, char **arr, int *error);
 char 				**ps_parse_one(char *str, int *error);
 int					ps_isvalid_sign(char a, char b);
-size_t				ft_arr_of_str_len(char **arr);
+size_t				ps_arr_of_str_len(char **arr);
 int					ps_doub(int *arr, int num, int i);
+void				ps_handle_error(int error, t_ps *stack);
 
 /*
 typedef struct s_node
