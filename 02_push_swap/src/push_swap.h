@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:07:01 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/17 19:41:00 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/17 22:32:05 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <limits.h> //int_max - int_min
 # include <stdlib.h> //malloc, free
 # include "../inc/libft/libft.h"
+# include <stdbool.h>
 
 typedef	struct s_ps
 {

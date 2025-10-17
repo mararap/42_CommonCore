@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 15:27:44 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/17 19:42:49 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/17 21:54:20 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char **ps_parse_one(char *str)
 	// allocate space for temporary char-string "temp"
 	temp = (char *)(malloc(sizeof(char) * (ft_strlen(str) + 1)));
 	if (!temp)
-			ps_handle_error(2);
+		;
 	// check for validity while copying chars to temp
 	while (str[i])
 	{

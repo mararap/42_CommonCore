@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 18:54:55 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/17 19:40:19 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/17 20:41:19 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ps_isvalid(char c)
 {
-	if ((c == ' ') || ft_isdigit(c) || (c == '-') || (c == '+'))
+	if ((c != ' ') && !ft_isdigit(c) && (c != '-') && (c != '+'))
 		ps_handle_error(11);
 }
 int	ps_isvalid_sign(char c, char b)

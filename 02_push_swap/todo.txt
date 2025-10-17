@@ -3,6 +3,10 @@
 	& input check (atol)
 		INT_MIN, INT_MAX, only sign + digits, no duplicates
 	array
+    no need to handle "!
+    handle all errors in main - return "false" if errors
+    use only two stacks, no need to allocate for anything else
+        (also true for arrays?)
 
 indexierung/normalisierung
     kleinste ist 1, zweitkleinste ist 2... ist n;

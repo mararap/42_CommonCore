@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 19:53:52 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/17 19:45:04 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/17 22:48:32 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,41 @@
 int	main(int ac, char **av)
 {
 	char	**input_str; // or (void *)malloc(sizeof(char *)); ?
-	t_ps	stack_a;
-//	t_ps	stack_b = NULL;
+	t_ps	*stack_a = NULL;
+	t_ps	*stack_b = NULL;
 	int		error;
 	int		i = 0;
 
 	error = 0;
-	if (ac == 1)
-		error = 1;
+	stack_a = ft_calloc(1, sizeof(t_ps));
+	if (!stack_a)
+		return(2);
+	stack_b = ft_calloc(1, sizeof(t_ps));
+	if (!stack_b)
+		return(free(stack_a), 2);
+	if (ac == 1 || av[1][0] == '\0' || av[1][0] == 32)
+		return(2);
 	else if (ac == 2)
 	{
 		input_str = ps_parse_one(av[1]);
-		stack_a.len = ps_arr_of_str_len(input_str);
-		ps_parse_multi(&stack_a, input_str);
+		stack_a->len = ps_arr_of_str_len(input_str);
+		ps_parse_multi(stack_a, input_str);
 		ps_free_str_arr(input_str);
 	}
 	else if (ac > 2)
 	{
-		stack_a.len = ac - 1;
-		ps_parse_multi(&stack_a, av + 1);
+		stack_a->len = ac - 1;
+		stack_a = ps_parse_multi(stack_a, av + 1);
+		if (!stack_a)
+			ps_handle_error();
 	}
 	printf ("stack_a =");
-	while (i < stack_a.len)
+	while (i < stack_a->len)
 	{
-		printf(" %d", stack_a.item[i]);
+		printf(" %d", stack_a->item[i]);
 		i++;
 	}
-	free(stack_a.item);
+	free(stack_a);
+	free(stack_b);
 	return(0);
 }
