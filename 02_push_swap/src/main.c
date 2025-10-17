@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 19:53:52 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/16 13:22:35 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/17 19:45:04 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,15 @@ int	main(int ac, char **av)
 		error = 1;
 	else if (ac == 2)
 	{
-		input_str = ps_parse_one(av[1], &error);
+		input_str = ps_parse_one(av[1]);
 		stack_a.len = ps_arr_of_str_len(input_str);
-		ps_parse_multi(&stack_a, input_str, &error);
+		ps_parse_multi(&stack_a, input_str);
 		ps_free_str_arr(input_str);
 	}
 	else if (ac > 2)
 	{
 		stack_a.len = ac - 1;
-		ps_parse_multi(&stack_a, av, &error);
-		if (error)
-			ps_handle_error(error, &stack_a);
+		ps_parse_multi(&stack_a, av + 1);
 	}
 	printf ("stack_a =");
 	while (i < stack_a.len)

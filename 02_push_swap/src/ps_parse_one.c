@@ -6,13 +6,13 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 15:27:44 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/16 13:58:11 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/17 19:42:49 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char **ps_parse_one(char *str, int *error)
+char **ps_parse_one(char *str)
 {
 	int i;
 	char *temp;
@@ -22,12 +22,11 @@ char **ps_parse_one(char *str, int *error)
 	// allocate space for temporary char-string "temp"
 	temp = (char *)(malloc(sizeof(char) * (ft_strlen(str) + 1)));
 	if (!temp)
-		*error = 1;
+			ps_handle_error(2);
 	// check for validity while copying chars to temp
 	while (str[i])
 	{
-		if(!ps_isvalid(str[i]))
-			ps_handle_error(*error, str);
+		ps_isvalid(str[i]);
 		temp[i] = str[i];
 		i++;
 	}
@@ -36,7 +35,7 @@ char **ps_parse_one(char *str, int *error)
 	// split the copied string temp into an array of char-str "str_split"
 	str_split = ft_split((char const *)temp, 32);
 	if (!str_split)
-		*error = 1;
+			ps_handle_error(4);
 	free (temp);
 	return (str_split);
 }
