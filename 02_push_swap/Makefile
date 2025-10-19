@@ -4,7 +4,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+         #
+#    By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 19:06:07 by marapovi          #+#    #+#              #
 #    Updated: 2025/10/10 18:00:00 by marapovi         ###   ########.fr        #

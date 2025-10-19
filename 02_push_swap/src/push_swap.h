@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:07:01 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/17 22:32:05 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/19 15:08:28 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,23 @@
 
 typedef	struct s_ps
 {
-	int 	*item;
-//	int		*index;
-	int		len;
+	long	*stack_a;
+	long 	*stack_b;
+	long	index;
+	long	value;
 }			t_ps;
 
 int					main(int ac, char **av);
 long				ps_atol_check(char *str);
 void				ps_free_str_arr(char **str_arr);
-void				ps_isvalid(char c);
-t_ps 				*ps_parse_multi(t_ps *stack, char **arr);
-char 				**ps_parse_one(char *str);
-int					ps_isvalid_sign(char a, char b);
+void				ps_isvalid(char c, t_ps *stack_a, t_ps *stack_b);
+t_ps 				*ps_parse_multi(t_ps *stack_a, char **arr, int len);
+char 				**ps_parse_one(char *str, t_ps *stack_a, t_ps *stack_b);
+long				ps_isvalid_sign(char a, char b);
 size_t				ps_arr_of_str_len(char **arr);
-void					ps_doub(int *arr, int num, int i);
-void				ps_handle_error(int error);
+long				ps_doub(t_ps *arr, long num, int i);
+void				ps_handle_error(t_ps *stack_a, t_ps *stack_b);
+void				ps_free_stack(t_ps *stack);
 
 /*
 typedef struct s_node

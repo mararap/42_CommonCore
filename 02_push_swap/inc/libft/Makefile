@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+         #
+#    By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/25 12:39:13 by marapovi          #+#    #+#              #
-#    Updated: 2025/10/16 14:33:16 by marapovi         ###   ########.fr        #
+#    Updated: 2025/10/19 12:58:22 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
