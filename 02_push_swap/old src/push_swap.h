@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:07:01 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/19 22:52:50 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/19 21:09:11 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,39 @@ typedef struct s_ps_v
 	int		len_b;
 }			t_ps_v;
 
-char 			*ps_input(char **av);
-long			ps_atol_check(char *str);
-int				*ps_is_valid(char **split_input);
-bool			ps_doub(int *arr, int num, int i);
+int					main(int ac, char **av);
+long				ps_atol_check(char *str);
+void				ps_free_str_arr(char **str_arr);
+void				ps_isvalid(char c, t_ps *stack_a, t_ps *stack_b);
+t_ps 				*ps_parse_splits(t_ps *stack_a, char **arr, int len);
+char 				**ps_parse_str(char *str);
+long				ps_isvalid_sign(char a, char b);
+size_t				ps_arr_of_str_len(char **arr);
+bool				ps_doub(t_ps *arr, long num, int i);
+void				ps_handle_error(t_ps *stack_a, t_ps *stack_b);
+void				ps_free_stack(t_ps *stack);
+t_ps				*ps_create_stack_a(int len, char **arr);
+int					ps_find_char(char *str, char c);
+
+/*
+typedef struct s_node
+{
+	long			nbr;
+	long			index;
+	long			*stack_a;
+//	struct s_node	*next;
+//	struct s_node	*prev;
+}					t_node;*/
+
+// void		ft_parse_args(char **av, t_node **stack_a, size_t i);
+// void		ft_add_last(t_node **stack, t_node *new_node);
+// t_node		*ft_new_node(long nbr);
+// t_node		*ft_parsing(int ac, char **av);
+// t_node		*ft_parse_quoted(char **av);
+// void		ft_print_error();
+// t_node		*ft_last_node(t_node *end);
+// void		ft_free_str_arr(char **str_arr);
+// void		ft_print_list(t_node *head);
+// void		ft_free_list(t_node *head);
 
 #endif // !PUSH_SWAP_H

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/10 19:53:52 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/19 17:29:29 by marapovi         ###   ########.fr       */
+/*   Created: 2025/10/19 22:10:05 by marapovi          #+#    #+#             */
+/*   Updated: 2025/10/19 22:57:08 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,27 @@
 
 int	main(int ac, char **av)
 {
-	char	**input_str; // or (void *)malloc(sizeof(char *)); ?
-	t_ps	*stack_a;
-	t_ps	*stack_b;
-//	int		error;
+	char	*input;
+	char	**split_input;
+	int		*value;
+	int		size;
 	int		i = 0;
-	int		len;
 
-//	error = 0;
-	if (ac == 1 || av[1][0] == '\0' || av[1][0] == 32)
+	size = 0;
+	if (ac < 2)
 		return(2);
-	stack_a = (t_ps *)malloc((ac - 1) * sizeof(t_ps));
-	if (!stack_a)
-		return(2);
-	stack_b = (t_ps *)malloc((ac -1) * sizeof(t_ps));
-	if (!stack_b)
-		return(free(stack_a), 2);
-	ps_parsing(ac, av, len);
-	stack_a = ps_parsing(ac, av, len);
-	/*else if (ac == 2)
+	input = ps_input(av);
+	split_input = ft_split(input, 32);
+	while (split_input[size])
+		size++;
+	value = ps_is_valid(split_input);
+	if (!value)
+		return(write(2, "Error\n", 6), 3);
+	//printf("input = %s\n", input);
+	while (i < size)
 	{
-		input_str = ps_parse_one(av[1], stack_a, stack_b);
-		len = ps_arr_of_str_len(input_str);
-		ps_parse_multi(stack_a, input_str, len);
-		ps_free_str_arr(input_str);
-	}
-	else if (ac > 2)
-	{
-		stack_a = ps_parse_multi(stack_a, av, ac - 1);
-		if (!stack_a)
-			ps_handle_error(stack_a, stack_b);
-	}*/
-	printf ("stack_a =");
-	while (i < (ac - 1))
-	{
-		printf(" %ld", stack_a[i].value);
+		printf("%d\n", value[i]);
 		i++;
 	}
-	free(stack_a);
-	free(stack_b);
-	return(0);
+	return (0);
 }

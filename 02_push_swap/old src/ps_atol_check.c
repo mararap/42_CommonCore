@@ -6,19 +6,12 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:02:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/19 22:37:02 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/19 21:23:45 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long	ps_isvalid_sign(char c, char b)
-{
-	if (!ft_isdigit(b) || b == '0')
-		return ((long)INT_MIN - 1);
-	else
-		return (c * 1);	
-}
 long	ps_atol_check(char *str)
 {
 	size_t	i;

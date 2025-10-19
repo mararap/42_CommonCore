@@ -5,48 +5,59 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/19 15:59:26 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/19 17:41:35 by marapovi         ###   ########.fr       */
+/*   Created: 2025/10/19 21:59:48 by marapovi          #+#    #+#             */
+/*   Updated: 2025/10/19 22:52:41 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_ps	*create_stack_a(int ac, char **av, int *len)
+char *ps_input(char **av)
 {
+	char	*str;
+	char 	*temp;
 	int		i;
-	int		j;
-	int		k;
-	int		l;
-	char 	**temp;
-	t_ps	*stack;
 
-	i = 0;
-	while (av && av[i] && i <= (ac - 1))
+	i = 1;
+	str = ft_strjoin(av[i++], " ");
+	while (av[i] != NULL)
 	{
-		j = 0;
-		temp = ft_split(av[i], '"');
-		len = ps_arr_of_str_len(temp);
-		while (j < len)
-		{
-			if (ps_atol_check(temp[j][k]) == ((long)INT_MIN - 1)
-				|| ps_doub(temp[j], temp[j][k], k))
-			{
-				free(stack);
-				ps_free_str_arr(temp);
-				write (2, "Error\n", 6);
-				exit(2);
-			}
-			stack[l].value = ps_atol_check(temp[j][k]);
-			k++;
-			l++;
-		}
+		temp = ft_strjoin(str, av[i]);
+		str = ft_strjoin(temp, " ");
 		i++;
 	}
-	stack[k].value = '\0';
-	len = k + 1;
-	return(stack);
+	return (str);
 }
+int	*ps_is_valid(char **split_input)
+{
+	int	size;
+	int i;
+	int	*stack;
 
-static int ps_arr_len(int len, char**)
-
+	i = 0;
+	size = 0;
+	while(split_input[size] != NULL)
+		size++;
+	stack = malloc(size * sizeof(int));
+	while (split_input[i] != NULL)
+	{
+		stack[i] = (int)ps_atol_check(split_input[i]);
+		if (ps_doub(stack, stack[i], i))
+			return (NULL);
+		i++;
+	}
+	return (stack);
+}
+bool	ps_doub(int *arr, int num, int i)
+{
+	int	j;
+	
+	j = 0;
+	while(j < i)
+	{
+		if(arr[j] == num)
+			return(true);
+		j++;
+	}
+	return (false);
+}
