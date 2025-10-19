@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:07:01 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/19 15:08:28 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/19 17:31:02 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,15 @@
 
 typedef	struct s_ps
 {
-	long	*stack_a;
-	long 	*stack_b;
 	long	index;
 	long	value;
 }			t_ps;
+
+typedef struct s_ps_v
+{
+	int		len_a;
+	int		len_b;
+}			t_ps_v;
 
 int					main(int ac, char **av);
 long				ps_atol_check(char *str);
@@ -36,9 +40,10 @@ t_ps 				*ps_parse_multi(t_ps *stack_a, char **arr, int len);
 char 				**ps_parse_one(char *str, t_ps *stack_a, t_ps *stack_b);
 long				ps_isvalid_sign(char a, char b);
 size_t				ps_arr_of_str_len(char **arr);
-long				ps_doub(t_ps *arr, long num, int i);
+bool				ps_doub(t_ps *arr, long num, int i);
 void				ps_handle_error(t_ps *stack_a, t_ps *stack_b);
 void				ps_free_stack(t_ps *stack);
+t_ps				ps_parsing(t_ps *stack_a, )
 
 /*
 typedef struct s_node

@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 18:54:55 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/19 14:45:48 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/19 17:23:43 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ long	ps_isvalid_sign(char c, char b)
 	else
 		return (c * 1);	
 }
-long	ps_doub(t_ps *arr, long num, int i)
+bool	ps_doub(t_ps *arr, long num, int i)
 {
 	int	j;
 	
@@ -32,8 +32,8 @@ long	ps_doub(t_ps *arr, long num, int i)
 	while(j < i)
 	{
 		if(arr[j].value == num)
-			return(1);
+			return(true);
 		j++;
 	}
-	return (0);
+	return (false);
 }

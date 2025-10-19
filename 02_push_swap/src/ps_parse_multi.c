@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 17:26:26 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/19 15:18:17 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/19 15:49:26 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ t_ps *ps_parse_multi(t_ps *stack_a, char **arr, int len)
 {
 	int		i;
 
-	i = 0;
-	stack_a = malloc(10 * sizeof(t_ps));
-	if (!stack_a[i].value)
+	i = 1;
+	stack_a = malloc((len + 1) * sizeof(t_ps));
+	if (!stack_a)
 		return(NULL);
 	while (i < len)
 	{
