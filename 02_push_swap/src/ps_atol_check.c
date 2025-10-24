@@ -3,26 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ps_atol_check.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:02:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/19 22:37:02 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/24 23:26:56 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-long	ps_isvalid_sign(char c, char b)
+static long	ps_isvalid_sign(char c, char b)
 {
-	if (!ft_isdigit(b) || b == '0')
-		return ((long)INT_MIN - 1);
-	else
-		return (c * 1);	
+	if (c == '-' && ft_isdigit(b))
+		return (-1);
+	if (c == '+' && ft_isdigit(b))
+		return (1);
+	return ((long)INT_MIN - 1);
 }
+
 long	ps_atol_check(char *str)
 {
-	size_t	i;
-	int		sign;
+	ssize_t	i;
+	long	sign;
 	long	result;
 
 	i = 0;
@@ -34,7 +36,7 @@ long	ps_atol_check(char *str)
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 		sign = ps_isvalid_sign(str[i], str[i + 1]);
-	if (sign == 0)
+	if (sign == ((long)INT_MIN - 1))
 		return(result);
 	result = 0;
 	while (str[i] >= '0' && str[i] <= '9')

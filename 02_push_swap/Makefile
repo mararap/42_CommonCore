@@ -26,9 +26,10 @@ OBJ_DIR			=		obj
 LIBFT_DIR		=		inc/libft
 LIBFT			=		$(LIBFT_DIR)/libft.a
 
-SRC				=		main.c\
+SRC				=		../main.c\
 						ps_parsing.c\
-						ps_atol_check.c
+						ps_atol_check.c\
+						ps_utils.c
 
 SRCS		=			$(addprefix $(SRC_DIR)/, $(SRC))
 OBJS		=			$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
@@ -40,12 +41,16 @@ OBJS		=			$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 all: $(LIBFT) $(NAME)
 
 $(LIBFT):
-	@make -C $(LIBFT_DIR)
+	@$(MAKE) --no-print-directory -C $(LIBFT_DIR)
 	@echo "LIBFT library successfully created."
 
 # Compilation
+$(OBJ_DIR)/main.o: main.c
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
+
+#$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+#	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Linking
 $(NAME): $(OBJS) $(LIBFT)
@@ -53,17 +58,17 @@ $(NAME): $(OBJS) $(LIBFT)
 	@echo "PUSH_SWAP executable successfully created."
 
 clean:
-	$(RM) $(OBJS)
+	@$(RM) $(OBJS)
 	@echo "PUSH_SWAP OBJ_DIR is clean."
-	@make -C $(LIBFT_DIR) clean
-	@echo "LIBFT OBJ_DIR is clean." 
+	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) clean
+	@echo "LIBFT %.o-files removed." 
 
 
 fclean: clean
 	@$(RM) $(NAME)
 	@echo "PUSH_SWAP root is clean."
-	@make -C $(LIBFT_DIR) fclean
-	@echo "LIBFT root is clean."
+	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) fclean
+	@echo "LIBFT %.a-file removed."
 
 re: fclean all
 

@@ -16,10 +16,8 @@ char	*ft_strrchr(const char *s, int c)
 {
 	ssize_t			i;
 	unsigned char	uc;
-	unsigned char	*us;
 
 	uc = (unsigned char)c;
-	us = (unsigned char *)s;
 	i = ft_strlen(s);
 	while (i >= 0)
 	{

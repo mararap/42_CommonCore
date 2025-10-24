@@ -14,18 +14,15 @@
 
 static int	ft_usintlen(unsigned int u)
 {
-	unsigned long int	nbr;
-	int					count;
+	long int	nbr;
+	int			count;
 
-	nbr = (unsigned long int)u;
+	nbr = (long int)u;
 	count = 0;
 	if (u == 0)
 		return (1);
 	if (nbr < 0)
-	{
 		nbr *= -1;
-		count++;
-	}
 	while (nbr > 0)
 	{
 		nbr /= 10;
