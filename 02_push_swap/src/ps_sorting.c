@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ps_sorting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 22:19:36 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/24 22:19:57 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/25 11:18:12 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-bool	ps_issorted(int *arr)
+bool	ps_issorted(t_stack stack)
 {
-	int	i;
+	ssize_t	i;
 
 	i = 0;
-	while (arr[i])
+	while (stack.value[i] && i < stack.size - 1)
 	{
-		if (arr[i] > arr[i + 1])
+		if (stack.value[i] > stack.value[i + 1])
 			return (false);
 		i++;
 	}
 	return (true);
 }
+

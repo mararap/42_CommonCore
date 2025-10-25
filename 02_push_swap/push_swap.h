@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:07:01 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/24 22:49:19 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/25 12:52:11 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@
 # include <sys/types.h> // ssize_t
 
 
-typedef	struct s_ps
+typedef	struct s_stack
 {
-	long	index;
-	long	value;
-}			t_ps;
+	ssize_t	*curr_pos;
+	int		*value;
+	ssize_t	size;
+}			t_stack;
 
 typedef struct s_ps_v
 {
@@ -35,8 +36,11 @@ typedef struct s_ps_v
 
 char 			*ps_input(char **av);
 long			ps_atol_check(char *str);
-int				*ps_isvalid(char **split_input, ssize_t size);
+t_stack			*ps_isvalid(char **split_input, ssize_t size);
 ssize_t			ps_wcount(char *s);
-bool			ps_isdoub(int *arr, int num, ssize_t i);
+bool			ps_issorted(t_stack stack);
+void    		ft_free_av(char **av);
+void   			 ps_free_all(t_stack *stack, char **av, char *input);
+t_stack	  		*ps_free_NULL(t_stack *stack, char **av, char *input);
 
 #endif // !PUSH_SWAP_H

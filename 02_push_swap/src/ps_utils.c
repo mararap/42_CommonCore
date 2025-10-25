@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 20:40:24 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/24 23:09:01 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/25 12:47:46 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,40 @@ ssize_t     ps_wcount(char *s)
         }
     }
 	return (wcount);
+}
+
+void    ft_free_av(char **av)
+{
+    ssize_t i;
+
+    i = 0;
+    if (!av)
+        return ;
+    while (av[i])
+    {
+        free(av[i]);
+        i++;
+    }
+    free(av);
+}
+void    ps_free_all(t_stack *stack, char **av, char *input)
+{
+    if (stack)
+    {
+        if (stack->curr_pos)
+            free(stack->curr_pos);
+        if (stack->value)
+            free(stack->value);
+        free(stack);
+    }
+    if (av)
+        ft_free_av(av);
+    if (input)
+        free(input);
+}
+t_stack  ps_free_NULL(t_stack *stack, char **av, char *input)
+{
+    ps_free_all(stack, av, input);
+    return (NULL);
 }
 

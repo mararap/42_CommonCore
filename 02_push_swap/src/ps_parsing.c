@@ -6,12 +6,25 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 21:59:48 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/24 23:16:09 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/25 12:55:19 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-#include <stdbool.h>
+
+static bool	ps_isdoub(int *arr, int num, ssize_t i)
+{
+	ssize_t	j;
+	
+	j = 0;
+	while(j < i)
+	{
+		if(arr[j] == num)
+			return(true);
+		j++;
+	}
+	return (false);
+}
 
 // takes av and joins all the arguments to one string //
 char *ps_input(char **av)
@@ -35,41 +48,34 @@ char *ps_input(char **av)
 	return (str);
 }
 
-// checks if the char *str input is valid and converts it to int array //
-int	*ps_isvalid(char **av, ssize_t size)
+// checks if the char *str input is valid and converts it to t_stack stack //
+t_stack	*ps_isvalid(char **av, ssize_t size)
 {
-	ssize_t i;
-	int	*stack;
-
+	t_stack		*stack;
+	ssize_t		i;
+	long		tmp;
+	
 	i = 0;
-	if (size <= 0)
+	if (size <= 0 || !av)
 		return (NULL);
-	stack = malloc((size * sizeof(int)));
+	stack = malloc(sizeof(t_stack));
 	if (!stack)
-		return(NULL);
+		return (free(av), NULL);
+	stack->size = size;
+	stack->value = ft_calloc(size, sizeof(int));
+	stack->curr_pos = ft_calloc(size, sizeof(ssize_t));
+	if (!stack->value || !stack->curr_pos)
+		return ((t_stack *)ps_free_NULL(stack, av, NULL));
 	while (i < size && av[i] != NULL)
 	{
-		stack[i] = (int)ps_atol_check(av[i]);
-		if (ps_isdoub(stack, stack[i], i))
-		{
-			free(stack);
-			return (NULL);
-		}
+		tmp = ps_atol_check(av[i]);
+		if (tmp == ((long)INT_MIN - 1))
+			return ((t_stack *)ps_free_NULL(stack, av, NULL));
+		stack->value[i] = (int)tmp;
+		if (ps_isdoub(stack->value, stack->value[i], i))
+			return ((t_stack *)ps_free_NULL(stack, av, NULL));
 		i++;
 	}
 	return (stack);
 }
 
-bool	ps_isdoub(int *arr, int num, ssize_t i)
-{
-	ssize_t	j;
-	
-	j = 0;
-	while(j < i)
-	{
-		if(arr[j] == num)
-			return(true);
-		j++;
-	}
-	return (false);
-}

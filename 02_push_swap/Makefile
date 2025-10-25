@@ -27,8 +27,9 @@ LIBFT_DIR		=		inc/libft
 LIBFT			=		$(LIBFT_DIR)/libft.a
 
 SRC				=		../main.c\
-						ps_parsing.c\
 						ps_atol_check.c\
+						ps_parsing.c\
+						ps_sorting.c\
 						ps_utils.c
 
 SRCS		=			$(addprefix $(SRC_DIR)/, $(SRC))
