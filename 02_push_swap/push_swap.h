@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:07:01 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/25 12:52:11 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/25 17:26:18 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ char 			*ps_input(char **av);
 long			ps_atol_check(char *str);
 t_stack			*ps_isvalid(char **split_input, ssize_t size);
 ssize_t			ps_wcount(char *s);
-bool			ps_issorted(t_stack stack);
+bool			ps_issorted(t_stack *stack);
 void    		ft_free_av(char **av);
 void   			 ps_free_all(t_stack *stack, char **av, char *input);
 t_stack	  		*ps_free_NULL(t_stack *stack, char **av, char *input);
+t_stack			*ps_sorting(t_stack *a);
 
 #endif // !PUSH_SWAP_H

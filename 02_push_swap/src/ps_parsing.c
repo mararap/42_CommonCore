@@ -6,12 +6,13 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 21:59:48 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/25 12:55:19 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/25 17:10:09 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
+// checks for duplicates in the int *array //
 static bool	ps_isdoub(int *arr, int num, ssize_t i)
 {
 	ssize_t	j;
@@ -48,6 +49,20 @@ char *ps_input(char **av)
 	return (str);
 }
 
+static	t_stack *ps_stack_init(ssize_t size)
+{
+	t_stack	*stack;
+
+	stack = malloc (sizeof(t_stack));
+	if (!stack)
+		return (NULL);
+	stack->size = size;
+	stack->value = ft_calloc(size, sizeof(int));
+	stack->curr_pos = ft_calloc(size, sizeof(ssize_t));
+	if (!stack->value || !stack->curr_pos)
+		return (ps_free_NULL(stack, NULL, NULL));
+	return (stack);
+}
 // checks if the char *str input is valid and converts it to t_stack stack //
 t_stack	*ps_isvalid(char **av, ssize_t size)
 {
@@ -58,22 +73,17 @@ t_stack	*ps_isvalid(char **av, ssize_t size)
 	i = 0;
 	if (size <= 0 || !av)
 		return (NULL);
-	stack = malloc(sizeof(t_stack));
+	stack = ps_stack_init(size);
 	if (!stack)
 		return (free(av), NULL);
-	stack->size = size;
-	stack->value = ft_calloc(size, sizeof(int));
-	stack->curr_pos = ft_calloc(size, sizeof(ssize_t));
-	if (!stack->value || !stack->curr_pos)
-		return ((t_stack *)ps_free_NULL(stack, av, NULL));
 	while (i < size && av[i] != NULL)
 	{
 		tmp = ps_atol_check(av[i]);
 		if (tmp == ((long)INT_MIN - 1))
-			return ((t_stack *)ps_free_NULL(stack, av, NULL));
+			return (ps_free_NULL(stack, av, NULL));
 		stack->value[i] = (int)tmp;
 		if (ps_isdoub(stack->value, stack->value[i], i))
-			return ((t_stack *)ps_free_NULL(stack, av, NULL));
+			return (ps_free_NULL(stack, av, NULL));
 		i++;
 	}
 	return (stack);

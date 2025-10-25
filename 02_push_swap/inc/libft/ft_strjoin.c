@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 13:59:56 by marapovi          #+#    #+#             */
-/*   Updated: 2025/05/18 13:59:58 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/25 18:04:56 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	newstr = (char *)ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, 1);
 	if (newstr == NULL)
 		return (NULL);
-	while (s1[i] && i <= ft_strlen(s1))
+	while (s1[i])
 	{
 		newstr[i] = s1[i];
 		i++;

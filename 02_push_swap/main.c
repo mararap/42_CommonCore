@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 22:10:05 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/25 12:44:54 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/25 18:35:38 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,22 @@ int	main(int ac, char **av)
 	count = ps_wcount(input);
 	split_input = ft_split(input, 32);
 	if (!split_input)
-		return (free(input), 2);
+	{
+		free(input);
+		return (2);
+	}
 	a = ps_isvalid(split_input, count);
 	if (!a)
+	{
+		ps_free_all(NULL, split_input, input);
 		return(write(2, "Error\n", 6), 3);
-	
+	}
+	a = ps_sorting(a);
+	if (!a)
+    {
+        ps_free_all(NULL, split_input, input);
+        return (write(2, "Error\n", 6), 3);
+    }
 	printf("input = %s\n", input);
 	while (i < a->size)
 	{

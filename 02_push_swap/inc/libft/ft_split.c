@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 09:40:52 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/19 17:42:48 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/25 17:55:01 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static char	*ft_fillsub(const char *s, size_t start, size_t end)
 	char	*sub;
 
 	i = 0;
-	sub = (void *)malloc(sizeof(char));
 	sub = ft_calloc((end - start + 1), sizeof(char));
 	if (!sub)
 		return (NULL);
