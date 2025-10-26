@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_sorting2.c                                      :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/26 21:49:12 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/26 22:53:02 by marapovi         ###   ########.fr       */
+/*   Created: 2025/05/16 15:06:09 by marapovi          #+#    #+#             */
+/*   Updated: 2025/05/16 15:06:13 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ps_minisort(t_stack *stack_full, t_stack *stack_empty, char stack_name)
+#include "libft.h"
+
+void	ft_putchar_fd(char c, int fd)
 {
-    while (t_stack->index)
-    
-    
+	write(fd, &c, 1);
 }
-void    ps_bubble_sort(int *arr, ssize_t size)
+/*
+#include <fcntl.h>
+
+int	main(void)
 {
-    
-}
+	char c = 'M';
+	int fd = open("ft_memcmp.c", O_RDWR);
+	ft_putchar_fd(c, fd);
+	return (0);
+}*/

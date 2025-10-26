@@ -6,11 +6,11 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 16:46:02 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/26 19:04:24 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/26 22:30:41 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-ps_swap(t_stack *stack, char stack_name)
+void ps_swap(t_stack *stack, char stack_name)
 {
     int temp;
     
@@ -21,7 +21,7 @@ ps_swap(t_stack *stack, char stack_name)
     write(1, &stack_name, 1);
     write(1, "\n", 1);    
 }
-ps_push(t_stack *from, t_stack *to, char to_stack_name)
+void ps_push(t_stack *from, t_stack *to, char to_stack_name)
 {
     int i;
     int j;
@@ -32,7 +32,9 @@ ps_push(t_stack *from, t_stack *to, char to_stack_name)
     }
     to->value[0] = from->value[0];
     to->size--;
-    // Implementation of push operation
+    write(1, "p", 1);
+    write(1, &to_stack_name, 1);
+    write(1, "\n", 1);
 }
 ps_rotate()
 {

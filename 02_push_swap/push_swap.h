@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:07:01 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/25 17:26:18 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/26 23:21:53 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 # include <stdbool.h> //true/false
 # include <sys/types.h> // ssize_t
 
-
 typedef	struct s_stack
 {
 	ssize_t	*curr_pos;
 	int		*value;
+	int		*index;
 	ssize_t	size;
 }			t_stack;
 

@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_sorting2.c                                      :+:      :+:    :+:   */
+/*   ps_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/26 21:49:12 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/26 22:53:02 by marapovi         ###   ########.fr       */
+/*   Created: 2025/10/26 23:20:52 by marapovi          #+#    #+#             */
+/*   Updated: 2025/10/26 23:21:14 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ps_minisort(t_stack *stack_full, t_stack *stack_empty, char stack_name)
+#include "../inc/push_swap.h"
+
+// takes av and joins all the arguments to one string //
+char *ps_input(char **av)
 {
-    while (t_stack->index)
-    
-    
-}
-void    ps_bubble_sort(int *arr, ssize_t size)
-{
-    
+	char	*str;
+	char 	*temp;
+	ssize_t		i;
+
+	i = 1;
+	if (!av[i])
+		return (NULL);
+	str = ft_strjoin(av[i++], " ");
+	while (av[i] != NULL)
+	{
+		temp = ft_strjoin(str, av[i]);
+		free(str);
+		str = ft_strjoin(temp, " ");
+		free(temp);
+		i++;
+	}
+	return (str);
 }
