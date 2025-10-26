@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 20:40:24 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/25 17:50:52 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/26 21:44:26 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static bool    ps_isspace(char c)
         return (true);
     return (false);
 }
+
 ssize_t     ps_wcount(char *s)
 {
 	ssize_t	i;
@@ -55,6 +56,7 @@ void    ft_free_av(char **av)
     }
     free(av);
 }
+
 void    ps_free_all(t_stack *stack, char **av, char *input)
 {
     if (stack)

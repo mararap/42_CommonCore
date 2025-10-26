@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 21:59:48 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/25 17:10:09 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/26 16:05:48 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,15 @@ static	t_stack *ps_stack_init(ssize_t size)
 		return (NULL);
 	stack->size = size;
 	stack->value = ft_calloc(size, sizeof(int));
+	if (!stack->value)
+		return (free(stack), NULL);
 	stack->curr_pos = ft_calloc(size, sizeof(ssize_t));
-	if (!stack->value || !stack->curr_pos)
-		return (ps_free_NULL(stack, NULL, NULL));
+	if (!stack->curr_pos)
+	{
+		free(stack->value);
+		free(stack);
+		return (NULL);
+	}
 	return (stack);
 }
 // checks if the char *str input is valid and converts it to t_stack stack //
@@ -76,7 +82,7 @@ t_stack	*ps_isvalid(char **av, ssize_t size)
 	stack = ps_stack_init(size);
 	if (!stack)
 		return (free(av), NULL);
-	while (i < size && av[i] != NULL)
+	while (i < size && av[i])
 	{
 		tmp = ps_atol_check(av[i]);
 		if (tmp == ((long)INT_MIN - 1))

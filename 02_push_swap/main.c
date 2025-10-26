@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 22:10:05 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/25 18:35:38 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/26 21:41:22 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 	char	*input = NULL;
 	char	**split_input = NULL;
 	t_stack	*a = NULL;
-//	t_stack	b = {0};
+	t_stack	*b = NULL;
 	ssize_t	i = 0;
 	ssize_t count = 0;
 
