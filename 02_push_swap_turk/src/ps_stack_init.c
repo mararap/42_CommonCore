@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:02:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/27 13:26:45 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/27 15:25:04 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,10 @@ void    ps_stack_init(t_node **stack, char *input, ssize_t count)
     {
         value = ps_atol_check(split_input[i]);
         if (value == (long)INT_MIN - 1)
-        {
-            // handle error for invalid number
-            return ;
-		}
-        ps_append(stack, (int)value);
+            ps_free_all_exit;
+		if (ps_isdoub(stack, (int)value))
+			ps_free_all_exit;
+		ps_append(stack, (int)value);
         i++;
     }
 	ft_free_av(split_input);
