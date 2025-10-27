@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:20:52 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/27 18:32:04 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/27 23:01:33 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ char *ps_input(char **av)
 }
 
 // check if char is whitespace character //
-static bool    ps_isspace(char c)
+static bool    ps_space(char c)
 {
     if (c == ' ' || (c >= '\t' && c <= '\r'))
         return (true);
     return (false);
 }
 
-// count number of words //
+// count number of words in string //
 ssize_t     ps_wcount(char *s)
 {
 	ssize_t	i;
@@ -58,7 +58,7 @@ ssize_t     ps_wcount(char *s)
     {
         while (s[i])
         {
-            if (!(ps_isspace(s[i])) && (ps_isspace(s[i + 1]) || s[i + 1] == '\0'))
+            if (!(ps_space(s[i])) && (ps_space(s[i + 1]) || s[i + 1] == '\0'))
                 wcount++;
             i++;
         }
@@ -67,13 +67,15 @@ ssize_t     ps_wcount(char *s)
 }
 
 // checks for duplicates in linked list//
-static bool	ps_isdoub(t_node **stack, int value)
+bool	ps_isdoub(t_node **stack, int value)
 {
+	if (!stack)
+		return (false);
 	while (stack)
 	{
-		if (stack[i]->value == value)
+		if (stack->value == value)
 			return (true);
-		i++;
+		stack = stack->next;
 	}
 	return (false);
 }

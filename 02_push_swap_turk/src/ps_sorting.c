@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/26 23:28:58 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/27 12:08:51 by marapovi         ###   ########.fr       */
+/*   Created: 2025/10/27 19:54:14 by marapovi          #+#    #+#             */
+/*   Updated: 2025/10/27 23:29:29 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,63 +24,66 @@ bool ps_issorted(t_node *stack)
     }
     return (true);
 }
-static t_node *ps_find_max(t_node *stack)
+
+static void    ps_micro_sort(t_node **a)
 {
-    int     max_value;
     t_node  *max_node;
 
-    if (!stack)
-        return (NULL);
-    max_node = INT_MIN;
-    while (stack)
+    max_node = ps_find_max(*a);
+    if (*a == max_node)
+        ps_ra(*a);
+    else if ((*a)->next == max_node)
+        ps_rra(*a);
+    if ((*a)->value > (*a)->next->value)
+        ps_sa(*a);
+}
+
+static void    ps_minisort(t_node **a, t_node **b)
+{
+    while (ps_stacklen(*a) > 3)
     {
-        if (stack->value > max_value)
+        ps_push(ps_find_min(a), *b, 'b');
+        ps_push(ps_find_min(a), *b, 'b');
+        ps_micro_sort(a);
+        ps_push(*b, *a, 'a');
+        ps_push(*b, *a, 'a');
+    }
+}
+void    ps_sort(t_node **a, t_node **b)
+{
+    t_node  *min;
+    ssize_t len_a;
+    
+    len_a = ps_stacklen(*a);
+    if (len_a == 5)
+        ps_minisort(a, b);
+    else
+    {
+        while (len_a > 3)
         {
-            max_value = stack->value;
-            max_node = stack;
-        }            
-        stack = stack->next;
+            ps_push(a, b, 'b');
+            len_a--;
+        }
+        ps_micro_sort(a);
     }
-    return (max_node);
-}
-void    ps_micro_sort(t_node **stack, char stack_name)
-{
-    t_node  *max_node;
-
-    max_node = ps_find_max(*stack);
-    if (*stack == max_node)
-        ps_rotate(a, 'a'); // need to implement
-    else if ((*stack)->next == max_node)
-        ps_rotate_reverse(a, 'a'); // need to implement
-    if ((*stack)->value > (*stack)->next->value)
-        ps_swap(a, 'a'); // need to implement
+    while (*b)
+    {
+        ps_nodes_init(*a, *b);
+        ps_push_prep(a, b);
+    }
+    ps_min_to_top(a);
 }
 
-void    ps_sort_5(t_node **a, t_node **b)
+void    ps_min_to_top(t_node **a)
 {
-    while (ps_stack_size(*a) > 3) // need to implement
-    {
-        ps_init_nodes(*a, *b); // need to implement
-        ps_finish_rotation(a, ps_find_smallest(*a), 'a'); // need to implement // need to implement ps_find_smallest
-        ps_push(b, a, 'b'); // need to implement
-    }
+    t_node  *min;
+
+    ps_set_curr(*a);
+    min = ps_find_min(*a);
+    if (min->above_med)
+        while (*a != min)
+            ra(a);
+    else
+        while (*a != min)
+            rra(a);    
 }
-/*
-void    ps_sorting(t_node **a, t_node **b)
-{
-    if (ps_issorted(*a))
-        return ;
-    if ((*a)->next == NULL)
-        return ;
-    if ((*a)->next->next == NULL)
-    {
-        if ((*a)->value > (*a)->next->value)
-            ps_swap(a, 'a');
-        return ;
-    }
-    if ((*a)->next->next->next == NULL)
-    {
-        ps_micro_sort(a, 'a');
-        return ;
-    }
-}*/

@@ -1,45 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_utils.c                                         :+:      :+:    :+:   */
+/*   ps_error_handling.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 20:40:24 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/27 22:29:09 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/27 23:33:36 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static bool    ps_isspace(char c)
+void ps_free_stack(t_node **stack)
 {
-    if (c == ' ' || (c >= '\t' && c <= '\r'))
-        return (true);
-    return (false);
-}
+    t_node  *temp;
+    t_node  *curr;
 
-ssize_t     ps_wcount(char *s)
-{
-	ssize_t	i;
-	ssize_t	wcount;
-
-	wcount = 0;
-	i = 0;
-    if (!s)
+    if (!stack)
+        return ;
+    curr = *stack;
+    while (curr->next)
     {
-        return (-1);       
+        temp = curr;
+        curr = curr->next;
+        free(temp);
     }
-    else
-    {
-        while (s[i])
-        {
-            if (!(ps_isspace(s[i])) && (ps_isspace(s[i + 1]) || s[i + 1] == '\0'))
-                wcount++;
-            i++;
-        }
-    }
-	return (wcount);
+    *stack = NULL;
 }
 
 void    ft_free_av(char **av)
@@ -57,22 +44,30 @@ void    ft_free_av(char **av)
     free(av);
 }
 
-void    ps_free_all(t_stack *stack, char **av, char *input)
+void    ps_error_exit(t_node **a, t_node **b, char **av, char *input)
 {
-    if (stack)
-    {
-            free(stack->curr_pos);
-            free(stack->value);
-            free(stack);
-    }
+    if (a)
+        ps_free_stack(a);
+    if (b)
+        ps_free_stack(b);
     if (av)
         ft_free_av(av);
     if (input)
         free(input);
+    write (2, "Error\n", 6);
+    exit(2);
 }
-t_stack  *ps_free_NULL(t_stack *stack, char **av, char *input)
+
+void    ps_free_all_NULL(t_node *a, t_node *b, char **av, char *input)
 {
-    ps_free_all(stack, av, input);
+    if (a)
+        ps_free_stack(a);
+    if (b)
+        ps_free_stack(b);
+    if (av)
+        ft_free_av(av);
+    if (input)
+        free(input);
     return (NULL);
 }
 

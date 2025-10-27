@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:02:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/27 17:20:07 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/27 22:50:16 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,26 +49,6 @@ long	ps_atol_check(char *str)
 	return (result * sign);
 }
 
-t_node	*ps_find_min(t_node *stack)
-{
-	long	smallest;
-	t_node	*result;
-	
-	if (!stack)
-		return (NULL);
-	smallest = LONG_MAX;
-	while (stack)
-	{
-		if (stack->value < smallest)
-		{
-			smallest = stack->value;
-			result = stack;
-		}
-		stack = stack->next;
-	}
-	return (result);	
-}
-
 void	ps_append(t_node **stack, int value)
 {
 	t_node	*new;
@@ -102,7 +82,7 @@ void    ps_stack_init(t_node **stack, char *input, ssize_t count)
     i = 0;
 	split_input = ft_split(input, ' ');
 	if (!split_input)
-		return ;
+		ps_free_all_exit;
     while(split_input[i])
     {
         value = ps_atol_check(split_input[i]);

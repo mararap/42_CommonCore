@@ -6,13 +6,13 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 18:23:10 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/27 18:29:19 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/27 23:09:20 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void    ps_swap(t_node **head)
+static void    ps_swap(t_node **head)
 {
     ssize_t len;
     
