@@ -6,11 +6,11 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:02:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/27 15:25:04 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/27 17:20:07 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../inc/push_swap.h"
 
 static long	ps_isvalid_sign(char c, char b)
 {
@@ -72,7 +72,7 @@ t_node	*ps_find_min(t_node *stack)
 void	ps_append(t_node **stack, int value)
 {
 	t_node	*new;
-	t_node	*last;
+	t_node	*tail;
 
 	if (!split_input || !*split_input)
 		return ;
@@ -88,8 +88,8 @@ void	ps_append(t_node **stack, int value)
 	}
 	else
 	{
-		last = ps_find_last(*stack); // need to implement
-		new->prev = last;
+		tail = ps_find_tail(*stack);
+		new->prev = tail;
 	}
 }
 

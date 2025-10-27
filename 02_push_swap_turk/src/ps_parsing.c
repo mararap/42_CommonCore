@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:20:52 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/27 15:23:48 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/27 18:32:04 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char *ps_input(char **av)
 	return (str);
 }
 
-
+// check if char is whitespace character //
 static bool    ps_isspace(char c)
 {
     if (c == ' ' || (c >= '\t' && c <= '\r'))
@@ -42,6 +42,7 @@ static bool    ps_isspace(char c)
     return (false);
 }
 
+// count number of words //
 ssize_t     ps_wcount(char *s)
 {
 	ssize_t	i;
@@ -65,7 +66,7 @@ ssize_t     ps_wcount(char *s)
 	return (wcount);
 }
 
-// checks for duplicates//
+// checks for duplicates in linked list//
 static bool	ps_isdoub(t_node **stack, int value)
 {
 	while (stack)
