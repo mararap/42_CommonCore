@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:28:58 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/26 23:53:18 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/27 12:08:51 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void    ps_sort_5(t_node **a, t_node **b)
     while (ps_stack_size(*a) > 3) // need to implement
     {
         ps_init_nodes(*a, *b); // need to implement
-        ps_finish_rotation(a, ps_find_smallest(*a), 'a'); // need to implement
-        ps_push(b, a, 'b');
+        ps_finish_rotation(a, ps_find_smallest(*a), 'a'); // need to implement // need to implement ps_find_smallest
+        ps_push(b, a, 'b'); // need to implement
     }
 }
 /*

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_atol_check.c                                    :+:      :+:    :+:   */
+/*   ps_stack_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:02:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/27 13:05:52 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/27 13:26:45 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,74 @@ long	ps_atol_check(char *str)
 	if (result > 2147483647 || result < -2147483648)
 		return((long)INT_MIN - 1);
 	return (result * sign);
+}
+
+t_node	*ps_find_min(t_node *stack)
+{
+	long	smallest;
+	t_node	*result;
+	
+	if (!stack)
+		return (NULL);
+	smallest = LONG_MAX;
+	while (stack)
+	{
+		if (stack->value < smallest)
+		{
+			smallest = stack->value;
+			result = stack;
+		}
+		stack = stack->next;
+	}
+	return (result);	
+}
+
+void	ps_append(t_node **stack, int value)
+{
+	t_node	*new;
+	t_node	*last;
+
+	if (!split_input || !*split_input)
+		return ;
+	new = malloc(sizeof(t_node));
+	if (!new)
+		return ;
+	node->next = NULL;
+	node->value = value;
+	if (!*stack)
+	{
+		*stack = new;
+		new->prev = NULL;
+	}
+	else
+	{
+		last = ps_find_last(*stack); // need to implement
+		new->prev = last;
+	}
+}
+
+void    ps_stack_init(t_node **stack, char *input, ssize_t count)
+{
+    char    **split_input;
+	long    value;
+    ssize_t i;
+    
+    i = 0;
+	split_input = ft_split(input, ' ');
+	if (!split_input)
+		return ;
+    while(split_input[i])
+    {
+        value = ps_atol_check(split_input[i]);
+        if (value == (long)INT_MIN - 1)
+        {
+            // handle error for invalid number
+            return ;
+		}
+        ps_append(stack, (int)value);
+        i++;
+    }
+	ft_free_av(split_input);
 }
 
 

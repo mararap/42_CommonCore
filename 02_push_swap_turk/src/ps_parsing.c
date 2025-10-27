@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:20:52 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/26 23:21:14 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/27 13:28:25 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,41 @@ char *ps_input(char **av)
 		i++;
 	}
 	return (str);
+}
+
+
+static bool    ps_isspace(char c)
+{
+    if (c == ' ' || (c >= '\t' && c <= '\r'))
+        return (true);
+    return (false);
+}
+
+ssize_t     ps_wcount(char *s)
+{
+	ssize_t	i;
+	ssize_t	wcount;
+
+	wcount = 0;
+	i = 0;
+    if (!s)
+    {
+        return (-1);       
+    }
+    else
+    {
+        while (s[i])
+        {
+            if (!(ps_isspace(s[i])) && (ps_isspace(s[i + 1]) || s[i + 1] == '\0'))
+                wcount++;
+            i++;
+        }
+    }
+	return (wcount);
+}
+
+// checks for duplicates//
+static bool	ps_isdoub(t_node **) // need to implement
+{
+
 }

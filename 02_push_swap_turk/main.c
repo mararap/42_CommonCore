@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 22:59:44 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/26 23:27:37 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/27 13:27:11 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ int main(int ac, char **av)
 		free(input);
 		return (2);
 	}
-  
+	ps_stack_init(&a, split_input, count); // need to implement
+	ps_doub(); // need to implement
+	ps_sort(&a, &b, count); // need to implement
+	ps_free_all(&a, &b, split_input, input); // need to implement
     return (0);
 }
