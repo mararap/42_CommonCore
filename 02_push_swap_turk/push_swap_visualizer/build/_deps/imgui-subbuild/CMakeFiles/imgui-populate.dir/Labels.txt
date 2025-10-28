@@ -1,0 +1,14 @@
+# Target labels
+ imgui-populate
+# Source files and their labels
+/home/marapovi/CommonCore_gh/02_push_swap_turk/push_swap_visualizer/build/_deps/imgui-subbuild/CMakeFiles/imgui-populate
+/home/marapovi/CommonCore_gh/02_push_swap_turk/push_swap_visualizer/build/_deps/imgui-subbuild/CMakeFiles/imgui-populate.rule
+/home/marapovi/CommonCore_gh/02_push_swap_turk/push_swap_visualizer/build/_deps/imgui-subbuild/CMakeFiles/imgui-populate-complete.rule
+/home/marapovi/CommonCore_gh/02_push_swap_turk/push_swap_visualizer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-build.rule
+/home/marapovi/CommonCore_gh/02_push_swap_turk/push_swap_visualizer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-configure.rule
+/home/marapovi/CommonCore_gh/02_push_swap_turk/push_swap_visualizer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-download.rule
+/home/marapovi/CommonCore_gh/02_push_swap_turk/push_swap_visualizer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-install.rule
+/home/marapovi/CommonCore_gh/02_push_swap_turk/push_swap_visualizer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-mkdir.rule
+/home/marapovi/CommonCore_gh/02_push_swap_turk/push_swap_visualizer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-patch.rule
+/home/marapovi/CommonCore_gh/02_push_swap_turk/push_swap_visualizer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-test.rule
+/home/marapovi/CommonCore_gh/02_push_swap_turk/push_swap_visualizer/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-update.rule
