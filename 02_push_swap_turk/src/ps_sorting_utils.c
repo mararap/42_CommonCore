@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:28:58 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 00:44:36 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 12:42:48 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,21 @@ static void    ps_rrr_until(t_node **a, t_node **b, t_node *stop)
 static void    ps_cheapest_to_top(t_node **b, t_node *to_top)
 {
     if (to_top->above_med)
-        ps_rb(b);
+        while (*b != to_top)
+            ps_rb(b);
     else
-        ps_rrb(b);
-}
+        while (*b != to_top)
+            ps_rrb(b);
+    }
 
 static void     ps_target_to_top(t_node **a, t_node *to_top)
 {
     if (to_top->above_med)
-        ps_ra(a);
+        while (*a != to_top)
+            ps_ra(a);
     else
-        ps_rra(a);    
+        while (*a != to_top)
+            ps_rra(a);
 }
 
 void    ps_push_prep(t_node **a, t_node **b)
@@ -50,6 +54,8 @@ void    ps_push_prep(t_node **a, t_node **b)
     t_node  *cheapest;
     
     cheapest = ps_find_cheapest(*b);
+    if (!cheapest)
+        return ;
     if (cheapest->above_med && cheapest->target->above_med)
         ps_rr_until(a, b, cheapest);
     else if (!(cheapest->above_med) && !(cheapest->target->above_med))

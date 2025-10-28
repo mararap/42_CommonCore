@@ -6,41 +6,59 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:02:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 11:43:06 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 13:44:47 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-static long	ps_isvalid_sign(char c, char d)
+static long	ps_isvalid_sign(char *str, ssize_t i)
 {
-	if (c == '-' && ft_isdigit(d))
-		return (-1);
-	if (c == '+' && ft_isdigit(d))
-		return (1);
-	return ((long)INT_MIN - 1);
+	long	sign;
+
+	sign = 0;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-' && ft_isdigit(str[i + 1]))
+			return (-1);
+		if (str[i] == '+' && ft_isdigit(str[i + 1]))
+			return (1);
+	}
+	return (sign);
 }
 
-long	ps_atol_check(char *str)
+static ssize_t	ps_skip_spaces(char *str)
 {
 	ssize_t	i;
-	long	sign;
-	long	result;
 
 	i = 0;
-	sign = 1;
-	if (!str || str[i] == '\0')
-		return((long)INT_MIN - 1);
 	while (ps_space(str[i]))
 		i++;
-	if (str[i] == '-' || str[i] == '+')
-		sign = ps_isvalid_sign(str[i], str[i + 1]);
-	if (sign == ((long)INT_MIN - 1) || !ft_isdigit(str[i + 1]))
-		return((long)INT_MIN - 1);
+	return (i);
+}
+long	ps_atol_check(char *str)
+{
+	long	result;
+	long	sign;
+	ssize_t	i;
+
 	result = 0;
+	sign = 0;
+	i = 0;
+	if (!str || !str[0])
+		return((long)INT_MIN - 1);
+	i = ps_skip_spaces(str);
+	sign = ps_isvalid_sign(str, i);
+	if (!sign)
+		return((long)INT_MIN - 1);
 	while (str[i] >= '0' && str[i] <= '9')
+	{
 		result = result * 10 + str[i] - 48;
-	if (str[i] != '\0' || (result * sign) > INT_MAX || (result * sign) < INT_MIN)
+		i++;
+	}
+	if (str[i] != '\0' && !ps_space(str[i]))
+		return((long)INT_MIN - 1);
+	if ((result * sign) > INT_MAX || (result * sign) < INT_MIN)
 		return((long)INT_MIN - 1);
 	return (result * sign);
 }
@@ -50,6 +68,8 @@ void	ps_append(t_node **stack, int value)
 	t_node	*new;
 	t_node	*tail;
 
+	new = NULL;
+	tail = NULL;
 	new = malloc(sizeof(t_node));
 	if (!new)
 		return ;
@@ -79,6 +99,8 @@ void    ps_stack_init(t_node **stack, char *input)
     ssize_t i;
     
     i = 0;
+	value = 0;
+	split_input = NULL;
 	split_input = ft_split(input, ' ');
 	if (!split_input || !split_input[0] || !split_input[0][0])
 		ps_error_exit(stack, NULL, split_input, input);

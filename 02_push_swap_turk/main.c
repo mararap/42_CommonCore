@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 22:59:44 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 11:19:16 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 12:14:15 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ int main(int ac, char **av)
 
     a = NULL;
     b = NULL;
-	if (ac < 2 || (ac == 2 && av[1][0] == '\0'))
-		return (1);
+	if (ac < 2)
+		return (0);
+	if (ac == 2 && av[1][0] == '\0')
+		ps_error_exit(&a, &b, NULL, NULL);
     input = ps_input(av);
 	if (!input)
-		ps_error_exit(NULL, NULL, NULL, NULL);
+		ps_error_exit(&a, &b, NULL, NULL);
 	ps_stack_init(&a, input);
 	if (ps_issorted(a))
 	{

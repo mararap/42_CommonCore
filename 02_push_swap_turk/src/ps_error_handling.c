@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 20:40:24 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 11:20:38 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 12:06:34 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void    ps_error_exit(t_node **a, t_node **b, char **av, char *input)
     if (input)
         free(input);
     write (2, "Error\n", 6);
-    exit(2);
+    exit(1);
 }
 
 void    ps_free_all(t_node **a, t_node **b, char **av, char *input)

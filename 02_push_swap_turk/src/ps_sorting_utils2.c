@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 21:44:53 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 00:55:15 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 12:42:13 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void    ps_find_target(t_node *a, t_node *b)
     t_node  *target;
     long    target_index;
 
+    target = NULL;
     while (b)
     {
         target_index = LONG_MAX;
@@ -84,10 +85,17 @@ t_node    *ps_find_cheapest(t_node *b)
 {
     long    cheapest_value;
     t_node  *cheapest_node;
+    t_node  *temp;
 
     if (!b)
         return (NULL);
     cheapest_value = LONG_MAX;
+    temp = b;
+    while (temp)
+    {
+        temp->cheapest = false;
+        temp = temp->next;
+    }
     while (b)
     {
         if (b->cost < cheapest_value)
@@ -97,7 +105,8 @@ t_node    *ps_find_cheapest(t_node *b)
         }
         b = b->next;
     }
-    cheapest_node->cheapest = true;
+    if (cheapest_node)
+        cheapest_node->cheapest = true;
     return (cheapest_node);
 }
 

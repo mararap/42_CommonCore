@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:09:27 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 00:23:38 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 12:50:31 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void    ps_ra(t_node **a)
 void    ps_rb(t_node **b)
 {
     ps_rotate(b);
-    write (1, "rb\n", 4);
+    write (1, "rb\n", 3);
 }
 
 void    ps_rr(t_node **a, t_node **b)
