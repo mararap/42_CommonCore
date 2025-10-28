@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 21:44:53 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/27 23:27:58 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 00:55:15 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void    ps_find_target(t_node *a, t_node *b)
             }
             curr_a = curr_a->next;
         }
-        if (target_index = LONG_MAX)
+        if (target_index == LONG_MAX)
             b->target = ps_find_min(a);
         else
             b->target = target;
@@ -80,13 +80,13 @@ static void    ps_calc_cost(t_node *a, t_node *b)
     }
 }
 
-static void    ps_find_cheapest(t_node *b)
+t_node    *ps_find_cheapest(t_node *b)
 {
     long    cheapest_value;
     t_node  *cheapest_node;
 
     if (!b)
-        return ;
+        return (NULL);
     cheapest_value = LONG_MAX;
     while (b)
     {
@@ -98,6 +98,7 @@ static void    ps_find_cheapest(t_node *b)
         b = b->next;
     }
     cheapest_node->cheapest = true;
+    return (cheapest_node);
 }
 
 void    ps_nodes_init(t_node *a, t_node *b)

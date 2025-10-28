@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 22:59:44 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/27 23:20:50 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 01:01:31 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int main(int ac, char **av)
     t_node		*a;
     t_node		*b;
     char		*input;
-    char		**split_input;
-    ssize_t		count;
 
     a = NULL;
     b = NULL;
@@ -27,14 +25,13 @@ int main(int ac, char **av)
     input = ps_input(av);
 	if (!input)
 		return (2);
-	count = ps_wcount(input);
-	split_input = ft_split(input, 32);
-	if (!split_input)
-		ps_free_all_exit(&a, &b, split_input, input);
-	ps_stack_init(&a, split_input, count);
-	if (ps_issorted(&a));
-		ps_free_all_NULL(&a, &b, split_input, input);
+	ps_stack_init(&a, input);
+	if (ps_issorted(a))
+	{
+		ps_free_all(&a, &b, NULL, input);
+		return (0);
+	}
 	ps_sort(&a, &b);
-	ps_free_all_NULL(&a, &b, split_input, input);
+	ps_free_all(&a, &b, NULL, input);
 	return(0);
 }

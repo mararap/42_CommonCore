@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 18:22:33 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/27 18:25:36 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 00:19:04 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void    ps_push(t_node **src, t_node **dest, char dest_name)
 {
-    t_node  to_push;
+    t_node  *to_push;
 
     if (!*src)
         return ;

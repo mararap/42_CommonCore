@@ -6,11 +6,11 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 20:40:24 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/27 23:33:36 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 00:57:27 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../inc/push_swap.h"
 
 void ps_free_stack(t_node **stack)
 {
@@ -58,7 +58,7 @@ void    ps_error_exit(t_node **a, t_node **b, char **av, char *input)
     exit(2);
 }
 
-void    ps_free_all_NULL(t_node *a, t_node *b, char **av, char *input)
+void    ps_free_all(t_node **a, t_node **b, char **av, char *input)
 {
     if (a)
         ps_free_stack(a);
@@ -68,6 +68,5 @@ void    ps_free_all_NULL(t_node *a, t_node *b, char **av, char *input)
         ft_free_av(av);
     if (input)
         free(input);
-    return (NULL);
 }
 

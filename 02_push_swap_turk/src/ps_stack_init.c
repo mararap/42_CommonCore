@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:02:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/27 22:50:16 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 00:18:01 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,11 @@ void	ps_append(t_node **stack, int value)
 	t_node	*new;
 	t_node	*tail;
 
-	if (!split_input || !*split_input)
-		return ;
 	new = malloc(sizeof(t_node));
 	if (!new)
 		return ;
-	node->next = NULL;
-	node->value = value;
+	new->next = NULL;
+	new->value = value;
 	if (!*stack)
 	{
 		*stack = new;
@@ -73,7 +71,7 @@ void	ps_append(t_node **stack, int value)
 	}
 }
 
-void    ps_stack_init(t_node **stack, char *input, ssize_t count)
+void    ps_stack_init(t_node **stack, char *input)
 {
     char    **split_input;
 	long    value;
@@ -81,15 +79,15 @@ void    ps_stack_init(t_node **stack, char *input, ssize_t count)
     
     i = 0;
 	split_input = ft_split(input, ' ');
-	if (!split_input)
-		ps_free_all_exit;
+	if (!split_input || !split_input[0][0])
+		ps_error_exit(stack, NULL, split_input, input);
     while(split_input[i])
     {
         value = ps_atol_check(split_input[i]);
         if (value == (long)INT_MIN - 1)
-            ps_free_all_exit;
+            ps_error_exit(stack, NULL, split_input, input);
 		if (ps_isdoub(stack, (int)value))
-			ps_free_all_exit;
+			ps_error_exit(stack, NULL, split_input, input);
 		ps_append(stack, (int)value);
         i++;
     }

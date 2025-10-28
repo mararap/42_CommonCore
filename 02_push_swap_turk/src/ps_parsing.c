@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:20:52 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/27 23:01:33 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 00:09:57 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,15 @@ ssize_t     ps_wcount(char *s)
 }
 
 // checks for duplicates in linked list//
-bool	ps_isdoub(t_node **stack, int value)
+bool	ps_isdoub(t_node **stack, int num)
 {
 	if (!stack)
 		return (false);
-	while (stack)
+	while (*stack)
 	{
-		if (stack->value == value)
+		if ((*stack)->value == num)
 			return (true);
-		stack = stack->next;
+		*stack = (*stack)->next;
 	}
 	return (false);
 }

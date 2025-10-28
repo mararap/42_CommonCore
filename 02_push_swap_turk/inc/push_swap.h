@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 22:59:15 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/27 23:34:18 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 01:00:48 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h> //write, read
 # include <limits.h> //int_max - int_min
 # include <stdlib.h> //malloc, free
-# include "./inc/libft/libft.h"
+# include "../libft/libft.h"
 # include <stdbool.h> //true/false
 # include <sys/types.h> // ssize_t
 
@@ -35,7 +35,7 @@ typedef struct s_node
 char            *ps_input(char **av);
 ssize_t         ps_wcount(char *s);
 bool            ps_isdoub(t_node **stack, int value);
-void            ps_stack_init(t_node **stack, char *input, ssize_t count);
+void            ps_stack_init(t_node **stack, char *input);
 void            ps_append(t_node **stack, int value);
 long        	ps_atol_check(char *str);
 ssize_t         ps_stacklen(t_node *stack);
@@ -56,11 +56,12 @@ void            ps_sort(t_node **a, t_node **b);
 bool            ps_issorted(t_node *stack);
 void            ps_min_to_top(t_node **a);
 void            ps_push_prep(t_node **a, t_node **b);
+t_node          *ps_find_cheapest(t_node *b);
 void            ps_nodes_init(t_node *a, t_node *b);
 void            ps_set_curr(t_node *stack);
 void            ps_free_stack(t_node **stack);
 void            ft_free_av(char **av);
 void            ps_error_exit(t_node **a, t_node **b, char **av, char *input);
-void            ps_free_all_NULL(t_node *a, t_node *b, char **av, char *input);
+void            ps_free_all(t_node **a, t_node **b, char **av, char *input);
 
 #endif

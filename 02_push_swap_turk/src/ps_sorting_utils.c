@@ -6,13 +6,13 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:28:58 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/27 23:27:23 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 00:44:36 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-static void    ps_rr_until(t_node **a, t_node **b, *stop)
+static void    ps_rr_until(t_node **a, t_node **b, t_node *stop)
 {
     while (*a != stop->target && *b != stop)
         ps_rr(a, b);
@@ -20,7 +20,7 @@ static void    ps_rr_until(t_node **a, t_node **b, *stop)
     ps_set_curr(*b);
 }
 
-static void    ps_rrr_until(t_node **a, t_node **b, *stop)
+static void    ps_rrr_until(t_node **a, t_node **b, t_node *stop)
 {
     while (*a != stop->target && *b != stop)
         ps_rrr(a, b);

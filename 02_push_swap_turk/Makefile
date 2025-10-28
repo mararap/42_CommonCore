@@ -23,7 +23,7 @@ AR		=	ar crs
 
 SRC_DIR			=		src
 OBJ_DIR			=		obj
-LIBFT_DIR		=		libft
+LIBFT_DIR		=		./libft
 LIBFT			=		$(LIBFT_DIR)/libft.a
 
 SRC				=		../main.c\

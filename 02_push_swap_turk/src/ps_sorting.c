@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:54:14 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/27 23:29:29 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 00:43:23 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,27 +31,35 @@ static void    ps_micro_sort(t_node **a)
 
     max_node = ps_find_max(*a);
     if (*a == max_node)
-        ps_ra(*a);
+        ps_ra(a);
     else if ((*a)->next == max_node)
-        ps_rra(*a);
+        ps_rra(a);
     if ((*a)->value > (*a)->next->value)
-        ps_sa(*a);
+        ps_sa(a);
 }
 
 static void    ps_minisort(t_node **a, t_node **b)
 {
-    while (ps_stacklen(*a) > 3)
+    ssize_t len_a = ps_stacklen(*a);
+    ssize_t len_b;
+    
+    len_a = ps_stacklen(*a);
+    while (len_a > 3)
     {
-        ps_push(ps_find_min(a), *b, 'b');
-        ps_push(ps_find_min(a), *b, 'b');
-        ps_micro_sort(a);
-        ps_push(*b, *a, 'a');
-        ps_push(*b, *a, 'a');
+        *a = ps_find_min(*a);
+        ps_push(a, b, 'b');
+        len_a--;
+    }
+    ps_micro_sort(a);
+    len_b = ps_stacklen(*b);
+    while (len_b > 0)
+    {
+        ps_push(b, a, 'a');
+        len_b--;
     }
 }
 void    ps_sort(t_node **a, t_node **b)
 {
-    t_node  *min;
     ssize_t len_a;
     
     len_a = ps_stacklen(*a);
@@ -82,8 +90,8 @@ void    ps_min_to_top(t_node **a)
     min = ps_find_min(*a);
     if (min->above_med)
         while (*a != min)
-            ra(a);
+            ps_ra(a);
     else
         while (*a != min)
-            rra(a);    
+            ps_rra(a);    
 }

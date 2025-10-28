@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 18:23:10 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/27 23:09:20 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 00:20:37 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void    ps_swap(t_node **head)
     ssize_t len;
     
     len = ps_stacklen(*head);
-    if (!*head || !head || len = 1)
+    if (!*head || !head || len == 1)
         return ;
     *head = (*head)->next;
     (*head)->prev->prev = *head;
@@ -29,19 +29,19 @@ static void    ps_swap(t_node **head)
 }
 void    ps_sa(t_node **a)
 {
-    ps_swap(*a);
+    ps_swap(a);
     write (1, "sa\n", 3);
 }
 
 void    ps_sb(t_node **b)
 {
-    ps_swap(*b);
+    ps_swap(b);
     write (1, "sb\n", 3);
 }
 
 void    ps_ss(t_node **a, t_node **b)
 {
-    ps_swap(*a);
-    ps_swap(*b);
+    ps_swap(a);
+    ps_swap(b);
     write (1, "ss\n", 3);
 }
