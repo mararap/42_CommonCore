@@ -1,3 +1,0 @@
-/home/marapovi/CommonCore_gh/02_push_swap_turk/push_swap_visualizer/build/_deps/sfml-subbuild/CMakeFiles/sfml-populate.dir
-/home/marapovi/CommonCore_gh/02_push_swap_turk/push_swap_visualizer/build/_deps/sfml-subbuild/CMakeFiles/edit_cache.dir
-/home/marapovi/CommonCore_gh/02_push_swap_turk/push_swap_visualizer/build/_deps/sfml-subbuild/CMakeFiles/rebuild_cache.dir
