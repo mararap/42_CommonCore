@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:02:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 13:44:47 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 15:18:50 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 static long	ps_isvalid_sign(char *str, ssize_t i)
 {
-	long	sign;
-
-	sign = 0;
-	if (str[i] == '-' || str[i] == '+')
+	if (str[i] == 45 || str[i] == 43)
 	{
-		if (str[i] == '-' && ft_isdigit(str[i + 1]))
-			return (-1);
-		if (str[i] == '+' && ft_isdigit(str[i + 1]))
-			return (1);
+		if (ft_isdigit(str[i + 1]))
+		{
+			if (str[i] == 45)
+				return (-1);
+		}
+		else
+			return ((long)INT_MIN - 1);
 	}
-	return (sign);
+	return (1);
 }
 
 static ssize_t	ps_skip_spaces(char *str)
@@ -43,14 +43,16 @@ long	ps_atol_check(char *str)
 	ssize_t	i;
 
 	result = 0;
-	sign = 0;
+	sign = 1;
 	i = 0;
 	if (!str || !str[0])
 		return((long)INT_MIN - 1);
 	i = ps_skip_spaces(str);
 	sign = ps_isvalid_sign(str, i);
-	if (!sign)
+	if (sign == ((long)INT_MIN - 1))
 		return((long)INT_MIN - 1);
+	if (str[i] == 45 || str[i] == 43)
+		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		result = result * 10 + str[i] - 48;
