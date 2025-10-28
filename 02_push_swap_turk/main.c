@@ -6,11 +6,11 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 22:59:44 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 01:01:31 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 11:19:16 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "./inc/push_swap.h"
 
 int main(int ac, char **av)
 {
@@ -21,10 +21,10 @@ int main(int ac, char **av)
     a = NULL;
     b = NULL;
 	if (ac < 2 || (ac == 2 && av[1][0] == '\0'))
-		return (2);
+		return (1);
     input = ps_input(av);
 	if (!input)
-		return (2);
+		ps_error_exit(NULL, NULL, NULL, NULL);
 	ps_stack_init(&a, input);
 	if (ps_issorted(a))
 	{

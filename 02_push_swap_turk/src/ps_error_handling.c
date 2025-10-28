@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 20:40:24 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 00:57:27 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 11:20:38 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,15 @@
 void ps_free_stack(t_node **stack)
 {
     t_node  *temp;
-    t_node  *curr;
 
-    if (!stack)
+    if (!stack || !*stack)
         return ;
-    curr = *stack;
-    while (curr->next)
+    while (*stack)
     {
-        temp = curr;
-        curr = curr->next;
-        free(temp);
+        temp = (*stack)->next;
+        free(*stack);
+        *stack = temp;
     }
-    *stack = NULL;
 }
 
 void    ft_free_av(char **av)

@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 22:59:15 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 01:00:48 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 11:37:56 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ bool            ps_isdoub(t_node **stack, int value);
 void            ps_stack_init(t_node **stack, char *input);
 void            ps_append(t_node **stack, int value);
 long        	ps_atol_check(char *str);
+bool            ps_space(char c);
 ssize_t         ps_stacklen(t_node *stack);
 t_node          *ps_find_max(t_node *stack);
 t_node          *ps_find_min(t_node *stack);

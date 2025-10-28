@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:20:52 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 00:09:57 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 11:39:13 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,28 @@ char *ps_input(char **av)
 	ssize_t		i;
 
 	i = 1;
-	if (!av[i])
+	if (!av[i] || !av[i][0])
 		return (NULL);
 	str = ft_strjoin(av[i++], " ");
+	if (!str)
+		return (NULL);
 	while (av[i] != NULL)
 	{
 		temp = ft_strjoin(str, av[i]);
 		free(str);
+		if (!temp)
+			return (NULL);
 		str = ft_strjoin(temp, " ");
 		free(temp);
+		if (!str)
+			return (NULL);
 		i++;
 	}
 	return (str);
 }
 
 // check if char is whitespace character //
-static bool    ps_space(char c)
+bool    ps_space(char c)
 {
     if (c == ' ' || (c >= '\t' && c <= '\r'))
         return (true);
@@ -69,13 +75,16 @@ ssize_t     ps_wcount(char *s)
 // checks for duplicates in linked list//
 bool	ps_isdoub(t_node **stack, int num)
 {
-	if (!stack)
+	t_node	*curr;
+	
+	if (!stack || !*stack)
 		return (false);
-	while (*stack)
+	curr = *stack;
+	while (curr)
 	{
-		if ((*stack)->value == num)
+		if (curr->value == num)
 			return (true);
-		*stack = (*stack)->next;
+		curr = curr->next;
 	}
 	return (false);
 }
