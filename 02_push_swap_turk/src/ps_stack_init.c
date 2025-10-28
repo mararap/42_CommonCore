@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:02:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 15:18:50 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 21:34:19 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static ssize_t	ps_skip_spaces(char *str)
 		i++;
 	return (i);
 }
+
 long	ps_atol_check(char *str)
 {
 	long	result;
@@ -46,11 +47,11 @@ long	ps_atol_check(char *str)
 	sign = 1;
 	i = 0;
 	if (!str || !str[0])
-		return((long)INT_MIN - 1);
+		return ((long)INT_MIN - 1);
 	i = ps_skip_spaces(str);
 	sign = ps_isvalid_sign(str, i);
 	if (sign == ((long)INT_MIN - 1))
-		return((long)INT_MIN - 1);
+		return ((long)INT_MIN - 1);
 	if (str[i] == 45 || str[i] == 43)
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
@@ -59,9 +60,9 @@ long	ps_atol_check(char *str)
 		i++;
 	}
 	if (str[i] != '\0' && !ps_space(str[i]))
-		return((long)INT_MIN - 1);
+		return ((long)INT_MIN - 1);
 	if ((result * sign) > INT_MAX || (result * sign) < INT_MIN)
-		return((long)INT_MIN - 1);
+		return ((long)INT_MIN - 1);
 	return (result * sign);
 }
 
@@ -80,7 +81,7 @@ void	ps_append(t_node **stack, int value)
 	new->curr_pos = 0;
 	new->above_med = false;
 	new->cheapest = false;
-	new->target = NULL;	
+	new->target = NULL;
 	if (!*stack)
 	{
 		*stack = new;
@@ -94,40 +95,27 @@ void	ps_append(t_node **stack, int value)
 	}
 }
 
-void    ps_stack_init(t_node **stack, char *input)
+void	ps_stack_init(t_node **stack, char *input)
 {
-    char    **split_input;
-	long    value;
-    ssize_t i;
-    
-    i = 0;
+	char	**split_input;
+	long	value;
+	ssize_t	i;
+
+	i = 0;
 	value = 0;
 	split_input = NULL;
 	split_input = ft_split(input, ' ');
 	if (!split_input || !split_input[0] || !split_input[0][0])
 		ps_error_exit(stack, NULL, split_input, input);
-    while(split_input[i])
-    {
-        value = ps_atol_check(split_input[i]);
-        if (value == (long)INT_MIN - 1)
-            ps_error_exit(stack, NULL, split_input, input);
+	while (split_input[i])
+	{
+		value = ps_atol_check(split_input[i]);
+		if (value == (long)INT_MIN - 1)
+			ps_error_exit(stack, NULL, split_input, input);
 		if (ps_isdoub(stack, (int)value))
 			ps_error_exit(stack, NULL, split_input, input);
 		ps_append(stack, (int)value);
-        i++;
-    }
+		i++;
+	}
 	ft_free_av(split_input);
 }
-
-
-/*
-#include <stdio.h>
-
-int	main(void)
-{
-	const char	str[42] = "3181651";
-
-	printf("original function: %d\n", atoi(str));
-	printf("my function: %d\n", ft_atoi(str));
-	return (0);
-}*/

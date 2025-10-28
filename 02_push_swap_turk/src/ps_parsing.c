@@ -6,18 +6,18 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:20:52 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 11:39:13 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/28 21:34:08 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
 // takes av and joins all the arguments to one string //
-char *ps_input(char **av)
+char	*ps_input(char **av)
 {
 	char	*str;
-	char 	*temp;
-	ssize_t		i;
+	char	*temp;
+	ssize_t	i;
 
 	i = 1;
 	if (!av[i] || !av[i][0])
@@ -41,34 +41,34 @@ char *ps_input(char **av)
 }
 
 // check if char is whitespace character //
-bool    ps_space(char c)
+bool	ps_space(char c)
 {
-    if (c == ' ' || (c >= '\t' && c <= '\r'))
-        return (true);
-    return (false);
+	if (c == ' ' || (c >= '\t' && c <= '\r'))
+		return (true);
+	return (false);
 }
 
 // count number of words in string //
-ssize_t     ps_wcount(char *s)
+ssize_t	ps_wcount(char *s)
 {
 	ssize_t	i;
 	ssize_t	wcount;
 
 	wcount = 0;
 	i = 0;
-    if (!s)
-    {
-        return (-1);       
-    }
-    else
-    {
-        while (s[i])
-        {
-            if (!(ps_space(s[i])) && (ps_space(s[i + 1]) || s[i + 1] == '\0'))
-                wcount++;
-            i++;
-        }
-    }
+	if (!s)
+	{
+		return (-1);
+	}
+	else
+	{
+		while (s[i])
+		{
+			if (!(ps_space(s[i])) && (ps_space(s[i + 1]) || s[i + 1] == '\0'))
+				wcount++;
+			i++;
+		}
+	}
 	return (wcount);
 }
 
@@ -76,7 +76,7 @@ ssize_t     ps_wcount(char *s)
 bool	ps_isdoub(t_node **stack, int num)
 {
 	t_node	*curr;
-	
+
 	if (!stack || !*stack)
 		return (false);
 	curr = *stack;
