@@ -1,13 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mt_client.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 12:03:29 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/30 21:05:52 by marapovi         ###   ########.fr       */
+/*   Created: 2025/05/16 15:06:09 by marapovi          #+#    #+#             */
+/*   Updated: 2025/05/16 15:06:13 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minitalk.h"
+#include "libft.h"
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
+/*
+#include <fcntl.h>
+
+int	main(void)
+{
+	char c = 'M';
+	int fd = open("ft_memcmp.c", O_RDWR);
+	ft_putchar_fd(c, fd);
+	return (0);
+}*/

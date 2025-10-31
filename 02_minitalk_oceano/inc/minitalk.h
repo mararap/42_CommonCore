@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:44:03 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/30 23:30:18 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/29 19:37:12 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef struct	__siginfo
 */
 
 void	mt_signal(int sig, void *handler, bool use_siginfo);
-static void	mt_handler(int sig, siginfo_t *x, void *y);
 void	mt_kill(pid_t pid, int signum);
 
 #endif // !MINITALK_H

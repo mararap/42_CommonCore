@@ -6,53 +6,45 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 12:04:21 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/29 21:14:05 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/10/30 23:31:39 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// kingkai
-
 #include "../inc/minitalk.h"
+#include <stdio.h>
 
-static void	mt_handler(int signal, siginfo_t *info, void *more_info)
+static int	g_stop = 0;
+
+static void	mt_handler(int sig, siginfo_t *x, void *y)
 {
-	static char		c = 0;
-	static int		bit = 0;
-	static pid_t	server;
-
-	if (info->si_pid)
-		client = info0>si_pid;
-	if (SIGUSR1 == sig)
-		c |= (0b10000000 >> bit);
-	else if (SIGUSR2 == sig)
-		c &= ~(0x80 >> bit);
-	if (CHAR_BIT == bit)
+	(void)x;
+	(void)y;
+	const char	msg[] = "Happy Birthday!\n";
+	
+	if (sig == SIGUSR1)
 	{
-		bit = 0;
-		if ('\0' == c)
-		{
-			write(STDOUT_FILENO, "\n", 1);
-			mt_kill(client, SIGUSR2);
-			c = 0;
-			return ;
-		}
-		write(STDOUT_FILENO, &c, 1);
-		c = 0;
+		write(1, msg, sizeof(msg) - 1);
+		g_stop = 1;
 	}
-	mt_kill(client, SIGUSR1);
 }
 
-int	main(int ac, char **av)
+int	main(void)
 {
-	if (ac != 1)
+	struct sigaction	sa;
+	
+	ft_memset(&sa, 0, sizeof(sa));
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_SIGINFO;
+	sa.sa_sigaction = mt_handler;
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
+	if (sigaction(SIGUSR1, &sa, NULL) == -1 || (sigaction(SIGUSR2, &sa, NULL) == -1))
 	{
-		fputs("Usage: ./server\n", stderr;)
-		return (EXIT_FAILURE);
+		perror("sigaction");
+		return (1);
 	}
-	ft_printf("SERVER_PID = %d\n", getpid());
-	mt_signal(SIGUSR1, mt_handler, true):
-	mt_signal(SIGUSR2, mt_handler, true); 
-	while (1337)
-		pause();	
-	return (EXIT_SUCCESS);
+	printf("PID = %d\n", getpid());
+	while (!g_stop)
+		pause();
+	return (0);
 }
