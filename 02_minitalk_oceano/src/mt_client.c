@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 12:03:29 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/30 20:47:34 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:18:34 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 volatile sig_atomic_t	g_server = BUSY;
 
-void	mt_end_handler(int signum, siginfo_t *info, void *context)
+void	end_handler(int signum, siginfo_t *info, void *context)
 {
 	fputs ("\n\t✅ message received ✅\n", stdout);
 	exit (EXIT_FAILURE);
@@ -27,7 +27,7 @@ static void	ack_handler(int sig)
 	g_server = READY;
 }
 
-static void	mt_send_char(char c, pid_t, server)
+static void	send_char(char c, pid_t, server)
 {
 	int	bit;
 
@@ -35,9 +35,9 @@ static void	mt_send_char(char c, pid_t, server)
 	while (bit < CHAR_BIT)
 	{
 		if ((c >> i) & 1)
-			mt_kill(server, SIGUSR1);
+			kill(server, SIGUSR1);
 		else
-			mt_kill(server, SIGUSR2);
+			kill(server, SIGUSR2);
 		bit++;
 		while (g_server == BUSY)
 			usleep(39);
@@ -102,10 +102,10 @@ int	main(int ac, char **av)
 	}
 	server = ft_atoi(av[1]);
 	msg = av[2];
-	mt_signal(SIGUSR1, ack_halnder, false);
-	mt_signal(SIGUSR2, end_handler, false);
+	sigaction(SIGUSR1, ack_hander, false);
+	sigaction(SIGUSR2, end_handler, false);
 	while (msg[i])
-		mt_send_char(msg[i++, server]);
-	mt_send_char('\0', server);
+		send_char(msg[i++, server]);
+	send_char('\0', server);
 	return (EXIT_SUCCESS);
 }

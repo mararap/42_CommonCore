@@ -6,45 +6,115 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 12:04:21 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/30 23:31:39 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/06 19:03:15 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minitalk.h"
 #include <stdio.h>
 
-static int	g_stop = 0;
+static	t_serv_status	g_server;
 
-static void	mt_handler(int sig, siginfo_t *x, void *y)
+static void	mt_handler_serv(int sig, siginfo_t *info, void *context)
 {
-	(void)x;
-	(void)y;
-	const char	msg[] = "Happy Birthday!\n";
+	(void)context;
+	int	bit;
 	
+	if (g_server.pid_cl == 0)
+		g_server.pid_cl = info->si_pid;
+	if (info->si_pid != g_server.pid_cl)
+		return;
 	if (sig == SIGUSR1)
+		bit = 0;
+	else if (sig == SIGUSR2)
+		bit = 1;
+	g_server.curr_byte = ((g_server.curr_byte << 1) | bit);
+	g_server.bitcount++;
+	if (g_server.bitcount == 8)
 	{
-		write(1, msg, sizeof(msg) - 1);
-		g_stop = 1;
+		g_server.ready = 1;
+		g_server.bitcount = 0;
 	}
+	kill(g_server.pid_cl, SIGUSR1);
+}
+
+static int	mt_receive_len(void)
+{
+	int				len;
+	int				i;
+	unsigned char	byte;
+	
+	len = 0;
+	i = 0;
+	while (i < 4)
+	{
+		while (!g_server.ready)
+			pause();
+		byte = g_server.curr_byte;
+		g_server.ready = 0;
+		g_server.curr_byte = 0;
+		len = (len << 8) | byte;
+		i++;
+	}
+	return (len);
+}
+
+static void	mt_sig_setup_srv(struct sigaction *sa)
+{
+	ft_memset(&g_server, 0, sizeof(g_server));
+	ft_memset(sa, 0, sizeof(*sa));
+	sigemptyset(&sa->sa_mask);
+	sa->sa_flags = SA_SIGINFO;
+	sa->sa_sigaction = mt_handler_serv;
+	if (sigaction(SIGUSR1, sa, NULL) == -1 || (sigaction(SIGUSR2, sa, NULL) == -1))
+	{
+		write (2, "Error: sigaction\n", 17);
+		exit (1);
+	}
+}
+
+static char	*mt_receive_msg(int len)
+{
+	char			*buffer;
+	int				i;
+	unsigned char	byte;
+	
+	buffer = malloc(len + 1);
+	if (!buffer)
+	{
+		write (2, "Error: malloc\n", 14);
+		exit (4);
+	}
+	i = 0;
+	while (i < len)
+	{
+		while (!g_server.ready)
+			pause();
+		byte = g_server.curr_byte;
+		g_server.ready = 0;
+		g_server.curr_byte = 0;
+		buffer[i] = byte;
+		i++;			
+	}
+	buffer[len] = '\0';
+	return (buffer);
 }
 
 int	main(void)
 {
 	struct sigaction	sa;
+	int					len;
+	char				*buffer;
 	
-	ft_memset(&sa, 0, sizeof(sa));
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_SIGINFO;
-	sa.sa_sigaction = mt_handler;
-	sigaction(SIGUSR1, &sa, NULL);
-	sigaction(SIGUSR2, &sa, NULL);
-	if (sigaction(SIGUSR1, &sa, NULL) == -1 || (sigaction(SIGUSR2, &sa, NULL) == -1))
+	mt_sig_setup_srv(&sa);
+	ft_printf ("PID = %d\n", getpid());
+	while (1)
 	{
-		perror("sigaction");
-		return (1);
+		len = mt_receive_len();
+		buffer = mt_receive_msg(len);
+		ft_printf("%s\n", buffer);
+		free(buffer);
+		g_server.pid_cl = 0;
 	}
-	printf("PID = %d\n", getpid());
-	while (!g_stop)
-		pause();
 	return (0);
 }

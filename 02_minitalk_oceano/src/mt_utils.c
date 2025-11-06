@@ -6,13 +6,13 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 17:00:21 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/29 19:32:46 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:20:30 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 
-void	mt_signal(int sig, void *handler, bool use_siginfo)
+void	Signal(int sig, void *handler, bool use_siginfo)
 {
 	struct sigaction	sa = {0};
 
@@ -35,7 +35,7 @@ void	mt_signal(int sig, void *handler, bool use_siginfo)
 
 }
 
-void	mt_kill(pid_t pid, int signum)
+void	Kill(pid_t pid, int signum)
 {
 	if (kill(pid, signum) < 0)
 	{
@@ -44,7 +44,7 @@ void	mt_kill(pid_t pid, int signum)
 	}
 }
 
-void	mt_print_pending()
+void	print_pending()
 {
 	int	i;
 	sigset_t	pending;
@@ -64,7 +64,7 @@ void	mt_print_pending()
 	ft_printf("=======================================\n\n");
 }
 
-void	mt_print_blocked()
+void	print_blocked()
 {
 	sigset_t	blocked;
 	int			i;

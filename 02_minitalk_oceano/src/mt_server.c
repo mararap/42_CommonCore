@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 12:04:21 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/29 21:14:05 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:20:19 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "../inc/minitalk.h"
 
-static void	mt_handler(int signal, siginfo_t *info, void *more_info)
+static void	handler(int signal, siginfo_t *info, void *more_info)
 {
 	static char		c = 0;
 	static int		bit = 0;
@@ -32,14 +32,14 @@ static void	mt_handler(int signal, siginfo_t *info, void *more_info)
 		if ('\0' == c)
 		{
 			write(STDOUT_FILENO, "\n", 1);
-			mt_kill(client, SIGUSR2);
+			Kill(client, SIGUSR2);
 			c = 0;
 			return ;
 		}
 		write(STDOUT_FILENO, &c, 1);
 		c = 0;
 	}
-	mt_kill(client, SIGUSR1);
+	Kill(client, SIGUSR1);
 }
 
 int	main(int ac, char **av)
@@ -50,8 +50,8 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	}
 	ft_printf("SERVER_PID = %d\n", getpid());
-	mt_signal(SIGUSR1, mt_handler, true):
-	mt_signal(SIGUSR2, mt_handler, true); 
+	Signal(SIGUSR1, mt_handler, true):
+	Signal(SIGUSR2, mt_handler, true); 
 	while (1337)
 		pause();	
 	return (EXIT_SUCCESS);
