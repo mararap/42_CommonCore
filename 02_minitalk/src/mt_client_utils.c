@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 12:03:29 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/06 19:30:49 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:20:57 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 volatile sig_atomic_t	g_ack_received = 0;
 
-void mt_handler_ack(int sig, siginfo_t *info, void *context)
+void	mt_handler_ack(int sig, siginfo_t *info, void *context)
 {
 	(void)info;
 	(void)context;
 	if (sig == SIGUSR1)
-		g_ack_received = 1;	
+		g_ack_received = 1;
 }
 
 static void	mt_send_bit(pid_t server, int bit)
 {
 	int	sig;
-	int retries;
-	
+	int	retries;
+
 	if (bit == 0)
 		sig = SIGUSR1;
 	else if (bit == 1)
@@ -60,7 +60,7 @@ static void	mt_send_char(pid_t server, unsigned char byte)
 	{
 		bit = (byte >> i) & 1;
 		mt_send_bit(server, bit);
-		i--;	
+		i--;
 	}
 }
 
@@ -76,7 +76,7 @@ void	mt_send_str(pid_t server, char *str)
 {
 	int	i;
 	int	len;
-	
+
 	i = 0;
 	len = ft_strlen(str);
 	if (len < 0 || len > 1000000)

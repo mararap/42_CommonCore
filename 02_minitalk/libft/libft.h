@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:19:25 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/11 21:45:42 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:58:02 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int					ft_atoi_base(const char *str, int str_base);
 unsigned int		ft_lcm(int i, int j);
 unsigned int		ft_gcd(unsigned int a, unsigned int b);
 int					ft_max(int i, int j);
-void				ft_error_exit();
+void				ft_error_exit(void);
 int					ft_printf(const char *c, ...);
 int					ft_putchar(char c);
 int					ft_putstr(char *s);

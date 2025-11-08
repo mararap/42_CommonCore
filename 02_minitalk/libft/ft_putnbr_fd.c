@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:30:52 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/07 09:59:55 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:56:30 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-
-// original function from circle 0
 
 void	ft_putnbr_fd(int n, int fd)
 {

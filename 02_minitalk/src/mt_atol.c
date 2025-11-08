@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mt_utils.c                                         :+:      :+:    :+:   */
+/*   mt_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 17:00:21 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/03 13:35:19 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:16:33 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static long	mt_isvalid_sign(char *str, ssize_t i)
 	}
 	return (1);
 }
+
 static bool	mt_space(char c)
 {
 	if (c == ' ' || (c >= '\t' && c <= '\r'))
@@ -71,4 +72,3 @@ long	mt_atol(char *str)
 		return ((long)INT_MIN - 1);
 	return (result * sign);
 }
-

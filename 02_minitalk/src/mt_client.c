@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 11:41:26 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/06 19:33:04 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:18:58 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	mt_sig_setup_cl(void)
 {
-	struct sigaction sa;
-	
+	struct sigaction	sa;
+
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = mt_handler_ack;
@@ -30,7 +30,7 @@ int	main(int ac, char **av)
 {
 	pid_t	server;
 	char	*message;
-	
+
 	if (ac != 3 || !av[1][0] || !av[2][0])
 	{
 		write (2, "Error: invalid input\n", 21);

@@ -6,13 +6,13 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 16:38:05 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/11 18:03:12 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:56:52 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_error_exit()
+void	ft_error_exit(void)
 {
 	write(2, "Error\n", 6);
 	exit(1);

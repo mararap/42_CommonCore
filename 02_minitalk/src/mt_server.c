@@ -6,24 +6,24 @@
 /*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 12:04:21 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/06 19:03:15 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:19:31 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minitalk.h"
 #include <stdio.h>
 
-static	t_serv_status	g_server;
+static t_serv_status	g_server;
 
 static void	mt_handler_serv(int sig, siginfo_t *info, void *context)
 {
-	(void)context;
 	int	bit;
-	
+
+	(void)context;
 	if (g_server.pid_cl == 0)
 		g_server.pid_cl = info->si_pid;
 	if (info->si_pid != g_server.pid_cl)
-		return;
+		return ;
 	if (sig == SIGUSR1)
 		bit = 0;
 	else if (sig == SIGUSR2)
@@ -43,7 +43,7 @@ static int	mt_receive_len(void)
 	int				len;
 	int				i;
 	unsigned char	byte;
-	
+
 	len = 0;
 	i = 0;
 	while (i < 4)
@@ -66,7 +66,8 @@ static void	mt_sig_setup_srv(struct sigaction *sa)
 	sigemptyset(&sa->sa_mask);
 	sa->sa_flags = SA_SIGINFO;
 	sa->sa_sigaction = mt_handler_serv;
-	if (sigaction(SIGUSR1, sa, NULL) == -1 || (sigaction(SIGUSR2, sa, NULL) == -1))
+	if (sigaction(SIGUSR1, sa, NULL) == -1
+		|| (sigaction(SIGUSR2, sa, NULL) == -1))
 	{
 		write (2, "Error: sigaction\n", 17);
 		exit (1);
@@ -78,7 +79,7 @@ static char	*mt_receive_msg(int len)
 	char			*buffer;
 	int				i;
 	unsigned char	byte;
-	
+
 	buffer = malloc(len + 1);
 	if (!buffer)
 	{
@@ -94,7 +95,7 @@ static char	*mt_receive_msg(int len)
 		g_server.ready = 0;
 		g_server.curr_byte = 0;
 		buffer[i] = byte;
-		i++;			
+		i++;
 	}
 	buffer[len] = '\0';
 	return (buffer);
@@ -105,7 +106,7 @@ int	main(void)
 	struct sigaction	sa;
 	int					len;
 	char				*buffer;
-	
+
 	mt_sig_setup_srv(&sa);
 	ft_printf ("PID = %d\n", getpid());
 	while (1)
