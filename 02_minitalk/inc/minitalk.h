@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:44:03 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/06 15:55:27 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/12 10:42:43 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_H
 # define MINITALK_H
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <signal.h>
-#include <errno.h>
-#include <limits.h>
-#include "../libft/libft.h"
-#include <stdbool.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <signal.h>
+# include <errno.h>
+# include <limits.h>
+# include "../libft/libft.h"
+# include <stdbool.h>
 
-#define MAX_RETRIES 7000
+# define MAX_RETRIES 7000
 
-typedef struct	s_serv_status
+typedef struct s_serv_status
 {
 	volatile sig_atomic_t	bitcount;
 	volatile sig_atomic_t	curr_byte;

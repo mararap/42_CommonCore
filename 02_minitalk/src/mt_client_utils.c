@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mt_client_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 12:03:29 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/08 18:20:57 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/12 10:40:26 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	mt_send_bit(pid_t server, int bit)
 	int	sig;
 	int	retries;
 
+	sig = 0;
 	if (bit == 0)
 		sig = SIGUSR1;
 	else if (bit == 1)

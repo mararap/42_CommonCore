@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mt_server.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 12:04:21 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/08 18:19:31 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/12 10:43:33 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minitalk.h"
-#include <stdio.h>
 
 static t_serv_status	g_server;
 
@@ -19,6 +18,7 @@ static void	mt_handler_serv(int sig, siginfo_t *info, void *context)
 {
 	int	bit;
 
+	bit = 0;
 	(void)context;
 	if (g_server.pid_cl == 0)
 		g_server.pid_cl = info->si_pid;
