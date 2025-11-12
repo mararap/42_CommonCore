@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 12:04:21 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/12 10:43:33 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:09:52 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	mt_handler_serv(int sig, siginfo_t *info, void *context)
 		bit = 0;
 	else if (sig == SIGUSR2)
 		bit = 1;
+	kill(g_server.pid_cl, SIGUSR1);
 	g_server.curr_byte = ((g_server.curr_byte << 1) | bit);
 	g_server.bitcount++;
 	if (g_server.bitcount == 8)
@@ -35,7 +36,6 @@ static void	mt_handler_serv(int sig, siginfo_t *info, void *context)
 		g_server.ready = 1;
 		g_server.bitcount = 0;
 	}
-	kill(g_server.pid_cl, SIGUSR1);
 }
 
 static int	mt_receive_len(void)
@@ -79,7 +79,8 @@ static char	*mt_receive_msg(int len)
 	char			*buffer;
 	int				i;
 	unsigned char	byte;
-
+	
+	byte = 0;
 	buffer = malloc(len + 1);
 	if (!buffer)
 	{

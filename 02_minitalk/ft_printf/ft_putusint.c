@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putusint.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 10:42:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/06/06 10:42:44 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/12 11:31:12 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ int	ft_putusint(unsigned int u)
 	count = ft_usintlen(u);
 	return (count);
 }
-
+/*
 #include <stdio.h>
 
-int main(void)
+int	main(void)
 {
 	ft_putusint(-4568);
-	return(0);
-}
+	return (0);
+}*/

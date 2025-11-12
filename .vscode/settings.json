@@ -1,7 +1,8 @@
 {
     "files.associations": {
-        "libft.h": "c"
-    },
+		"libft.h": "c",
+		"minitalk.h": "c"
+	},
 
     "editor.insertSpaces": false,
     "editor.tabSize": 4,

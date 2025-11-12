@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mt_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 17:00:21 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/08 18:16:33 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:49:44 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static long	mt_isvalid_sign(char *str, ssize_t i)
 {
-	if (str[i] == 45 || str[i] == 43)
+	if (str[i] == '+' || str[i] == '-')
 	{
 		if (ft_isdigit(str[i + 1]))
 		{
-			if (str[i] == 45)
+			if (str[i] == '-')
 				return (-1);
 		}
 		else
@@ -59,11 +59,11 @@ long	mt_atol(char *str)
 	sign = mt_isvalid_sign(str, i);
 	if (sign == ((long)INT_MIN - 1))
 		return ((long)INT_MIN - 1);
-	if (str[i] == 45 || str[i] == 43)
+	if (str[i] == '+' || str[i] == '-')
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		result = result * 10 + str[i] - 48;
+		result = result * 10 + str[i] - '0';
 		i++;
 	}
 	if (str[i] != '\0' && !mt_space(str[i]))

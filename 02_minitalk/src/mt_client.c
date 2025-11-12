@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mt_client.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 11:41:26 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/08 18:18:58 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:51:38 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ int	main(int ac, char **av)
 		write (2, "Error: invalid input\n", 21);
 		return (2);
 	}
+	signal(SIGINT, SIG_IGN);
 	server = (pid_t)mt_atol(av[1]);
-	if (mt_atol(av[1]) == (long)INT_MIN - 1 || server <= 0)
+	if (mt_atol(av[1]) == (long)INT_MIN - 1 || server == -1)
 	{
 		write (2, "Error: invalid PID\n", 19);
 		return (3);

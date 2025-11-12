@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 12:03:29 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/12 10:40:26 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:11:05 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	mt_send_bit(pid_t server, int bit)
 	retries = 0;
 	while (!g_ack_received && retries < MAX_RETRIES)
 	{
-		usleep(99);
+		pause();
 		retries++;
 	}
 	if (g_ack_received == 0)
