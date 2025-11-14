@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 11:41:26 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/14 11:44:59 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/14 13:04:11 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,19 @@ int	main(int ac, char **av)
 	pid_t	server;
 	char	*message;
 
+	server = 0;
 	if (ac != 3 || !av[1][0] || !av[2][0])
 	{
 		write (2, "Error: invalid input\n", 21);
 		return (2);
 	}
 	signal(SIGINT, SIG_IGN);
-	server = (pid_t)mt_atol(av[1]);
 	if (mt_atol(av[1]) == (long)INT_MIN - 1 || server == -1)
 	{
 		write (2, "Error: invalid PID\n", 19);
 		return (3);
 	}
+	server = (pid_t)mt_atol(av[1]);
 	message = av[2];
 	mt_send_str(server, message);
 	return (0);

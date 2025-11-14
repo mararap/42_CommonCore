@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 12:03:29 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/14 12:07:04 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/14 13:05:07 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,19 +80,19 @@ static void	mt_send_int(pid_t server, int num)
 
 void	mt_send_str(pid_t server, char *str)
 {
-	int	i;
-	int	len;
+	ssize_t	i;
+	size_t	len;
 
 	i = 0;
 	len = ft_strlen(str);
-	if (len < 0 || len > 1000000)
+	if (len < 0 || len > (size_t)INT_MAX)
 	{
 		write (2, "Error: invalid string lenght\n", 29);
 		exit (2);
 	}
 	mt_sig_setup_cl();
-	mt_send_int(server, len);
-	while (i < len)
+	mt_send_int(server, (int)len);
+	while ((size_t)i < len)
 	{
 		mt_send_char(server, (unsigned char)str[i]);
 		i++;
