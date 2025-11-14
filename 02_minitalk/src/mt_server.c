@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 12:04:21 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/13 16:31:56 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/14 11:56:10 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static char	*mt_receive_msg(int len)
 	char			*buffer;
 	int				i;
 	unsigned char	byte;
-	
+
 	byte = 0;
 	buffer = malloc(len + 1);
 	if (!buffer)
@@ -99,6 +99,7 @@ static char	*mt_receive_msg(int len)
 		i++;
 	}
 	buffer[len] = '\0';
+	kill(g_server.pid_cl, SIGUSR2);
 	return (buffer);
 }
 

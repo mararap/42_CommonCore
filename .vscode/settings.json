@@ -1,7 +1,11 @@
 {
     "files.associations": {
 		"libft.h": "c",
-		"minitalk.h": "c"
+		"minitalk.h": "c",
+		"signal.h": "c",
+		"limits.h": "c",
+		"stdbool.h": "c",
+		"stdlib.h": "c"
 	},
 
     "editor.insertSpaces": false,

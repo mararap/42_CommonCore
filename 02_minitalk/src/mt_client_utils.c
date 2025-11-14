@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 12:03:29 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/13 16:34:23 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/14 12:07:04 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,14 @@ void	mt_handler_ack(int sig, siginfo_t *info, void *context)
 	(void)context;
 	if (sig == SIGUSR1)
 		g_ack_received = 1;
+	else if (sig == SIGUSR2)
+	{
+		write (1, "\n### message received ###\n\n", 27);
+		g_ack_received = 1;
+	}
 }
 
-static void	mt_send_bit(pid_t server, int bit)
+void	mt_send_bit(pid_t server, int bit)
 {
 	int	sig;
 	int	retries;
@@ -41,7 +46,7 @@ static void	mt_send_bit(pid_t server, int bit)
 	retries = 0;
 	while (!g_ack_received && retries < MAX_RETRIES)
 	{
-		usleep(67);
+		usleep(66);
 		retries++;
 	}
 	if (g_ack_received == 0)

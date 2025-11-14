@@ -6,10 +6,11 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 17:00:21 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/12 13:49:44 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/14 10:33:23 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "../inc/minitalk.h"
 
 static long	mt_isvalid_sign(char *str, ssize_t i)
