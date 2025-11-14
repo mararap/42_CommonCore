@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 11:41:26 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/14 13:04:11 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/14 20:08:37 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int ac, char **av)
 		return (2);
 	}
 	signal(SIGINT, SIG_IGN);
-	if (mt_atol(av[1]) == (long)INT_MIN - 1 || server == -1)
+	if (mt_atol(av[1]) == (long)INT_MIN - 1 || mt_atol(av[1]) == -1)
 	{
 		write (2, "Error: invalid PID\n", 19);
 		return (3);
