@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:58:32 by marapovi          #+#    #+#             */
-/*   Updated: 2025/04/24 12:58:37 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/14 13:26:17 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

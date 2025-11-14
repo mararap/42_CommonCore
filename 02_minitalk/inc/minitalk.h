@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 19:44:03 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/14 13:15:46 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/14 14:54:05 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdlib.h> //malloc, free, exit
 # include <limits.h> //INT_MIN (ft_atol)
 # include "../libft/libft.h"
-# include "../ft_printf/libftprintf.h"
 # include <stdbool.h> //true/false (ft_atol)
 # include <sys/types.h> //pid_t
 # include <signal.h> //signals

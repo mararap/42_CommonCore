@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 12:03:29 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/14 13:05:07 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/14 14:50:53 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	mt_send_str(pid_t server, char *str)
 
 	i = 0;
 	len = ft_strlen(str);
-	if (len < 0 || len > (size_t)INT_MAX)
+	if (len < 0 || len > 2000000)
 	{
 		write (2, "Error: invalid string lenght\n", 29);
 		exit (2);
