@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ps_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:20:52 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 21:34:08 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/14 20:33:20 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
+
+bool	ps_check_longoverflow(char **str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != NULL)
+	{
+		if (ft_strlen(str[i]) > 11)
+			return (false);
+		i++;
+	}
+	return (true);
+	
+}
 
 // takes av and joins all the arguments to one string //
 char	*ps_input(char **av)
@@ -21,6 +36,8 @@ char	*ps_input(char **av)
 
 	i = 1;
 	if (!av[i] || !av[i][0])
+		return (NULL);
+	if (!ps_check_longoverflow(av))
 		return (NULL);
 	str = ft_strjoin(av[i++], " ");
 	if (!str)
@@ -88,3 +105,4 @@ bool	ps_isdoub(t_node **stack, int num)
 	}
 	return (false);
 }
+
