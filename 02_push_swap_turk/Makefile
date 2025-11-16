@@ -14,7 +14,7 @@
 NAME	=	push_swap
 CC		=	cc
 CFLAGS	=	-Wall -Wextra -Werror -I libft
-RM		=	rm -f
+RM		=	rm -rf
 AR		=	ar crs
 
 # **************************************************************************** #
@@ -53,16 +53,16 @@ $(LIBFT):
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR)
 	@echo "LIBFT library successfully created."
 
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
 # Compilation
 $(OBJ_DIR)/main.o: main.c
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-#$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-#	@$(CC) $(CFLAGS) -c $< -o $@
-
 # Linking
-$(NAME): $(OBJS) $(LIBFT)
+$(NAME): $(OBJ_DIR) $(OBJS) $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 	@echo "PUSH_SWAP executable successfully created."
 
@@ -75,6 +75,7 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME)
+	$(RM) $(OBJ_DIR)
 	@echo "PUSH_SWAP root is clean."
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) fclean
 	@echo "LIBFT %.a-file removed."

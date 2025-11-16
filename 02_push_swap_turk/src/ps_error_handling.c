@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_error_handling.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 20:40:24 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 21:33:52 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/15 18:24:18 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,7 @@ void	ft_free_av(char **av)
 
 void	ps_error_exit(t_node **a, t_node **b, char **av, char *input)
 {
-	if (a)
-		ps_free_stack(a);
-	if (b)
-		ps_free_stack(b);
-	if (av)
-		ft_free_av(av);
-	if (input)
-		free(input);
+	ps_free_all(a, b, av, input);
 	write (2, "Error\n", 6);
 	exit(1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_stack_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:02:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 21:34:19 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/15 18:02:53 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ long	ps_atol_check(char *str)
 	sign = ps_isvalid_sign(str, i);
 	if (sign == ((long)INT_MIN - 1))
 		return ((long)INT_MIN - 1);
-	if (str[i] == 45 || str[i] == 43)
+	if (str[i] == '-' || str[i] == '+')
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
@@ -109,6 +109,8 @@ void	ps_stack_init(t_node **stack, char *input)
 		ps_error_exit(stack, NULL, split_input, input);
 	while (split_input[i])
 	{
+		if (ft_strlen(split_input[i]) > 11)
+			ps_error_exit(stack, NULL, split_input, input);
 		value = ps_atol_check(split_input[i]);
 		if (value == (long)INT_MIN - 1)
 			ps_error_exit(stack, NULL, split_input, input);
