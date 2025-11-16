@@ -11,22 +11,41 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	push_swap
-CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror -I libft
-RM		=	rm -rf
-AR		=	ar crs
+NAME		:=	push_swap
+CC			:=	cc
+
+# C PreProcessor flags - only needed when compiling src files
+CPPFLAGS	:=	-I inc -I libft
+
+# C compiler flags - needed for compiling src files AND for linking
+CFLAGS		:=	-Wall -Wextra -Werror
+
+# Flags/Options passed to the linker
+LDFLAGS		:=	-L libft
+
+# Libraries to pass to the linker
+LDLIBS 		:=	-lft
+
+# set RM to remove directories and containing files recursiveley
+RM			:=	rm -rf
+
+# UNIX archive utility for creating static library
+#	c to explicitly create the library and silence warning if its not there
+#	r to replace existing symbols (functions) in the library and/or add new
+#	s to create an index for the library so linker will find symbols quickly
+AR			:=	ar crs
+
 
 # **************************************************************************** #
 #                                   PATHS                                      #
 # **************************************************************************** #
 
-SRC_DIR			=		src
-OBJ_DIR			=		obj
-LIBFT_DIR		=		./libft
-LIBFT			=		$(LIBFT_DIR)/libft.a
+SRC_DIR			:=		src
+OBJ_DIR			:=		obj
+LIBFT_DIR		:=		libft
+LIBFT			:=		$(LIBFT_DIR)/libft.a
 
-SRC				=		../main.c\
+SRC				:=		main.c\
 						ps_parsing.c\
 						ps_stack_init.c\
 						ps_stack_utils.c\
@@ -40,8 +59,8 @@ SRC				=		../main.c\
 						ps_error_handling.c
 
 
-SRCS		=			$(addprefix $(SRC_DIR)/, $(SRC))
-OBJS		=			$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+SRCS		:=			$(addprefix $(SRC_DIR)/,$(SRC))
+OBJS		:=			$(patsubst %.c,$(OBJ_DIR)/%.o,$(notdir $(SRC:.c=.o)))
 
 # **************************************************************************** #
 #                                   RULES                                      #
@@ -49,33 +68,37 @@ OBJS		=			$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 all: $(LIBFT) $(NAME)
 
+# create libft.a -> --no-print-directory to silence make's 'entering dir...'
 $(LIBFT):
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR)
 	@echo "LIBFT library successfully created."
 
+# tell make where to look for %.c files (needed if .c-files in different dirs)
+vpath %.c $(SRC_DIR) .
+
+# create OBJ_DIR; -p for 'only if missing'
 $(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)
 
 # Compilation
 $(OBJ_DIR)/main.o: main.c
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 # Linking
 $(NAME): $(OBJ_DIR) $(OBJS) $(LIBFT)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+	@$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
 	@echo "PUSH_SWAP executable successfully created."
 
 clean:
-	@$(RM) $(OBJS)
-	@echo "PUSH_SWAP OBJ_DIR is clean."
+	@$(RM) $(OBJ_DIR)
+	@echo "PUSH_SWAP targets removed."
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) clean
 	@echo "LIBFT %.o-files removed." 
 
 
 fclean: clean
 	@$(RM) $(NAME)
-	$(RM) $(OBJ_DIR)
 	@echo "PUSH_SWAP root is clean."
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) fclean
 	@echo "LIBFT %.a-file removed."
