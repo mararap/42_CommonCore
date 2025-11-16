@@ -1,12 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/16 17:55:37 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/16 17:55:38 by marapovi         ###   ########.fr       */
+/*   Created: 2025/06/04 12:19:19 by marapovi          #+#    #+#             */
+/*   Updated: 2025/10/11 21:39:54 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
+int	ft_putstr(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (ft_putstr("(null)"));
+	while (s[i])
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
+	return (i);
+}

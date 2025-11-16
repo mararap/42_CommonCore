@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ps_op_swap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 18:23:10 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 21:34:05 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/16 19:35:41 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "push_swap.h"
 
 static void	ps_swap(t_node **head)
 {

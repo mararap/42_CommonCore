@@ -6,19 +6,19 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 22:59:15 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/15 18:06:14 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/16 19:51:29 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <unistd.h> //write, read
-# include <limits.h> //int_max - int_min
-# include <stdlib.h> //malloc, free
-# include "../libft/libft.h"
-# include <stdbool.h> //true/false
-# include <sys/types.h> // ssize_t
+# include <unistd.h>	// write, read
+# include <limits.h>	// int_max - int_min
+# include <stdlib.h>	// malloc, free
+# include <libft.h>		// libft
+# include <stdbool.h>	// true/false
+# include <sys/types.h>	// ssize_t
 
 typedef struct s_node
 {

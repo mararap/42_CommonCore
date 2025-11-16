@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ps_sorting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:54:14 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 21:34:16 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/16 19:35:59 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "push_swap.h"
 
 bool	ps_issorted(t_node *stack)
 {

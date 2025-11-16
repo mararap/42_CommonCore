@@ -6,11 +6,11 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 20:40:24 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/15 18:24:18 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/16 19:30:48 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "push_swap.h"
 
 void	ps_free_stack(t_node **stack)
 {

@@ -5,12 +5,17 @@
 #                                                     +:+ +:+         +:+      #
 #    By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/08/11 19:06:07 by marapovi          #+#    #+#              #
-#    Updated: 2025/11/16 19:44:30 by marapovi         ###   ########.fr        #
+#    Created: 2025/11/16 17:55:51 by marapovi          #+#    #+#              #
+#    Updated: 2025/11/16 20:16:49 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:=	push_swap
+
+# **************************************************************************** #
+#                                 VARIABLES                                    #
+# **************************************************************************** #
+
+NAME		:=	fractol
 CC			:=	cc
 
 # C PreProcessor flags - exclusively needed when compiling src files
@@ -44,22 +49,11 @@ SRC_DIR			:=		src
 LIBFT_DIR		:=		libft
 LIBFT			:=		$(LIBFT_DIR)/libft.a
 
-SRC				:=		ps_main.c\
-						ps_parsing.c\
-						ps_stack_init.c\
-						ps_stack_utils.c\
-						ps_op_push.c\
-						ps_op_swap.c\
-						ps_op_rotate.c\
-						ps_op_reverserotate.c\
-						ps_sorting.c\
-						ps_sorting_utils.c\
-						ps_sorting_utils2.c\
-						ps_error_handling.c
+SRC				:=		fo_main.c
 
-
-SRCS		:=			$(addprefix $(SRC_DIR)/,$(SRC))
-OBJS		:=			$(patsubst %.c,$(OBJ_DIR)/%.o,$(notdir $(SRC)))
+SRC				:=		$(addprefix $(SRC_DIR)/,$(SRC))
+OBJ				:=		$(addprefix $(OBJ_DIR)/,$(OBJ))
+# OBJ			:=		$(patsubst %.c,$(OBJ_DIR)/%.o,$(notdir $(SRC)))
 
 # **************************************************************************** #
 #                                   RULES                                      #
@@ -67,38 +61,29 @@ OBJS		:=			$(patsubst %.c,$(OBJ_DIR)/%.o,$(notdir $(SRC)))
 
 all: $(LIBFT) $(NAME)
 
-# create libft.a -> --no-print-directory to silence make's 'entering dir...'
 $(LIBFT):
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR)
 	@echo "     ✅ LIBFT library successfully created."
 
-# tell make where to look for %.c files (needed if .c-files in different dirs)
-vpath %.c $(SRC_DIR) ..
+# vpath %.c $(SRC_DIR) ..
 
-# Compilation: create OBJ_DIR if missing, then compile c-files to o-files
-# and stop (-c) to keep the Makefile more readable and in case of multiple
-# executibles (seperate linking)
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
-# Linking
 $(NAME): $(OBJS) $(LIBFT)
 	@$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
-	@echo "     ✅ PUSH_SWAP executable successfully created."
+	@echo "     ✅ FRACTOL executable successfully created."
 
 clean:
 	@$(RM) $(OBJ_DIR)
-	@echo "     🧹 PUSH_SWAP	= clean."
+	@echo "     🧹 FRACTOL	= clean."
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) clean
-	@echo "     🧹 LIBFT 		= clean." 
-
-# --no-print-directory silences 'entering directory.../leaving directory...'
-# -C for 'do the thing (make) inside of that directory'
+	@echo "     🧹 LIBFT 		= clean."
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "     🧹 PUSH_SWAP executable removed."
+	@echo "     🧹 FRACTOL executable removed."
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) fclean
 	@echo "     🧹 LIBFT library removed."
 

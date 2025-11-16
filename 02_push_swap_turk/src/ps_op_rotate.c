@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ps_op_rotate.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:09:27 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 21:34:02 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/16 19:35:36 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "push_swap.h"
 
 void	ps_rotate(t_node **stack)
 {

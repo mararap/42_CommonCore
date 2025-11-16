@@ -6,11 +6,11 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:20:52 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/15 18:05:45 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/16 19:35:46 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "push_swap.h"
 
 // takes av and joins all the arguments to one string //
 char	*ps_input(char **av)

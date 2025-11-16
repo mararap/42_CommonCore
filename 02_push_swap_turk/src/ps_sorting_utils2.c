@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ps_sorting_utils2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 21:44:53 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 21:34:13 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/16 19:35:55 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "push_swap.h"
 
 void	ps_set_curr(t_node *stack)
 {

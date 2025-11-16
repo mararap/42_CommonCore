@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ps_stack_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:15:37 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 21:34:22 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/16 19:36:08 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "push_swap.h"
 
 t_node	*ps_find_tail(t_node *head)
 {

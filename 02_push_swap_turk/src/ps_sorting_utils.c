@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ps_sorting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:28:58 by marapovi          #+#    #+#             */
-/*   Updated: 2025/10/28 21:34:10 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/16 19:35:50 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "push_swap.h"
 
 static void	ps_rr_until(t_node **a, t_node **b, t_node *stop)
 {
