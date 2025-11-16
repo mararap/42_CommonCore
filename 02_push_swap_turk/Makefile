@@ -40,8 +40,8 @@ AR			:=	ar crs
 #                                   PATHS                                      #
 # **************************************************************************** #
 
-SRC_DIR			:=		src
 OBJ_DIR			:=		obj
+SRC_DIR			:=		src
 LIBFT_DIR		:=		libft
 LIBFT			:=		$(LIBFT_DIR)/libft.a
 
@@ -60,7 +60,7 @@ SRC				:=		main.c\
 
 
 SRCS		:=			$(addprefix $(SRC_DIR)/,$(SRC))
-OBJS		:=			$(patsubst %.c,$(OBJ_DIR)/%.o,$(notdir $(SRC:.c=.o)))
+OBJS		:=			$(patsubst %.c,$(OBJ_DIR)/%.o,$(notdir $(SRC)))
 
 # **************************************************************************** #
 #                                   RULES                                      #
@@ -71,37 +71,34 @@ all: $(LIBFT) $(NAME)
 # create libft.a -> --no-print-directory to silence make's 'entering dir...'
 $(LIBFT):
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR)
-	@echo "LIBFT library successfully created."
+	@echo "     ✅ LIBFT library successfully created."
 
 # tell make where to look for %.c files (needed if .c-files in different dirs)
-vpath %.c $(SRC_DIR) .
+vpath %.c $(SRC_DIR) ..
 
-# create OBJ_DIR; -p for 'only if missing'
-$(OBJ_DIR):
+# Compilation: create OBJ_DIR if missing, then compile c-files to o-files
+# and stop (-c)
+$(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
-
-# Compilation
-$(OBJ_DIR)/main.o: main.c
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 # Linking
-$(NAME): $(OBJ_DIR) $(OBJS) $(LIBFT)
+$(NAME): $(OBJS) $(LIBFT)
 	@$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
-	@echo "PUSH_SWAP executable successfully created."
+	@echo "     ✅ PUSH_SWAP executable successfully created."
 
 clean:
 	@$(RM) $(OBJ_DIR)
-	@echo "PUSH_SWAP targets removed."
+	@echo "     🧹 PUSH_SWAP	= clean."
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) clean
-	@echo "LIBFT %.o-files removed." 
+	@echo "     🧹 LIBFT 		= clean." 
 
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "PUSH_SWAP root is clean."
+	@echo "     🧹 PUSH_SWAP executable removed."
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) fclean
-	@echo "LIBFT %.a-file removed."
+	@echo "     🧹 LIBFT library removed."
 
 re: fclean all
 

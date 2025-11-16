@@ -15,7 +15,7 @@ NAME_CLIENT		:=		client
 NAME_SERVER		:=		server
 CC				:=		cc
 CFLAGS			:=		-Wall -Wextra -Werror
-RM				:=		rm -f
+RM				:=		rm -rf
 AR				:=		ar crs
 
 # **************************************************************************** #
@@ -29,10 +29,11 @@ LIBFT_DIR		:=		libft
 INCLUDES		:=		-I $(INC_DIR) -I $(LIBFT_DIR)
 LIBFT			:=		$(LIBFT_DIR)/libft.a
 
+# List of source files
 SRCS_CLIENT		:=		mt_client.c	mt_atol.c mt_client_utils.c
 SRCS_SERVER		:=		mt_server.c
 
-# Target: tell the Makefile where to put .o-files
+# Target: tell the Makefile where to find .c-files and where to put .o-files
 OBJS_CLIENT		:=		$(addprefix $(OBJ_DIR)/,$(SRCS_CLIENT:.c=.o))
 OBJS_SERVER		:=		$(addprefix $(OBJ_DIR)/,$(SRCS_SERVER:.c=.o))
 
@@ -64,7 +65,7 @@ $(NAME_SERVER): $(OBJS_SERVER) $(LIBFT)
 	@echo "SERVER executable successfully created."
 
 clean:
-	@$(RM) -rf $(OBJ_DIR)
+	@$(RM) $(OBJ_DIR)
 	@echo "MINITALK OBJ_DIR removed."
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) clean
 	@echo "LIBFT %.o-files removed." 
