@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:55:37 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/16 20:42:12 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/17 11:54:34 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,24 @@
 
 int	main(int ac, char **av)
 {
-	char	*julia;
-	char	*mandelbrot;
-
-	julia = "Julia";
-	mandelbrot = "Mandelbrot";
-	if (av[1] == julia)
+	if (ac < 2 || ac > 4)
+		return (write(1, "wrong number of arguments\n", 26), 1);
+	if (ft_strncmp(av[1], "Julia", 6) == 0)
 	{
+		if (av[2])
+			(void)av[2];
+		if (av[3])
+			(void)av[3];
+		return (fo_mlx_main());
 	}
-	else if (av[1] == mandelbrot)
+	else if (ft_strncmp(av[1], "Mandelbrot", 11) == 0)
 	{
+		if (av[2])
+			(void)av[2];
+		if (av[3])
+			(void)av[3];
+		return (fo_mlx_main());
 	}
-	return (0);
+	write (1, "unknown fractal\n", 16);
+	return (1);
 }

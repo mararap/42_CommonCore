@@ -6,7 +6,7 @@
 #    By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 19:06:07 by marapovi          #+#    #+#              #
-#    Updated: 2025/11/16 19:44:30 by marapovi         ###   ########.fr        #
+#    Updated: 2025/11/17 11:24:11 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ RM			:=	rm -rf
 #	c to explicitly create the library and silence warning if its not there
 #	r to replace existing symbols (functions) in the library and/or add new
 #	s to create an index for the library so linker will find symbols quickly
-AR			:=	ar crs
+#AR			:=	ar crs
 
 
 # **************************************************************************** #

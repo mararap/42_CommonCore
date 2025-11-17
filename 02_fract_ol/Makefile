@@ -6,7 +6,7 @@
 #    By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/16 17:55:51 by marapovi          #+#    #+#              #
-#    Updated: 2025/11/16 20:16:49 by marapovi         ###   ########.fr        #
+#    Updated: 2025/11/17 12:03:39 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ CFLAGS		:=	-Wall -Wextra -Werror
 LDFLAGS		:=	-L libft
 
 # Libraries to pass to the linker
-LDLIBS 		:=	-lft
+LDLIBS 		:=	-lft -lmlx -lX11 -lXext -lm
 
 # set RM to remove directories and containing files recursiveley
 RM			:=	rm -rf
@@ -37,7 +37,7 @@ RM			:=	rm -rf
 #	c to explicitly create the library and silence warning if its not there
 #	r to replace existing symbols (functions) in the library and/or add new
 #	s to create an index for the library so linker will find symbols quickly
-AR			:=	ar crs
+#A	R		:=	ar crs
 
 
 # **************************************************************************** #
@@ -49,11 +49,12 @@ SRC_DIR			:=		src
 LIBFT_DIR		:=		libft
 LIBFT			:=		$(LIBFT_DIR)/libft.a
 
-SRC				:=		fo_main.c
+SRC				:=		fo_main.c\
+						fo_mlx_main.c
 
 SRC				:=		$(addprefix $(SRC_DIR)/,$(SRC))
-OBJ				:=		$(addprefix $(OBJ_DIR)/,$(OBJ))
-# OBJ			:=		$(patsubst %.c,$(OBJ_DIR)/%.o,$(notdir $(SRC)))
+#OBJ			:=		$(addprefix $(OBJ_DIR)/,$(OBJ))
+OBJ				:=		$(patsubst %.c,$(OBJ_DIR)/%.o,$(notdir $(SRC)))
 
 # **************************************************************************** #
 #                                   RULES                                      #
@@ -65,14 +66,14 @@ $(LIBFT):
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR)
 	@echo "     ✅ LIBFT library successfully created."
 
-# vpath %.c $(SRC_DIR) ..
+#vpath %.c $(SRC_DIR) ..
 
-$(OBJ_DIR)/%.o: %.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
-$(NAME): $(OBJS) $(LIBFT)
-	@$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
+$(NAME): $(OBJ) $(LIBFT)
+	@$(CC) $(CFLAGS) $(LDFLAGS) $(OBJ) $(LDLIBS) -o $(NAME)
 	@echo "     ✅ FRACTOL executable successfully created."
 
 clean:

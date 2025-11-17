@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 22:59:44 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/16 19:53:15 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/17 12:58:53 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int ac, char **av)
 
 	a = NULL;
 	b = NULL;
+	input = NULL;
 	if (ac < 2)
 		return (0);
 	if (ac == 2 && av[1][0] == '\0')
