@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 20:17:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/17 17:43:20 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/17 20:46:09 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,9 @@ typedef struct	s_fractol
 	int		endian;
 }			t_fractol;
 
-
-int					main(int ac, char **av);
-int					fo_mlx_main(void);
-double				fo_atof(char *av);
-int					fo_is_space(char c);
+int			main(int ac, char **av);
+int			fo_mlx_main(void);
+double		fo_atof(char *av);
+int			fo_is_space(char c);
 
 #endif
