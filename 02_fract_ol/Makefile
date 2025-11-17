@@ -6,7 +6,7 @@
 #    By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/16 17:55:51 by marapovi          #+#    #+#              #
-#    Updated: 2025/11/17 12:03:39 by marapovi         ###   ########.fr        #
+#    Updated: 2025/11/17 18:17:40 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,9 @@ LIBFT_DIR		:=		libft
 LIBFT			:=		$(LIBFT_DIR)/libft.a
 
 SRC				:=		fo_main.c\
-						fo_mlx_main.c
+						fo_mlx_main.c\
+						fo_atof.c\
+						fo_helpers.c
 
 SRC				:=		$(addprefix $(SRC_DIR)/,$(SRC))
 #OBJ			:=		$(addprefix $(OBJ_DIR)/,$(OBJ))
@@ -80,7 +82,7 @@ clean:
 	@$(RM) $(OBJ_DIR)
 	@echo "     🧹 FRACTOL	= clean."
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) clean
-	@echo "     🧹 LIBFT 		= clean."
+	@echo "     🧹 LIBFT 	= clean."
 
 fclean: clean
 	@$(RM) $(NAME)
