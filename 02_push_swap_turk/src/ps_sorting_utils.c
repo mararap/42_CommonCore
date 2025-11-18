@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:28:58 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/16 19:35:50 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/18 19:06:05 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ static void	ps_rr_until(t_node **a, t_node **b, t_node *stop)
 {
 	while (*a != stop->target && *b != stop)
 		ps_rr(a, b);
-	ps_set_curr(*a);
-	ps_set_curr(*b);
+	ps_set_above_med(*a);
+	ps_set_above_med(*b);
 }
 
 static void	ps_rrr_until(t_node **a, t_node **b, t_node *stop)
 {
 	while (*a != stop->target && *b != stop)
 		ps_rrr(a, b);
-	ps_set_curr(*a);
-	ps_set_curr(*b);
+	ps_set_above_med(*a);
+	ps_set_above_med(*b);
 }
 
 static void	ps_cheapest_to_top(t_node **b, t_node *to_top)

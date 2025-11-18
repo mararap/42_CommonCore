@@ -6,13 +6,13 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 21:44:53 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/16 19:35:55 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/18 19:05:18 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_set_curr(t_node *stack)
+void	ps_set_above_med(t_node *stack)
 {
 	ssize_t	i;
 	ssize_t	median;
@@ -39,9 +39,9 @@ static void	ps_find_target(t_node *a, t_node *b)
 	t_node	*target;
 	long	target_index;
 
-	target = NULL;
 	while (b)
 	{
+		target = NULL;
 		target_index = LONG_MAX;
 		curr_a = a;
 		while (curr_a)
@@ -112,9 +112,8 @@ t_node	*ps_find_cheapest(t_node *b)
 
 void	ps_nodes_init(t_node *a, t_node *b)
 {
-	ps_set_curr(a);
-	ps_set_curr(b);
+	ps_set_above_med(a);
+	ps_set_above_med(b);
 	ps_find_target(a, b);
 	ps_calc_cost(a, b);
-	ps_find_cheapest(b);
 }

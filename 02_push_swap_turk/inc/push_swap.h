@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 22:59:15 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/16 19:51:29 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/18 18:08:00 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ps_min_to_top(t_node **a);
 void	ps_push_prep(t_node **a, t_node **b);
 t_node	*ps_find_cheapest(t_node *b);
 void	ps_nodes_init(t_node *a, t_node *b);
-void	ps_set_curr(t_node *stack);
+void	ps_set_above_med(t_node *stack);
 void	ps_free_stack(t_node **stack);
 void	ft_free_av(char **av);
 void	ps_error_exit(t_node **a, t_node **b, char **av, char *input);

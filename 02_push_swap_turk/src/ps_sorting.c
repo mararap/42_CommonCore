@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:54:14 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/16 19:35:59 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/18 18:50:43 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	ps_minisort(t_node **a, t_node **b)
 	min = NULL;
 	while (len_a-- > 3)
 	{
-		ps_set_curr(*a);
+		ps_set_above_med(*a);
 		min = ps_find_min(*a);
 		if (min->above_med)
 			while (*a != min)
@@ -89,7 +89,7 @@ void	ps_sort(t_node **a, t_node **b)
 			ps_push_prep(a, b);
 		}
 	}
-	ps_set_curr(*a);
+	ps_set_above_med(*a);
 	ps_min_to_top(a);
 }
 
@@ -98,7 +98,7 @@ void	ps_min_to_top(t_node **a)
 	t_node	*min;
 
 	min = NULL;
-	ps_set_curr(*a);
+	ps_set_above_med(*a);
 	min = ps_find_min(*a);
 	if (min->above_med)
 		while (*a != min)

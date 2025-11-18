@@ -6,7 +6,7 @@
 #    By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 19:06:07 by marapovi          #+#    #+#              #
-#    Updated: 2025/11/17 11:24:11 by marapovi         ###   ########.fr        #
+#    Updated: 2025/11/18 10:13:53 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ OBJS		:=			$(patsubst %.c,$(OBJ_DIR)/%.o,$(notdir $(SRC)))
 
 all: $(LIBFT) $(NAME)
 
-# create libft.a -> --no-print-directory to silence make's 'entering dir...'
+# create libft.a  (--no-print-directory to silence make's 'entering dir...')
 $(LIBFT):
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR)
 	@echo "     ✅ LIBFT library successfully created."
@@ -94,7 +94,7 @@ clean:
 	@echo "     🧹 LIBFT 		= clean." 
 
 # --no-print-directory silences 'entering directory.../leaving directory...'
-# -C for 'do the thing (make) inside of that directory'
+# -C for 'do the thing (make) inside of the following directory'
 
 fclean: clean
 	@$(RM) $(NAME)
