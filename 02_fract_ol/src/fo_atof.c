@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 16:34:28 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/17 20:01:19 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/19 19:49:05 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static ssize_t	fo_skip_spaces(char *str)
 	ssize_t	i;
 
 	i = 0;
-	while (fo_is_space(str[i]))
+	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
 		i++;
 	return (i);
 }

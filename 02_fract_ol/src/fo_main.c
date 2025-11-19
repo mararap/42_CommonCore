@@ -6,14 +6,14 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:55:37 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/17 18:31:15 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/19 21:01:49 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdio.h>
 
-int	fo_display_julia(char **av)
+int	fo_run_julia(char **av)
 {
 	double	a;
 	double	b;
@@ -39,12 +39,13 @@ int	fo_display_julia(char **av)
 
 int	main(int ac, char **av)
 {
+	t_fractal	
 	if (ac < 2 || ac > 4)
 		return (write(1, "wrong number of arguments\n", 26), 1);
 	if (ft_strncmp(av[1], "Julia", 6) == 0)
 	{
 		write(1, "Julia\n", 6);
-		return (fo_display_julia(av));
+		return (fo_run_julia(av));
 	}
 	else if (ft_strncmp(av[1], "Mandelbrot", 11) == 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 20:17:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/19 16:11:42 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/19 21:20:03 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@
 #define WIDTH 500
 #define HEIGHT 500
 
+#define ORANGE 0xF59127
+#define PINK 0xF527F5
+#define BLUE 0x231FFD
+#define GREEN 0x27F527
+
 typedef struct	s_atof
 {
 	double	result;
@@ -31,14 +36,21 @@ typedef struct	s_atof
 	ssize_t	i;
 }				t_atof;
 
-typedef struct	s_fractol
+typedef struct	s_img
 {
-	void	*img;
+	void	*img_ptr;
 	char	*addr;
 	int		bits_per_pixel;
-	int		line_length;
+	int		line_len;
 	int		endian;
-}			t_fractol;
+}				t_img;
+
+typedef struct	s_fractal
+{
+	void	*init;
+	void	*window;
+	t_img	img;
+}				t_fractal;
 
 int			main(int ac, char **av);
 int			fo_mlx_main(void);

@@ -6,25 +6,25 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 11:18:33 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/19 16:27:39 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/19 21:22:24 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	my_mlx_pixel_put(t_fractol *data, int x, int y, int color)
+static void	fo_mlx_pixel_put(t_fractol *data, int x, int y, int color)
 {
 	char	*pixel;
 	
 	pixel = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)pixel = color;
 }
-
+/*
 int	fo_mlx_main(void)
 {
 	void		*mlx;
 	void		*mlx_win;
-	t_fractol	img;
+	t_img		img;
 	int			x;
 	int			y;
 
@@ -49,4 +49,4 @@ int	fo_mlx_main(void)
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 	return (0);
-}
+}*/

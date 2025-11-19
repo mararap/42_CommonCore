@@ -6,15 +6,10 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 17:39:33 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/17 17:40:35 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/19 19:49:19 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	fo_is_space(char c)
-{
-	if (c == ' ' || (c >= '\t' && c <= '\r'))
-		return (1);
-	return (0);
-}
+
