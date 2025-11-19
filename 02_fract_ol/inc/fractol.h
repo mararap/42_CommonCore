@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 20:17:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/17 20:46:09 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/19 16:11:42 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <libft.h>
 # include <mlx.h>
 # include <limits.h>
+
+#define WIDTH 500
+#define HEIGHT 500
 
 typedef struct	s_atof
 {
