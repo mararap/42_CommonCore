@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 20:17:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/19 21:20:03 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/19 23:07:51 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,22 @@ typedef struct	s_fractal
 	void	*init;
 	void	*window;
 	t_img	img;
+	
 }				t_fractal;
+
+typedef struct	s_complex
+{
+	double	x;
+	double	y;
+}				t_complex;
 
 int			main(int ac, char **av);
 int			fo_mlx_main(void);
 double		fo_atof(char *av);
 int			fo_is_space(char c);
+double		scale_map(double unscaled, double new_min, double new_max,
+					double old_min, double old_max);
+t_complex	square_complex(t_complex z);
+t_complex	sum_complex(t_complex z1, t_complex z2);
 
 #endif
