@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:54:14 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/18 18:50:43 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/20 13:56:22 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	ps_sort(t_node **a, t_node **b)
 		while (*b)
 		{
 			ps_nodes_init(*a, *b);
-			ps_push_prep(a, b);
+			ps_prep_and_push(a, b);
 		}
 	}
 	ps_set_above_med(*a);

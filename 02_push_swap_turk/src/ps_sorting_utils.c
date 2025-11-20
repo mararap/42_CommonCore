@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 23:28:58 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/18 19:06:05 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/20 13:19:13 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	ps_target_to_top(t_node **a, t_node *to_top)
 			ps_rra(a);
 }
 
-void	ps_push_prep(t_node **a, t_node **b)
+void	ps_prep_and_push(t_node **a, t_node **b)
 {
 	t_node	*cheapest;
 

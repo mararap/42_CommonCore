@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 21:44:53 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/18 19:05:18 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/20 13:26:09 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,23 @@ static void	ps_find_target(t_node *a, t_node *b)
 {
 	t_node	*curr_a;
 	t_node	*target;
-	long	target_index;
+	long	target_value;
 
 	while (b)
 	{
 		target = NULL;
-		target_index = LONG_MAX;
+		target_value = LONG_MAX;
 		curr_a = a;
 		while (curr_a)
 		{
-			if (curr_a->value > b->value && curr_a->value < target_index)
+			if (curr_a->value > b->value && curr_a->value < target_value)
 			{
-				target_index = curr_a->value;
+				target_value = curr_a->value;
 				target = curr_a;
 			}
 			curr_a = curr_a->next;
 		}
-		if (target_index == LONG_MAX)
+		if (target_value == LONG_MAX)
 			b->target = ps_find_min(a);
 		else
 			b->target = target;
