@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 16:34:28 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/19 19:49:05 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/20 17:59:18 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ double	fo_atof(char *str)
 	fo_parse_int(&st, str);
 	if (str[st.i] == '.')
 		fo_parse_fract(&st, str);
-	if (str[st.i] != '\0' && !fo_is_space(str[st.i]))
+	if ((str[st.i] != '\0') && (!((str[st.i] == ' ')
+		|| ((str[st.i] >= '\t') && (str[st.i] <= '\r')))))
 		return ((long)INT_MIN - 1);
 	if ((st.result * st.sign) > INT_MAX || (st.result * st.sign) < INT_MIN)
 		return ((long)INT_MIN - 1);

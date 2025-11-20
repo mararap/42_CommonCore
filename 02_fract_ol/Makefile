@@ -6,7 +6,7 @@
 #    By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/16 17:55:51 by marapovi          #+#    #+#              #
-#    Updated: 2025/11/19 20:52:29 by marapovi         ###   ########.fr        #
+#    Updated: 2025/11/20 19:30:55 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,8 +52,8 @@ LIBFT			:=		$(LIBFT_DIR)/libft.a
 SRC				:=		fo_main.c\
 						fo_mlx_main.c\
 						fo_atof.c\
-						#fo_helpers.c\#
-						fo_math.c
+						fo_math.c\
+						fo_error_handling.c
 
 SRC				:=		$(addprefix $(SRC_DIR)/,$(SRC))
 #OBJ			:=		$(addprefix $(OBJ_DIR)/,$(OBJ))

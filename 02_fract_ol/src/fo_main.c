@@ -6,13 +6,13 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:55:37 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/19 21:01:49 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/20 16:44:19 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdio.h>
-
+/*
 int	fo_run_julia(char **av)
 {
 	double	a;
@@ -35,24 +35,31 @@ int	fo_run_julia(char **av)
 		return (1);
 	}
 	return (fo_mlx_main());
-}
+}*/
 
 int	main(int ac, char **av)
 {
-	t_fractal	
-	if (ac < 2 || ac > 4)
+	t_fractal	fractal;
+	
+	if (!(ac == 2 || ac == 4))
 		return (write(1, "wrong number of arguments\n", 26), 1);
-	if (ft_strncmp(av[1], "Julia", 6) == 0)
+	else if (((ac == 4) && (ft_strncmp(av[1], "Julia", 6) == 0))
+		|| ((ac == 2) && (ft_strncmp(av[1], "Mandelbrot", 11) == 0)))
 	{
-		write(1, "Julia\n", 6);
-		return (fo_run_julia(av));
+		fractal.name = av[1];
+		if (ft_strncmp(fractal.name, "Julia", 6) == 0)
+		{
+			fractal.julia_x = fo_atof(av[2]);
+			fractal.julia_y = fo_atof(av[3]);
+		}
+		fo_fractal_init(&fractal);
+		fo_render(&fractal);
+		mlx_loop(fractal.init);
 	}
-	else if (ft_strncmp(av[1], "Mandelbrot", 11) == 0)
+	else
 	{
-		write(1, "Mandelbrot\n", 11);
-		// call display mandelbrot
-		return (fo_mlx_main());
+		write (1, "unknown fractal\n", 16);
+		exit(EXIT_FAILURE);
 	}
-	write (1, "unknown fractal\n", 16);
-	return (1);
+	return (0);
 }
