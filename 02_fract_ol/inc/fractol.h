@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 20:17:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/20 19:54:28 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/21 14:10:43 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <libft.h>
 # include <mlx.h>
 # include <limits.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
 
 #define WIDTH 800
 #define HEIGHT 800
@@ -78,7 +80,6 @@ typedef struct	s_clean
 	void		*init;
 }			t_clean;
 
-
 int			main(int ac, char **av);
 int			fo_mlx_main(void);
 double		fo_atof(char *av);
@@ -88,14 +89,17 @@ double		fo_create_map(double unscaled, double new_min, double new_max,
 t_complex	fo_square_complex(t_complex z);
 t_complex	fo_sum_complex(t_complex z1, t_complex z2);
 void		fo_render(t_fractal *fractal);
-int			fo_key_handler(int keysym, t_fractal *fractal);
 void		fo_fractal_init(t_fractal *fractal);
 void		fo_data_init(t_fractal *fractal);
 void		fo_error_exit(t_clean *data);
-void		fo_pixel_put(t_img *data, int x, int y, int color);
+void		fo_put_pixel(t_img *data, int x, int y, int color);
 t_complex	fo_complex_square(t_complex z);
 t_complex	fo_complex_sum(t_complex z1, t_complex z2);
 void		fo_handle_pixel (int x, int y, t_fractal *fractal);
-
+int			fo_handle_key(int keysym, t_fractal *fractal);
+void		fo_events_init(t_fractal *fractal);
+int			fo_handle_closing(t_fractal *fractal);
+int			fo_handle_mouse(int button, int x, int y, t_fractal *fractal);
+int			fo_track_julia(int x, int y, t_fractal *fractal);
 
 #endif

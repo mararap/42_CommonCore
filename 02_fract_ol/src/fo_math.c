@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 20:00:13 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/20 20:01:43 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/21 12:57:41 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	fo_fractal_init(t_fractal *fractal)
 	if(fractal->init == NULL)
 		fo_error_exit(&data);
 	data.init = fractal->init;
-	fractal->window = mlx_new_window(fractal->init, WIDTH, HEIGHT, fractal->name);
+	fractal->window = mlx_new_window(fractal->init,
+									WIDTH,
+									HEIGHT,
+									fractal->name);
 	if (fractal->window == NULL)
 		fo_error_exit(&data);
 	fractal->img.ptr = mlx_new_image(fractal->init, WIDTH, HEIGHT);	
@@ -31,7 +34,7 @@ void	fo_fractal_init(t_fractal *fractal)
 											&fractal->img.bits_per_pixel,
 											&fractal->img.line_len,
 											&fractal->img.endian);
-//	fo_events_init();
+	fo_events_init(fractal);
 	fo_data_init(fractal);
 }
 
@@ -64,6 +67,20 @@ double	fo_create_map(double unscaled, double new_min, double new_max,
 			/ (old_max - old_min) + new_min);
 }
 
+void	fo_mandel_or_julia(t_complex *z, t_complex *c, t_fractal *fractal)
+{
+	if (ft_strncmp(fractal->name, "Julia", 6) == 0)
+	{
+		c->x = fractal->julia_x;
+		c->y = fractal->julia_y;
+	}
+	else
+	{
+		c->x = z->x;
+		c->y = z->y;
+	}
+}
+
 void	fo_handle_pixel (int x, int y, t_fractal *fractal)
 {
 	t_complex	z;
@@ -72,22 +89,23 @@ void	fo_handle_pixel (int x, int y, t_fractal *fractal)
 	int			color;
 
 	i = 0;
-	z.x = fo_create_map(x, -2, +2, 0, WIDTH);
-	z.y = fo_create_map(y, +2, -2, 0, HEIGHT);
-	c.x = fo_create_map(x, -2, +2, 0, WIDTH);
-	c.y = fo_create_map(y, +2, -2, 0, HEIGHT);
+	z.x = (fo_create_map(x, -2, +2, 0, WIDTH) * fractal->zoom)
+		+ fractal->shift_x;
+	z.y = (fo_create_map(y, +2, -2, 0, HEIGHT)* fractal->zoom)
+		+ fractal->shift_y;
+	fo_mandel_or_julia(&z, &c, fractal);
 	while (i < fractal->iter_def)
 	{
 		z = fo_complex_sum(fo_complex_square(z), c);
-		if ((z.x * z.x) + (z.y * z.y) > (double)fractal->escape_value)
+		if ((z.x * z.x) + (z.y * z.y) > fractal->escape_value)
 		{
 			color = fo_create_map(i, BLACK, WHITE, 0, fractal->iter_def);
-			fo_pixel_put(&fractal->img, x, y, color);
+			fo_put_pixel(&fractal->img, x, y, color);
 			return ;
 		}
 		i++;
 	}
-	fo_pixel_put(&fractal->img, x, y, BLACK);
+	fo_put_pixel(&fractal->img, x, y, BLACK);
 }
 
 t_complex	fo_complex_sum(t_complex z1, t_complex z2)

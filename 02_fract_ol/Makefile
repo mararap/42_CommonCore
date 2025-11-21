@@ -6,7 +6,7 @@
 #    By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/16 17:55:51 by marapovi          #+#    #+#              #
-#    Updated: 2025/11/20 19:30:55 by marapovi         ###   ########.fr        #
+#    Updated: 2025/11/21 11:25:32 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,8 @@ SRC				:=		fo_main.c\
 						fo_mlx_main.c\
 						fo_atof.c\
 						fo_math.c\
-						fo_error_handling.c
+						fo_error_handling.c\
+						fo_events.c
 
 SRC				:=		$(addprefix $(SRC_DIR)/,$(SRC))
 #OBJ			:=		$(addprefix $(OBJ_DIR)/,$(OBJ))

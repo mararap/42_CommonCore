@@ -6,13 +6,13 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 11:18:33 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/20 19:41:53 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/21 12:47:59 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	fo_pixel_put(t_img *img, int x, int y, int color)
+void	fo_put_pixel(t_img *img, int x, int y, int color)
 {
 	int	offset;
 	
@@ -20,27 +20,26 @@ void	fo_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)(img->addr + offset) = color;
 }
 
-/*
-void	events_init(t_fractal *fractal)
+void	fo_events_init(t_fractal *fractal)
 {
 	mlx_hook(fractal->window,
 			KeyPress,
 			KeyPressMask,
-			key_handle,
+			fo_handle_key,
 			fractal);
 
 	mlx_hook(fractal->window,
 			ButtonPress,
 			ButtonPressMask,
-			mouse_handle,
+			fo_handle_mouse,
 			fractal);
 			
 	mlx_hook(fractal->window,
 			DestroyNotify,
 			StructureNotifyMask,
-			clese_handle,
+			fo_handle_closing,
 			fractal);
-}*/
+}
 /*
 int	fo_mlx_main(void)
 {
