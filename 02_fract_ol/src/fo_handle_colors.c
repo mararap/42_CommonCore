@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 18:38:32 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/21 23:45:01 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/22 01:42:01 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,27 @@ int	fo_make_color(int hex_min, int hex_max, double mix_factor)
 
 void	fo_fill_color_variants_remainder(t_rgb *color)
 {
-	int	p;
-	int	i;
+	int	set;
+	int	col;
+	int	start;
 
-	p = 0;
-	while (p < 3)
+	start = COLORS_PER_SET;
+	set = 0;
+	while (set < MAX_COLOR_SETS_COUNT)
 	{
-		i = 3;
-		while (i < COLOR_SIZE)
+		if (start >= MAX_COLORS_PER_SET)
 		{
-			color->color_variant[p][i] = color->color_variant[p][2];
-			i++;
+			set++;
+			continue ;
 		}
-		p++;
-	}
-	i = 0;
-	while (i < COLOR_SIZE)
-	{
-		color->color_variant[3][i] = BLACK;
-		i++;
+		col = start;
+		while (col < MAX_COLORS_PER_SET)
+		{
+			color->color_variant[set][col]
+				= color->color_variant[set][start - 1];
+			col++;
+		}
+		set++;
 	}
 }
 
@@ -81,8 +83,19 @@ void	fo_init_colors(t_rgb *color)
 	color->color_variant[2][0]	= SEAFOAM_GLEAM;
 	color->color_variant[2][1]	= SOLAR_FLASH;
 	color->color_variant[2][2]	= INDIGO_NIGHT;
+	color->color_variant[3][0]	= BLACK;
+	color->color_variant[3][1]	= WHITE;
+	color->color_variant[3][2]	= GREY;
+	color->color_variant[4][0]	= SANDSTONE;
+	color->color_variant[4][1]	= OLIVE_DRAB;
+	color->color_variant[4][2]	= MIDNIGHT_TEAL;
+	color->color_variant[5][0]	= HOT_MAGENTA;
+	color->color_variant[5][1]	= VIOLET_BLOOM;
+	color->color_variant[5][2]	= SKY_RIPPLE;
+	color->color_variant[6][0]	= SANDSTONE;
+    color->color_variant[6][1]	= OLIVE_DRAB;
+    color->color_variant[6][2]	= MIDNIGHT_TEAL;
 	fo_fill_color_variants_remainder(color);
-
 	color->color_variant_index	= 0;
 }
 

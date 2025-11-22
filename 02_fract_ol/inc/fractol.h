@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 20:17:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/21 23:53:11 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/22 01:43:41 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,13 @@
 #define WIDTH 	800
 #define HEIGHT	800
 
+#define	ITER_MAX 200000
+
 #define DEFAULT_CENTRAL_BACKGROUND	0x000000
-#define COLOR_SIZE					8
-#define COLOR_COUNT					4
+#define	MAX_COLORS_PER_SET			8
+#define COLORS_PER_SET				3
+#define	MAX_COLOR_SETS_COUNT		20
+#define COLOR_SETS_COUNT			7
 
 // Neon Sunset
 #define FLAMING_ROSE			0xFF3E6B
@@ -58,6 +62,15 @@
 #define BLACK					0x000000
 #define WHITE					0xFFFFFF
 #define GREY					0x7F7F7F
+
+// Terra Twilight
+#define SANDSTONE				0xC97E5D
+#define OLIVE_DRAB				0x6B8E23
+#define MIDNIGHT_TEAL			0x003F5C
+
+#define NEON_LIME				0x00FF66
+#define SLATE_DUSK				0x2F4F4F
+#define ELECTRIC_PURPLE			0x8A00FF
 
 // just bc of line-limit
 typedef struct	s_atof
@@ -90,7 +103,7 @@ typedef struct	s_rgb
 	int	r;
 	int	g;
 	int	b;
-	int	color_variant[COLOR_COUNT][COLOR_SIZE];
+	int	color_variant[COLOR_SETS_COUNT][COLORS_PER_SET];
 	int	color_variant_index;
 //	int	color_start;
 //	int	color_end;
@@ -163,9 +176,9 @@ void		fo_handle_pixel(int x, int y, t_fractal *fractal, t_rgb *color);
 int			fo_handle_key(int keysym, t_fractal *fractal);
 void		fo_init_events(t_fractal *fractal);
 int			fo_handle_closing(t_fractal *fractal);
-int			fo_handle_mouse(int button, t_fractal *fractal);
+int			fo_handle_mouse(int button, int x, int y, t_fractal *fractal);
 int			fo_track_julia(int x, int y, t_fractal *fractal);
-void		fo_mandel_or_julia(t_complex *z, t_complex *c, t_fractal *fractal);
+//void		fo_mandel_or_julia(t_complex *z, t_complex *c, t_fractal *fractal);
 int			fo_handle_color_keys(int keysym, t_fractal *fractal);
 int			fo_set_color_channel(int color1, int color2, double mix_factor);
 int			fo_make_color(int hex_min, int hex_max, double mix_factor);

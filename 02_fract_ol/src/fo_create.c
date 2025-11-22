@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 23:20:54 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/21 23:51:12 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/22 01:44:52 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static void	fo_put_pixel(t_img *img, int x, int y, t_rgb *color)
 {
 	int	offset;
 	
+	if (!img || !img->addr)
+		return ;
 	offset = (y * img->line_len + (x * (img->bits_per_pixel / 8)));
 	*(unsigned int *)(img->addr + offset) = color->code;
 }
@@ -46,15 +48,22 @@ static void	fo_pixel_to_complex(int x, int y, t_fractal *fractal, t_complex *z)
 
 static int	fo_inter_to_color(t_fractal *fractal, t_rgb *color, int iter)
 {
-	double	mix_factor;
+	int		idx;
 	int		start;
 	int		end;
 	
-	mix_factor = (double)iter / (double)fractal->iter_def;
-	start =	color->color_variant[color->color_variant_index][0];
-	end = color->color_variant[color->color_variant_index][1];
+	if (color->color_variant_index < 0
+		|| color->color_variant_index >= MAX_COLOR_SETS_COUNT)
+		color->color_variant_index = 0;
+	idx = color->color_variant_index;
+	start =	color->color_variant[idx][0];
+	end = color->color_variant[idx][1];
+	if (start == 0)
+		start = GREY;
+	if (end == 0)
+		end = WHITE;
 	return (fo_make_color(start, end,
-					mix_factor));	
+						(double)iter/(double)fractal->iter_def));
 }
 
 void	fo_handle_pixel(int x, int y, t_fractal *fractal, t_rgb *color)
@@ -62,11 +71,11 @@ void	fo_handle_pixel(int x, int y, t_fractal *fractal, t_rgb *color)
 	t_complex	z;
 	t_complex	c;
 	int			i;
-	double		mix_factor;
 	
 	c.x = 0;
 	c.y = 0;
 	i = 0;
+	fo_pixel_to_complex(x, y, fractal, &z);
 	fo_mandel_or_julia(&z, &c, fractal);
 	color->code = DEFAULT_CENTRAL_BACKGROUND;
 	while (i < fractal->iter_def)
