@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 20:17:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/22 18:15:25 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/22 18:19:13 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 #define COLORS_PER_SET				3
 #define	MAX_COLOR_SETS_COUNT		20
 #define COLOR_SETS_COUNT			7
-/*
+
 // Neon Sunset
 #define FLAMING_ROSE			0xFF3E6B
 #define TANGERINE_FLAME			0xFF8A00
@@ -71,7 +71,7 @@
 #define NEON_LIME				0x00FF66
 #define SLATE_DUSK				0x2F4F4F
 #define ELECTRIC_PURPLE			0x8A00FF
-*/
+
 // just bc of line-limit
 typedef struct	s_atof
 {
@@ -102,8 +102,8 @@ typedef struct	s_rgb
 	int	r;
 	int	g;
 	int	b;
-	int	variant[MAX_COLOR_SETS_COUNT][MAX_COLORS_PER_SET];
-	int	variant_index;
+	int	color_variant[MAX_COLOR_SETS_COUNT][MAX_COLORS_PER_SET];
+	int	color_variant_index;
 	int	code;
 }			t_rgb;
 
