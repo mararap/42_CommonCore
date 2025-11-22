@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 17:39:33 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/22 00:55:19 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/22 17:39:20 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ int	fo_handle_closing(t_fractal *fractal)
 	exit(EXIT_SUCCESS);
 }
 
-int	fo_handle_color_keys(int keysym, t_fractal *fractal)
+static int	fo_handle_color_keys(int keysym, t_fractal *fractal)
 {
 	t_rgb	*color;
 	
 	color = fractal->color;
 	if (keysym == XK_h || keysym == XK_H)
 		color->color_variant_index = (color->color_variant_index - 1
-								+ COLOR_COUNT)
-								% COLOR_COUNT;
+								+ COLOR_SETS_COUNT)
+								% COLOR_SETS_COUNT;
 	else if (keysym == XK_l || keysym == XK_L)
 		color->color_variant_index = (color->color_variant_index + 1)
-								% COLOR_COUNT;
+								% COLOR_SETS_COUNT;
 	return (0);
 }
 
@@ -55,7 +55,7 @@ static void	fo_handle_iter_keys(int keysym, t_fractal *fractal)
 	}
 }
 
-int	fo_handle_key(int keysym, t_fractal *fractal)
+int	fo_handle_keys(int keysym, t_fractal *fractal)
 {
 	if (keysym == XK_Escape)
 		fo_handle_closing(fractal);

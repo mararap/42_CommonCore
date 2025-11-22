@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 16:34:28 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/21 18:25:07 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/22 16:16:22 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,3 +84,20 @@ double	fo_atof(char *str)
 		return ((long)INT_MIN - 1);
 	return (st.result * st.sign);
 }
+/*
+#include <stdio.h>
+
+int	main (int ac, char **av)
+{
+	int	i;
+	double	d;
+
+	i = 0;
+	while (i < ac)
+	{
+		d = fo_atof(av[i]);
+		printf("%d\n", d);
+		i++;
+	}
+	return (0);
+}*/

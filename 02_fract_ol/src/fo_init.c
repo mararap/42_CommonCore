@@ -6,23 +6,11 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 22:30:44 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/22 00:55:38 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/22 18:02:56 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-int	fo_color_map(int iter, t_fractal *fractal, t_rgb *color)
-{
-	int idx;
-	int	p;
-
-	if (iter >= fractal->iter_def || fractal->iter_def == 0)
-		return (color->color_variant[color->color_variant_index][0]);
-	p = color->color_variant_index;
-	idx = (iter * (COLOR_SIZE - 1)) / fractal->iter_def;
-	return (color->color_variant[p][idx + 1]);
-}
 
 void	fo_render(t_fractal *fractal, t_rgb *color)
 {
@@ -52,6 +40,59 @@ void	fo_render(t_fractal *fractal, t_rgb *color)
 		}
 }
 
+static int	fo_track_julia(int x, int y, t_fractal *fractal)
+{
+	t_rgb	*color;
+	
+	color = fractal->color;
+	if (ft_strncmp(fractal->name, "Julia", 6))
+	{
+		fractal->julia_x = fo_create_map(x, -2, +2, 0, WIDTH)
+							* fractal->zoom + fractal->shift_x;
+		fractal->julia_y = fo_create_map(y, +2, -2, 0, HEIGHT)
+							* fractal->zoom + fractal->shift_y;
+		fo_render(fractal, color);
+	}
+	return (0);
+}
+
+static void	fo_init_events(t_fractal *fractal)
+{
+	mlx_hook(fractal->window,
+			KeyPress,
+			KeyPressMask,
+			fo_handle_keys,
+			fractal);
+
+	mlx_hook(fractal->window,
+			ButtonPress,
+			ButtonPressMask,
+			fo_handle_mouse,
+			fractal);
+
+	mlx_hook(fractal->window,
+			MotionNotify,
+			PointerMotionMask,
+			fo_track_julia,
+			fractal);
+			
+	mlx_hook(fractal->window,
+			DestroyNotify,
+			StructureNotifyMask,
+			fo_handle_closing,
+			fractal);
+}
+
+static void	fo_init_data(t_fractal *fractal, t_rgb *color)
+{
+	fractal->escape_value		 	= 4;
+	fractal->iter_def 				= 100;
+	fractal->shift_x 				= 0.0;
+	fractal->shift_y 				= 0.0;
+	fractal->zoom 					= 1.0;
+	fo_init_colors(color);
+}
+
 void	fo_init_fractal(t_fractal *fractal, t_rgb *color)
 {
 	t_clean	data;
@@ -79,45 +120,3 @@ void	fo_init_fractal(t_fractal *fractal, t_rgb *color)
 	fo_init_data(fractal, color);
 }
 
-int	fo_track_julia(int x, int y, t_fractal *fractal)
-{
-	t_rgb	*color;
-	
-	color = fractal->color;
-	if (ft_strncmp(fractal->name, "Julia", 6))
-	{
-		fractal->julia_x = fo_create_map(x, -2, +2, 0, WIDTH)
-							* fractal->zoom + fractal->shift_x;
-		fractal->julia_y = fo_create_map(y, +2, -2, 0, HEIGHT)
-							* fractal->zoom + fractal->shift_y;
-		fo_render(fractal, color);
-	}
-	return (0);
-}
-
-void	fo_init_events(t_fractal *fractal)
-{
-	mlx_hook(fractal->window,
-			KeyPress,
-			KeyPressMask,
-			fo_handle_key,
-			fractal);
-
-	mlx_hook(fractal->window,
-			ButtonPress,
-			ButtonPressMask,
-			fo_handle_mouse,
-			fractal);
-
-	mlx_hook(fractal->window,
-			MotionNotify,
-			PointerMotionMask,
-			fo_track_julia,
-			fractal);
-			
-	mlx_hook(fractal->window,
-			DestroyNotify,
-			StructureNotifyMask,
-			fo_handle_closing,
-			fractal);
-}

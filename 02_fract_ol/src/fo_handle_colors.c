@@ -6,13 +6,13 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 18:38:32 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/22 01:42:01 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/22 17:48:30 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-int	fo_set_color_channel(int color1, int color2, double mix_factor)
+static int	fo_set_color_channel(int color1, int color2, double mix_factor)
 {
 	double	new_color;
 	int		rounded;
@@ -46,7 +46,7 @@ int	fo_make_color(int hex_min, int hex_max, double mix_factor)
 	return((color.r << 16) | (color.g << 8) | color.b);	
 }
 
-void	fo_fill_color_variants_remainder(t_rgb *color)
+static void	fo_fill_color_variants_remainder(t_rgb *color)
 {
 	int	set;
 	int	col;
@@ -98,13 +98,15 @@ void	fo_init_colors(t_rgb *color)
 	fo_fill_color_variants_remainder(color);
 	color->color_variant_index	= 0;
 }
-
-void	fo_init_data(t_fractal *fractal, t_rgb *color)
+/*
+int	fo_color_map(int iter, t_fractal *fractal, t_rgb *color)
 {
-	fractal->escape_value		 	= 4;
-	fractal->iter_def 				= 100;
-	fractal->shift_x 				= 0.0;
-	fractal->shift_y 				= 0.0;
-	fractal->zoom 					= 1.0;
-	fo_init_colors(color);
-}
+	int idx;
+	int	p;
+
+	if (iter >= fractal->iter_def || fractal->iter_def == 0)
+		return (color->color_variant[color->color_variant_index][0]);
+	p = color->color_variant_index;
+	idx = (iter * (COLORS_PER_SET - 1)) / fractal->iter_def;
+	return (color->color_variant[p][idx + 1]);
+}*/

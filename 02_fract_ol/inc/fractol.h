@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 20:17:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/22 01:43:41 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/22 18:15:25 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
-#define WIDTH 	800
-#define HEIGHT	800
+#define WIDTH 	400
+#define HEIGHT	400
 
 #define	ITER_MAX 200000
 
@@ -32,7 +32,7 @@
 #define COLORS_PER_SET				3
 #define	MAX_COLOR_SETS_COUNT		20
 #define COLOR_SETS_COUNT			7
-
+/*
 // Neon Sunset
 #define FLAMING_ROSE			0xFF3E6B
 #define TANGERINE_FLAME			0xFF8A00
@@ -71,7 +71,7 @@
 #define NEON_LIME				0x00FF66
 #define SLATE_DUSK				0x2F4F4F
 #define ELECTRIC_PURPLE			0x8A00FF
-
+*/
 // just bc of line-limit
 typedef struct	s_atof
 {
@@ -81,7 +81,6 @@ typedef struct	s_atof
 	ssize_t		i;
 }			t_atof;
 
-// struct where to buffer image before rendering
 typedef struct	s_img
 {
 	void		*ptr;
@@ -103,10 +102,8 @@ typedef struct	s_rgb
 	int	r;
 	int	g;
 	int	b;
-	int	color_variant[COLOR_SETS_COUNT][COLORS_PER_SET];
-	int	color_variant_index;
-//	int	color_start;
-//	int	color_end;
+	int	variant[MAX_COLOR_SETS_COUNT][MAX_COLORS_PER_SET];
+	int	variant_index;
 	int	code;
 }			t_rgb;
 
@@ -160,28 +157,33 @@ typedef struct	s_clean
 }			t_clean;
 
 int			main(int ac, char **av);
-int			fo_mlx_main(void);
 double		fo_atof(char *av);
-int			fo_is_space(char c);
 double		fo_create_map(double unscaled, double new_min, double new_max,
 					double old_min, double old_max);
 void		fo_render(t_fractal *fractal, t_rgb *color);
 void		fo_init_fractal(t_fractal *fractal, t_rgb *color);
-void		fo_init_data(t_fractal *fractal, t_rgb *color);
+//void		fo_init_data(t_fractal *fractal, t_rgb *color);
 void		fo_error_exit(t_clean *data);
 //void		fo_put_pixel(t_img *data, int x, int y, t_rgb *color);
 t_complex	fo_complex_square(t_complex z);
 t_complex	fo_complex_sum(t_complex z1, t_complex z2);
+
+// events
+
+//void		fo_init_events(t_fractal *fractal);
 void		fo_handle_pixel(int x, int y, t_fractal *fractal, t_rgb *color);
-int			fo_handle_key(int keysym, t_fractal *fractal);
-void		fo_init_events(t_fractal *fractal);
+int			fo_handle_keys(int keysym, t_fractal *fractal);
 int			fo_handle_closing(t_fractal *fractal);
 int			fo_handle_mouse(int button, int x, int y, t_fractal *fractal);
-int			fo_track_julia(int x, int y, t_fractal *fractal);
-//void		fo_mandel_or_julia(t_complex *z, t_complex *c, t_fractal *fractal);
-int			fo_handle_color_keys(int keysym, t_fractal *fractal);
-int			fo_set_color_channel(int color1, int color2, double mix_factor);
+//int			fo_track_julia(int x, int y, t_fractal *fractal);
+//void			fo_mandel_or_julia(t_complex *z, t_complex *c, t_fractal *fractal);
+//int			fo_handle_color_keys(int keysym, t_fractal *fractal);
+//int			fo_set_color_channel(int color1, int color2, double mix_factor);
+
+// colors
+
+void		fo_init_colors(t_rgb *color);
 int			fo_make_color(int hex_min, int hex_max, double mix_factor);
-void		fo_fill_color_variants_remainder(t_rgb *color);
+//void		fo_fill_color_variants_remainder(t_rgb *color);
 
 #endif

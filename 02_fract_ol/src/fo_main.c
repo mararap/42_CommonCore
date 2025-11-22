@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:55:37 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/21 22:56:09 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/22 18:14:36 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	main(int ac, char **av)
 			fractal.julia_x = fo_atof(av[2]);
 			fractal.julia_y = fo_atof(av[3]);
 		}
-		fo_init_fractal(&fractal, &color);
-		fo_render(&fractal, &color);
+		fo_init_fractal(&fractal);
+		fo_render(&fractal);
 		mlx_loop(fractal.init);
 	}
 	else
