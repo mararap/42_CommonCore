@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 18:38:32 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/23 02:39:52 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/23 19:30:37 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,31 +81,31 @@ void	fo_init_colors(t_fractal *fractal)
 {
 	fractal->color->color_variant[0][0]	= DEEP_SPACE_BG;
     fractal->color->color_variant[0][1]	= NEON_AQUA;
-    fractal->color->color_variant[0][2]	= HOT_PINK;
+//    fractal->color->color_variant[0][2]	= HOT_PINK;
 
-    fractal->color->color_variant[1][0]	= SOLAR_POP_BG;
-    fractal->color->color_variant[1][1]	= ELECTRIC_YELLOW;
-    fractal->color->color_variant[1][2]	= TANGERINE_POP;
+    fractal->color->color_variant[1][1]	= SOLAR_POP_BG;
+//    fractal->color->color_variant[1][1]	= ELECTRIC_YELLOW;
+    fractal->color->color_variant[1][0]	= TANGERINE_POP;
 
     fractal->color->color_variant[2][0]	= ARCTIC_BG;
-    fractal->color->color_variant[2][1]	= ICE_CYAN;
-    fractal->color->color_variant[2][2]	= LIME_SPARK;
+//	  fractal->color->color_variant[2][1]	= ICE_CYAN;
+    fractal->color->color_variant[2][1]	= LIME_SPARK;
 
     fractal->color->color_variant[3][0]	= NIGHT_CHALK_BG;
     fractal->color->color_variant[3][1]	= CHALK_WHITE;
-    fractal->color->color_variant[3][2]	= SLATE_BLUE;
+//    fractal->color->color_variant[3][2]	= SLATE_BLUE;
 
-    fractal->color->color_variant[4][0]	= EARTHEN_BG;
-    fractal->color->color_variant[4][1]	= BURNED_SAND;
-    fractal->color->color_variant[4][2]	= EMERALD_SPRING;
+    fractal->color->color_variant[4][1]	= EARTHEN_BG;
+//    fractal->color->color_variant[4][1]	= BURNED_SAND;
+    fractal->color->color_variant[4][0]	= EMERALD_SPRING;
 
     fractal->color->color_variant[5][0]	= INFERNO_BG;
-    fractal->color->color_variant[5][1]	= NEON_LIME;
-    fractal->color->color_variant[5][2]	= ULTRA_VIOLET;
+//    fractal->color->color_variant[5][1]	= NEON_LIME;
+    fractal->color->color_variant[5][1]	= ULTRA_VIOLET;
 
-	fractal->color->color_variant[6][0]	= VOLT_EMBER_BG;
-    fractal->color->color_variant[6][1]	= VOLT_EMBER_LAVA;
-    fractal->color->color_variant[6][2]	= VOLT_EMBER_CYAN;
+//	fractal->color->color_variant[6][0]	= VOLT_EMBER_BG;
+    fractal->color->color_variant[6][0]	= VOLT_EMBER_LAVA;
+    fractal->color->color_variant[6][1]	= VOLT_EMBER_CYAN;
 	
 /*	fractal->color->color_variant[5][0]	= INFERNO_BG;
 	fractal->color->color_variant[5][1]	= NEON_LIME;
@@ -133,3 +133,4 @@ void	fo_init_colors(t_fractal *fractal)
     fractal->color->color_variant[6][2]	= MIDNIGHT_TEAL;*/
 	fo_fill_color_variants_remainder(fractal);
 	fractal->color->color_variant_index	= 0;
+}

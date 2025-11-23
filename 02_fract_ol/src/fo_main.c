@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:55:37 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/22 21:03:49 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/23 20:02:59 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	main(int ac, char **av)
 {
 	t_fractal	fractal;
 	
+	if (ac < 2 || av[1][0] == 0)
+		return (fo_prompt_exit(&fractal), 0);
 	if (!(ac == 2 || ac == 4))
 		return (write(1, "wrong number of arguments\n", 26), 1);
 	else if (((ac == 4) && (ft_strncmp(av[1], "Julia", 6) == 0))

@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 22:30:44 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/23 02:34:20 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/23 20:48:24 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ void	fo_init_fractal(t_fractal *fractal)
 											&fractal->img.bits_per_pixel,
 											&fractal->img.line_len,
 											&fractal->img.endian);
+	if (!(ft_strncmp(fractal->name, "Mandelbrot", 10)))
+		fractal->is_mandelbrot = 1;
 	fo_init_events(fractal);
 	fo_init_data(fractal);
 }
-

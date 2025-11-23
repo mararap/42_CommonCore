@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 17:39:33 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/22 23:31:42 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/23 20:09:34 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 int	fo_handle_closing(t_fractal *fractal)
 {
-	mlx_destroy_image(fractal->init,
-					fractal->img.ptr);
-	mlx_destroy_window(fractal->init,
-					fractal->window);
-	mlx_destroy_display(fractal->init);
-	free(fractal->init);
+	fo_cleanup(fractal);
 	exit(EXIT_SUCCESS);
 }
 
