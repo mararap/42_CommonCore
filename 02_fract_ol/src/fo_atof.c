@@ -6,13 +6,13 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 16:34:28 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/23 21:42:17 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/23 22:48:56 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static long	fo_isvalid_sign(char *str, ssize_t i)
+static long	fo_isvalid_sign(char *str, ssize_t i, t_fractal *fractal)
 {
 	if (str[i] == '-' || str[i] == '+')
 	{
@@ -22,7 +22,7 @@ static long	fo_isvalid_sign(char *str, ssize_t i)
 				return (-1);
 		}
 		else
-			return ((long)INT_MIN - 1);
+			fo_prompt_cleanup_exit(fractal);
 	}
 	return (1);
 }
@@ -58,7 +58,7 @@ static void	fo_parse_fract(t_atof *st, char *str)
 	}
 }
 
-double	fo_atof(char *str)
+double	fo_atof(char *str, t_fractal *fractal)
 {
 	t_atof	st;
 
@@ -67,11 +67,11 @@ double	fo_atof(char *str)
 	st.sign = 1;
 	st.i = 0;
 	if (!str || !str[0])
-		return ((long)INT_MIN - 1);
+		fo_prompt_cleanup_exit(fractal);
 	st.i = fo_skip_spaces(str);
-	st.sign = fo_isvalid_sign(str, st.i);
+	st.sign = fo_isvalid_sign(str, st.i, fractal);
 	if (st.sign == ((long)INT_MIN - 1))
-		return ((long)INT_MIN - 1);
+		fo_prompt_cleanup_exit(fractal);
 	if (str[st.i] == '-' || str[st.i] == '+')
 		st.i++;
 	fo_parse_int(&st, str);
@@ -79,9 +79,9 @@ double	fo_atof(char *str)
 		fo_parse_fract(&st, str);
 	if ((str[st.i] != '\0') && (!((str[st.i] == ' ')
 				|| ((str[st.i] >= '\t') && (str[st.i] <= '\r')))))
-		return ((long)INT_MIN - 1);
+		fo_prompt_cleanup_exit(fractal);
 	if ((st.result * st.sign) > INT_MAX || (st.result * st.sign) < INT_MIN)
-		return ((long)INT_MIN - 1);
+		fo_prompt_cleanup_exit(fractal);
 	return (st.result * st.sign);
 }
 /*

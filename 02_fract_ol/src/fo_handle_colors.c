@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 18:38:32 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/23 21:35:46 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/23 22:06:10 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	fo_init_colors(t_fractal *fractal)
 {
 	fractal->color->color_variant[0][0] = DEEP_SPACE_BG;
 	fractal->color->color_variant[0][1] = NEON_AQUA;
-	fractal->color->color_variant[1][1] = SOLAR_POP_BG;
+	fractal->color->color_variant[1][1] = ELECTRIC_YELLOW;
 	fractal->color->color_variant[1][0] = TANGERINE_POP;
 	fractal->color->color_variant[2][0] = ARCTIC_BG;
 	fractal->color->color_variant[2][1] = LIME_SPARK;
