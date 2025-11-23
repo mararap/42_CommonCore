@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 16:34:28 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/22 16:16:22 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/23 21:42:17 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	fo_parse_fract(t_atof *st, char *str)
 		st->i++;
 	}
 }
-	
+
 double	fo_atof(char *str)
 {
 	t_atof	st;
@@ -78,7 +78,7 @@ double	fo_atof(char *str)
 	if (str[st.i] == '.')
 		fo_parse_fract(&st, str);
 	if ((str[st.i] != '\0') && (!((str[st.i] == ' ')
-		|| ((str[st.i] >= '\t') && (str[st.i] <= '\r')))))
+				|| ((str[st.i] >= '\t') && (str[st.i] <= '\r')))))
 		return ((long)INT_MIN - 1);
 	if ((st.result * st.sign) > INT_MAX || (st.result * st.sign) < INT_MIN)
 		return ((long)INT_MIN - 1);

@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 23:20:54 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/23 20:38:59 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/23 21:38:39 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,18 @@ static void	fo_no_escape(t_fractal *fractal, t_complex *z)
 	int		end;
 	double	radius;
 	double	inv_sqrt_escape;
-	
-    if (fractal->is_mandelbrot)
-    {
-        int idx = fractal->color->color_variant_index;
-        fractal->color->code = fractal->color->color_variant[idx][0];
-        return ;
-    }
+
+	if (fractal->is_mandelbrot)
+	{
+		idx = fractal->color->color_variant_index;
+		fractal->color->code = fractal->color->color_variant[idx][0];
+		return ;
+	}
 	idx = fractal->color->color_variant_index;
 	start = fractal->color->color_variant[idx][0];
 	end = fractal->color->color_variant[idx][2];
 	inv_sqrt_escape = 1.0 / sqrt((double)fractal->escape_value);
-	radius = sqrt(((z->x * z->x) + (z->y * z->y)) *inv_sqrt_escape);
+	radius = sqrt(((z->x * z->x) + (z->y * z->y)) * inv_sqrt_escape);
 	fractal->color->mix_factor = radius * inv_sqrt_escape;
 	if (fractal->color->mix_factor < 0.0)
 		fractal->color->mix_factor = 0.0;

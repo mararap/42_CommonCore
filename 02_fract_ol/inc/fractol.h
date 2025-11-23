@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 20:17:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/23 20:39:42 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/23 21:54:38 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,50 +22,50 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
-#define WIDTH 	600
-#define HEIGHT	600
+# define WIDTH 600
+# define HEIGHT 600
 
-#define	ITER_MAX 800
+# define ITER_MAX 2000
 
-#define DEFAULT_CENTRAL_BACKGROUND	0x000000
-#define	MAX_COLORS_PER_SET			8
-#define COLORS_PER_SET				2
-#define	MAX_COLOR_SETS_COUNT		20
-#define COLOR_SETS_COUNT			7
+# define DEFAULT_CENTRAL_BACKGROUND	0x000000
+# define MAX_COLORS_PER_SET			8
+# define COLORS_PER_SET				2
+# define MAX_COLOR_SETS_COUNT		20
+# define COLOR_SETS_COUNT			7
 
 // Shades of Grey
-#define BLACK					0x000000
-#define WHITE					0xFFFFFF
-#define GREY					0x7F7F7F
+# define BLACK					0x000000
+# define WHITE					0xFFFFFF
+# define GREY					0x7F7F7F
 
 /* High-contrast dark palettes */
-#define DEEP_SPACE_BG       0x05030A  /* very dark navy */
-#define NEON_AQUA           0x00FFD5  /* bright cyan */
+# define DEEP_SPACE_BG       0x05030A  /* very dark navy */
+# define NEON_AQUA           0x00FFD5  /* bright cyan */
 //#define HOT_PINK            0xFF2D95  /* vivid magenta */
 
-#define SOLAR_POP_BG        0x0B0400  /* near-black warm */
+# define SOLAR_POP_BG        0x0B0400  /* near-black warm */
 //#define ELECTRIC_YELLOW     0xFFD400  /* bright yellow */
-#define TANGERINE_POP       0xFF6A00  /* bright orange */
+# define TANGERINE_POP       0xFF6A00  /* bright orange */
 
-#define ARCTIC_BG           0x041A2B  /* deep blue-black */
+# define ARCTIC_BG           0x041A2B  /* deep blue-black */
 //#define ICE_CYAN            0x66F0FF  /* bright icy cyan */
-#define LIME_SPARK          0xB6FF00  /* bright lime */
+# define LIME_SPARK          0xB6FF00  /* bright lime */
 
-#define NIGHT_CHALK_BG      0x000000  /* true black */
-#define CHALK_WHITE         0xFFFFFF  /* white */
+# define NIGHT_CHALK_BG      0x000000  /* true black */
+# define CHALK_WHITE         0xFFFFFF  /* white */
 //#define SLATE_BLUE          0x6C8EA4  /* bluish slate */
 
-#define EARTHEN_BG          0x07140E  /* dark green-brown */
+# define EARTHEN_BG          0x07140E  /* dark green-brown */
 //#define BURNED_SAND         0xC97E5D  /* warm sandstone */
-#define EMERALD_SPRING      0x00C853  /* bright green */
+# define EMERALD_SPRING      0x00C853  /* bright green */
 
-#define INFERNO_BG          0x100006  /* very dark maroon */
+# define INFERNO_BG          0x100006  /* very dark maroon */
 //#define NEON_LIME           0xA8FF00  /* neon lime */
-#define ULTRA_VIOLET        0x8A00FF  /* bright violet */
+# define ULTRA_VIOLET        0x8A00FF  /* bright violet */
 
 //#define VOLT_EMBER_BG      0x080308  /* very dark purple-black */
-#define VOLT_EMBER_LAVA    	0xFF4500  /* vivid ember orange */
-#define VOLT_EMBER_CYAN    	0x00F0E0  /* bright cyan accent */
+# define VOLT_EMBER_LAVA    	0xFF4500  /* vivid ember orange */
+# define VOLT_EMBER_CYAN    	0x00F0E0  /* bright cyan accent */
 
 /*
 // Funky Color Palettes //
@@ -104,7 +104,7 @@
 #define ELECTRIC_PURPLE			0x8A00FF*/
 
 // just bc of line-limit
-typedef struct	s_atof
+typedef struct s_atof
 {
 	double		result;
 	double		div;
@@ -112,7 +112,7 @@ typedef struct	s_atof
 	ssize_t		i;
 }			t_atof;
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void		*ptr;
 	char		*addr;
@@ -122,7 +122,7 @@ typedef struct	s_img
 //	int			color;
 }			t_img;
 
-typedef struct	s_rgb
+typedef struct s_rgb
 {
 	int		r_min;
 	int		g_min;
@@ -140,7 +140,7 @@ typedef struct	s_rgb
 }			t_rgb;
 
 // everything needed for creating and manipulating fractal
-typedef struct	s_fractal
+typedef struct s_fractal
 {
 	void		*init;
 	void		*window;
@@ -151,7 +151,7 @@ typedef struct	s_fractal
 	double		shift_x;
 	double		shift_y;
 	double		julia_x;
-	double 		julia_y;
+	double		julia_y;
 	double		zoom;
 	t_rgb		*color;
 	int			is_mandelbrot;
@@ -159,18 +159,18 @@ typedef struct	s_fractal
 }			t_fractal;
 
 // complex number
-typedef struct	s_complex
+typedef struct s_complex
 {
 	double		x;
 	double		y;
 }			t_complex;
 
-
 int			main(int ac, char **av);
 double		fo_atof(char *av);
 void		fo_init_fractal(t_fractal *fractal);
 void		fo_render(t_fractal *fractal);
-double		fo_create_map(double unscaled, double new_min, double new_max, double old_max);
+double		fo_create_map(double unscaled, double new_min, double new_max,
+				double old_max);
 void		fo_error_exit(t_fractal *fractal);
 void		fo_cleanup(t_fractal *fractal);
 void		fo_prompt_exit(t_fractal *fractal);
