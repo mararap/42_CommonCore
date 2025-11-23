@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 22:30:44 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/22 22:43:54 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/23 02:34:20 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static int	fo_track_julia(int x, int y, t_fractal *fractal)
 {	
 	if (ft_strncmp(fractal->name, "Julia", 6))
 	{
-		fractal->julia_x = fo_create_map(x, -2, +2, 0, WIDTH)
+		fractal->julia_x = fo_create_map(x, -2, +2, WIDTH)
 							* fractal->zoom + fractal->shift_x;
-		fractal->julia_y = fo_create_map(y, +2, -2, 0, HEIGHT)
+		fractal->julia_y = fo_create_map(y, +2, -2, HEIGHT)
 							* fractal->zoom + fractal->shift_y;
 		fo_render(fractal);
 	}

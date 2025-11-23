@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 20:40:24 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/22 22:08:32 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/23 02:39:08 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	fo_cleanup(t_fractal *fractal)
 {
-	if(fractal && fractal->color)
+	if (fractal && fractal->color)
 		free(fractal->color);
 	if (fractal->init && fractal->img.ptr)
 	{
@@ -29,7 +29,7 @@ void	fo_cleanup(t_fractal *fractal)
 
 void	fo_error_exit(t_fractal *fractal)
 {
-	fo_cleanup(fractal);	
+	fo_cleanup(fractal);
 	write (2, "Error\n", 6);
 	exit(1);
 }

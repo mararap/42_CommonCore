@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 18:38:32 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/22 23:27:03 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/23 02:39:52 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,19 +77,6 @@ static void	fo_fill_color_variants_remainder(t_fractal *fractal)
 	}
 }
 
-/*static void	fo_init_background(t_fractal *fractal)
-{
-	int	set;
-
-	set = 0;
-	while (set < MAX_COLOR_SETS_COUNT)
-	{
-		fractal->color->color_variant[set][0]
-			= fractal->color->color_variant[set][1];
-		set++;
-	}
-}*/
-
 void	fo_init_colors(t_fractal *fractal)
 {
 	fractal->color->color_variant[0][0]	= DEEP_SPACE_BG;
@@ -144,19 +131,5 @@ void	fo_init_colors(t_fractal *fractal)
 	fractal->color->color_variant[6][0]	= SANDSTONE;
     fractal->color->color_variant[6][1]	= OLIVE_DRAB;
     fractal->color->color_variant[6][2]	= MIDNIGHT_TEAL;*/
-//	fo_init_background(fractal);
 	fo_fill_color_variants_remainder(fractal);
 	fractal->color->color_variant_index	= 0;
-}
-/*
-int	fo_color_map(int iter, t_fractal *fractal, t_rgb *color)
-{
-	int idx;
-	int	p;
-
-	if (iter >= fractal->iter_def || fractal->iter_def == 0)
-		return (color->color_variant[color->color_variant_index][0]);
-	p = color->color_variant_index;
-	idx = (iter * (COLORS_PER_SET - 1)) / fractal->iter_def;
-	return (color->color_variant[p][idx + 1]);
-}*/
