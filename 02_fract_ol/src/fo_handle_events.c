@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 17:39:33 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/22 17:39:20 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/22 23:31:42 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,26 +69,23 @@ int	fo_handle_keys(int keysym, t_fractal *fractal)
 		fractal->shift_y -= (0.5 * fractal->zoom);
 	fo_handle_iter_keys(keysym, fractal);
 	fo_handle_color_keys(keysym, fractal);
-	fo_render(fractal, fractal->color);
+	fo_render(fractal);
 	return (0);		
 }
 
 int	fo_handle_mouse(int button, int x, int y, t_fractal *fractal)
 {
-	t_rgb	*color;
-
 	(void)x;
 	(void)y;
-	color = fractal->color;
 	if (button == 5)
 	{
-		fractal->zoom *= 0.95;
+		fractal->zoom *= 0.80;
 	}
 	else if (button == 4)
 	{
-		fractal->zoom *= 1.05;
+		fractal->zoom *= 1.20;
 	}
-	fo_render(fractal, color);
+	fo_render(fractal);
 	return (0);
 }
 

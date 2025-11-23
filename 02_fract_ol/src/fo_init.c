@@ -6,13 +6,13 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 22:30:44 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/22 18:02:56 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/22 22:43:54 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	fo_render(t_fractal *fractal, t_rgb *color)
+void	fo_render(t_fractal *fractal)
 {
 	int	x;
 	int	y;
@@ -27,7 +27,7 @@ void	fo_render(t_fractal *fractal, t_rgb *color)
 			x = 0;
 			while (x < WIDTH)
 			{
-				fo_handle_pixel(x, y, fractal, color);
+				fo_handle_pixel(x, y, fractal);
 				x += step;
 			}
 			y += step;
@@ -41,17 +41,14 @@ void	fo_render(t_fractal *fractal, t_rgb *color)
 }
 
 static int	fo_track_julia(int x, int y, t_fractal *fractal)
-{
-	t_rgb	*color;
-	
-	color = fractal->color;
+{	
 	if (ft_strncmp(fractal->name, "Julia", 6))
 	{
 		fractal->julia_x = fo_create_map(x, -2, +2, 0, WIDTH)
 							* fractal->zoom + fractal->shift_x;
 		fractal->julia_y = fo_create_map(y, +2, -2, 0, HEIGHT)
 							* fractal->zoom + fractal->shift_y;
-		fo_render(fractal, color);
+		fo_render(fractal);
 	}
 	return (0);
 }
@@ -83,40 +80,39 @@ static void	fo_init_events(t_fractal *fractal)
 			fractal);
 }
 
-static void	fo_init_data(t_fractal *fractal, t_rgb *color)
+static void	fo_init_data(t_fractal *fractal)
 {
 	fractal->escape_value		 	= 4;
 	fractal->iter_def 				= 100;
 	fractal->shift_x 				= 0.0;
 	fractal->shift_y 				= 0.0;
 	fractal->zoom 					= 1.0;
-	fo_init_colors(color);
+	fractal->color = (t_rgb *)ft_calloc(1, sizeof(t_rgb));
+	if (!fractal->color)
+		fo_error_exit(fractal);
+	fractal->color->mix_factor = 0.0;
+	fo_init_colors(fractal);
 }
 
-void	fo_init_fractal(t_fractal *fractal, t_rgb *color)
+void	fo_init_fractal(t_fractal *fractal)
 {
-	t_clean	data;
-
-	data = (t_clean){0};
 	fractal->init = mlx_init();	
 	if(fractal->init == NULL)
-		fo_error_exit(&data);
-	data.init = fractal->init;
+		fo_error_exit(fractal);
 	fractal->window = mlx_new_window(fractal->init,
 									WIDTH,
 									HEIGHT,
 									fractal->name);
 	if (fractal->window == NULL)
-		fo_error_exit(&data);
+		fo_error_exit(fractal);
 	fractal->img.ptr = mlx_new_image(fractal->init, WIDTH, HEIGHT);	
 	if (fractal->img.ptr == 0)
-		fo_error_exit(&data);
+		fo_error_exit(fractal);
 	fractal->img.addr = mlx_get_data_addr(fractal->img.ptr,
 											&fractal->img.bits_per_pixel,
 											&fractal->img.line_len,
 											&fractal->img.endian);
-	fractal->color = color;
 	fo_init_events(fractal);
-	fo_init_data(fractal, color);
+	fo_init_data(fractal);
 }
 
