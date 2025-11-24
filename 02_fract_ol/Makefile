@@ -6,7 +6,7 @@
 #    By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/16 17:55:51 by marapovi          #+#    #+#              #
-#    Updated: 2025/11/24 20:04:22 by marapovi         ###   ########.fr        #
+#    Updated: 2025/11/24 23:22:35 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,9 @@
 # **************************************************************************** #
 
 NAME		:=	fractol
+
+HEADER		:=	./inc/fractol.h
+
 CC			:=	cc
 
 # C PreProcessor flags - exclusively needed when compiling src files
@@ -60,28 +63,30 @@ SRC				:=		fo_main.c\
 						fo_render.c
 
 SRC				:=		$(addprefix $(SRC_DIR)/,$(SRC))
-#OBJ			:=		$(addprefix $(OBJ_DIR)/,$(OBJ))
 OBJ				:=		$(patsubst %.c,$(OBJ_DIR)/%.o,$(notdir $(SRC)))
 
 # **************************************************************************** #
 #                                   RULES                                      #
 # **************************************************************************** #
 
-all: $(LIBFT) $(NAME)
+all: libft_always $(NAME)
 
-$(LIBFT):
+.PHONY: libft_always
+
+libft_always:
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR)
-	@echo "     ✅ LIBFT library successfully created."
-
-#vpath %.c $(SRC_DIR) ..
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
+$(OBJ): %.o: $(HEADER)
+
 $(NAME): $(OBJ) $(LIBFT)
 	@$(CC) $(CFLAGS) $(LDFLAGS) $(OBJ) $(LDLIBS) -o $(NAME)
 	@echo "     ✅ FRACTOL executable successfully created."
+	@echo "     ✅ LIBFT library successfully created."
+	
 
 clean:
 	@$(RM) $(OBJ_DIR)

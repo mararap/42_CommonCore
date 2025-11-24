@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 20:17:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/24 19:23:46 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/24 23:27:41 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,42 +66,6 @@
 # define VOLT_EMBER_BG		0x080308  /* very dark purple-black */
 # define VOLT_EMBER_LAVA	0xFF4500  /* vivid ember orange */
 # define VOLT_EMBER_CYAN	0x00F0E0  /* bright cyan accent */
-
-/*
-// Funky Color Palettes //
-// Neon Sunset
-#define FLAMING_ROSE			0xFF3E6B
-#define TANGERINE_FLAME			0xFF8A00
-#define HONEY_GLOW				0xFFD166
-
-// Electric Ocean
-#define AQUA_NEON				0x00E5FF
-#define DEEP_AZURE				0x0074FF
-#define ULTRAVIOLET_WAVE		0x6F00FF
-
-// Terra Twilight
-#define SANDSTONE				0xC91AC4
-#define VIOLET_BLOOM			0x8A2BE2
-#define SKY_RIPPLE				0x3A93FF
-
-// Toxic Melody
-#define ACID_LIME				0xCCFF00
-#define MINT_SPARK				0x00FFC9
-#define FUCHSIA_SHOCK			0xFF00FF
-
-// Aurora Prism
-#define SEAFOAM_GLEAM			0x7CFFCB
-#define SOLAR_FLASH				0xFFD400
-#define INDIGO_NIGHT			0x231FFD
-
-// Terra Twilight
-#define SANDSTONE				0xC97E5D
-#define OLIVE_DRAB				0x6B8E23
-#define MIDNIGHT_TEAL			0x003F5C
-
-#define NEON_LIME				0x00FF66
-#define SLATE_DUSK				0x2F4F4F
-#define ELECTRIC_PURPLE			0x8A00FF*/
 
 // just bc of line-limit
 typedef struct s_atof
@@ -173,9 +137,7 @@ double		fo_create_map(double unscaled, double new_min, double new_max,
 
 // error handling
 void		fo_exit_error(t_fractal *fractal);
-void		fo_exit_success(t_fractal *fractal);
 void		fo_cleanup(t_fractal *fractal);
-void		fo_prompt(void);
 void		fo_prompt_cleanup_exit(t_fractal *fractal);
 
 // math

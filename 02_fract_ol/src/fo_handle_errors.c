@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 20:40:24 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/24 20:12:43 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/24 23:39:56 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	fo_exit_error(t_fractal *fractal)
 	exit(EXIT_FAILURE);
 }
 
-void	fo_exit_success(t_fractal *fractal)
+static void	fo_exit_success(t_fractal *fractal)
 {
 	fo_cleanup(fractal);
 	exit(EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 22:30:44 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/24 19:32:45 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/24 22:34:53 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,14 @@ void	fo_init_fractal(t_fractal *fractal)
 {
 	fractal->init = mlx_init();
 	if (fractal->init == NULL)
-		fo_prompt_cleanup_exit(fractal);
+		fo_exit_error(fractal);
 	fractal->window = mlx_new_window(fractal->init, WIDTH, HEIGHT,
 			fractal->name);
 	if (fractal->window == NULL)
-		fo_prompt_cleanup_exit(fractal);
+		fo_exit_error(fractal);
 	fractal->img.ptr = mlx_new_image(fractal->init, WIDTH, HEIGHT);
 	if (fractal->img.ptr == 0)
-		fo_prompt_cleanup_exit(fractal);
+		fo_exit_error(fractal);
 	fractal->img.addr = mlx_get_data_addr(fractal->img.ptr,
 			&fractal->img.bits_per_pixel, &fractal->img.line_len,
 			&fractal->img.endian);
