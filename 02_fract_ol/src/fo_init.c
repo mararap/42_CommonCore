@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 22:30:44 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/23 22:37:20 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/24 19:32:45 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ static void	fo_init_data(t_fractal *fractal)
 	fractal->shift_x = 0.0;
 	fractal->shift_y = 0.0;
 	fractal->zoom = 1.0;
-	fractal->color = (t_rgb *)ft_calloc(1, sizeof(t_rgb));
-	if (!fractal->color)
-		fo_prompt_cleanup_exit(fractal);
-	fractal->color->mix_factor = 0.0;
+	fractal->color.mix_factor = 0.0;
+	fractal->color.color_variant_index = 0;
+	if (!(ft_strncmp(fractal->name, "Mandelbrot", 10)))
+		fractal->is_mandelbrot = 1;
 	fo_init_colors(fractal);
 }
 
@@ -92,8 +92,6 @@ void	fo_init_fractal(t_fractal *fractal)
 	fractal->img.addr = mlx_get_data_addr(fractal->img.ptr,
 			&fractal->img.bits_per_pixel, &fractal->img.line_len,
 			&fractal->img.endian);
-	if (!(ft_strncmp(fractal->name, "Mandelbrot", 10)))
-		fractal->is_mandelbrot = 1;
 	fo_init_events(fractal);
 	fo_init_data(fractal);
 }

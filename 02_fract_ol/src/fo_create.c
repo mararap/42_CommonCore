@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 23:20:54 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/23 21:38:39 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/24 19:27:03 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	fo_put_pixel(int x, int y, t_fractal *fractal)
 		return ;
 	offset = (y * fractal->img.line_len
 			+ (x * (fractal->img.bits_per_pixel / 8)));
-	*(unsigned int *)(fractal->img.addr + offset) = fractal->color->code;
+	*(unsigned int *)(fractal->img.addr + offset) = fractal->color.code;
 }
 
 static int	fo_iter_to_color(t_fractal *fractal, int iter)
@@ -45,19 +45,19 @@ static int	fo_iter_to_color(t_fractal *fractal, int iter)
 	int		start;
 	int		end;
 
-	if (fractal->color->color_variant_index < 0
-		|| fractal->color->color_variant_index >= MAX_COLOR_SETS_COUNT)
-		fractal->color->color_variant_index = 0;
-	idx = fractal->color->color_variant_index;
-	start = fractal->color->color_variant[idx][0];
-	end = fractal->color->color_variant[idx][COLORS_PER_SET - 1];
+	if (fractal->color.color_variant_index < 0
+		|| fractal->color.color_variant_index >= MAX_COLOR_SETS_COUNT)
+		fractal->color.color_variant_index = 0;
+	idx = fractal->color.color_variant_index;
+	start = fractal->color.color_variant[idx][0];
+	end = fractal->color.color_variant[idx][COLORS_PER_SET - 1];
 	if (start == 0)
 		start = BLACK;
 	if (end == 0)
 		end = WHITE;
 	if (iter >= fractal->iter_def || fractal->iter_def == 0)
-		return (fractal->color->color_variant[idx][0]);
-	fractal->color->mix_factor = (double)iter / (double)fractal->iter_def;
+		return (fractal->color.color_variant[idx][0]);
+	fractal->color.mix_factor = (double)iter / (double)fractal->iter_def;
 	return (fo_make_color(start, end, fractal));
 }
 /*
@@ -80,21 +80,21 @@ static void	fo_no_escape(t_fractal *fractal, t_complex *z)
 
 	if (fractal->is_mandelbrot)
 	{
-		idx = fractal->color->color_variant_index;
-		fractal->color->code = fractal->color->color_variant[idx][0];
+		idx = fractal->color.color_variant_index;
+		fractal->color.code = fractal->color.color_variant[idx][0];
 		return ;
 	}
-	idx = fractal->color->color_variant_index;
-	start = fractal->color->color_variant[idx][0];
-	end = fractal->color->color_variant[idx][2];
+	idx = fractal->color.color_variant_index;
+	start = fractal->color.color_variant[idx][0];
+	end = fractal->color.color_variant[idx][2];
 	inv_sqrt_escape = 1.0 / sqrt((double)fractal->escape_value);
 	radius = sqrt(((z->x * z->x) + (z->y * z->y)) * inv_sqrt_escape);
-	fractal->color->mix_factor = radius * inv_sqrt_escape;
-	if (fractal->color->mix_factor < 0.0)
-		fractal->color->mix_factor = 0.0;
-	if (fractal->color->mix_factor > 1.0)
-		fractal->color->mix_factor = 1.0;
-	fractal->color->code = fo_make_color(start, end, fractal);
+	fractal->color.mix_factor = radius * inv_sqrt_escape;
+	if (fractal->color.mix_factor < 0.0)
+		fractal->color.mix_factor = 0.0;
+	if (fractal->color.mix_factor > 1.0)
+		fractal->color.mix_factor = 1.0;
+	fractal->color.code = fo_make_color(start, end, fractal);
 }
 
 void	fo_handle_pixel(int x, int y, t_fractal *fractal)
@@ -113,7 +113,7 @@ void	fo_handle_pixel(int x, int y, t_fractal *fractal)
 		z = fo_complex_sum(fo_complex_square(z), c);
 		if ((z.x * z.x) + (z.y * z.y) > fractal->escape_value)
 		{
-			fractal->color->code = fo_iter_to_color(fractal, i);
+			fractal->color.code = fo_iter_to_color(fractal, i);
 			fo_put_pixel(x, y, fractal);
 			return ;
 		}

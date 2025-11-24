@@ -6,7 +6,7 @@
 #    By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/16 17:55:51 by marapovi          #+#    #+#              #
-#    Updated: 2025/11/22 16:32:50 by marapovi         ###   ########.fr        #
+#    Updated: 2025/11/24 20:04:22 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ CC			:=	cc
 CPPFLAGS	:=	-I inc -I libft
 
 # C compiler flags - needed for compiling src files AND for linking
-CFLAGS		:=	-Wall -Wextra -Werror -O2 -march=native
+# CFLAGS		:=	-Wall -Wextra -Werror -O2 -march=native -g
+CFLAGS		:=	-Wall -Wextra -Werror
 
 # Flags/Options passed to the linker
 LDFLAGS		:=	-L libft

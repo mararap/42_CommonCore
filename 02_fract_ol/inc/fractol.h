@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 20:17:41 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/23 22:46:52 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/24 19:23:46 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,33 +39,33 @@
 # define GREY					0x7F7F7F
 
 /* High-contrast dark palettes */
-# define DEEP_SPACE_BG       0x05030A  /* very dark navy */
-# define NEON_AQUA           0x00FFD5  /* bright cyan */
-# define HOT_PINK            0xFF2D95  /* vivid magenta */
+# define DEEP_SPACE_BG		0x05030A  /* very dark navy */
+# define NEON_AQUA			0x00FFD5  /* bright cyan */
+# define HOT_PINK			0xFF2D95  /* vivid magenta */
 
-# define SOLAR_POP_BG        0x0B0400  /* near-black warm */
-# define ELECTRIC_YELLOW     0xFFD400  /* bright yellow */
-# define TANGERINE_POP       0xFF6A00  /* bright orange */
+# define SOLAR_POP_BG		0x0B0400  /* near-black warm */
+# define ELECTRIC_YELLOW	0xFFD400  /* bright yellow */
+# define DARK_ORANGE		0xF56127  /* dark orange */
 
-# define ARCTIC_BG           0x041A2B  /* deep blue-black */
-# define ICE_CYAN            0x66F0FF  /* bright icy cyan */
-# define LIME_SPARK          0xB6FF00  /* bright lime */
+# define ARCTIC_BG			0x041A2B  /* deep blue-black */
+# define ICE_CYAN			0x66F0FF  /* bright icy cyan */
+# define LIME_SPARK			0xB6FF00  /* bright lime */
 
-# define NIGHT_CHALK_BG      0x000000  /* true black */
-# define CHALK_WHITE         0xFFFFFF  /* white */
-# define SLATE_BLUE          0x6C8EA4  /* bluish slate */
+# define NIGHT_CHALK_BG		0x000000  /* true black */
+# define CHALK_WHITE		0xFFFFFF  /* white */
+# define SLATE_BLUE			0x6C8EA4  /* bluish slate */
 
-# define EARTHEN_BG          0x07140E  /* dark green-brown */
-# define BURNED_SAND         0xC97E5D  /* warm sandstone */
-# define EMERALD_SPRING      0x00C853  /* bright green */
+# define EARTHEN_BG			0x07140E  /* dark green-brown */
+# define BURNED_SAND		0xC97E5D  /* warm sandstone */
+# define EMERALD_SPRING		0x00C853  /* bright green */
 
-# define INFERNO_BG          0x100006  /* very dark maroon */
-# define NEON_LIME           0xA8FF00  /* neon lime */
-# define ULTRA_VIOLET        0x8A00FF  /* bright violet */
+# define INFERNO_BG			0x100006  /* very dark maroon */
+# define NEON_LIME			0xA8FF00  /* neon lime */
+# define ULTRA_VIOLET		0x8A00FF  /* bright violet */
 
-# define VOLT_EMBER_BG      0x080308  /* very dark purple-black */
-# define VOLT_EMBER_LAVA    	0xFF4500  /* vivid ember orange */
-# define VOLT_EMBER_CYAN    	0x00F0E0  /* bright cyan accent */
+# define VOLT_EMBER_BG		0x080308  /* very dark purple-black */
+# define VOLT_EMBER_LAVA	0xFF4500  /* vivid ember orange */
+# define VOLT_EMBER_CYAN	0x00F0E0  /* bright cyan accent */
 
 /*
 // Funky Color Palettes //
@@ -119,7 +119,6 @@ typedef struct s_img
 	int			bits_per_pixel;
 	int			line_len;
 	int			endian;
-//	int			color;
 }			t_img;
 
 typedef struct s_rgb
@@ -153,7 +152,7 @@ typedef struct s_fractal
 	double		julia_x;
 	double		julia_y;
 	double		zoom;
-	t_rgb		*color;
+	t_rgb		color;
 	int			is_mandelbrot;
 
 }			t_fractal;
@@ -171,10 +170,15 @@ void		fo_init_fractal(t_fractal *fractal);
 void		fo_render(t_fractal *fractal);
 double		fo_create_map(double unscaled, double new_min, double new_max,
 				double old_max);
-void		fo_error_exit(t_fractal *fractal);
+
+// error handling
+void		fo_exit_error(t_fractal *fractal);
+void		fo_exit_success(t_fractal *fractal);
 void		fo_cleanup(t_fractal *fractal);
-void		fo_prompt_exit(void);
+void		fo_prompt(void);
 void		fo_prompt_cleanup_exit(t_fractal *fractal);
+
+// math
 t_complex	fo_complex_square(t_complex z);
 t_complex	fo_complex_sum(t_complex z1, t_complex z2);
 void		fo_pixel_to_complex(int x, int y, t_fractal *fractal, t_complex *z);

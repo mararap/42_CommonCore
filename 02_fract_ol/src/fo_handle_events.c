@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 17:39:33 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/23 21:40:46 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/24 19:30:43 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 int	fo_handle_closing(t_fractal *fractal)
 {
 	fo_cleanup(fractal);
-	exit(EXIT_SUCCESS);
+	exit(0);
 }
 
 static int	fo_handle_color_keys(int keysym, t_fractal *fractal)
 {
 	t_rgb	*color;
 
-	color = fractal->color;
+	color = &fractal->color;
 	if (keysym == XK_h || keysym == XK_H)
 		color->color_variant_index = (color->color_variant_index - 1
 				+ COLOR_SETS_COUNT) % COLOR_SETS_COUNT;
@@ -53,13 +53,13 @@ int	fo_handle_keys(int keysym, t_fractal *fractal)
 {
 	if (keysym == XK_Escape)
 		fo_handle_closing(fractal);
-	else if (keysym == XK_Left)
-		fractal->shift_x += (0.5 * fractal->zoom);
 	else if (keysym == XK_Right)
+		fractal->shift_x += (0.5 * fractal->zoom);
+	else if (keysym == XK_Left)
 		fractal->shift_x -= (0.5 * fractal->zoom);
-	else if (keysym == XK_Down)
-		fractal->shift_y += (0.5 * fractal->zoom);
 	else if (keysym == XK_Up)
+		fractal->shift_y += (0.5 * fractal->zoom);
+	else if (keysym == XK_Down)
 		fractal->shift_y -= (0.5 * fractal->zoom);
 	fo_handle_iter_keys(keysym, fractal);
 	fo_handle_color_keys(keysym, fractal);
@@ -71,11 +71,11 @@ int	fo_handle_mouse(int button, int x, int y, t_fractal *fractal)
 {
 	(void)x;
 	(void)y;
-	if (button == 5)
+	if (button == 4)
 	{
 		fractal->zoom *= 0.80;
 	}
-	else if (button == 4)
+	else if (button == 5)
 	{
 		fractal->zoom *= 1.20;
 	}
