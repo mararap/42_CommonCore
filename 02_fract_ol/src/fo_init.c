@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 22:30:44 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/24 22:34:53 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/25 18:07:23 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,12 @@ void	fo_render(t_fractal *fractal)
 	}
 }
 
-static int	fo_track_julia(int x, int y, t_fractal *fractal)
-{
-	if (ft_strncmp(fractal->name, "Julia", 6))
-	{
-		fractal->julia_x = fo_create_map(x, -2, +2, WIDTH) * fractal->zoom
-			+ fractal->shift_x;
-		fractal->julia_y = fo_create_map(y, +2, -2, HEIGHT) * fractal->zoom
-			+ fractal->shift_y;
-		fo_render(fractal);
-	}
-	return (0);
-}
-
 static void	fo_init_events(t_fractal *fractal)
 {
 	mlx_hook(fractal->window, KeyPress, KeyPressMask,
 		fo_handle_keys, fractal);
 	mlx_hook(fractal->window, ButtonPress, ButtonPressMask,
 		fo_handle_mouse, fractal);
-	mlx_hook(fractal->window, MotionNotify, PointerMotionMask,
-		fo_track_julia, fractal);
 	mlx_hook(fractal->window, DestroyNotify, StructureNotifyMask,
 		fo_handle_closing, fractal);
 }

@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 17:39:33 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/24 19:30:43 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/25 18:10:11 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,9 @@ int	fo_handle_mouse(int button, int x, int y, t_fractal *fractal)
 	(void)x;
 	(void)y;
 	if (button == 4)
-	{
 		fractal->zoom *= 0.80;
-	}
 	else if (button == 5)
-	{
 		fractal->zoom *= 1.20;
-	}
 	fo_render(fractal);
 	return (0);
 }

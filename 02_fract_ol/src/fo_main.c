@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:55:37 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/24 23:42:43 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/25 18:14:22 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	fo_range_prompt(void)
 {
-	ft_printf("\nfor visible output,\n");
-	ft_printf("use params between -2.0 and 2.0\n");
+	ft_printf("\nFor visible output,\n");
+	ft_printf("use params between -2.0 and 2.0.\n\n");
 }
 
 int	main(int ac, char **av)
@@ -38,7 +38,7 @@ int	main(int ac, char **av)
 		}
 		ft_printf("\nUse arrow keys to move around.\n");
 		ft_printf("Use + and - to increase/decrease iterations.\n");
-		ft_printf("use h or l to switch colors.\n");
+		ft_printf("use h or l to switch colors.\n\n");
 		fo_init_fractal(&fractal);
 		fo_render(&fractal);
 		mlx_loop(fractal.init);

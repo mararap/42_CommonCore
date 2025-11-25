@@ -6,7 +6,7 @@
 #    By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/25 12:39:13 by marapovi          #+#    #+#              #
-#    Updated: 2025/11/24 23:21:18 by marapovi         ###   ########.fr        #
+#    Updated: 2025/11/25 17:51:38 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,7 @@ all: $(NAME)
 
 $(NAME): $(OFILES)
 	@ar rcs $(NAME) $(OFILES)
+		@echo "     ✅ LIBFT executable successfully created."
 
 clean:
 	@rm -f $(OFILES)
