@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fo_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 22:30:44 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/25 18:07:23 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/26 16:43:34 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	fo_init_events(t_fractal *fractal)
 static void	fo_init_data(t_fractal *fractal)
 {
 	fractal->escape_value = 4;
-	fractal->iter_def = 100;
+	fractal->iter_def = 50;
 	fractal->shift_x = 0.0;
 	fractal->shift_y = 0.0;
 	fractal->zoom = 1.0;

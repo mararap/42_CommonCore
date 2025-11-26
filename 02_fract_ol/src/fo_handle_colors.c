@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fo_handle_colors.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 18:38:32 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/24 19:27:41 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/26 17:20:05 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,18 +82,18 @@ void	fo_init_colors(t_fractal *fractal)
 {
 	fractal->color.color_variant[0][0] = DEEP_SPACE_BG;
 	fractal->color.color_variant[0][1] = NEON_AQUA;
-	fractal->color.color_variant[1][1] = ELECTRIC_YELLOW;
-	fractal->color.color_variant[1][0] = DARK_ORANGE;
+	fractal->color.color_variant[1][0] = 0xFCEEBB;
+	fractal->color.color_variant[1][1] = DARK_ORANGE;
 	fractal->color.color_variant[2][0] = ARCTIC_BG;
 	fractal->color.color_variant[2][1] = LIME_SPARK;
 	fractal->color.color_variant[3][0] = NIGHT_CHALK_BG;
 	fractal->color.color_variant[3][1] = CHALK_WHITE;
-	fractal->color.color_variant[4][1] = EARTHEN_BG;
 	fractal->color.color_variant[4][0] = EMERALD_SPRING;
+	fractal->color.color_variant[4][1] = EARTHEN_BG;
 	fractal->color.color_variant[5][0] = INFERNO_BG;
 	fractal->color.color_variant[5][1] = ULTRA_VIOLET;
-	fractal->color.color_variant[6][1] = VOLT_EMBER_LAVA;
-	fractal->color.color_variant[6][0] = VOLT_EMBER_CYAN;
+	fractal->color.color_variant[6][0] = VOLT_EMBER_LAVA;
+	fractal->color.color_variant[6][1] = VOLT_EMBER_CYAN;
 	fo_fill_color_variants_remainder(fractal);
 	fractal->color.code = 0;
 }

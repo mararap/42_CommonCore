@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fo_handle_events.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 17:39:33 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/25 18:10:11 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/26 16:39:40 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ int	fo_handle_mouse(int button, int x, int y, t_fractal *fractal)
 {
 	(void)x;
 	(void)y;
-	if (button == 4)
+	if (button == 4 || button == 6)
 		fractal->zoom *= 0.80;
-	else if (button == 5)
+	else if (button == 5 || button == 7)
 		fractal->zoom *= 1.20;
 	fo_render(fractal);
 	return (0);

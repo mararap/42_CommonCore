@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fo_handle_errors.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 20:40:24 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/25 14:06:42 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/11/26 17:26:06 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	fo_prompt(void)
 	ft_printf("\nMandelbrot\nJulia <double> <double>\n\n");
 	ft_printf("interesting parameters for Julia:\n");
 	ft_printf(" 0.0   &  0.8  \n 0.355 &  0.355\n-0.4   & -0.59 \n");
-	ft_printf(" 0.37  &  0.1  \n-0.54  &  0.54 \n\n");
+	ft_printf(" 0.37  &  0.1  \n-0.54  &  0.54 \n-0.74  &  0.06 \n\n");
 }
 
 void	fo_prompt_cleanup_exit(t_fractal *fractal)
