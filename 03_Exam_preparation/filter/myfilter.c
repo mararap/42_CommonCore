@@ -76,8 +76,6 @@ void	censor(char *str, char *filter)
 	write(1, str, strlen(str));
 }
 
-#include <stdio.h>
-
 int	main(int ac, char **av)
 {
 	char *line = NULL;

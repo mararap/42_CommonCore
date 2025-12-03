@@ -1,20 +1,27 @@
-ifndef BUFFER_SIZE
-define BUFFER_SIZE 99
-endif
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 99
+#endif
+
+#define _GNU_SOURCE
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdio.h>
+#include <errno.h>
 
-char	*get_next_line(fd)
+char	*get_next_line(int fd/*, int *error*/)
 {
 	static char	buff[BUFFER_SIZE];
 	static int	i;
 	static int	bytes = 0;
 	int			j = 0;
 	char		*line = NULL;
+//	(void)error;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || !(line = malloc(1000000)))
-		return (write(stderr, "Error: invalid input or malloc fail\n", 36), 1); 
+	if (!(line = malloc(1000000)))
+		return (perror("Error"), NULL);
 	while (1)
 	{
 		if (i >= bytes)
@@ -24,12 +31,12 @@ char	*get_next_line(fd)
 			if (bytes < 0)
 			{
 				free(line);
-				return (write(stderr, "Error: read\n", 12), 1);
+				break ;
 			}
 			if (bytes == 0)
 				break ;
 		}
-		line[j++] == buf[i++];
+		line[j++] = buff[i++];
 		if (line[j - 1] == '\n')
 			break ;
 	}
@@ -38,7 +45,7 @@ char	*get_next_line(fd)
 		free(line);
 		line = NULL;
 		i = 0;
-		byte = 0;
+		bytes = 0;
 		return (NULL);
 	}
 	line[j] = '\0';
@@ -68,21 +75,25 @@ void	filter(char *str, char *filter)
 			str_len = strlen(str);
 		}
 	}
-	write(1, str, strlen(str);
+	write(1, str, strlen(str));
 }
 
 int	main(int ac, char **av)
 {
 	int fd = 0;
+	char *line;
+//	int	error = 0;
 
-	if (ac != 2 || av[1] = '\0')
+
+	if (ac != 2 || *av[1] == '\0' || fd < 0 || BUFFER_SIZE <= 0)
 		return (1);
 
-	while((line = get_next_line(fd)))
+	while((line = get_next_line(fd/*, &error*/)))
 	{
-		filter(line);	
+		filter(line, av[1]);
 		free(line);
 	}
+//	if (error != 0)
+		
 	return(0);
 }
-
