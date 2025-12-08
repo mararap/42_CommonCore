@@ -5,21 +5,22 @@ char	*get_next_line(int fd)
 {
 	static char	buf[BUFFER_SIZE] = NULL;
 	static int	i = 0;
-	static int	byte = 0;
+	static int	bytes = 0;
 	int			j = 0;
 	char		*line = NULL;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || !(line = malloc(1000000)))
+	line = malloc(1000000);
+	if (fd < 0 || BUFFER_SIZE <= 0 || !line)
 		return (NULL);
 	while (1)
 	{
-		if (i >= byte)
+		if (i >= bytes)
 		{
 			i = 0;
-			byte = read(fd, buf, BUFFER_SIZE);
-			if (byte < 0)
+			bytes = read(fd, buf, BUFFER_SIZE);
+			if (bytes < 0)
 				return (free(line), NULL);
-			else if (byte == 0)
+			else if (bytes == 0)
 				break ;
 		}
 		line[j++] = buf[i++];
@@ -29,6 +30,9 @@ char	*get_next_line(int fd)
 	if (j == 0)
 	{
 		free(line);
+		line = NULL;
+		i = 0;
+		bytes = 0;
 		return (NULL);
 	}
 	line[j] = '\0';

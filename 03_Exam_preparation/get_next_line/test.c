@@ -1,31 +1,31 @@
-
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
-#endif
-
+#include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <fcntl.h>
 
-char *get_next_line(int fd)
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+char	*get_next_line(int fd)
 {
 	static char	buf[BUFFER_SIZE];
-	static int	i;
-	static int	byte;
-	int			j = 0;
-	char		*line = NULL;
+	static int	i = 0;
+	static int bytes = 0;
+	int	j = 0;
+	char *line = NULL;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || !(line = malloc(10000000)))
+	line = malloc(1000000);
+	if (fd < 0 || BUFFER_SIZE <= 0 || !line)
 		return (NULL);
-	while (1)
+	while(1)
 	{
-		if (i >= byte)
+		if (i >= bytes)
 		{
 			i = 0;
-			byte = read (fd, buf, BUFFER_SIZE);
-			if (byte < 0)
+			bytes = read(fd, buf, BUFFER_SIZE);
+			if (bytes < 0)
 				return (free(line), NULL);
-			else if (byte == 0)
+			else if (bytes == 0)
 				break ;
 		}
 		line[j++] = buf[i++];
@@ -37,7 +37,7 @@ char *get_next_line(int fd)
 		free(line);
 		line = NULL;
 		i = 0;
-		byte = 0;
+		bytes = 0;
 		return (NULL);
 	}
 	line[j] = '\0';
@@ -49,7 +49,7 @@ char *get_next_line(int fd)
 int	main(void)
 {
 	int fd = open("test.txt", O_RDONLY);
-	char	*line = NULL;
+	char *line;
 
 	while ((line = get_next_line(fd)))
 	{

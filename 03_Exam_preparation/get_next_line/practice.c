@@ -4,8 +4,8 @@
 char	*get_next_line(int fd)
 {
 	static char	buf[BUFFER_SIZE];
-	static int	i;
-	static int	byte;
+	static int	i = 0;
+	static int	bytes = 0;
 	int			j = 0;
 	char		*line = NULL;
 
@@ -15,11 +15,11 @@ char	*get_next_line(int fd)
 
 	while (1)
 	{
-		if (i >= bytes)	// as long as read does not return 0 or -1
-		{
+		if (i >= bytes)	// only enters in the beginning,
+		{				// or if end of buffer is reached
 			i = 0;		// reset i to 0, because buffer is now empty and we
 						// start filling it at idx 0
-			byte = read(fd, buf, BUFFER_SIZE);	// read from fd to buf for
+			bytes = read(fd, buf, BUFFER_SIZE);	// read from fd to buf for
 												// BUFFER_SIZE bytes
 			if (bytes < 0)	// means read returned an error
 			{
@@ -27,13 +27,13 @@ char	*get_next_line(int fd)
 				free(line);
 				return (NULL);
 			}
-			else if (byte == 0)	// no more characters to read, EOF reached
+			else if (bytes == 0)	// no more characters to read, EOF reached
 				break ;				// break the infinite loop, continue to
 									// end of function
 		}
 		line[j++] = buf[i++];		// in every other case (bytes > 0, means
 									// that read returned a valid number
-									// of characters read
+									// of chars), read char
 		if (line[j - 1] == '\n')	// if the last character read is a '\n'
 			break ;					// break the infinite loop
 	}
@@ -43,7 +43,7 @@ char	*get_next_line(int fd)
 		free(line);
 		line = NULL;
 		i = 0;
-		byte = 0;
+		bytes = 0;
 		return (NULL);
 	}
 	line[j] = '\0';					// set last character to '\0'
