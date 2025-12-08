@@ -1,7 +1,10 @@
+#define _GNU_SOURCE
+#include <errno.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <ctype.h>
+#include <stdio.h>
 
 // read from stdin
 
@@ -21,8 +24,11 @@ char	*get_next_line(int fd)
 	int			j = 0;
 	char		*line = NULL;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || !(line = malloc(1000000)))
-		return (write(2, "Error: invalid input\n", 21), NULL);
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	line = malloc(1000000);
+	if (!line)
+		return (perror("Error"), NULL);
 	while (1)
 	{
 		if (i >= byte)
@@ -30,7 +36,7 @@ char	*get_next_line(int fd)
 			i = 0;
 			byte = read(fd, buf, BUFFER_SIZE);
 			if (byte < 0)
-				return (free(line), write(2, "Error: read failed\n", 19), NULL);
+				return (free(line), perror("Error"), NULL);
 			else if (byte == 0)
 				break ;
 		}
@@ -80,7 +86,7 @@ int	main(int ac, char **av)
 {
 	char *line = NULL;
 
-	if (ac != 2 || av[1] == '\0')
+	if (ac != 2 || av[1][0] == '\0')
 		return (1);
 	while ((line = get_next_line(0)))
 	{

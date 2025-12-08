@@ -1,42 +1,41 @@
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 99
-#endif
-
 #define _GNU_SOURCE
 
 #include <unistd.h>
 #include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 #include <stdio.h>
 #include <errno.h>
+#include <fcntl.h>
+#include <string.h>
 
-char	*get_next_line(int fd/*, int *error*/)
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+char	*get_next_line(fd)
 {
-	static char	buff[BUFFER_SIZE];
-	static int	i;
-	static int	bytes = 0;
+	static char	buf[BUFFER_SIZE];
+	static int	i = 0;
+	static int 	bytes = 0;
 	int			j = 0;
 	char		*line = NULL;
-//	(void)error;
 
-	if (!(line = malloc(1000000)))
-		return (perror("Error"), NULL);
-	while (1)
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	line = malloc(1000000);
+	if (!line)
+		return(perror("Error"), NULL);
+	while(1)
 	{
 		if (i >= bytes)
 		{
 			i = 0;
-			bytes = read(fd, buff, BUFFER_SIZE);
+			bytes = read(fd, buf, BUFFER_SIZE);
 			if (bytes < 0)
-			{
-				free(line);
-				break ;
-			}
-			if (bytes == 0)
+				return (perror("Error"), NULL);
+			else if (bytes == 0)
 				break ;
 		}
-		line[j++] = buff[i++];
+		line[j++] = buf[i++];
 		if (line[j - 1] == '\n')
 			break ;
 	}
@@ -52,11 +51,11 @@ char	*get_next_line(int fd/*, int *error*/)
 	return (line);
 }
 
-void	filter(char *str, char *filter)
+void	my_filter(char *str, char *filter)
 {
+	char *match = NULL;
+	int	str_len = strlen(str);
 	int	filter_len = strlen(filter);
-	int str_len = strlen(str);
-	char	*match = NULL;
 
 	while (*str)
 	{
@@ -64,8 +63,8 @@ void	filter(char *str, char *filter)
 			return ;
 		else
 		{
-		 	write(1, str, match - str);
-			int	i = 0;
+			int i = 0;
+			write(1, str, match - str);
 			while (i < filter_len)
 			{
 				write(1, "*", 1);
@@ -75,25 +74,19 @@ void	filter(char *str, char *filter)
 			str_len = strlen(str);
 		}
 	}
-	write(1, str, strlen(str));
+	write (1, str, strlen(str));
 }
 
 int	main(int ac, char **av)
 {
-	int fd = 0;
-	char *line;
-//	int	error = 0;
-
-
-	if (ac != 2 || *av[1] == '\0' || fd < 0 || BUFFER_SIZE <= 0)
+	char	*line = NULL;
+	if (ac != 2 || !av[1][0])
 		return (1);
 
-	while((line = get_next_line(fd/*, &error*/)))
+	while ((line = get_next_line(0)))
 	{
-		filter(line, av[1]);
+		my_filter(line, av[1]);
 		free(line);
 	}
-//	if (error != 0)
-		
-	return(0);
+	return (0);
 }

@@ -1,44 +1,39 @@
 
-#include "get_next_line.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
 
-char	*get_next_line(int fd)
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+char	*get_next_line(fd)
 {
 	static char	buf[BUFFER_SIZE];
-	static int	i = 0;
 	static int	bytes = 0;
-	int			j = 0;
+	static int	i = 0;
 	char		*line = NULL;
+	int			j = 0;
 
 	line = malloc(1000000);
 	if (fd < 0 || BUFFER_SIZE <= 0 || !line)
-		return (NULL);
-
-	while (1)
+		return(NULL);
+	while(1)
 	{
-		if (i >= bytes)	// only enters in the beginning,
-		{				// or if end of buffer is reached
-			i = 0;		// reset i to 0, because buffer is now empty and we
-						// start filling it at idx 0
-			bytes = read(fd, buf, BUFFER_SIZE);	// read from fd to buf for
-												// BUFFER_SIZE bytes
-			if (bytes < 0)	// means read returned an error
-			{
-				write(1, "Error\n", 6);
-				free(line);
-				return (NULL);
-			}
-			else if (bytes == 0)	// no more characters to read, EOF reached
-				break ;				// break the infinite loop, continue to
-									// end of function
+		if(i >= bytes)
+		{
+			i = 0;
+			bytes = read(fd, buf, BUFFER_SIZE);
+			if (bytes < 0)
+				return (free(line), NULL);
+			if (bytes == 0)
+				break ;
 		}
-		line[j++] = buf[i++];		// in every other case (bytes > 0, means
-									// that read returned a valid number
-									// of chars), read char
-		if (line[j - 1] == '\n')	// if the last character read is a '\n'
-			break ;					// break the infinite loop
+		line[j++] = buf[i++];
+		if (line[j - 1] == '\n')
+			break ;
 	}
-	if (j == 0)						// means the loop was broken with bytes == 0,
-									// so read returned 0 = no more characters
+	if (j == 0)
 	{
 		free(line);
 		line = NULL;
@@ -46,7 +41,7 @@ char	*get_next_line(int fd)
 		bytes = 0;
 		return (NULL);
 	}
-	line[j] = '\0';					// set last character to '\0'
+	line[j] = '\0';
 	return (line);
 }
 
@@ -54,8 +49,9 @@ char	*get_next_line(int fd)
 
 int	main(void)
 {
-	int fd = open("test.txt", O_RDONLY);
-	char	*line;
+	int		fd = open("test.txt", O_RDONLY);
+	char	*line = NULL;
+
 	while ((line = get_next_line(fd)))
 	{
 		printf("%s", line);
@@ -64,3 +60,4 @@ int	main(void)
 	close(fd);
 	return(0);
 }
+
