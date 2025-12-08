@@ -2,20 +2,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int	*board;
+int	*solution;
 int	N;
 
-int	is_safe(int row, int col)
+int	is_safe(int y, int x)
 {
 	int i = 0;
 	int prev_col;
 	
-	while (i < row)	// until we reach the last row
+	while (i < y)	// until we reach the last row
 	{
-		prev_col = board[i];	// 
-		if (prev_col == col)
+		prev_col = solution[i];	// 
+		if (prev_col == x)
 			return (0);
-		if (abs(prev_col - col) == abs(i - row))
+		if (abs(prev_col - x) == abs(i - y))
 			return (0);
 		i++;
 	}
@@ -33,7 +33,7 @@ void	print_solution()
 		j = 0;
 		while (j < N)
 		{
-			if (board[i] == j)
+			if (solution[i] == j)
 				printf("%d", j);
 			j++;
 		}
@@ -42,47 +42,44 @@ void	print_solution()
 	printf("\n");
 }
 
-void	solve_n_queens(int row) // function called with 0
-{								// therefor row = 0
-	int col;
+void	solve_n_queens(int y) 		// function called with 0
+{									// therefor row-idx = 0
+	int x; 
 	
-	if (row == N)				// once we reach the final row
+	if (y == N)						// once we reach the final row-idx
 	{
-		print_solution();		// we call print function
+		print_solution();			// we call print function
 		return ;
 	}
-	col = 0;
-	while (col < N)				// until we reach last column
+	x = 0;
+	while (x < N)					// until we reach last col-idx
 	{
-		if (is_safe(row, col))	// if is_save returns 1
-		{						// aka position at row X col is save,
-			board[row] = col;	// fill current row-position with value of col?
-			solve_n_queens(row + 1);	// call solve-function recursivly for
-		}								// next row as long as is_save keeps
-		col++;							// returning 1
+		if (is_safe(y, x))			// if is_save returns 1
+		{							// aka position at row-idx X col-idx is save,
+			solution[y] = x;		// fill current row-position with value of col@col-idx?
+			solve_n_queens(y + 1);	// call solve-function recursivly for
+		}							// next row as long as is_save keeps
+		x++;						// returning 1
 	}
 }
 
 int	main(int ac, char **av)
 {
-	if (ac != 2) // check number of args
-	{
-		fprintf(stderr, "Usage: %s <N>\n", argv[0]);
+	if (ac != 2 || !av[0][1]) // check number of args
 		return (1);
-	}
-	N = atoi(argv[1]);	// set global variable to av[1]
-	if (N < 1)			// = number of queens/rows/columns
+	N = atoi(av[1]);	// set number of queens/rows/columns to av[1]
+	if (N < 1) 
 	{
-		fprintf(stderr, "Invalid N\n"); // check validity
+		fprintf(stderr, "Invalid input\n"); // invalid input 
 		return (0);
 	}
-	board = malloc(sizeof(int) * N);	// allocate for "board"
-	if (!board)							// aka temp. array
+	solution = malloc(sizeof(int) * N);	// allocate for int *solution
+	if (!solution)
 	{
 		fprintf(stderr, "malloc failed\n"); // malloc-check
 		return (1);
 	}
 	solve_n_queens(0);	// call function
-	free(board);		// free
+	free(solution);		// free
 	return (0);			// return
 }
