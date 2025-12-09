@@ -20,7 +20,7 @@ char	*get_next_line(int fd)
 {
 	static char buf[BUFFER_SIZE];
 	static int	i = 0;
-	static int 	byte = 0;
+	static int 	bytes = 0;
 	int			j = 0;
 	char		*line = NULL;
 
@@ -31,13 +31,13 @@ char	*get_next_line(int fd)
 		return (perror("Error"), NULL);
 	while (1)
 	{
-		if (i >= byte)
+		if (i >= bytes)
 		{
 			i = 0;
-			byte = read(fd, buf, BUFFER_SIZE);
-			if (byte < 0)
+			bytes = read(fd, buf, BUFFER_SIZE);
+			if (bytes < 0)
 				return (free(line), perror("Error"), NULL);
-			else if (byte == 0)
+			else if (bytes == 0)
 				break ;
 		}
 		line[j++] = buf[i++];
@@ -56,10 +56,10 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-void	censor(char *str, char *filter)
+void	my_filter(char *str, char *filter)
 {
-	int	filter_len = strlen(filter);
-	int str_len = strlen(str);
+	int		filter_len = strlen(filter);
+	int		str_len = strlen(str);
 	char	*match = NULL;
 
 	while (*str)
@@ -92,7 +92,7 @@ int	main(int ac, char **av)
 		return (1);
 	while ((line = get_next_line(0)))
 	{
-		censor(line, av[1]);
+		my_filter(line, av[1]);
 		free(line);
 	}
 	return (0);
