@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <ctype.h>
+//#include <ctype.h>
 #include <stdio.h>
 
 // read from stdin
@@ -19,8 +19,8 @@
 char	*get_next_line(int fd)
 {
 	static char buf[BUFFER_SIZE];
-	static int	i;
-	static int 	byte;
+	static int	i = 0;
+	static int 	byte = 0;
 	int			j = 0;
 	char		*line = NULL;
 
@@ -65,7 +65,10 @@ void	censor(char *str, char *filter)
 	while (*str)
 	{
 		if (!(match = memmem(str, str_len, filter, filter_len)))
+		{
+			write(1, str, strlen(str));
 			return ;
+		}
 		else
 		{
 			write(1, str, match - str);
@@ -79,7 +82,6 @@ void	censor(char *str, char *filter)
 			str_len = strlen(str);
 		}
 	}
-	write(1, str, strlen(str));
 }
 
 int	main(int ac, char **av)

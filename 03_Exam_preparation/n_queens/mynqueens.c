@@ -12,19 +12,20 @@ unsigned int	myabs(int num)
 	return (num);
 }
 
-int	is_safe(int y, int x)
+int	is_safe(int x, int y)
 {
 	int y_temp = 0;		// was i
-	int x_temp;			// was prev_col
+	int x_temp = 0;			// was prev_col
 	
-	while (y_temp < y)	// for every line until we reach the current(?)
+	while (x_temp < x)	// for every line until we reach the current(?)
 	{
-		x_temp = solution[y_temp];	// 
-		if (x_temp == x)
+		y_temp = solution[x_temp];	// 
+		if (y_temp == y)
 			return (0);
-		if (myabs(x_temp - x) == myabs(temp_y - y))
-			return (0);
-		y_temp++;
+		if ((y_temp - x_temp) == (y - x))
+//		if (myabs(x_temp - x) == myabs(y_temp - y))
+//			return (0);
+		x_temp++;
 	}
 	return (1);
 }
@@ -60,10 +61,10 @@ void	solve_n_queens(int y) 		// function called with 0
 	}
 	while (x < N)					// until we reach last col-idx
 	{
-		if (is_safe(y, x))			// if is_save returns 1
+		if (is_safe(x, y))			// if is_save returns 1
 		{							// aka position at row-idx X col-idx is save,
-			solution[y] = x;		// fill current row-position with value of col@col-idx?
-			solve_n_queens(y + 1);	// call solve-function recursivly for
+			solution[x] = y;		// fill current row-position with value of col@col-idx?
+			solve_n_queens(x + 1);	// call solve-function recursivly for
 		}							// next row as long as is_save keeps
 		x++;						// returning 1
 	}
