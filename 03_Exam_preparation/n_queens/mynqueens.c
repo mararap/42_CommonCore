@@ -5,19 +5,26 @@
 int	*solution;
 int	N;
 
+unsigned int	myabs(int num)
+{
+	if (num < 0)
+		num *= -1;
+	return (num);
+}
+
 int	is_safe(int y, int x)
 {
-	int i = 0;
-	int prev_col;
+	int y_temp = 0;		// was i
+	int x_temp;			// was prev_col
 	
-	while (i < y)	// until we reach the last row
+	while (y_temp < y)	// for every line until we reach the current(?)
 	{
-		prev_col = solution[i];	// 
-		if (prev_col == x)
+		x_temp = solution[y_temp];	// 
+		if (x_temp == x)
 			return (0);
-		if (abs(prev_col - x) == abs(i - y))
+		if (myabs(x_temp - x) == myabs(temp_y - y))
 			return (0);
-		i++;
+		y_temp++;
 	}
 	return (1);
 }
@@ -43,15 +50,14 @@ void	print_solution()
 }
 
 void	solve_n_queens(int y) 		// function called with 0
-{									// therefor row-idx = 0
-	int x; 
+{									// therefor first line-idx = 0
+	int x = 0; 
 	
-	if (y == N)						// once we reach the final row-idx
+	if (y == N)						// once we reach the final line-idx
 	{
 		print_solution();			// we call print function
 		return ;
 	}
-	x = 0;
 	while (x < N)					// until we reach last col-idx
 	{
 		if (is_safe(y, x))			// if is_save returns 1
@@ -65,7 +71,7 @@ void	solve_n_queens(int y) 		// function called with 0
 
 int	main(int ac, char **av)
 {
-	if (ac != 2 || !av[0][1]) // check number of args
+	if (ac != 2 || !av[0][1]) // check args
 		return (1);
 	N = atoi(av[1]);	// set number of queens/rows/columns to av[1]
 	if (N < 1) 
