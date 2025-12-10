@@ -4,34 +4,13 @@
 
 int	*solution;
 int	N;
-
+/*
 unsigned int	my_abs(int num)
 {
 	if (num < 0)
 		num *= -1;
 	return (num);
-}
-
-int	is_safe(int x, int y)
-{
-	int x_temp = 0;		// was i
-	int y_temp = 0;			// was prev_col
-	
-	while (x_temp < x)	// for every line until we reach the current(?)
-	{
-		y_temp = solution[x_temp];	// 
-		if (y_temp == y)
-			return (0);
-		if ((y_temp - x_temp) == (y - x))
-			return (0);
-		if ((y_temp + x_temp) == (y + x))
-			return (0);
-//		if (my_abs(x_temp - x) == my_abs(y_temp - y))
-//			return (0);
-		x_temp++;
-	}
-	return (1);
-}
+}*/
 
 void	print_solution()
 {
@@ -46,6 +25,27 @@ void	print_solution()
 		i++;
 	}
 	fprintf(stdout, "\n");
+}
+
+int	is_safe(int x, int y)
+{
+	int x_temp = 0;	
+	int value = 0;
+	
+	while (x_temp < x)	// for every column-index until we reach the current(?)
+	{
+		value = solution[x_temp];	// value = value of solution[0], [1], [2] ...
+		if (value == y)
+			return (0);
+		if ((value - x_temp) == (y - x))
+			return (0);
+		if ((value + x_temp) == (y + x))
+			return (0);
+//		if (my_abs(x_temp - x) == my_abs(y_temp - y))
+//			return (0);
+		x_temp++;
+	}
+	return (1);
 }
 
 void	solve(int x) 				// function called with 0
