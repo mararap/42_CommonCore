@@ -25,7 +25,7 @@ int	is_safe(int x, int y)
 	int x_temp = 0;	
 	int value = 0;
 	
-	while (x_temp < x)	                // for every column-index until we reach the current(?)
+	while (x_temp < x)		// for every column-index until we reach the current(?)
 	{
 		value = g_solution[x_temp];     // value = value of solution[0], [1], [2] ...
 		if (value == y)
@@ -39,23 +39,23 @@ int	is_safe(int x, int y)
 	return (1);
 }
 
-void	solve(int x)     				// function called with 0
-{				    					// therefor first line-idx = 0
+void	solve(int x)    // function called with 0
+{				    	// therefor first line-idx = 0
 	int y = 0; 
 	
-	if (x == g_n)			    		// once we reach the final line-idx
+	if (x == g_n)	// once we reach the final line-idx
 	{
-		print_solution();   			// call print function
+		print_solution(); 	// call print function
 		return ;
 	}
-	while (y < g_n)		    			// until we reach last col-idx
+	while (y < g_n)		// until we reach last col-idx
     {	
-		if (is_safe(x, y))		    	// if is_save returns 1
-		{					    		// aka position at row-idx X col-idx is save,
-			g_solution[x] = y;		    // fill current row-position with value of col@col-idx?
-			solve(x + 1);			    // call solve-function recursivly for
-		}					    		// next row as long as is_save keeps
-		y++;					    	// returning 1
+		if (is_safe(x, y))		// if is_save returns 1
+		{					    // aka position at row-idx X col-idx is save,
+			g_solution[x] = y;	// fill current row-position with value of col@col-idx?
+			solve(x + 1);		// call solve-function recursivly for
+		}					    // next row as long as is_save keeps
+		y++;   	// returning 1
 	}
 }
 
