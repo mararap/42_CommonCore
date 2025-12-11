@@ -19,16 +19,12 @@
 char	*get_next_line(int fd)
 {
 	static char buf[BUFFER_SIZE];
-	static int	i = 0;
-	static int 	bytes = 0;
+	static int	i, bytes = 0;
+	char		*line = malloc(1000000);
 	int			j = 0;
-	char		*line = NULL;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || !line)
 		return (NULL);
-	line = malloc(1000000);
-	if (!line)
-		return (perror("Error"), NULL);
 	while (1)
 	{
 		if (i >= bytes)
@@ -45,43 +41,24 @@ char	*get_next_line(int fd)
 			break ;
 	}
 	if (j == 0)
-	{
-		free(line);
-		line = NULL;
-		i = 0;
-		byte = 0;
-		return (NULL);
-	}
+		return (free(line), NULL);
 	line[j] = '\0';
 	return (line);
 }
 
 void	my_filter(char *str, char *filter)
 {
-	int		filter_len = strlen(filter);
-	int		str_len = strlen(str);
-	char	*match = NULL;
+	int len = strlen(filter);
+	char *m, stars[100] = {0};
 
-	while (*str)
+	memset(stars, '*', len);
+	while ((m = memmem(str, strlen(str), filter, len)))
 	{
-		if (!(match = memmem(str, str_len, filter, filter_len)))
-		{
-			write(1, str, strlen(str));
-			return ;
-		}
-		else
-		{
-			write(1, str, match - str);
-			int i = 0;
-			while (i < filter_len)
-			{
-				write(1, "*", 1);
-				i++;
-			}
-			str = match + filter_len;
-			str_len = strlen(str);
-		}
+		write(1, str, m - str);
+		write(1, stars, len);
+		str = m + len;
 	}
+	write(1, str, strlen(str));
 }
 
 int	main(int ac, char **av)

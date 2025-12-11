@@ -3,7 +3,7 @@
 
 char	*get_next_line(int fd)
 {
-	static char	buf[BUFFER_SIZE] = NULL;
+	static char	buf[BUFFER_SIZE];
 	static int	i = 0;
 	static int	bytes = 0;
 	int			j = 0;
