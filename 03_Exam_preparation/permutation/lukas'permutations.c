@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lukas'permutations.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwittwer <lwittwer@student.42vienna.c      +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 15:24:50 by lwittwer          #+#    #+#             */
-/*   Updated: 2025/12/12 18:48:04 by marapovi         ###   ########.fr       */
+/*   Updated: 2025/12/12 20:05:05 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static int ft_strlen(char *str)
 
 static void	ft_putstr(char *str)
 {
-	write(0, str, ft_strlen(str));
-	write(0, "\n", 1);
+	write(1, str, ft_strlen(str));
+	write(1, "\n", 1);
 }
 void	swap(char *a, char *b)
 {
@@ -49,9 +49,11 @@ void	permute(char *str, int left, int right)
 	}
 }
 
-int	main(int argc, char **argv)
+int	main(int ac, char **av)
 {
-	(void)argc;
-	permute(argv[1], 0, ft_strlen(argv[1]) - 1);
+	if (ac != 2 || av[1] == NULL || ft_strlen(av[1]) == 0)
+		return (1);
+	(void)ac;
+	permute(av[1], 0, ft_strlen(av[1]) - 1);
 	return (0);
 }
