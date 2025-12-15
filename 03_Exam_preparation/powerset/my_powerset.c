@@ -1,14 +1,21 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static int *g_num;
-static int g_n;
+static int *g_set;
+static int g_len;
 
-void	search(int idx, int target_sum, int current_sum, int subset[], int subset_size)
+void	search(int idx, int target_sum, int current_sum,
+				int subset[], int subset_size)
 {
+	// index needed for printing
 	int	i = 0;
-	if (idx == g_n)
+	// pruning-condition
+	if (current_sum > target_sum)
+		return ;
+	// base case for recursion: end of set is reached
+	if (idx == g_len)
 	{
+	// print if products match
 		if (current_sum == target_sum)
 		{
 			while (i < subset_size)
@@ -20,9 +27,14 @@ void	search(int idx, int target_sum, int current_sum, int subset[], int subset_s
 		}
 		return ;
 	}
-	search(idx + 1, target_sum, current_sum, subset, subset_size);
-	subset[subset_size] = g_num[idx];
-	search(idx + 1, target_sum, current_sum + g_num[idx], subset, subset_size + 1);
+	// call function recursively without current number
+	search(idx + 1, target_sum, current_sum,
+			subset, subset_size);
+	// add current number to subset[]
+	subset[subset_size] = g_set[idx];
+	// call function recursively with current number
+	search(idx + 1, target_sum, current_sum + g_set[idx],
+			subset, subset_size + 1);
 }
 
 int	main(int ac, char **av)
@@ -43,11 +55,16 @@ int	main(int ac, char **av)
 		j++;
 		i++;
 	}
-	g_num = input_set;
-	g_n = ac - 2;
+	// assign input_set and len of input_set to globals
+	g_set = input_set;
+	g_len = ac - 2;
+	// assign second argument to be target_product
 	target_sum = atoi(av[1]);
+	// call function
 	search(0, target_sum, 0, subset, 0);
+	// free
 	free(input_set);
+	// return
 	return (0);
 }
 
