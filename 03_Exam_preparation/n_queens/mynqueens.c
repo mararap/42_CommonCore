@@ -53,9 +53,9 @@ void	solve(int x)    // function called with 0
 		if (is_safe(x, y))		// if is_save returns 1
 		{					    // aka position at row-idx X col-idx is save,
 			g_solution[x] = y;	// fill current row-position with value of col@col-idx?
-			solve(x + 1);		// call solve-function recursivly for
+			solve(x + 1);		// call solve-function recursivly for x + 1
 		}					    // next row as long as is_save keeps
-		y++;   	// returning 1
+		y++;   					// returning 1
 	}
 }
 

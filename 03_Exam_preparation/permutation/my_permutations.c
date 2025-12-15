@@ -7,10 +7,11 @@ static int	ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
+}
 
 static void ft_putstr(char *str)
 {
-	write(0, str, ft_strlen(str);
+	write(0, str, ft_strlen(str));
 	write(0, "\n", 1);
 }
 
@@ -41,6 +42,6 @@ void	permute(char *str, int left, int right)	//right = ft_strlen(argv[1]) - 1;
 int	main(int ac, char **av)
 {
 	(void)ac;
-	permute(argv[1], 0, ft_strlen(argv[1]) - 1);
+	permute(av[1], 0, ft_strlen(av[1]) - 1);
 	return (0);
 }
