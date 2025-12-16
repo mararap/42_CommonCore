@@ -61,7 +61,7 @@ void	solve(int x)    // function called with 0
 
 int	main(int ac, char **av)
 {
-	if (ac != 2 || !av[0][1]) 			// check args
+	if (ac != 2 || !av[1][0]) 			// check args
 		return (1);
 	g_n = atoi(av[1]);					// set number of queens/rows/columns to av[1]
 	if (g_n < 0) 
