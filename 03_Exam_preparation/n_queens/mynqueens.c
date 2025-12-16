@@ -43,12 +43,12 @@ void	solve(int x)    // function called with 0
 {				    	// therefor first line-idx = 0
 	int y = 0; 
 	
-	if (x == g_n)	// once we reach the final line-idx
+	if (x == g_n)	// once we reach the final column-idx
 	{
 		print_solution(); 	// call print function
 		return ;
 	}
-	while (y < g_n)		// until we reach last col-idx
+	while (y < g_n)		// until we reach last line-idx
     {	
 		if (is_safe(x, y))		// if is_save returns 1
 		{					    // aka position at row-idx X col-idx is save,
