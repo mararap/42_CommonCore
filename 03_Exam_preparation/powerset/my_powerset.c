@@ -5,7 +5,7 @@ static int *g_set;
 static int g_len;
 
 void	search(int idx, int target_sum, int current_sum,
-				int subset[], int subset_size)
+				int subset[], int subset_len)
 {
 	// index needed for printing
 	int	i = 0;
@@ -18,9 +18,11 @@ void	search(int idx, int target_sum, int current_sum,
 	// print if products match
 		if (current_sum == target_sum)
 		{
-			while (i < subset_size)
+			while (i < subset_len)
 			{
-				printf("%d ", subset[i]);
+				printf("%d", subset[i]);
+				if ((i + 1) < subset_len)
+					printf(" ");
 				i++;
 			}
 			printf("\n");
@@ -29,12 +31,12 @@ void	search(int idx, int target_sum, int current_sum,
 	}
 	// call function recursively without current number
 	search(idx + 1, target_sum, current_sum,
-			subset, subset_size);
+			subset, subset_len);
 	// add current number to subset[]
-	subset[subset_size] = g_set[idx];
+	subset[subset_len] = g_set[idx];
 	// call function recursively with current number
 	search(idx + 1, target_sum, current_sum + g_set[idx],
-			subset, subset_size + 1);
+			subset, subset_len + 1);
 }
 
 int	main(int ac, char **av)
