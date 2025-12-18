@@ -4,7 +4,7 @@
 static int *g_set;
 static int g_len;
 
-void	search(int idx, int target_sum, int current_sum,
+void	find_subsets(int idx, int target_sum, int current_sum,
 				int subset[], int subset_len)
 {
 	// index needed for printing
@@ -15,7 +15,7 @@ void	search(int idx, int target_sum, int current_sum,
 	// base case for recursion: end of set is reached
 	if (idx == g_len)
 	{
-	// print if products match
+	// print if sums match
 		if (current_sum == target_sum)
 		{
 			while (i < subset_len)
@@ -30,12 +30,12 @@ void	search(int idx, int target_sum, int current_sum,
 		return ;
 	}
 	// call function recursively without current number
-	search(idx + 1, target_sum, current_sum,
+	find_subsets(idx + 1, target_sum, current_sum,
 			subset, subset_len);
 	// add current number to subset[]
 	subset[subset_len] = g_set[idx];
 	// call function recursively with current number
-	search(idx + 1, target_sum, current_sum + g_set[idx],
+	find_subsets(idx + 1, target_sum, current_sum + g_set[idx],
 			subset, subset_len + 1);
 }
 
@@ -63,7 +63,7 @@ int	main(int ac, char **av)
 	// assign second argument to be target_product
 	target_sum = atoi(av[1]);
 	// call function
-	search(0, target_sum, 0, subset, 0);
+	find_subsets(0, target_sum, 0, subset, 0);
 	// free
 	free(input_set);
 	// return

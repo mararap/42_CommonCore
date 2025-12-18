@@ -28,13 +28,7 @@ char	*get_next_line(int fd)
 			break ;
 	}
 	if (j == 0)
-	{
-		free(line);
-		line = NULL;
-		i = 0;
-		bytes = 0;
-		return (NULL);
-	}
+		return(free(line), NULL);
 	line[j] = '\0';
 	return (line);
 }

@@ -3,17 +3,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-//#include <ctype.h>
 #include <stdio.h>
 
-// read from stdin
-
-// write to stdout what you read from stdin
-
-// read from stdin and do sth with it, then write
-
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
+# define BUFFER_SIZE 5
 #endif
 
 char	*get_next_line(int fd)
@@ -49,7 +42,8 @@ char	*get_next_line(int fd)
 void	my_filter(char *str, char *filter)
 {
 	int len = strlen(filter);
-	char *m, stars[100] = {0};
+	char *m;
+	char stars[100] = {0};
 
 	memset(stars, '*', len);
 	while ((m = memmem(str, strlen(str), filter, len)))
