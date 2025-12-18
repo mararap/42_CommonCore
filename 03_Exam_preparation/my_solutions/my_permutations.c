@@ -1,7 +1,7 @@
 
 #include "my_permutations.h"
 
-static void	swap(char *a, char *b)
+void	swap(char *a, char *b)
 {
 	int	tmp = *a;
 	*a = *b;

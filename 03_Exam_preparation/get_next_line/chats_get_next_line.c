@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "my_get_next_line.h"
 
 static char *grow(char *old, int cur_len, int add)
 {

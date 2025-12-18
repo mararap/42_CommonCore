@@ -5,6 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void	solve(int x);
+void	find_solution(int x);
 
 #endif

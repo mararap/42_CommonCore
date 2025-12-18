@@ -32,8 +32,9 @@ char	*get_next_line(int fd)
 	line[j] = '\0';
 	return (line);
 }
-
+/*
 #include <stdio.h>
+#include <fcntl.h>
 
 int	main(void)
 {
@@ -46,4 +47,4 @@ int	main(void)
 	}
 	close(fd);
 	return(0);
-}
+}*/
