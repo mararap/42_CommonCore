@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/19 18:01:59 by marapovi          #+#    #+#             */
-/*   Updated: 2025/12/19 18:05:50 by marapovi         ###   ########.fr       */
+/*   Created: 2025/04/24 09:48:45 by marapovi          #+#    #+#             */
+/*   Updated: 2025/04/24 09:49:01 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int ac, char **av)
+int	ft_isalnum(int i)
 {
-	// REPL
-	// read - evaluate - print - loop
-	while (1)
-	{
-		// 1) get line
+	unsigned char	c;
 
-		// 2) 
-	(void)ac;
-	int	status;
-
-	if (fork() == 0
-		execvp(av[1], av + 1);
-
-	wait(&status);
+	c = (unsigned char)i;
+	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || (c >= 48 && c <= 57))
+		return (1);
 	return (0);
 }
+/*
+#include <stdio.h>
+#include <ctype.h>
+
+int	main(void)
+{
+	printf("%d\n", ft_isalnum('9'));
+	printf("%d\n", isalnum('9'));
+	return (0);
+}*/
