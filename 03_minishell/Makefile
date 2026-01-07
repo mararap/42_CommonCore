@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/12/19 16:42:16 by marapovi          #+#    #+#              #
-#    Updated: 2025/12/20 21:18:45 by marapovi         ###   ########.fr        #
+#    Created: 2026/01/07 14:15:56 by marapovi          #+#    #+#              #
+#    Updated: 2026/01/07 14:17:08 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,4 +24,5 @@ LDFLAGS		:=	-L libft
 LDLIBS		:=	-lft
 
 RM			:=	rm -rf
+
 

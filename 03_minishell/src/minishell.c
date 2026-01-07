@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.c      +#+  +:+       +#+        */
+/*   By: marapovi <marapovi@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/19 18:01:59 by marapovi          #+#    #+#             */
-/*   Updated: 2025/12/21 19:51:56 by marapovi         ###   ########.fr       */
+/*   Created: 2026/01/07 14:23:24 by marapovi          #+#    #+#             */
+/*   Updated: 2026/01/07 14:23:58 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
