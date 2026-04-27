@@ -6,7 +6,7 @@
 #    By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/20 21:31:57 by marapovi          #+#    #+#              #
-#    Updated: 2026/04/25 23:13:05 by marapovi         ###   ########.fr        #
+#    Updated: 2026/04/27 09:58:49 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 
 NAME		:=	philo	
 
-HEADER		:=	./include/philo.h
+HEADER		:=	./philo.h
 
 define BANNER
 
@@ -61,7 +61,7 @@ export BANNER
 CC			:=	cc
 
 # C PreProcessor flags - exclusively needed when compiling src files
-CPPFLAGS	:=	-I include -I libft
+CPPFLAGS	:=	-I .
 
 # C compiler flags - needed for compiling src files AND for linking
 # CFLAGS		:=	-Wall -Wextra -Werror -O2 -march=native -g
@@ -88,7 +88,7 @@ RM			:=	rm -rf
 # **************************************************************************** #
 
 OBJ_DIR			:=		obj
-SRC_DIR			:=		src
+SRC_DIR			:=		.
 
 SRC 	:= 		main.c \
 				init.c \

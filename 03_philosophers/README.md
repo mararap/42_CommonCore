@@ -54,14 +54,14 @@ make
 ### Project Structure
 
 ```
-include/    philo.h (structs, typedefs, prototypes)
-src/        main.c      argument parsing and program entry
-            init.c      initialization chain (dinner, forks, philosophers)
-            threads.c   thread creation, joining, sim-over check
-            actions.c   philosopher actions (take/drop forks, eat, sleep, think)
-            monitor.c   death detection and meal-count monitoring
-            cleanup.c   resource freeing and mutex destruction
-            utils.c     shared helpers (time, print, atoui)
+philo.h     structs, typedefs, prototypes
+main.c      argument parsing and program entry
+init.c      initialization chain (dinner, forks, philosophers)
+threads.c   thread creation, joining, sim-over check
+actions.c   philosopher actions (take/drop forks, eat, sleep, think)
+monitor.c   death detection and meal-count monitoring
+cleanup.c   resource freeing and mutex destruction
+utils.c     shared helpers (time, print, atoui)
 ```
 
 ### Testing for data races
