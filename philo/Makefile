@@ -6,7 +6,7 @@
 #    By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/27 19:28:49 by marapovi          #+#    #+#              #
-#    Updated: 2026/04/26 22:01:57 by marapovi         ###   ########.fr        #
+#    Updated: 2026/04/27 08:40:48 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CFILES	=	main.c\
 
 OFILES	=	$(CFILES:.c=.o)
 
-CC	=	cc
+CC	=	cc -g
 
 CFLAGS	=	-Wall -Wextra -Werror
 

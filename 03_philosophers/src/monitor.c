@@ -6,11 +6,12 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:12 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/26 21:39:15 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/27 01:05:42 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Monitoring logic (death, meal count)
+/* Monitoring logic (death, meal count) */
+
 #include "philo.h"
 
 static int	all_fed(t_dinner *d)
@@ -73,7 +74,7 @@ void	*ph_monitor(void *arg)
 			pthread_mutex_lock(&d->meal_lock);
 			last_meal = d->philo_arr[i].last_meal_time;
 			pthread_mutex_unlock(&d->meal_lock);
-			if ((ph_get_time_ms() - last_meal) >= d->time_to_die
+			if ((ph_get_time_ms() - last_meal) > d->time_to_die
 				&& !ph_is_sim_over(d))
 				report_death(d, i);
 			i++;
