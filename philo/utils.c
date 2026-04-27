@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:22 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/27 11:15:54 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/27 13:13:31 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ long long	ph_get_time_ms(void)
 	return ((long long)tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void	ph_usleep(long long ms)
+void	ph_usleep(long long ms, t_dinner *d)
 {
 	long long	start;
 	long long	remaining;
@@ -59,7 +59,7 @@ void	ph_usleep(long long ms)
 	while (1)
 	{
 		remaining = ms - (ph_get_time_ms() - start);
-		if (remaining <= 0)
+		if (remaining <= 0 || ph_is_sim_over(d))
 			break ;
 		if (remaining > 2)
 			usleep ((remaining - 2) * 1000);

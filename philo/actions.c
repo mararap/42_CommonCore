@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 20:52:36 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/27 12:41:47 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/27 15:40:02 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ph_take_forks(t_philo *p)
 		return ;
 	pthread_mutex_lock(second);
 	ph_print_status(p, "has taken a fork");
+	usleep(500);
 	pthread_mutex_lock(&p->dinner->meal_lock);
 	p->last_meal_time = ph_get_time_ms();
 	pthread_mutex_unlock(&p->dinner->meal_lock);
@@ -51,7 +52,7 @@ void	ph_eat(t_philo *p)
 	start = p->last_meal_time;
 	pthread_mutex_unlock(&p->dinner->meal_lock);
 	ph_print_status(p, "is eating");
-	ph_usleep(start + p->dinner->time_to_eat - ph_get_time_ms());
+	ph_usleep(start + p->dinner->time_to_eat - ph_get_time_ms(), p->dinner);
 	pthread_mutex_lock(&p->dinner->meal_lock);
 	p->meal_count++;
 	pthread_mutex_unlock(&p->dinner->meal_lock);
@@ -70,7 +71,7 @@ void	ph_sleep(t_philo *p)
 
 	start = ph_get_time_ms();
 	ph_print_status(p, "is sleeping");
-	ph_usleep(p->dinner->time_to_sleep);
+	ph_usleep(p->dinner->time_to_sleep, p->dinner);
 }
 
 void	ph_think(t_philo *p)
@@ -85,5 +86,5 @@ void	ph_think(t_philo *p)
 	else
 		think = p->dinner->time_to_eat - p->dinner->time_to_sleep + 1;
 	if (think > 0)
-		ph_usleep(think);
+		ph_usleep(think, p->dinner);
 }
