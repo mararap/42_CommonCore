@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:17 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/27 00:20:33 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/27 11:19:24 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,7 @@ static void	*ph_routine(void *arg)
 	philo->last_meal_time = start;
 	pthread_mutex_unlock(&philo->dinner->meal_lock);
 	if (philo->id % 2 == 0)
-	{
-		while (ph_get_time_ms() < start + philo->dinner->time_to_eat
-			&& !ph_is_sim_over(philo->dinner))
-			usleep(75);
-	}
+		ph_usleep(philo->dinner->time_to_eat);
 	while (!ph_is_sim_over(philo->dinner))
 	{
 		ph_take_forks(philo);
