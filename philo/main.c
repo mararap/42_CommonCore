@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:07 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/26 23:39:06 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/28 13:11:47 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int	main(int ac, char **av)
 	if (ph_init_forks(&dinner) != 0)
 		return (ph_destroy_mutexes(&dinner, 3), 1);
 	dinner.start_time = ph_get_time_ms();
-	ph_init_philos(&dinner);
+	if (ph_init_philos(&dinner) != 0)
+		return (ph_destroy_mutexes(&dinner, 3), 1);
 	if (pthread_create(&monitor_tid, NULL, ph_monitor, &dinner) != 0)
 		return (ph_destroy_mutexes(&dinner, 3), 1);
 	if (ph_start_philo_threads(&dinner) != 0)

@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 14:14:34 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/27 13:09:38 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/28 14:13:34 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ struct					s_philo
 	pthread_t			tid;
 	long long			last_meal_time;
 	int					meal_count;
+	pthread_mutex_t		meal_lock;
 	t_fork_lock			*left;
 	t_fork_lock			*right;
 	t_dinner			*dinner;
@@ -51,7 +52,6 @@ struct					s_dinner
 	int					is_dead;
 	pthread_mutex_t		print_lock;
 	pthread_mutex_t		dead_lock;
-	pthread_mutex_t		meal_lock;
 };
 
 /* UTILS */
@@ -65,7 +65,7 @@ void					ph_usleep(long long ms, t_dinner *d);
 
 int						ph_init_dinner(t_dinner *d);
 int						ph_init_forks(t_dinner *d);
-void					ph_init_philos(t_dinner *d);
+int						ph_init_philos(t_dinner *d);
 
 /* THREADS */
 
@@ -86,7 +86,8 @@ void					*ph_monitor(void *arg);
 
 /* CLEANUP */
 
-void					ph_free_arrays(t_dinner *d);
+void					ph_free_philo_arr(t_dinner *d);
+void					ph_free_forks_arr(t_dinner *d);
 void					ph_destroy_mutexes(t_dinner *d, int stage);
 
 #endif //! PHILO_H

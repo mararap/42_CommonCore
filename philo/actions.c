@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 20:52:36 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/27 15:40:02 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/28 13:15:27 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	ph_take_forks(t_philo *p)
 	pthread_mutex_lock(second);
 	ph_print_status(p, "has taken a fork");
 	usleep(500);
-	pthread_mutex_lock(&p->dinner->meal_lock);
+	pthread_mutex_lock(&p->meal_lock);
 	p->last_meal_time = ph_get_time_ms();
-	pthread_mutex_unlock(&p->dinner->meal_lock);
+	pthread_mutex_unlock(&p->meal_lock);
 }
 
 void	ph_eat(t_philo *p)
@@ -48,14 +48,14 @@ void	ph_eat(t_philo *p)
 			usleep(500);
 		return ;
 	}
-	pthread_mutex_lock(&p->dinner->meal_lock);
+	pthread_mutex_lock(&p->meal_lock);
 	start = p->last_meal_time;
-	pthread_mutex_unlock(&p->dinner->meal_lock);
+	pthread_mutex_unlock(&p->meal_lock);
 	ph_print_status(p, "is eating");
 	ph_usleep(start + p->dinner->time_to_eat - ph_get_time_ms(), p->dinner);
-	pthread_mutex_lock(&p->dinner->meal_lock);
+	pthread_mutex_lock(&p->meal_lock);
 	p->meal_count++;
-	pthread_mutex_unlock(&p->dinner->meal_lock);
+	pthread_mutex_unlock(&p->meal_lock);
 }
 
 void	ph_drop_forks(t_philo *p)
