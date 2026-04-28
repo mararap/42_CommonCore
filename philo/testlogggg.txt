@@ -1,0 +1,387 @@
+💭 The 42Philosophers Helper 💭
+ ____  _     _ _                       _                   
+|  _ \| |__ (_) | ___  ___  ___  _ __ | |__   ___ _ __ ___ 
+| |_) | '_ \| | |/ _ \/ __|/ _ \| '_ \| '_ \ / _ \ '__/ __|
+|  __/| | | | | | (_) \__ \ (_) | |_) | | | |  __/ |  \__ \ 
+|_|   |_| |_|_|_|\___/|___/\___/| .__/|_| |_|\___|_|  |___/
+                                |_|    by Abdallah Zerfaoui
+
+
+This tester allows you to test:
+
+	a. Invalid input handling
+	- checks if the program handles invalid input correctly.
+
+	b. when philosophers should die
+	- checks if the program stops when a philosopher dies in the expected time.
+
+	c. when no philosophers should die
+	- checks if the program runs for a certain time without any philosopher dying.
+	 with and without number of meals limitation.
+
+	d. check for data races and deadlocks
+	- using helgrind, drd, and sanitizer.
+
+	e. check timestamps
+	- checks if the program runs for a certain time without mixing timestamps
+
+	f. The Chaos Feast
+	- runs all tests in sequence.
+
+
+Choose test to run:	
+  [1] check invalid input (auto)	
+  [2] die tests - auto (can take a while)	
+  [3] no-die limited meals test (auto)	
+  [4] no-die tests (can take a while)	
+  [5] no-die tests (auto)	
+  [6] check data races && deadlocks (needs docker) 	
+  [7] check timestamps - The Chefs Special 	
+  [8] The Chaos Feast (auto)	
+  [ESC] exit tester
+
+8
+=== Starting invalid input tests ===
+Testing invalid input: -5 600 200 200
+OK: Handled invalid input correctly.
+Testing invalid input: 4 -5 200 200
+OK: Handled invalid input correctly.
+Testing invalid input: 4 600 -5 200
+OK: Handled invalid input correctly.
+Testing invalid input: 4 600 200 -5
+OK: Handled invalid input correctly.
+Testing invalid input: 4 600 200 200 -5
+OK: Handled invalid input correctly.
+Testing invalid input: 4a 600 200 200 5
+OK: Handled invalid input correctly.
+Testing invalid input: 4 600f 200 200 5
+OK: Handled invalid input correctly.
+Testing invalid input: 4 600 200dsd 200 5
+OK: Handled invalid input correctly.
+Testing invalid input: 4 600 200 200sfsd 5fs
+OK: Handled invalid input correctly.
+Testing invalid input: 4 999999999999999 200 200
+OK: Handled invalid input correctly.
+Testing invalid input: 4 abdallah 200 200 3
+OK: Handled invalid input correctly.
+Testing invalid input: 4 100 abdallah 200 3
+OK: Handled invalid input correctly.
+Testing invalid input: 4 100 800 abdallah 200 3
+KO: Program did not handle invalid input correctly.
+Testing invalid input: 4 100 800 200 200 abdallah
+KO: Program did not handle invalid input correctly.
+Testing invalid input: -5 600 200 200
+OK: Handled invalid input correctly.
+Testing invalid input: 4 -5 200 200
+OK: Handled invalid input correctly.
+Testing invalid input: 4 600 -5 200
+OK: Handled invalid input correctly.
+Testing invalid input: 4 600 200 -5
+OK: Handled invalid input correctly.
+Testing invalid input: 4 600 200 200 -5
+OK: Handled invalid input correctly.
+Testing invalid input: 4 999999999999999 200 200
+OK: Handled invalid input correctly.
+Testing invalid input: 4 abc 200 200 3
+OK: Handled invalid input correctly.
+Testing invalid input: 4 100 abc 200 3
+OK: Handled invalid input correctly.
+Testing invalid input: 4 100 800 abc 200 3
+KO: Program did not handle invalid input correctly.
+Testing invalid input: 4 100 800 200 200 abc
+KO: Program did not handle invalid input correctly.
+Testing invalid input: 4 100 800 200 200 2
+KO: Program did not handle invalid input correctly.
+Testing invalid input: 4 300 100 100 abdallah
+OK: Handled invalid input correctly.
+Testing invalid input: 9 400 100 100 ""
+OK: Handled invalid input correctly.
+Testing invalid input: 9 400 100 "" 5 
+OK: Handled invalid input correctly.
+Testing invalid input: 9 400 "" 100 5 
+OK: Handled invalid input correctly.
+Testing invalid input: 9 "" 100 100 5 
+OK: Handled invalid input correctly.
+Testing invalid input: 18446744073709551626 800 200 200 5
+OK: Handled invalid input correctly.
+Testing invalid input: 9 18446744073709552016 100 100 5
+OK: Handled invalid input correctly.
+Testing invalid input: 9 400 18446744073709551726 100 5 
+OK: Handled invalid input correctly.
+Testing invalid input: 9 400 100 18446744073709551726 5 
+OK: Handled invalid input correctly.
+Testing invalid input: 9 400 100 100 18446744073709551726 
+OK: Handled invalid input correctly.
+Testing invalid input: 4294967295 800 200 200 5
+OK: Handled invalid input correctly.
+Testing invalid input: 9 4294967295 100 100 5
+OK: Handled invalid input correctly.
+Testing invalid input: 9 400 4294967295 100 5 
+OK: Handled invalid input correctly.
+Testing invalid input: 9 400 100 4294967295 5 
+OK: Handled invalid input correctly.
+Testing invalid input: 9 400 100 100 4294967295 
+OK: Handled invalid input correctly.
+=== Invalid input tests completed ===
+PASSED: 35/40 | FAILED: 5/40
+=== Starting limited meals tests ===
+Testing limited meals input: 4 130 60 60 3
+OK: Handled limited meals correctly. Eating count: 12
+Testing limited meals input: 4 150 70 70 3
+OK: Handled limited meals correctly. Eating count: 12
+Testing limited meals input: 4 170 80 80 3
+OK: Handled limited meals correctly. Eating count: 12
+Testing limited meals input: 4 210 100 100 3
+OK: Handled limited meals correctly. Eating count: 12
+Testing limited meals input: 4 220 110 100 3
+KO: Eating count (4) is less than expected (12).
+Testing limited meals input: 4 310 150 150 3
+OK: Handled limited meals correctly. Eating count: 12
+Testing limited meals input: 5 800 200 200 7
+OK: Handled limited meals correctly. Eating count: 36
+Testing limited meals input: 5 610 200 400 7
+OK: Handled limited meals correctly. Eating count: 35
+Testing limited meals input: 5 310 100 200 7
+OK: Handled limited meals correctly. Eating count: 35
+Testing limited meals input: 5 190 60 120 7
+OK: Handled limited meals correctly. Eating count: 35
+Testing limited meals input: 4 410 200 200 10
+OK: Handled limited meals correctly. Eating count: 40
+Testing limited meals input: 5 800 200 200 3
+OK: Handled limited meals correctly. Eating count: 16
+Testing limited meals input: 4 400 150 150 2
+OK: Handled limited meals correctly. Eating count: 8
+Testing limited meals input: 10 600 300 100 1
+OK: Handled limited meals correctly. Eating count: 10
+Testing limited meals input: 6 1000 300 500 2
+OK: Handled limited meals correctly. Eating count: 12
+=== Limited meals tests completed ===
+PASSED: 14/15 | FAILED: 1/15
+
+=== Starting tests where program should end with death or enough eaten ===
+
+Test: [200 122 60 60] | a philo should die
+
+OK
+[#####                                             ]   9% (1 / 11 )
+Test: [4 310 200 100] | a philo should die
+
+OK
+[#########                                         ]  18% (2 / 11 )
+Test: [4 200 205 200] | a philo should die
+
+OK
+[##############                                    ]  27% (3 / 11 )
+Test: [4 600 400 400] | a philo should die
+
+OK
+[##################                                ]  36% (4 / 11 )
+Test: [5 600 200 200] | a philo should die
+
+KO - 'died' not found in the last line
+[#######################                           ]  45% (5 / 11 )
+Test: [5 800 600 100] | a philo should die
+
+OK
+[###########################                       ]  55% (6 / 11 )
+Test: [100 400 300 60] | a philo should die
+
+OK
+[################################                  ]  64% (7 / 11 )
+Test: [3 500 400 60] | a philo should die
+
+OK
+[####################################              ]  73% (8 / 11 )
+Test: [5 800 400 300 2] | a philo should die
+
+OK
+[#########################################         ]  82% (9 / 11 )
+Test: [2 600 500 200] | a philo should die
+
+OK
+[#############################################     ]  91% (10 / 11 )
+Test: [1 800 200 200] | a philo should die
+
+OK
+[##################################################] 100% (11 / 11 )
+
+=== Starting tests where a philosopher should NOT die ===
+
+Please enter desired timer for tests or press ENTER to use default 10 seconds: 7
+
+
+Test: [5 800 200 200] | no one should die
+
+[##################################################] 100% (7 / 7 seconds)
+
+OK
+SIGTERM: no process found
+Terminated
+
+Test: [5 600 150 150] | no one should die
+
+[##################################################] 100% (7 / 7 seconds)
+
+OK
+SIGTERM: no process found
+Terminated
+
+Test: [4 410 200 200] | no one should die
+
+[##################################################] 100% (7 / 7 seconds)
+
+OK
+SIGTERM: no process found
+Terminated
+
+Test: [4 408 200 200] | no one should die
+
+[##################################################] 100% (7 / 7 seconds)
+
+OK
+SIGTERM: no process found
+Terminated
+
+Test: [4 406 200 200] | no one should die
+
+[##################################################] 100% (7 / 7 seconds)
+
+OK
+SIGTERM: no process found
+Terminated
+
+Test: [4 405 200 200] | no one should die
+
+[##################################################] 100% (7 / 7 seconds)
+
+OK
+SIGTERM: no process found
+Terminated
+
+Test: [5 610 200 400] | no one should die
+
+[##################################################] 100% (7 / 7 seconds)
+
+OK
+SIGTERM: no process found
+Terminated
+
+Test: [5 310 100 200] | no one should die
+
+[##################################################] 100% (7 / 7 seconds)
+
+OK
+SIGTERM: no process found
+Terminated
+
+Test: [5 190 60 120] | no one should die
+
+[##################################################] 100% (7 / 7 seconds)
+
+OK
+Terminated
+SIGTERM: no process found
+
+Test: [100 410 200 200] | no one should die
+
+[##################################################] 100% (7 / 7 seconds)
+
+OK
+SIGTERM: no process found
+
+Test: [200 410 200 200] | no one should die
+
+[#######                                           ]  14% (1 / 7 seconds)
+
+KO - program terminated prematurely
+
+Test: [4 130 60 60] | no one should die
+
+[##################################################] 100% (7 / 7 seconds)
+
+OK
+SIGTERM: no process found
+Terminated
+
+Test: [100 130 60 60] | no one should die
+
+[#######                                           ]  14% (1 / 7 seconds)
+
+KO - program terminated prematurely
+
+Test: [200 130 60 60] | no one should die
+
+[#######                                           ]  14% (1 / 7 seconds)
+
+KO - program terminated prematurely
+
+Test: [100 800 200 200] | no one should die
+
+[##################################################] 100% (7 / 7 seconds)
+
+OK
+SIGTERM: no process found
+
+Test: [105 800 200 200] | no one should die
+
+[##################################################] 100% (7 / 7 seconds)
+
+OK
+SIGTERM: no process found
+
+Test: [200 800 200 200] | no one should die
+
+[##################################################] 100% (7 / 7 seconds)
+
+OK
+SIGTERM: no process found
+
+No-Die Tests: PASSED: 14/17 | FAILED: 3/17
+Running with 150 philosophers...
+All timestamps are in ascending order.
+Running with 160 philosophers...
+All timestamps are in ascending order.
+Running with 170 philosophers...
+All timestamps are in ascending order.
+Running with 180 philosophers...
+All timestamps are in ascending order.
+Running with 190 philosophers...
+All timestamps are in ascending order.
+Running with 200 philosophers...
+All timestamps are in ascending order.
+Processing file: output_150_400_100_100_10.txt
+has taken a fork   :     274
+is eating          : 273
+is sleeping        : 223
+is thinking        : 149
+-----------------------------
+Processing file: output_160_400_100_100_10.txt
+has taken a fork   :     288
+is eating          : 288
+is sleeping        : 221
+is thinking        : 140
+-----------------------------
+Processing file: output_170_400_100_100_10.txt
+has taken a fork   :     304
+is eating          : 303
+is sleeping        : 243
+is thinking        : 157
+-----------------------------
+Processing file: output_180_400_100_100_10.txt
+has taken a fork   :     318
+is eating          : 317
+is sleeping        : 233
+is thinking        : 143
+-----------------------------
+Processing file: output_190_400_100_100_10.txt
+has taken a fork   :     334
+is eating          : 333
+is sleeping        : 256
+is thinking        : 161
+-----------------------------
+Processing file: output_200_400_100_100_10.txt
+has taken a fork   :     347
+is eating          : 346
+is sleeping        : 248
+is thinking        : 150
+-----------------------------
