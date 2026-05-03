@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:07 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/24 19:28:39 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/03 21:41:13 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int ac, char **av)
 		return (1);
 	if (ph_init_forks(&dinner) != 0)
 		return (ph_destroy_mutexes(&dinner, 3), 1);
-	dinner.start_time = ph_get_time_ms();
+	dinner.start_time = ph_get_time_us();
 	ph_init_philos(&dinner);
 	if (pthread_create(&monitor_tid, NULL, ph_monitor, &dinner) != 0)
 		return (ph_destroy_mutexes(&dinner, 3), 1);

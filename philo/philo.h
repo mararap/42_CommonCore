@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 14:14:34 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/03 16:59:21 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/03 21:54:06 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ struct					s_philo
 
 struct					s_dinner
 {
-	int					philo_count;
+	long long			philo_count;
 	long long			time_to_die;
 	long long			time_to_eat;
 	long long			time_to_sleep;
 	long long			start_time;
-	int					meals_required;
+	long long			meals_required;
 	t_philo				*philo_arr;
 	t_fork_lock			*forks_arr;
 	int					forks_init_count;
@@ -56,8 +56,8 @@ struct					s_dinner
 
 /* UTILS */
 
-int						ph_atoui(const char *str);
-long long				ph_get_time_ms(void);
+long long				ph_atoui(const char *str);
+long long				ph_get_time_us(void);
 void					ph_print_status(t_philo *philo, char *msg);
 
 /* INIT */

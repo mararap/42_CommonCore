@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:22 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/10 10:09:48 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/03 21:41:16 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ph_atoui(const char *str)
 	return (result);
 }
 
-long long	ph_get_time_ms(void)
+long long	ph_get_time_us(void)
 {
 	struct timeval	tv;
 
@@ -60,7 +60,7 @@ void	ph_print_status(t_philo *philo, char *msg)
 		return ;
 	}
 	pthread_mutex_unlock(&philo->dinner->dead_lock);
-	timestamp = ph_get_time_ms() - philo->dinner->start_time;
+	timestamp = ph_get_time_us() - philo->dinner->start_time;
 	printf("%lld %d %s\n", timestamp, philo->id, msg);
 	pthread_mutex_unlock(&philo->dinner->print_lock);
 }

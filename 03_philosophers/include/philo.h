@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: reciak <reciak@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 14:14:34 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/25 16:03:48 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/03 21:41:01 by reciak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ struct					s_dinner
 // UTILS
 
 int						ph_atoui(const char *str);
-long long				ph_get_time_ms(void);
+long long				ph_get_time_us(void);
 void					ph_print_status(t_philo *philo, char *msg);
 
 // INIT
